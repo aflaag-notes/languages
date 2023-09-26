@@ -1,11 +1,11 @@
 # Fdb version 4
-["biber Linguaggi di Programmazione"] 1695719222 "Linguaggi di Programmazione.bcf" "Linguaggi di Programmazione.bbl" "Linguaggi di Programmazione" 1695724554 2
-  "Linguaggi di Programmazione.bcf" 1695724553 106652 37e852c976e785a4cd766daafd7c931b "pdflatex"
+["biber Linguaggi di Programmazione"] 1695719222 "Linguaggi di Programmazione.bcf" "Linguaggi di Programmazione.bbl" "Linguaggi di Programmazione" 1695740554 2
+  "Linguaggi di Programmazione.bcf" 1695740554 106652 37e852c976e785a4cd766daafd7c931b "pdflatex"
   (generated)
   "Linguaggi di Programmazione.bbl"
   "Linguaggi di Programmazione.blg"
   (rewritten before read)
-["pdflatex"] 1695724551 "Linguaggi di Programmazione.tex" "Linguaggi di Programmazione.pdf" "Linguaggi di Programmazione" 1695724554 0
+["pdflatex"] 1695740552 "Linguaggi di Programmazione.tex" "Linguaggi di Programmazione.pdf" "Linguaggi di Programmazione" 1695740554 0
   "../Nyx/logo.png" 1695664046 91419 8de48debf770a599a084520c83ce5d80 ""
   "../Nyx/nyx-frames.sty" 1695664046 3015 187d697f138fb4fbad6799fb9a4d7302 ""
   "../Nyx/nyx-macros.sty" 1695723945 4158 0c3cf1b055ab1af9584e74bdbd24887a ""
@@ -65,8 +65,10 @@
   "/usr/share/texmf-dist/fonts/tfm/public/stmaryrd/stmary8.tfm" 1689853683 848 6125cdd3627e68d3db8013b98e587508 ""
   "/usr/share/texmf-dist/fonts/tfm/public/tex-gyre/ec-qtmr.tfm" 1689853683 11504 0b76b46eb90907e684139293e03c466a ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1689853683 36741 fa121aac0049305630cf160b86157ee4 ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1689853683 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1689853683 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1689853683 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1689853683 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1689853683 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1689853683 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1689853683 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
@@ -325,12 +327,12 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1689853683 40684 9b9ec0b4288972636ff6a3b9c4238efc ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1693381028 4483110 adb1e1d04498b9576f1f17c4219c5e03 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1693380976 6769488 5b7e4d8b8dc08b722ee96f876127df85 ""
-  "Linguaggi di Programmazione.aux" 1695724553 2311 d3b76739eaf95c0efe9693eeec0602e2 "pdflatex"
+  "Linguaggi di Programmazione.aux" 1695740554 2435 598aa10e2473fe7b6baa6983c1ebb7cf "pdflatex"
   "Linguaggi di Programmazione.bbl" 0 -1 0 "biber Linguaggi di Programmazione"
-  "Linguaggi di Programmazione.out" 1695724553 383 491ae514a91b1ffe96ff7590279f792d "pdflatex"
-  "Linguaggi di Programmazione.run.xml" 1695724553 2440 4bb3062d0e681804c5fd4af25aa47c97 "pdflatex"
-  "Linguaggi di Programmazione.tex" 1695724551 11566 a50d5bfaf5fb8912a785c7f9247e4c52 ""
-  "Linguaggi di Programmazione.toc" 1695724553 670 661fa9bbe0410203cf3d0b49689ca2cb "pdflatex"
+  "Linguaggi di Programmazione.out" 1695740554 383 491ae514a91b1ffe96ff7590279f792d "pdflatex"
+  "Linguaggi di Programmazione.run.xml" 1695740554 2440 4bb3062d0e681804c5fd4af25aa47c97 "pdflatex"
+  "Linguaggi di Programmazione.tex" 1695740551 13243 b0223d0b95eafe20039867abe13e9ed5 ""
+  "Linguaggi di Programmazione.toc" 1695740554 670 661fa9bbe0410203cf3d0b49689ca2cb "pdflatex"
   (generated)
   "Linguaggi di Programmazione.aux"
   "Linguaggi di Programmazione.bcf"
