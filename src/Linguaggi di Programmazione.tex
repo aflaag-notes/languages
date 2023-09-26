@@ -115,6 +115,20 @@
         \end{enumerate}
     \end{frameddefn}
 
+    \begin{example}[$\N$ di von Neumann]
+        Una rappresentazione dell'insieme dei numeri naturali $\N$ alternativa alla canonica $$\N := \{0, 1, 2, \ldots \}$$ è stata fornita da John von Neumann. Indicando tale rappresentazione con $\aleph$, si ha che, per Neumann $$\begin{array}{c} 0_\aleph := \varnothing  = \{\} \\ 1_\aleph := \{ 0_\aleph \} = \{ \{ \}\} \\ 2_\aleph := \{0_\aleph, 1_\aleph\} = \{\{\}, \{\{ \}\}\} \\ \vdots \end{array}$$ e la funzione $\mathrm{succ}_\aleph$ è definita come segue $$\funcmap{\mathrm{succ}_\aleph}{\aleph}{\aleph}{x_\aleph}{\{\mu_\aleph \in \aleph \mid |\mu_\aleph| \le |x_\aleph|\}}$$ ed in particolare $\forall x_\aleph \in \aleph \quad |x_\aleph| + 1 = |\mathrm{succ}_\aleph(x_\aleph)|$
+
+        È possibile verificare che tale rappresentazione di $\N$ soddisfa gli assiomi di Peano, in quanto
+
+        \begin{enumerate}[label=\roman*), font=\itshape]
+            \item $\varnothing := \varnothing \in \aleph$
+            \item $\exists \func{\mathrm{succ}_\aleph}{\aleph}{\aleph}$, definita precedentemente
+            \item $\forall x_\aleph, y_\aleph \in \aleph \quad x_\aleph \neq y_\aleph \implies |x_\aleph| \neq |y_\aleph| \implies  |\mathrm{succ}_\aleph(x_\aleph)| \neq |\mathrm{succ}_\aleph(y_\aleph)| \implies \mathrm{succ}_\aleph(x_\aleph) \neq \mathrm{succ}_\aleph(y_\aleph)$ 
+            \item per assurdo, sia $x_\aleph \in \aleph$ tale che $\mathrm{succ}_\aleph(x_\aleph) = 0_\aleph := \varnothing$; per definizione $\mathrm{succ}_\aleph(x_\aleph) := \{\mu_\aleph \in \aleph \mid |\mu_\aleph| \le |x_\aleph|\}$, ma non esiste $\mu_\aleph \in \aleph$ con cardinalità minore o uguale 0, e dunque $\nexists x_\aleph \in \aleph \mid \mathrm{succ}_\aleph(x_\aleph) = 0_\aleph$
+            \item per assurdo, sia $S \subseteq \aleph$ tale che $0_\aleph \in S$ e $\forall x_S \in S \quad \mathrm{succ}_\aleph(x_S) \in S$ ma $S \neq \aleph \iff \aleph - S \neq \varnothing$; allora $\exists x_\aleph \in \aleph - S$, e sicuramente $x_\aleph \neq 0_\aleph$ poiché $0_\aleph \in \aleph$, TODO DA FINIRE
+        \end{enumerate}
+    \end{example}
+
     \begin{framedprinc}[label={induction}]{Principio di Induzione}
         Sia $P$ una proprietà che vale per $n = 0$, e dunque $P(0)$ è vera; inoltre,  per ogni $n \in \N$ si ha che $P(n) \implies P(n + 1)$; allora, $P(n)$ è vera per ogni $n \in \N$.
 
@@ -125,13 +139,15 @@
         Si noti che il quinto degli assiomi di Peano (\cref{peano}) equivale al principio di induzione (\cref{induction}). Infatti, il quinto assioma afferma che qualsiasi sottoinsieme $S$ di $\N$ avente lo 0, e caratterizzato dalla chiusura sulla funzione di successore $\mathrm{succ}$, coincide con $\N$ stesso.
     \end{framedobs}
 
-    \begin{frameddefn}{Struttura algebrica}
+    \begin{frameddefn}{Algebra}
         Una \tbf{struttura algebrica}, o più semplicemente \tbf{algebra}, consiste di un insieme \tit{non vuoto}, talvolta chiamato \tbf{insieme sostegno} (\tit{carrier set} o \tit{domain}), fornito di una o più operazioni su tale insieme, quest'ultime caratterizzate da un numero finito di assiomi da soddisfare.
 
-        Se $A$ è il carrier set, e ad esempio $+$ è l'operazione binaria su $A$ definita come segue $$\func{+}{A \times A}{A}$$ allora con $(A, +)$ si indica l'algebra costituita da tali due elementi.
+        Se $A$ è il carrier set, e $\gamma_1, \ldots \gamma_n$ sono delle operazioni definite su $A$, allora con $$(A, \gamma_1, \ldots, \gamma_n)$$ si indica l'algebra costituita da tali componenti.
+
+        Con $\1$ verrà indicato un qualsiasi insieme tale che $\abs{\1} = 1$.
     \end{frameddefn}
 
-    \begin{example}[Strutture algebriche]
+    \begin{example}[Strutture algebriche con singola operazione]
         Esempi di strutture algebriche con un'operazione binaria sono i seguenti:
 
         \begin{itemize}
@@ -140,14 +156,52 @@
             \item gruppi
             \item gruppi abeliani
         \end{itemize}
+    \end{example}
 
-        mentre esempi di strutture algebriche con due operazioni binarie sono i seguenti:
+    \begin{example}[Strutture algebriche con due operazioni]
+        Esempi di strutture algebriche con due operazioni binarie sono i seguenti:
 
         \begin{itemize}
             \item semianelli
             \item anelli
             \item campi
         \end{itemize}
+    \end{example}
+
+    \begin{frameddefn}[label={inductive algebra}]{Algebra induttiva}
+        Sia $A$ un insieme, e siano $\gamma_1, \ldots, \gamma_n$ funzioni definite su $A$ di arbitraria arietà; allora, $(A, \gamma_1, \ldots, \gamma_n)$ è definita \tbf{algebra induttiva} se si verificano le seguenti:
+
+        \begin{enumerate}[label=\roman*), font=\itshape]
+            \item $\gamma_1, \ldots, \gamma_n$ sono iniettive
+            \item $\forall i, j \in [1, n] \mid i \neq j \quad \im(\gamma_i) \cap \im(\gamma_j) = \varnothing$, ovvero, le immagini delle funzioni sono a due a due disgiunte
+            \item $\forall S \subseteq A \quad (\forall i \in [1, n], a_1, \ldots a_k \in S, k \in \N  \quad \gamma_i(a_1, \ldots, a_k) \in S) \implies S = A$, o equivalentemente, deve essere soddisfatto il \cref{induction}.
+        \end{enumerate}
+    \end{frameddefn}
+
+    % \begin{framedobs}{Terzo assioma delle algebre induttive}
+    %     Si noti che nel terzo assioma della \cref{inductive algebra} anche $S = \varnothing$ è un valido sottoinsieme di $A$, ma poiché non esistono $a_1, \ldots, a_k \in S \in \varnothing$, in esso ogni qualificazione è vera a vuoto.
+    % \end{framedobs}
+
+    \begin{example}[Numeri naturali]
+        $(\N, +)$ non è un algebra induttiva, poiché esistono $x_1, x_2, x_3, x_4 \in \N$ con $x_1 \neq x_3$ e $x_2 \neq x_4$ tali che $x_1 + x_2 = x_3 + x_4$; ad esempio, 2 + 3 = 5 = 1 + 4, e 2 $\neq$ 1, 3 $\neq$ 4.
+    \end{example}
+
+    % \begin{example}[Algebra di Boole]
+    %     Dato l'insieme $B = \{ \mathrm{true}, \mathrm{false}\}$, e la funzione $\lnot$ definita come segue $$\funcmap{\lnot}{B}{B}{x}{\left \{ \begin{array}{ll} \mathrm{false} & x = \mathrm{true} \\ \mathrm{true} & x = \mathrm{false} \end{array} \right.}$$ è possibile dimostrare che l'algebra $(B, \lnot)$ non è induttiva; infatti, nonostante $\lnot$ sia iniettiva, e la seconda proprietà della \cref{inductive algebra} sia vera a vuoto, si ha che $\forall x \in \varnothing \subseteq B \quad \nexists \lnot(x)$
+    % \end{example}
+
+    \begin{example}[Algebre induttive]
+        Sia $\mathrm{zero}$ la funzione definita come segue $$\funcmap{\mathrm{zero}}{\1}{\N}{x}{0}$$ e si prenda in esame l'algebra $(\N, \mathrm{succ}, \mathrm{zero})$; allora si ha che
+
+        \begin{enumerate}[label=\roman*), font=\itshape]
+            \item $\mathrm{succ}$ e $\mathrm{zero}$ sono iniettive, poiché
+                \begin{itemize}
+                    \item $\mathrm{succ}$ è iniettiva per il terzo assioma di Peano (\cref{peano})
+                    \item $\forall x, y \in \1 \quad \mathrm{zero}(x) = \mathrm{zero}(y) \implies x = y$ poiché $x, y \in \1 \implies x = y$ in quanto $\abs{\1} = 1$
+                \end{itemize}
+            \item $\im(\mathrm{succ}) \cap \im(\mathrm{zero}) = \left(\N - \{0\}\right) \cap \{0\} = \varnothing$
+            \item TODO
+        \end{enumerate}
     \end{example}
 
 \end{document}
