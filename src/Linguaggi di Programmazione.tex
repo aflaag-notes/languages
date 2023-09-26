@@ -104,7 +104,7 @@
     \subsection{TODO}
 
     \begin{frameddefn}[label={peano}]{Assiomi di Peano}
-        Gli \tbf{assiomi di Peano} sono 5 assiomi che definiscono assiomaticamente l'insieme $\N$, e sono i seguenti:
+        Gli \tbf{assiomi di Peano} sono 5 assiomi che definiscono l'insieme $\N$, e sono i seguenti:
 
         \begin{enumerate}[label=\roman*), font=\itshape]
             \item $0 \in \N$
@@ -115,16 +115,18 @@
         \end{enumerate}
     \end{frameddefn}
 
-    \begin{framedprinc}[label={induction}]{Principio d'Induzione}
-        Sia $P$ una proprietà, che vale per $n = 0$, dunque $P(0)$ è vera; inoltre,  per ogni $n \in \N$ si ha che $P(n) \implies P(n + 1)$. Allora, $P(n)$ è vera per ogni $n \in \N$. In simboli $$\forall P \quad (P(0) \land (\forall n \in \N \quad P(n) \implies P(n + 1))) \implies \forall n \in \N \quad P(n)$$
+    \begin{framedprinc}[label={induction}]{Principio di Induzione}
+        Sia $P$ una proprietà che vale per $n = 0$, e dunque $P(0)$ è vera; inoltre,  per ogni $n \in \N$ si ha che $P(n) \implies P(n + 1)$; allora, $P(n)$ è vera per ogni $n \in \N$.
+
+        In simboli $$\forall P \quad (P(0) \land (\forall n \in \N \quad P(n) \implies P(n + 1))) \implies \forall n \in \N \quad P(n)$$
     \end{framedprinc}
 
     \begin{framedobs}{Quinto assioma di Peano}
-        Si noti che il quinto assioma degli \cref{peano} equivale al \cref{induction}. Infatti, il quinto assioma afferma che qualsiasi sottoinsieme $S$ di $\N$ avente lo 0, e caratterizzato dalla chiusura sulla funzione di successore $\mathrm{succ}$, coincide con $\N$ stesso.
+        Si noti che il quinto degli assiomi di Peano (\cref{peano}) equivale al principio di induzione (\cref{induction}). Infatti, il quinto assioma afferma che qualsiasi sottoinsieme $S$ di $\N$ avente lo 0, e caratterizzato dalla chiusura sulla funzione di successore $\mathrm{succ}$, coincide con $\N$ stesso.
     \end{framedobs}
 
     \begin{frameddefn}{Struttura algebrica}
-        Una \tbf{struttura algebrica}, o più semplicemente \tbf{algebra}, consiste di un insieme \tit{non vuoto}, talvolta chiamato \tbf{insieme sostegno} (\tit{carrier set} o \tit{domain}), fornito di una o più operazioni su tale insieme, ed un numero finito di assiomi che tali operazioni devono soddisfare.
+        Una \tbf{struttura algebrica}, o più semplicemente \tbf{algebra}, consiste di un insieme \tit{non vuoto}, talvolta chiamato \tbf{insieme sostegno} (\tit{carrier set} o \tit{domain}), fornito di una o più operazioni su tale insieme, quest'ultime caratterizzate da un numero finito di assiomi da soddisfare.
 
         Se $A$ è il carrier set, e ad esempio $+$ è l'operazione binaria su $A$ definita come segue $$\func{+}{A \times A}{A}$$ allora con $(A, +)$ si indica l'algebra costituita da tali due elementi.
     \end{frameddefn}
