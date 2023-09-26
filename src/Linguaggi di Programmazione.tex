@@ -207,7 +207,7 @@
     \begin{frameddefn}{Omomorfismo}
         Un \tbf{omomorfismo} è una funzione, tra due algebre dello stesso tipo, tale da preservarne le strutture.
 
-        Formalmente, siano $(A, \mu_1, \ldots, \mu_n)$ e $(B, \delta_1, \ldots, \delta_n)$ due algebre tali che ogni funzione $\mu_i$ abbia la stessa arietà di $\delta_i$, pari a $\eta_i$ per qualche $i \in [1, n]$; allora, una funzione $\func{f}{A}{B}$ è detta essere un \tbf{omomorfismo} tra le due algebre, se e solo se $$\begin{array}{c} \forall a_1, \ldots, a_{\eta_1} \quad f(\mu_1(a_1, \ldots, a_{\eta_n})) = \delta_1(f(a_1), \ldots, f(a_{\eta_1})) \\ \vdots \\ \forall a_1, \ldots, a_{\eta_n} \quad f(\mu_n(a_1, \ldots, a_{\eta_n})) = \delta_n(f(a_1), \ldots, f(a_{\eta_n})) \end{array}$$
+        Formalmente, siano $(A, \mu_1, \ldots, \mu_n)$ e $(B, \delta_1, \ldots, \delta_n)$ due algebre tali che ogni funzione $\mu_i$ abbia la stessa arietà e lo stesso numero di parametri esterni (denotati con $k$) di $\delta_i$, pari rispettivamente ad $\eta_i$ ed a $\nu_i$, per qualche $i \in [1, n]$; allora, una funzione $\func{f}{A}{B}$ è detta essere un \tbf{omomorfismo} tra le due algebre, se e solo se $$\begin{array}{c} \forall a_1, \ldots, a_{\eta_1} \quad f(\mu_1(a_1, \ldots, a_{\eta_n}), k_1, \ldots, k_{\nu_1}) = \delta_1(f(a_1), \ldots, f(a_{\eta_1}), k_1, \ldots, k_{\nu_1}) \\ \vdots \\ \forall a_1, \ldots, a_{\eta_n} \quad f(\mu_n(a_1, \ldots, a_{\eta_n}), k_1, \ldots, k_{\nu_n}) = \delta_n(f(a_1), \ldots, f(a_{\eta_n}), k_1, \ldots, k_{\nu_n}) \end{array}$$
     \end{frameddefn}
 
     \begin{example}[Omomorfismi]
