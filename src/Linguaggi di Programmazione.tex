@@ -175,8 +175,8 @@
 
         \begin{enumerate}[label=\roman*), font=\itshape]
             \item $\gamma_1, \ldots, \gamma_n$ sono iniettive
-            \item $\forall i, j \in [1, n] \mid i \neq j \quad \im(\gamma_i) \cap \im(\gamma_j) = \varnothing$, ovvero, le immagini delle funzioni sono a due a due disgiunte
-            \item $\forall S \subseteq A \quad (\forall i \in [1, n], a_1, \ldots a_k \in S, k \in \N  \quad \gamma_i(a_1, \ldots, a_k) \in S) \implies S = A$, o equivalentemente, deve essere soddisfatto il \cref{induction}.
+            \item $\forall i, j \in [1, n] \mid i \neq j \quad \im(\gamma_i) \cap \im(\gamma_j) = \varnothing$, ovvero, le immagini dei costruttori sono a due a due disgiunte
+            \item $\forall S \subseteq A \quad (\forall i \in [1, n], a_1, \ldots a_k \in S, k \in \N  \quad \gamma_i(a_1, \ldots, a_k) \in S) \implies S = A$, o equivalentemente, in $A$ non devono essere contenute algebre induttive.
         \end{enumerate}
     \end{frameddefn}
 
@@ -224,5 +224,152 @@
     \begin{example}[Isomorfismi]
         Si consideri l'omomorfismo dell'\cref{homo}; si noti che $$\forall x, y \in \R \mid x \neq \R \quad e^x \neq e^y \implies f(x) \neq f(y)$$ e dunque $f$ è iniettiva; inoltre $$\forall y \in \R_{> 0} \quad \exists x \in \R \mid f(x) = e^x = y \iff y = \ln(x)$$ e dunque $f$ è suriettiva. Allora, $f$ è biettiva, e poiché è un omomorfismo, risulta essere un isomorfismo.
     \end{example}
+
+    \section{Strutture dati induttive}
+
+    \subsection{Liste}
+
+    \begin{frameddefn}{Liste}
+        Una \tbf{lista} è una collezione ordinata di elementi, e l'insieme delle liste di lunghezza finita viene denotato con $\ttt{List<T>}$, dove $\ttt T$ è il tipo degli elementi che le liste contengono, ed il simobolo $\ttt T$ verrà identificato con l'insieme di tutti gli oggetti aventi tipo $\ttt T$.
+
+        Dati $a_1, \ldots, a_n \in \ttt T$, una lista $\ttt{List <T>}$ avente tali elementi può essere rappresentata come segue: $$\ttt [ a_1, \ldots, a_n \ttt ]$$
+    \end{frameddefn}
+
+    \begin{frameddefn}{Algebra delle liste finite}
+        L'\tbf{algebra delle liste finite} è definita come segue: $$(\ttt{List<T>}, \mathrm{empty}, \mathrm{cons})$$ dove i costruttori sono i seguenti: $$\centeredsoe{\funcmap{\mathrm{empty}}{\1}{\ttt{List<T>}}{x}{\ttt{[]}} \\ \funcmap{\mathrm{cons}}{\ttt{List<T>} \times \ttt{T}}{\ttt{List<T>}}{(\ttt [ a_1, \ldots, a_n \ttt ], x)}{\ttt [ a_1, \ldots, a_n , x \ttt ]}}$$
+    \end{frameddefn}
+
+    \begin{framedprop}{Liste finite induttive}
+        L'algebra delle liste finite è induttiva.
+    \end{framedprop}
+
+    \begin{proof}
+        Si noti che:
+
+        \begin{itemize}
+            \item $\mathrm{empty}$ ha dominio in $\1$, e poiché contiene un solo elemento, $\mathrm{empty}$ è necessariamente iniettiva;
+            \item $\forall l, l' \in \ttt{List<T>}, x, x' \in \ttt{T} \quad \mathrm{cons}(l, x) = \mathrm{cons}(l', x') \implies \soe{l}{l = l' \\ x = x'}$ altrimenti si avrebbero avute liste di lunghezze diverse, oppure liste contenenti diversi elementi;
+            \item $\im{(\mathrm{empty})} \cap \im{(\mathrm{cons})} = \varnothing$, poiché solo $\mathrm{empty}$ può restituire $\ttt [ \ttt ]$, in quanto $\mathrm{cons}$ restituisce sempre una lista contenente almeno l'elemento fornito in input;
+            \item sia $S \subseteq \ttt{List<T>}$ tale da essere chiuso rispetto a $\mathrm{cons}$, e contenente la lista vuota; per assurdo, sia $\ttt{List<T>} - S \neq \varnothing \implies \exists l \in \ttt{List<T>} - S$, ma $\ttt{List<T>}$ è chiuso rispetto a $\mathrm{cons}$, ed in particolare $\exists x \in \ttt{T}, l' \in \ttt{List<T>} \mid \mathrm{cons}(l', x) = l$, ma poichè $l \notin S$, allora necessariamente $l' \notin S$; ripetendo tale ragionamento ricorsivamente, si ottiene che $\ttt{[]} \notin \ttt{List<T>}$ $\lightning$.
+        \end{itemize}
+    \end{proof}
+
+    \begin{framedobs}[label={infinite lists}]{Algebra delle liste infinite}
+        Se all'algebra delle liste finite vengono aggiunte anche le liste infinite, l'algebra risultante non è induttiva, in quanto contiene l'algebra delle liste finite, la quale è induttiva, e viene dunque contraddetto il terzo assioma della \cref{inductive algebra}.
+    \end{framedobs}
+
+    \begin{framedobs}{Concatenazione di liste finite}
+        È possibile estendere l'algebra delle liste finite per supportare l'operazione di concatenazione tra liste, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{concat}}{\ttt{List<T>} \times \ttt{List<T>}}{\ttt{List<T>}}{(l, l')}{\soe{ll}{l' & l = \ttt{[]} \\ \mathrm{cons}(n, \mathrm{concat}(t, l')) & \exists x \in \ttt T, t \in \ttt{List<T>} \mid l = \mathrm{cons}(t, x)}}$}
+    \end{framedobs}
+
+    \subsection{Alberi binari}
+
+    \begin{frameddefn}{Albero binario}
+        Un \tbf{albero binario} è una struttura dati che è possibile rappresentare graficamente come segue:
+
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[
+                level distance=1cm,
+                level 1/.style={sibling distance=2cm},
+                level 2/.style={sibling distance=1cm}
+            ]
+                \node {$\circ$}
+                    child {node {$\circ$}
+                    child {node {$\circ$}}
+                    child {node {$\circ$}}
+                }
+                    child {node {$\circ$}
+                };
+            \end{tikzpicture}
+        \end{figure}
+
+        Il primo nodo, poiché non è figlio di nessuno, è detto \tbf{radice}, e poiché l'albero è \tit{binario}, ogni nodo ha 0, nel qual caso è definito \tbf{foglia}, oppure 2 figli. L'insieme degli alberi binari viene denotato con \ttt{B-tree}.
+    \end{frameddefn}
+
+    \begin{frameddefn}{Algebra degli alberi binari finiti}
+        L'\tbf{algebra degli alberi binari finiti} è definita come segue: $$(\ttt{B-tree}, \mathrm{leaf}, \mathrm{branch})$$ dove i costruttori sono i seguenti: $$\centeredsoe{\funcmap{\mathrm{leaf}}{\1}{\ttt{B-tree}}{x}{\circ} \\ \funcmap{\mathrm{branch}}{\ttt{B-tree} \times \ttt{B-tree}}{\ttt{B-tree}}{(b, b')}{
+            \begin{tikzpicture}[
+                level distance=1cm,
+                level 1/.style={sibling distance=1cm},
+            ]
+                \node {$\circ$}
+                    child {node {$b$}
+                }
+                    child {node {$b'$}
+                };
+            \end{tikzpicture}
+        }}$$
+    \end{frameddefn}
+
+    \begin{framedprop}{Alberi binari finiti induttivi}
+        L'algebra degli alberi binari finiti è induttiva.
+    \end{framedprop}
+
+    \begin{proof}
+        Omessa.
+    \end{proof}
+
+    \begin{framedobs}{Algebra degli alberi binari infiniti}
+        Analogamente all'\cref{infinite lists}, l'algebra degli alberi binari finiti ed infiniti non è induttiva.
+    \end{framedobs}
+
+    \begin{framedobs}{Foglie di un albero binario finito}
+        È possibile estendere l'algebra degli alberi binari finiti per supportare l'operazione per contare i nodi di un albero, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{nodes}}{\ttt{B-tree}}{\N}{b}{\soe{ll}{1 & b = \circ \\ 1 + \mathrm{nodes}(t) + \mathrm{nodes}(t')  & \exists t, t' \in \ttt{B-tree} \mid b = \mathrm{branch}(t, t')}}$}
+    \end{framedobs}
+
+    \begin{framedobs}{Foglie di un albero binario finito}
+        È possibile estendere l'algebra degli alberi binari finiti per supportare l'operazione per contare le foglie di un albero, come segue: $$\funcmap{\mathrm{leaves}}{\ttt{B-tree}}{\N}{b}{\soe{ll}{1 & b = \circ \\ \mathrm{leaves}(t) + \mathrm{leaves}(t') & \exists t, t' \in \ttt{B-tree} \mid b = \mathrm{branch}(t, t')}}$$
+    \end{framedobs}
+
+    \begin{framedthm}{Relazione tra foglie e nodi}
+        Ogni albero binario finito, avente $n$, foglie ha $2n - 1$ nodi.
+    \end{framedthm}
+
+    \proofind{
+        La seguente dimostrazione procede per \tit{induzione strutturale}, dunque effettuando l'induzione sulla morfologia della struttura dati, e non sul numero $n$ di foglie.
+    }{
+        Il caso base è costituito dunque da $\circ$, l'albero ottenuto attraverso il costruttore $\mathrm{leaf}$, ed infatti si ha che $$\mathrm{leaves}(\circ) = 1 \implies 2 \cdot 1 - 1 = 1$$ e $\circ$ ha esattamente 1 nodo.
+    }{
+        Un albero binario finito, avente $n$ nodi, ha $2n - 1$ foglie.
+    }{
+        Sia $b \in \ttt{B-tree}$ tale che esistano $t, t' \in \ttt{B-tree}$ tali che $\mathrm{branch}(t, t') = b$, e siano $$\soe{l}{\mathrm{leaves}(t) = n \\ \mathrm{leaves}(t') = n'}$$ Si noti che, per ipotesi induttiva, si ha che $$\soe{l}{\mathrm{nodes}(t) = 2n - 1 \\ \mathrm{nodes}(t') = 2n' - 1}$$ ed inoltre, poiché $b = \mathrm{branch}(t, t')$, $b$ ha la forma seguente
+
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[
+                level distance=1cm,
+                level 1/.style={sibling distance=1cm},
+            ]
+                \node {$\circ$}
+                    child {node {$t$}
+                }
+                    child {node {$t'$}
+                };
+            \end{tikzpicture}
+
+        \end{figure}
+        dunque, per definizione di $\mathrm{leaves}$ si ha che $$\mathrm{leaves}(b) = \mathrm{leaves}(t) + \mathrm{leaves}(t') = n + n'$$ e, dalla morfologia di $b$, segue che $$\mathrm{nodes}(b) = \mathrm{nodes}(t) + \mathrm{notes}(t') + 1 = 2n -1 + 2n'-1 + 1 = 2(n + n') - 1$$ ed è quindi verificata la tesi, poiché $$\mathrm{leaves}(b) = n + n' \implies \mathrm{nodes}(b) = 2(n + n') - 1$$
+    }
+    
+    \section{Sintassi astratta}
+    
+    \subsection{Definizioni}
+
+    \begin{frameddefn}{Grammatica}
+        Una \tbf{grammatica} è un insieme di regole, dette \tbf{termini}, che definiscono come poter manipolare un insieme di stringhe; una grammatica $G$, composta dai termini $A$, $B$ e $C$ è rappresentata come segue $$G ::= A \ | \ B \ | \ C$$
+    \end{frameddefn}
+
+    \begin{example}[Exp]
+        \label{exp}
+        Si consideri la seguente grammatica: $$Exp ::= \ttt 0 \ | \ \ttt 1 \ | \ldots \ | \ Exp + Exp \ | \ Exp * Exp$$ essa definisce le regole per utilizzare i numeri in $\N$, ammettendo inoltre le operazioni \und{sintattiche} di $+$ e $*$.
+    \end{example}
+
+    \begin{frameddefn}{Linguaggio di una grammatica}
+        Sia $G$ una grammatica; allora, il \tbf{linguaggio di $G$} è l'insieme delle stringhe che è possibile costruire attraverso le regole dettate da $G$.
+    \end{frameddefn}
+
+    % \begin{example}[Linguaggio di Exp]
+        
 
 \end{document}
