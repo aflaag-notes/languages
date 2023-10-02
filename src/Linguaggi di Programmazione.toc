@@ -5,11 +5,12 @@
 \contentsline {subsubsection}{Segnalazione errori ed eventuali migliorie:}{1}{subsubsection*.4}%
 \contentsline {subsubsection}{Licenza di distribuzione:}{1}{subsubsection*.5}%
 \contentsline {subsubsection}{Contatti dell'autore e ulteriori link:}{1}{subsubsection*.6}%
-\contentsline {chapter}{\numberline {1}TODO}{2}{chapter.1}%
-\contentsline {section}{\numberline {1.1}TODO}{2}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}TODO}{2}{subsection.1.1.1}%
-\contentsline {section}{\numberline {1.2}Strutture dati induttive}{6}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Liste}{6}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Alberi binari}{7}{subsection.1.2.2}%
-\contentsline {section}{\numberline {1.3}Sintassi astratta}{9}{section.1.3}%
-\contentsline {subsection}{\numberline {1.3.1}Definizioni}{9}{subsection.1.3.1}%
+\contentsline {chapter}{\numberline {1}Induzione}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Algebre induttive}{2}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Assiomi di Peano}{2}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Algebre induttive}{4}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}Strutture dati induttive}{7}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Liste}{7}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Alberi binari}{8}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}Sintassi astratta}{10}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Definizioni}{10}{subsection.1.3.1}%

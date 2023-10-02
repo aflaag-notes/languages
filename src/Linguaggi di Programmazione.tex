@@ -97,11 +97,11 @@
 
     %%%%%%%%%%%%%%%%%%%%%
 
-    \chapter{TODO}
+    \chapter{Induzione}
     
-    \section{TODO}
+    \section{Algebre induttive}
 
-    \subsection{TODO}
+    \subsection{Assiomi di Peano}
 
     \begin{frameddefn}[label={peano}]{Assiomi di Peano}
         Gli \tbf{assiomi di Peano} sono 5 assiomi che definiscono l'insieme $\N$, e sono i seguenti:
@@ -125,19 +125,21 @@
             \item $\exists \func{\mathrm{succ}_\aleph}{\aleph}{\aleph}$, definita precedentemente
             \item $\forall x_\aleph, y_\aleph \in \aleph \quad x_\aleph \neq y_\aleph \implies |x_\aleph| \neq |y_\aleph| \implies  |\mathrm{succ}_\aleph(x_\aleph)| \neq |\mathrm{succ}_\aleph(y_\aleph)| \implies \mathrm{succ}_\aleph(x_\aleph) \neq \mathrm{succ}_\aleph(y_\aleph)$ 
             \item per assurdo, sia $x_\aleph \in \aleph$ tale che $\mathrm{succ}_\aleph(x_\aleph) = 0_\aleph := \varnothing$; per definizione $\mathrm{succ}_\aleph(x_\aleph) := \{\mu_\aleph \in \aleph \mid |\mu_\aleph| \le |x_\aleph|\}$, ma non esiste $\mu_\aleph \in \aleph$ con cardinalità minore o uguale 0, e dunque $\nexists x_\aleph \in \aleph \mid \mathrm{succ}_\aleph(x_\aleph) = 0_\aleph$
-            \item per assurdo, sia $S \subseteq \aleph$ tale che $0_\aleph \in S$ e $\forall x_S \in S \quad \mathrm{succ}_\aleph(x_S) \in S$ ma $S \neq \aleph \iff \aleph - S \neq \varnothing$; $\aleph$ è chiuso su $\mathrm{succ}_\aleph$ per il secondo assioma di Peano, ed in particolare $\aleph - S$ è chiuso attraverso la definizione di successore, il quale presenterà dunque una successione di elementi definita dalla funzione $\mathrm{succ}_\aleph$ stessa; inoltre, si noti che tale successione non può costituire un ciclo per come $\mathrm{succ}_\aleph$ è definta, dunque la funzione genera necessariamente una successione in cui è presente un primo elemento $\zeta_\aleph$ che non ha predecessore in $\aleph - S$, ma che possiede un predecessore poiché $0_\aleph \in S$ in ipotesi, e dunque sicuramente $\zeta_\aleph \neq 0_\aleph$; allora, il predecesssore di $\zeta_\aleph$ deve necessariamente essere in $S$, e sia questo $\zeta'_\aleph \in S$; infine poiché $S$ è definito tale da essere chiuso su $\mathrm{succ}_\aleph$, dal fatto che $\soe{l}{\zeta'_\aleph \in S \\ \mathrm{succ}_\aleph(\zeta'_\aleph) = \zeta_\aleph}$ segue che $\zeta_\aleph \in S$, e tale ragionamento è possibile applicarlo per ogni elemento che segue da $\zeta_\aleph$ in $\aleph - S$ nella successione definita da $\mathrm{succ}_\aleph$; in conlcusione, $S = \aleph$ necessariamente.
+            \item per assurdo, sia $S \subseteq \aleph$ tale che $0_\aleph \in S$ e $\forall x_S \in S \quad \mathrm{succ}_\aleph(x_S) \in S$ ma $S \neq \aleph \iff \aleph - S \neq \varnothing \implies \exists \zeta_\aleph \in \aleph - S$, ed in particolare $\zeta_\aleph \neq 0_\aleph$; $\aleph$ è chiuso su $\mathrm{succ}_\aleph$ per il secondo assioma di Peano, e dunque $\zeta_\aleph \neq 0_\aleph \implies \exists \zeta'_\aleph \in \aleph \mid \mathrm{succ}_\aleph(\zeta'_\aleph) = \zeta_\aleph$, e sicuramente $\zeta'_\aleph \notin S$, poiché altrimenti $\zeta_\aleph \in S$ anch'esso; allora, ripetendo il ragionamento analogo per l'intera catena di predecessori, $S$ risulterebbe essere vuoto, ma ciò è impossibile poiché $0_\aleph \in S$ in ipotesi $\lightning$
         \end{enumerate}
     \end{example}
 
     \begin{framedprinc}[label={induction}]{Principio di Induzione}
         Sia $P$ una proprietà che vale per $n = 0$, e dunque $P(0)$ è vera; inoltre,  per ogni $n \in \N$ si ha che $P(n) \implies P(n + 1)$; allora, $P(n)$ è vera per ogni $n \in \N$.
 
-        In simboli $$\forall P \quad (P(0) \land (\forall n \in \N \quad P(n) \implies P(n + 1))) \implies \forall n \in \N \quad P(n)$$
+        In simboli, utilizzando la notazione della logica formale, si ha che $$\dfrac{P(0) \land (\forall n \in \N \quad P(n) \implies P(n + 1))}{\forall n \in \N \quad P(n)}$$
     \end{framedprinc}
 
     \begin{framedobs}{Quinto assioma di Peano}
         Si noti che il quinto degli assiomi di Peano (\cref{peano}) equivale al principio di induzione (\cref{induction}). Infatti, il quinto assioma afferma che qualsiasi sottoinsieme $S$ di $\N$ avente lo 0, e caratterizzato dalla chiusura sulla funzione di successore $\mathrm{succ}$, coincide con $\N$ stesso.
     \end{framedobs}
+
+    \subsection{Algebre induttive}
 
     \begin{frameddefn}{Algebra}
         Una \tbf{struttura algebrica}, o più semplicemente \tbf{algebra}, consiste di un insieme \tit{non vuoto}, talvolta chiamato \tbf{insieme sostegno} (\tit{carrier set} o \tit{domain}), fornito di una o più operazioni su tale insieme, quest'ultime caratterizzate da un numero finito di assiomi da soddisfare.
@@ -178,19 +180,23 @@
             \item $\forall i, j \in [1, n] \mid i \neq j \quad \im(\gamma_i) \cap \im(\gamma_j) = \varnothing$, ovvero, le immagini dei costruttori sono a due a due disgiunte
             \item $\forall S \subseteq A \quad (\forall i \in [1, n], a_1, \ldots a_k \in S, k \in \N  \quad \gamma_i(a_1, \ldots, a_k) \in S) \implies S = A$, o equivalentemente, in $A$ non devono essere contenute algebre induttive.
         \end{enumerate}
+
+        Le funzioni $\gamma_1, \ldots, \gamma_n$ prendono il nome di \tbf{costruttori dell'algebra}.
     \end{frameddefn}
 
-    % \begin{framedobs}{Terzo assioma delle algebre induttive}
-    %     Si noti che nel terzo assioma della \cref{inductive algebra} anche $S = \varnothing$ è un valido sottoinsieme di $A$, ma poiché non esistono $a_1, \ldots, a_k \in S \in \varnothing$, in esso ogni qualificazione è vera a vuoto.
-    % \end{framedobs}
+    \begin{framedobs}[label={third inductive algebra}]{Terzo assioma delle algebre induttive}
+        Si noti che nel terzo assioma della \cref{inductive algebra} anche $S = \varnothing$ è un valido sottoinsieme di $A$, ma poiché non esistono $a_1, \ldots, a_k \in \varnothing$, in esso ogni qualificazione è vera a vuoto. Di conseguenza, nel momento in cui si ammette $S = \varnothing$ nel terzo assioma, l'algebra risulta essere non induttiva necessariamente (a meno dell'algebra vuota).
+        
+        Di conseguenza, questo terzo assioma forza la necessità della presenza di un costruttore unitario all'interno di ogni algebra induttiva, in modo da non poter ammettere $S = \varnothing$, poiché l'algebra deve essere chiusa su ognuno dei suoi costruttori.
+    \end{framedobs}
 
     \begin{example}[Numeri naturali]
         $(\N, +)$ non è un algebra induttiva, poiché esistono $x_1, x_2, x_3, x_4 \in \N$ con $x_1 \neq x_3$ e $x_2 \neq x_4$ tali che $x_1 + x_2 = x_3 + x_4$; ad esempio, 2 + 3 = 5 = 1 + 4, e 2 $\neq$ 1, 3 $\neq$ 4.
     \end{example}
 
-    % \begin{example}[Algebra di Boole]
-    %     Dato l'insieme $B = \{ \mathrm{true}, \mathrm{false}\}$, e la funzione $\lnot$ definita come segue $$\funcmap{\lnot}{B}{B}{x}{\left \{ \begin{array}{ll} \mathrm{false} & x = \mathrm{true} \\ \mathrm{true} & x = \mathrm{false} \end{array} \right.}$$ è possibile dimostrare che l'algebra $(B, \lnot)$ non è induttiva; infatti, nonostante $\lnot$ sia iniettiva, e la seconda proprietà della \cref{inductive algebra} sia vera a vuoto, si ha che $\forall x \in \varnothing \subseteq B \quad \nexists \lnot(x)$
-    % \end{example}
+    \begin{example}[Algebra di Boole]
+        Dato l'insieme $B = \{ \mathrm{true}, \mathrm{false}\}$, e la funzione $\lnot$ definita come segue $$\funcmap{\lnot}{B}{B}{x}{\left \{ \begin{array}{ll} \mathrm{false} & x = \mathrm{true} \\ \mathrm{true} & x = \mathrm{false} \end{array} \right.}$$ è possibile dimostrare che l'algebra $(B, \lnot)$ non è induttiva; infatti, nonostante $\lnot$ sia iniettiva, e la seconda proprietà della \cref{inductive algebra} sia vera a vuoto, $(B, \lnot)$ non presenta costruttore unitario, e dunque non può costituire un'algebra induttiva (si noti l'\cref{third inductive algebra}).
+    \end{example}
 
     \begin{example}[Algebre induttive]
         Sia $\mathrm{zero}$ la funzione definita come segue $$\funcmap{\mathrm{zero}}{\1}{\N}{x}{0}$$ e si prenda in esame l'algebra $(\N, \mathrm{succ}, \mathrm{zero})$; allora si ha che
@@ -250,7 +256,7 @@
             \item $\mathrm{empty}$ ha dominio in $\1$, e poiché contiene un solo elemento, $\mathrm{empty}$ è necessariamente iniettiva;
             \item $\forall l, l' \in \ttt{List<T>}, x, x' \in \ttt{T} \quad \mathrm{cons}(l, x) = \mathrm{cons}(l', x') \implies \soe{l}{l = l' \\ x = x'}$ altrimenti si avrebbero avute liste di lunghezze diverse, oppure liste contenenti diversi elementi;
             \item $\im{(\mathrm{empty})} \cap \im{(\mathrm{cons})} = \varnothing$, poiché solo $\mathrm{empty}$ può restituire $\ttt [ \ttt ]$, in quanto $\mathrm{cons}$ restituisce sempre una lista contenente almeno l'elemento fornito in input;
-            \item sia $S \subseteq \ttt{List<T>}$ tale da essere chiuso rispetto a $\mathrm{cons}$, e contenente la lista vuota; per assurdo, sia $\ttt{List<T>} - S \neq \varnothing \implies \exists l \in \ttt{List<T>} - S$, ma $\ttt{List<T>}$ è chiuso rispetto a $\mathrm{cons}$, ed in particolare $\exists x \in \ttt{T}, l' \in \ttt{List<T>} \mid \mathrm{cons}(l', x) = l$, ma poichè $l \notin S$, allora necessariamente $l' \notin S$; ripetendo tale ragionamento ricorsivamente, si ottiene che $\ttt{[]} \notin \ttt{List<T>}$ $\lightning$.
+            \item sia $S \subseteq \ttt{List<T>}$ tale da essere chiuso rispetto a $\mathrm{cons}$, e contenente la lista vuota; per assurdo, sia $\ttt{List<T>} - S \neq \varnothing \implies \exists l \in \ttt{List<T>} - S$, ma $\ttt{List<T>}$ è chiuso rispetto a $\mathrm{cons}$, ed in particolare $\exists x \in \ttt{T}, l' \in \ttt{List<T>} \mid \mathrm{cons}(l', x) = l$, ma poichè $l \notin S$, allora necessariamente $l' \notin S$; ripetendo tale ragionamento induttivamente, si ottiene che $S$ è vuoto, ma questo è impossibile poiché $\ttt{[]} \in \ttt{List<T>}$ in ipotesi $\lightning$.
         \end{itemize}
     \end{proof}
 
@@ -270,10 +276,10 @@
         \begin{figure}[H]
             \centering
             \begin{tikzpicture}[
-                level distance=1cm,
-                level 1/.style={sibling distance=2cm},
-                level 2/.style={sibling distance=1cm}
-            ]
+                    level distance=1cm,
+                    level 1/.style={sibling distance=2cm},
+                    level 2/.style={sibling distance=1cm}
+                ]
                 \node {$\circ$}
                     child {node {$\circ$}
                     child {node {$\circ$}}
@@ -288,18 +294,28 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Algebra degli alberi binari finiti}
-        L'\tbf{algebra degli alberi binari finiti} è definita come segue: $$(\ttt{B-tree}, \mathrm{leaf}, \mathrm{branch})$$ dove i costruttori sono i seguenti: $$\centeredsoe{\funcmap{\mathrm{leaf}}{\1}{\ttt{B-tree}}{x}{\circ} \\ \funcmap{\mathrm{branch}}{\ttt{B-tree} \times \ttt{B-tree}}{\ttt{B-tree}}{(b, b')}{
-            \begin{tikzpicture}[
-                level distance=1cm,
-                level 1/.style={sibling distance=1cm},
-            ]
-                \node {$\circ$}
-                    child {node {$b$}
-                }
-                    child {node {$b'$}
-                };
-            \end{tikzpicture}
-        }}$$
+        L'\tbf{algebra degli alberi binari finiti} è definita come segue: $$(\ttt{B-tree}, \mathrm{leaf}, \mathrm{branch})$$ dove i costruttori sono i seguenti:
+
+        $$\funcmap{\mathrm{leaf}}{\1}{\ttt{B-tree}}{x}{\circ}$$
+
+        \begin{center}
+            \begin{tabular}{c c}
+                \begin{tabular}{c}$\funcmap{\mathrm{branch}}{\ttt{B-tree} \times \ttt{B-tree}}{\ttt{B-tree}}{(b, b')}{}$\end{tabular}
+                &
+                \begin{tabular}{c}
+                    \begin{tikzpicture}[
+                            level distance=1cm,
+                            level 1/.style={sibling distance=1cm},
+                        ]
+                        \node {$\circ$}
+                            child {node {$b$}
+                        }
+                            child {node {$b'$}
+                        };
+                    \end{tikzpicture}
+                \end{tabular}
+            \end{tabular}
+        \end{center}
     \end{frameddefn}
 
     \begin{framedprop}{Alberi binari finiti induttivi}
@@ -338,9 +354,9 @@
         \begin{figure}[H]
             \centering
             \begin{tikzpicture}[
-                level distance=1cm,
-                level 1/.style={sibling distance=1cm},
-            ]
+                    level distance=1cm,
+                    level 1/.style={sibling distance=1cm},
+                ]
                 \node {$\circ$}
                     child {node {$t$}
                 }
@@ -357,19 +373,30 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}{Grammatica}
-        Una \tbf{grammatica} è un insieme di regole, dette \tbf{termini}, che definiscono come poter manipolare un insieme di stringhe; una grammatica $G$, composta dai termini $A$, $B$ e $C$ è rappresentata come segue $$G ::= A \ | \ B \ | \ C$$
+        Una \tbf{grammatica} è un insieme di regole che definiscono come poter manipolare un insieme di stringhe, ed agiscono su elementi sintattici detti \tbf{termini}.
     \end{frameddefn}
 
-    \begin{example}[Exp]
+    \begin{frameddefn}{Forma di Backus-Naur (BNF)}
+        La \tbf{forma di Backus-Naur} (\tit{Backus-Naur Form}) è una notazione utilizzata per descrivere la sintassi di grammatiche, ed è definita come segue: $$\ttt{<symbol>}, \ldots, \ttt{<symbol>} ::= \ttt{\_expression\_} \ | \ \ldots \ | \ \ttt{\_expression\_}$$ dove
+        \begin{itemize}
+            \item $\ttt{<symbol>}$ è una variabile \tit{non terminale}, ovvero, può essere sostituita con regole definite dalla grammatica;
+            \item il simbolo $::=$ indica che ciò che è posto alla sua sinistra deve essere sostituito con ciò che è alla sua destra;
+            \item $\ttt{\_expression\_}$ è un espressione che verrà usata per rimpiazzare le variabili non terminali attraverso le regole definite dalla grammatica.
+        \end{itemize}
+    \end{frameddefn}
+
+    \begin{example}[Grammatica Exp]
         \label{exp}
-        Si consideri la seguente grammatica: $$Exp ::= \ttt 0 \ | \ \ttt 1 \ | \ldots \ | \ Exp + Exp \ | \ Exp * Exp$$ essa definisce le regole per utilizzare i numeri in $\N$, ammettendo inoltre le operazioni \und{sintattiche} di $+$ e $*$.
+        Si $Exp$ la seguente grammatica: $$M, N ::= \ttt 0 \ | \ \ttt 1 \ | \ldots \ | \ M + N \ | \ M * N$$ essa definisce le regole per utilizzare i numeri in $\N$, ammettendo inoltre le operazioni \und{sintattiche} di $+$ e $*$.
     \end{example}
 
     \begin{frameddefn}{Linguaggio di una grammatica}
         Sia $G$ una grammatica; allora, il \tbf{linguaggio di $G$} è l'insieme delle stringhe che è possibile costruire attraverso le regole dettate da $G$.
     \end{frameddefn}
 
-    % \begin{example}[Linguaggio di Exp]
+    \begin{example}[Linguaggio di Exp]
+        Si $Exp$ la grammatica definita nell'\cref{exp}; in essa, prendendo ad esempio le stringhe $\ttt{"4"}$ e $\ttt{"23"}$, si può ottenere la stringa $\ttt{"4 + 23"}$.
+    \end{example}
         
 
 \end{document}
