@@ -372,7 +372,7 @@
     
     \section{Sintassi astratta}
     
-    \subsection{Definizioni}
+    \subsection{Grammatiche}
 
     \begin{frameddefn}{Grammatica}
         Una \tbf{grammatica} è un insieme di regole che definiscono come manipolare un insieme di stringhe, agendo su elementi sintattici detti \tbf{termini}.
@@ -381,15 +381,35 @@
     \begin{frameddefn}{Forma di Backus-Naur (BNF)}
         La \tbf{forma di Backus-Naur} (\tit{Backus-Naur Form}) è una notazione utilizzata per descrivere la sintassi di grammatiche, ed è definita come segue: $$\ttt{<symbol>}, \ldots, \ttt{<symbol>} ::= \ttt{\_expression\_} \ | \ \ldots \ | \ \ttt{\_expression\_}$$ dove
         \begin{itemize}
-            \item $\ttt{<symbol>}$ è una variabile \tit{non terminale}, ovvero, può essere sostituita con regole definite dalla grammatica (le regole possono dunque essere utilizzate ricorsivamente);
+            \item $\ttt{<symbol>}$ è una \tit{metavariabile non terminale}, ovvero, può essere sostituito con regole definite dalla grammatica; si noti che le regole possono essere utilizzate \und{ricorsivamente};
             \item il simbolo $::=$ indica che ciò che è posto alla sua sinistra deve essere sostituito con ciò che è alla sua destra;
-            \item $\ttt{\_expression\_}$ è un espressione che verrà usata per rimpiazzare le variabili non terminali attraverso le regole definite dalla grammatica.
+            \item $\ttt{\_expression\_}$ è un espressione che verrà usata per rimpiazzare le metavariabili non terminali, attraverso le regole definite dalla grammatica; le \tit{metavarabili} che compongono le espressioni possono essere \tbf{costanti}, \tbf{variabili}, \tbf{termini} o \tbf{espressioni} contenenti combinazioni delle precedenti, presentando eventualmente anche operazioni sintattiche specifiche.
         \end{itemize}
     \end{frameddefn}
 
     \begin{example}[Grammatica $Exp$]
         \label{exp}
-        Sia $Exp$ la seguente grammatica: $$M, N ::= \ttt 0 \ | \ \ttt 1 \ | \ldots \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N$$ essa definisce le regole per utilizzare i numeri in $\N$, ammettendo inoltre le operazioni \und{sintattiche} di $\ttt +$ e $\ttt *$.
+        Sia $Exp$ la seguente grammatica: $$M, N ::= \ttt 0 \ | \ \ttt 1 \ | \ldots \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N$$ essa definisce le regole per utilizzare i numeri in $\N$, ammettendo inoltre le operazioni \und{sintattiche} di $\ttt +$ e $\ttt *$.
+
+        All'interno di questa grammatica dunque, le metavariabili utilizzate sono le seguenti:
+        \begin{itemize}
+            \item \tit{costanti}: $\ttt 0, \ttt 1,  \ldots$
+            \item \tit{variabili}: $x$
+            \item \tit{termini}: $M$ ed $N$
+            \item \tit{espressioni}: $M \ \ttt + \ N$ e $M \ \ttt * \ N$ (tecnicamente anche le precedenti sono espressioni, ma queste in particolare sfruttano operazioni sintattiche precise)
+        \end{itemize}
+    \end{example}
+
+    \begin{frameddefn}{Variabili}
+        Data una grammatica di $G$, con $\mathrm{Var}$ si indica l'\tbf{insieme delle variabili} di $G$.
+    \end{frameddefn}
+
+    \begin{frameddefn}{Valori}
+        Data una grammatica, con $\mathrm{Val}$ si indica l'\tbf{insieme dei valori} che ogni termine della grammatica può assumere.
+    \end{frameddefn}
+
+    \begin{example}[Variabili e valori di $Exp$]
+        Si prenda in considerazione la grammatica $Exp$ dell'\cref{exp2}; in essa, si ha che $$\centeredsoe{\mathrm{Var} = \{ x \} \\ \mathrm{Val} = \{ \ttt 0, \ttt 1, \ldots \}}$$
     \end{example}
 
     \begin{frameddefn}{Linguaggio di una grammatica}
@@ -397,7 +417,7 @@
     \end{frameddefn}
 
     \begin{example}[Linguaggio di $Exp$]
-        Sia $Exp$ la grammatica definita nell'\cref{exp}; in essa, prendendo ad esempio le stringhe $\ttt{"4"}$ e $\ttt{"23"}$, si può ottenere la stringa $$\ttt{+}(\ttt{"4"}, \ttt{"23"}) = \ttt{"4 + 23"}$$ dove la \tit{polish notation} --- alla sinistra dell'uguale --- e la forma sintattica canonica --- alla sua destra --- verranno utilizzate intercambiabilmente, poiché puro \tit{syntactic sugar}.
+        Si prenda in considerazione $Exp$, la grammatica definita all'interno dell'\cref{exp}; in essa, prendendo ad esempio le stringhe $\ttt{"4"}$ e $\ttt{"23"}$, si può ottenere la stringa $$\ttt{+}(\ttt{"4"}, \ttt{"23"}) = \ttt{"4 + 23"}$$ dove la \tit{polish notation} --- alla sinistra dell'uguale --- e la forma sintattica canonica --- alla sua destra --- verranno utilizzate intercambiabilmente, poiché puro \tit{syntactic sugar}.
     \end{example}
 
     \begin{framedobs}[label={eval}]{Valutazione di $Exp$}
@@ -411,5 +431,54 @@
     \begin{framedobs}{Disambiguazione di $Exp$}
         Si noti che l'ambiguità trattata nell'\cref{ambiguity} non permetterebbe di poter definire la funzione $\mathrm{eval}$, descritta nell'\cref{eval}. Dunque, per risolvere tale ambiguità, a meno di parentesi (che \tit{non} sono definite all'interno della grammatica) o dell'esplicitazione della composizione di funzioni utilizzata, verrà sottointesa la normale precedenza degli operatori aritmetica durante la valutazione delle stringhe.
     \end{framedobs}
+
+    \subsection{Scoping}
+
+    \begin{frameddefn}[label={let}]{Clausola $let$}
+        Sia $G$ una grammatica; allora, è possibile definire su $G$ una funzione \tbf{$let$}, come segue: $$\func{let}{\mathrm{Var} \times G \times G}{G}$$ e verrà utilizzata attraverso la sintassi $$\letin{\ttt{*variable*}}{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ ed alla variabile $\ttt{*variable*}$ verrà assegnata l'espressione $\ttt{\_expression\_}_1$ \tit{durante la valutazione} di $\ttt{\_expression\_}_2$; la variabile $\ttt{*variable*}$, all'interno di $\ttt{\_expression\_}_2$, prende il nome di \tbf{variabile locale}.
+
+        Una variabile alla quale non è stata assegnata nessuna espressione prende il nome di \tbf{variable libera} (\tit{unbound variable} in inglese); una variabile non libera è detta \tbf{variabile legata} (\tit{bound variable}).
+    \end{frameddefn}
+    
+    \begin{example}[Estensione di $Exp$]
+        \label{exp2}
+        Sia $Exp$ un'estensione della grammatica presente all'interno dell'\cref{exp}, descritta come segue: $$M, N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N}$$
+
+        In essa, sono presenti:
+
+        \begin{itemize}
+            \item \tit{costanti}: indicate con $k$, che sta ad indicare che in $Exp$ è ammessa qualsiasi costante; di fatto, è possibile pensare a $k$ come una funzione definita come segue: $$\funcmap{k}{\N}{Exp}{x}{\ttt{"x"}}$$
+            \item \tit{variabili}: $x$
+            \item \tit{termini}: $M$ ed $N$
+            \item \tit{espressioni}: $M \ \ttt + \ N$, $M \ \ttt * \ N$ e $\letin{x}{M}{N}$
+        \end{itemize}
+    \end{example}
+
+    \begin{example}[Clausole $let$]
+        Sia $Exp$ la grammatica dell'\cref{exp2}; un esempio di espressione su $Exp$, che utilizza la clausola $let$ della \cref{let}, è la seguente: $$\letin{x}{3}{(x + 1)}$$ e nel momento in cui viene valutata tale espressione, si ha che $$x = 3 \implies x + 1 = 3 + 1 = 4$$ e dunque il valore dell'espressione è 4.
+    \end{example}
+
+    \begin{example}[Variabili libere]
+        Sia $Exp$ la grammatica dell'\cref{exp2}, ed ammettendo la variabile $y$ in essa, si consideri la seguente espressione: $$\letin{x}{3}{(x + y)}$$ in essa, la variabile $x$ è posta pari a 3, ma ad $y$ non è stato assegnato alcun valore, e dunque risulta essere una variabile libera.
+    \end{example}
+
+    \begin{framedobs}{Variabili libere di un'espressione}
+        Sia $Exp$ la grammatica dell'\cref{exp2}; su di essa, è possibile definire, ricorsivamente, una funzione in grado di restituire le variabili unbound di una data espressione, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{free}}{Exp}{\powerset{\left(Var\right)}}{e}{\soe{ll}{
+            \varnothing & \exists \eta \in \N \mid e = k(\eta) \\ 
+            \{x\} & \exists x \in \mathrm{Var} \mid e = x \\ 
+            \mathrm{free}(M) \cup \mathrm{free}(N) & \exists M, N \in Exp \mid e = M \ \ttt + \ N \lor e = M \ \ttt * \ N \\
+            \mathrm{free}(M) \cup (\mathrm{free}(N) - \{x\}) & \exists x \in \mathrm{Var}, M, N \in Exp \mid e = \letin{x}{M}{N}
+        }}$}
+    \end{framedobs}
+
+    \subsection{Ambienti}
+    
+    \begin{frameddefn}{Ambiente}
+        Data una grammatica tale che $\mathrm{Val}$ sia un insieme finito, un \tbf{ambiente} è una funzione della forma $$\func{E}{\mathrm{Var}}{\mathrm{Val}}$$ che associa dunque una variabile, ad un possibile valore che può assumere con espressioni della grammatica di riferimento. L'insieme di tutti gli ambienti della grammatica è denotato con $\mathrm{Env}$.
+
+        In simboli, gli ambienti verranno scritti come insiemi di coppie $(x, k)$ con $x \in \mathrm{Var}, k \in \mathrm{Val}$, che descriveranno la mappa definita dall'ambiente stesso.
+    \end{frameddefn}
+
+    % \begin{frameddefn}
 
 \end{document}

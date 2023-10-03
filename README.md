@@ -4,6 +4,8 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 
 ## TODO list
 
-- parte su let
 - appunti del 3/10
+    - scoping statico e dinamico????
+    - finisci ambienti and so on
+- rileggi la sintassi astratta
 
