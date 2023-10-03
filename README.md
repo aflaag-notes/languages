@@ -4,5 +4,6 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 
 ## TODO list
 
-- rileggi tutto
+- parte su let
+- appunti del 3/10
 
