@@ -8,8 +8,6 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
     - equivalenza di segnature
     - lemma di lambek
     - scoping statico e dinamico????
-    - finisci ambienti and so on
 - rileggere
-    - sintassi astratta
-    - parte modificata oggi
+    - paradigma funzionale
 

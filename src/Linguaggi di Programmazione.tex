@@ -132,7 +132,7 @@
     \begin{framedprinc}[label={induction}]{Principio di Induzione}
         Sia $P$ una proprietà che vale per $n = 0$, e dunque $P(0)$ è vera; inoltre,  per ogni $n \in \N$ si ha che $P(n) \implies P(n + 1)$; allora, $P(n)$ è vera per ogni $n \in \N$.
 
-        In simboli, utilizzando la notazione della logica formale, si ha che $$\dfrac{P(0) \land (\forall n \in \N \quad P(n) \implies P(n + 1))}{\forall n \in \N \quad P(n)}$$
+        In simboli, utilizzando la notazione della logica formale, si ha che $$\dfrac{P(0) \quad \dfrac{\forall n \in \N \quad P(n)}{P(n + 1)}}{\forall n \in \N \quad P(n)}$$
     \end{framedprinc}
 
     \begin{framedobs}{Quinto assioma di Peano}
@@ -177,11 +177,11 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Funzione nullaria}
-        Con \tbf{funzione nullaria} si intende una qualsiasi funzione della forma $$\func{f}{\1}{A}$$ per qualche insieme A.
+        Dato un insieme A, con \tbf{funzione nullaria} si intende una qualsiasi funzione con segnatura $$\func{f}{\1}{A}$$
     \end{frameddefn}
 
     \begin{framedobs}[label={inj null}]{Iniettività della funzione nullaria}
-        Si noti che ogni funzione nullaria è sempre iniettiva, poiché il dominio è costituito da un solo elemento.
+        Si noti che ogni funzione nullaria è iniettiva, poiché il dominio è costituito da un solo elemento.
     \end{framedobs}
 
     \begin{frameddefn}[label={inductive algebra}]{Algebra induttiva}
@@ -382,6 +382,8 @@
         dunque, per definizione di $\mathrm{leaves}$ si ha che $$\mathrm{leaves}(b) = \mathrm{leaves}(t) + \mathrm{leaves}(t') = n + n'$$ e, dalla morfologia di $b$, segue che $$\mathrm{nodes}(b) = \mathrm{nodes}(t) + \mathrm{notes}(t') + 1 = 2n -1 + 2n'-1 + 1 = 2(n + n') - 1$$ ed è quindi verificata la tesi, poiché $$\mathrm{leaves}(b) = n + n' \implies \mathrm{nodes}(b) = 2(n + n') - 1$$
     }
     
+    \chapter{Paradigma funzionale}
+
     \section{Sintassi astratta}
     
     \subsection{Grammatiche}
@@ -425,7 +427,7 @@
     \end{example}
 
     \begin{frameddefn}{Linguaggio di una grammatica}
-        Sia $G$ una grammatica; allora, il \tbf{linguaggio di $G$} è l'insieme delle stringhe che è possibile costruire attraverso le regole dettate da $G$.
+        Sia $G$ una grammatica; allora, il suo \tbf{linguaggio} è l'insieme delle stringhe che è possibile costruire attraverso le regole dettate da $G$.
     \end{frameddefn}
 
     \begin{example}[Linguaggio di $Exp$]
@@ -443,8 +445,6 @@
     \begin{framedobs}{Disambiguazione di $Exp$}
         Si noti che l'ambiguità trattata nell'\cref{ambiguity} non permetterebbe di poter definire la funzione $\mathrm{eval}$, descritta nell'\cref{eval}. Dunque, per risolvere tale ambiguità, a meno di parentesi (che \tit{non} sono definite all'interno della grammatica) o dell'esplicitazione della composizione di funzioni utilizzata, verrà sottointesa la normale precedenza degli operatori aritmetica durante la valutazione delle stringhe.
     \end{framedobs}
-
-    \subsection{Scoping}
 
     \begin{frameddefn}[label={let}]{Clausola $let$}
         Sia $G$ una grammatica; allora, è possibile definire su $G$ una funzione \tbf{$let$}, come segue: $$\func{let}{\mathrm{Var} \times G \times G}{G}$$ e verrà utilizzata attraverso la sintassi $$\letin{\ttt{*variable*}}{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ ed alla variabile $\ttt{*variable*}$ verrà assegnata l'espressione $\ttt{\_expression\_}_1$ \tit{durante la valutazione} di $\ttt{\_expression\_}_2$; la variabile $\ttt{*variable*}$, all'interno di $\ttt{\_expression\_}_2$, prende il nome di \tbf{variabile locale}.
@@ -503,14 +503,30 @@
         Sia $Exp$ la grammatica descritta all'interno del \cref{exp2}, e siano $$\centeredsoe{E_1 := \{(z, 3), (y, 9)\} \\ E_2 := \{(z, 4)\}}$$ due suoi ambienti; allora si ha che $$E_1E_2 = \{(z, 4), (y, 9)\}$$
     \end{example}
 
+    \subsection{Semantica operazionale}
+
     \begin{frameddefn}{Semantica operazionale di una grammatica}
         Data una grammatica $G$, si definisce \tbf{semantica operazionale} della grammatica una relazione, indicata col simbolo $\leadsto$, definita come segue: $$\leadsto \ \subseteq \mathrm{Env} \times G \times \mathrm{Val}$$
 
         Un elemento $(E, M, v) \in \ \leadsto$ è detto \tbf{giudizio operazionale}, e viene scritto col seguente simbolismo: $$\opjud{E}{M}{v}$$ e si legge "valutando $M$, nell'ambiente $E$ si ottiene $v$".
     \end{frameddefn}
 
-    \begin{framedobs}{Semantica operazionale di $Exp$}
-        Sia $Exp$ la grammatica definita nell'\cref{exp2} TODO
-    \end{framedobs}
+    \begin{example}[Semantica operazionale di $Exp$]
+        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}, e sia $E$ un suo ambiente; allora, sono vere le seguenti asserzioni:
+        
+        $$[const] \ \opjud{E}{k}{k}$$
+        $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid E(x) = v \implies [var] \ \opjud{E}{x}{v}$$
+        \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' + v'' \implies [plus] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M \ \ttt + \ N}{v}}$}
+        \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' \cdot v'' \implies [times] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M \ \ttt * \ N}{v}}$}
+        $$\forall v, v' \in \mathrm{Val}, x \in \mathrm{Var} \quad [let] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E\{(x, v')\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$$
+    \end{example}
+
+    \begin{frameddefn}{Equivalenza operazionale}
+        Sia $G$ una grammatica, e siano $M$ ed $N$ due sue espressioni; queste sono dette \tbf{operazionalmente equivalenti}, se è vera la seguente proposizione: $$\forall E \in \mathrm{Env}, v \in \mathrm{Val} \quad \opjud{E}{M}{v} \iff \opjud{E}{N}{v}$$ e viene indicato con $M \sim N$.
+    \end{frameddefn}
+
+    \begin{example}[Equivalenze operazionali su $Exp$]
+        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}, e siano $$\centeredsoe{A := \letin{x}{(\letin{y}{M}{N})}{L} \\ B := \letin{y}{M}{(\letin{x}{N}{L})}}$$ due espressioni di $Exp$. Si noti che è possibile riscrivere $A$ come segue: $$\dfrac{\dfrac{\opjud{E}{M}{v'''} \quad \opjud{E\{(x, v''')\}}{N}{v''}}{\opjud{E}{\letin{x}{(\letin{y}{M}{N})}{L}}{v''}} \quad \opjud{E\{(x, v'')\}}{L}{v}}{\opjud{E}{A}{v}}$$ con l'ipotesi per cui $y$ sia una variabile legata TODO.
+    \end{example}
 
 \end{document}

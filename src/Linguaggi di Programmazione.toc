@@ -8,11 +8,12 @@
 \contentsline {chapter}{\numberline {1}Induzione}{2}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Algebre induttive}{2}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Assiomi di Peano}{2}{subsection.1.1.1}%
-\contentsline {subsection}{\numberline {1.1.2}Algebre induttive}{3}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.2}Algebre induttive}{4}{subsection.1.1.2}%
 \contentsline {section}{\numberline {1.2}Strutture dati induttive}{7}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}Liste}{7}{subsection.1.2.1}%
 \contentsline {subsection}{\numberline {1.2.2}Alberi binari}{8}{subsection.1.2.2}%
-\contentsline {section}{\numberline {1.3}Sintassi astratta}{10}{section.1.3}%
-\contentsline {subsection}{\numberline {1.3.1}Grammatiche}{10}{subsection.1.3.1}%
-\contentsline {subsection}{\numberline {1.3.2}Scoping}{13}{subsection.1.3.2}%
-\contentsline {subsection}{\numberline {1.3.3}Ambienti}{14}{subsection.1.3.3}%
+\contentsline {chapter}{\numberline {2}Paradigma funzionale}{11}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Sintassi astratta}{11}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Grammatiche}{11}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Ambienti}{15}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Semantica operazionale}{16}{subsection.2.1.3}%
