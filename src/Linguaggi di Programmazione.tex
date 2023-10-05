@@ -141,10 +141,14 @@
 
     \subsection{Algebre induttive}
 
+    \begin{frameddefn}{Segnatura di una funzione}
+        Data una funzione $f$, si definisce $$\func{f}{A}{B}$$ come \tbf{segnatura della funzione} $f$, dove $A$ è detto \tbf{dominio}, denotato con $\dom{(f)}$ e $B$ \tbf{codominio} di $f$.
+    \end{frameddefn}
+
     \begin{frameddefn}{Algebra}
         Una \tbf{struttura algebrica}, o più semplicemente \tbf{algebra}, consiste di un insieme \tit{non vuoto}, talvolta chiamato \tbf{insieme sostegno} (\tit{carrier set} o \tit{domain}), fornito di una o più operazioni su tale insieme, quest'ultime caratterizzate da un numero finito di assiomi da soddisfare.
 
-        Se $A$ è il carrier set, e $\gamma_1, \ldots \gamma_n$ sono delle operazioni definite su $A$, allora con $$(A, \gamma_1, \ldots, \gamma_n)$$ si indica l'algebra costituita da tali componenti.
+        Se $A$ è il carrier set, e $\gamma_1, \ldots \gamma_n$ sono delle operazioni definite su $A$, allora con $$(A, \gamma_1, \ldots, \gamma_n)$$ si indica l'algebra costituita da tali componenti, e questo simbolismo prende il nome di \tbf{segnatura dell'algebra}.
     \end{frameddefn}
 
     \begin{example}[Strutture algebriche con singola operazione]
@@ -169,8 +173,16 @@
     \end{example}
 
     \begin{frameddefn}{Insieme unità}
-        Con \tbf{insieme unità} verrà inteso un qualsiasi insieme tale che $\abs{\1} = 1$, e verrà indicato attraverso il simbolo $\1$.
+        Con \tbf{insieme unità} si intende un qualsiasi insieme tale che $\abs{\1} = 1$, e verrà indicato attraverso il simbolo $\1$.
     \end{frameddefn}
+
+    \begin{frameddefn}{Funzione nullaria}
+        Con \tbf{funzione nullaria} si intende una qualsiasi funzione della forma $$\func{f}{\1}{A}$$ per qualche insieme A.
+    \end{frameddefn}
+
+    \begin{framedobs}[label={inj null}]{Iniettività della funzione nullaria}
+        Si noti che ogni funzione nullaria è sempre iniettiva, poiché il dominio è costituito da un solo elemento.
+    \end{framedobs}
 
     \begin{frameddefn}[label={inductive algebra}]{Algebra induttiva}
         Sia $A$ un insieme, e siano $\gamma_1, \ldots, \gamma_n$ funzioni definite su $A$ di arbitraria arietà; allora, $(A, \gamma_1, \ldots, \gamma_n)$ è definita \tbf{algebra induttiva} se si verificano le seguenti:
@@ -187,7 +199,7 @@
     \begin{framedobs}[label={third inductive algebra}]{Terzo assioma delle algebre induttive}
         Si noti che nel terzo assioma della \cref{inductive algebra} anche $S = \varnothing$ è un valido sottoinsieme di $A$, ma poiché non esistono $a_1, \ldots, a_k \in \varnothing$, in esso ogni qualificazione è vera a vuoto. Di conseguenza, nel momento in cui si ammette $S = \varnothing$ nel terzo assioma, l'algebra risulta essere non induttiva necessariamente (a meno dell'algebra vuota).
         
-        Di conseguenza, questo terzo assioma forza la necessità della presenza di un costruttore unitario all'interno di ogni algebra induttiva, in modo da non poter ammettere $S = \varnothing$, poiché l'algebra deve essere chiusa su ognuno dei suoi costruttori.
+        Di conseguenza, questo terzo assioma forza la necessità della presenza di un costruttore nullario all'interno di ogni algebra induttiva, in modo da non poter ammettere $S = \varnothing$, poiché l'algebra deve essere chiusa su ognuno dei suoi costruttori.
     \end{framedobs}
 
     \begin{example}[Numeri naturali]
@@ -195,7 +207,7 @@
     \end{example}
 
     \begin{example}[Algebra di Boole]
-        Dato l'insieme $B = \{ \mathrm{true}, \mathrm{false}\}$, e la funzione $\lnot$ definita come segue $$\funcmap{\lnot}{B}{B}{x}{\left \{ \begin{array}{ll} \mathrm{false} & x = \mathrm{true} \\ \mathrm{true} & x = \mathrm{false} \end{array} \right.}$$ è possibile dimostrare che l'algebra $(B, \lnot)$ non è induttiva; infatti, nonostante $\lnot$ sia iniettiva, e la seconda proprietà della \cref{inductive algebra} sia vera a vuoto, $(B, \lnot)$ non presenta costruttore unitario, e dunque non può costituire un'algebra induttiva (si noti l'\cref{third inductive algebra}).
+        Dato l'insieme $B = \{ \mathrm{true}, \mathrm{false}\}$, e la funzione $\lnot$ definita come segue $$\funcmap{\lnot}{B}{B}{x}{\left \{ \begin{array}{ll} \mathrm{false} & x = \mathrm{true} \\ \mathrm{true} & x = \mathrm{false} \end{array} \right.}$$ è possibile dimostrare che l'algebra $(B, \lnot)$ non è induttiva; infatti, nonostante $\lnot$ sia iniettiva, e la seconda proprietà della \cref{inductive algebra} sia vera a vuoto, $(B, \lnot)$ non presenta costruttore nullario, e dunque non può costituire un'algebra induttiva (si noti l'\cref{third inductive algebra}).
     \end{example}
 
     \begin{example}[Algebre induttive]
@@ -205,7 +217,7 @@
             \item $\mathrm{succ}$ e $\mathrm{zero}$ sono iniettive, poiché
                 \begin{itemize}
                     \item $\mathrm{succ}$ è iniettiva per il terzo assioma di Peano (\cref{peano})
-                    \item $\forall x, y \in \1 \quad \mathrm{zero}(x) = \mathrm{zero}(y) \implies x = y$ poiché $x, y \in \1 \implies x = y$ in quanto $\abs{\1} = 1$
+                    \item $\mathrm{zero}$ è iniettiva per l'\cref{inj null}
                 \end{itemize}
             \item $\im(\mathrm{succ}) \cap \im(\mathrm{zero}) = \left(\N - \{0\}\right) \cap \{0\} = \varnothing$
             \item TODO
@@ -347,7 +359,7 @@
     \proofind{
         La seguente dimostrazione procede per \tit{induzione strutturale}, dunque effettuando l'induzione sulla morfologia della struttura dati, e non sul numero $n$ di foglie.
     }{
-        Il caso base è costituito dunque da $\circ$, l'albero ottenuto attraverso il costruttore unitario $\mathrm{leaf}$, ed infatti si ha che $$\mathrm{leaves}(\circ) = 1 \implies 2 \cdot 1 - 1 = 1$$ e $\circ$ ha esattamente 1 nodo.
+        Il caso base è costituito dunque da $\circ$, l'albero ottenuto attraverso il costruttore nullario $\mathrm{leaf}$, ed infatti si ha che $$\mathrm{leaves}(\circ) = 1 \implies 2 \cdot 1 - 1 = 1$$ e $\circ$ ha esattamente 1 nodo.
     }{
         Un albero binario finito, avente $n$ foglie, ha $2n - 1$ nodi.
     }{
@@ -467,18 +479,38 @@
             \varnothing & \exists \eta \in \N \mid e = k(\eta) \\ 
             \{x\} & \exists x \in \mathrm{Var} \mid e = x \\ 
             \mathrm{free}(M) \cup \mathrm{free}(N) & \exists M, N \in Exp \mid e = M \ \ttt + \ N \lor e = M \ \ttt * \ N \\
-            \mathrm{free}(M) \cup (\mathrm{free}(N) - \{x\}) & \exists x \in \mathrm{Var}, M, N \in Exp \mid e = \letin{x}{M}{N}
+            \mathrm{free}(M) \cup (\mathrm{free}(N) - \{x\}) & \exists x \in \mathrm{Var}, M, N \in Exp \mid e = (\letin{x}{M}{N})
         }}$}
     \end{framedobs}
 
     \subsection{Ambienti}
     
-    \begin{frameddefn}{Ambiente}
-        Data una grammatica tale che $\mathrm{Val}$ sia un insieme finito, un \tbf{ambiente} è una funzione della forma $$\func{E}{\mathrm{Var}}{\mathrm{Val}}$$ che associa dunque una variabile, ad un possibile valore che può assumere con espressioni della grammatica di riferimento. L'insieme di tutti gli ambienti della grammatica è denotato con $\mathrm{Env}$.
+    \begin{frameddefn}{Ambiente di una grammatica}
+        Data una grammatica tale che $\mathrm{Val}$ sia un insieme finito, un \tbf{ambiente} della grammatica è una funzione della forma $$\func{E}{\mathrm{Var}}{\mathrm{Val}}$$ che associa dunque una variabile, ad un possibile valore che può assumere con espressioni della grammatica di riferimento. L'insieme di tutti gli ambienti della grammatica è denotato con $\mathrm{Env}$.
 
         In simboli, gli ambienti verranno scritti come insiemi di coppie $(x, k)$ con $x \in \mathrm{Var}, k \in \mathrm{Val}$, che descriveranno la mappa definita dall'ambiente stesso.
     \end{frameddefn}
 
-    % \begin{frameddefn}
+    \begin{example}[Ambiente di $Exp$]
+        Sia $Exp$ la grammatica dell'\cref{exp2}; allora, un possibile ambiente di $Exp$, denotato con $E \in \mathrm{Env}$, è il seguente: $$E := \{(z,3), (y, 9) \}$$ ed esso esprime la possibilità che in $Exp$ $z$ possa essere valutato pari a 3, mentre $y$ pari a 9.
+    \end{example}
+
+    \begin{frameddefn}{Concatenazione di ambienti}
+        Siano $E_1$ ed $E_2$ due ambienti di una grammatica; si definisce la \tbf{concatenazione} di $E_1$ ed $E_2$ la seguente funzione $$E_1E_2: \mathrm{Env} \times \mathrm{Env} \to \mathrm{Env} : x \mapsto \soe{ll}{E_2 & x \in \dom{(E_2)} \lor x \in \dom{(E_1)} \cup \dom{(E_2)} \\ E_1(x) & x \in \dom{(E_1)}}$$ dunque, nella concatenazione $E_2$ sovrascrive le tuple che sono presenti anche in $E_1$.
+    \end{frameddefn}
+
+    \begin{example}[Concatenazione di ambienti]
+        Sia $Exp$ la grammatica descritta all'interno del \cref{exp2}, e siano $$\centeredsoe{E_1 := \{(z, 3), (y, 9)\} \\ E_2 := \{(z, 4)\}}$$ due suoi ambienti; allora si ha che $$E_1E_2 = \{(z, 4), (y, 9)\}$$
+    \end{example}
+
+    \begin{frameddefn}{Semantica operazionale di una grammatica}
+        Data una grammatica $G$, si definisce \tbf{semantica operazionale} della grammatica una relazione, indicata col simbolo $\leadsto$, definita come segue: $$\leadsto \ \subseteq \mathrm{Env} \times G \times \mathrm{Val}$$
+
+        Un elemento $(E, M, v) \in \ \leadsto$ è detto \tbf{giudizio operazionale}, e viene scritto col seguente simbolismo: $$\opjud{E}{M}{v}$$ e si legge "valutando $M$, nell'ambiente $E$ si ottiene $v$".
+    \end{frameddefn}
+
+    \begin{framedobs}{Semantica operazionale di $Exp$}
+        Sia $Exp$ la grammatica definita nell'\cref{exp2} TODO
+    \end{framedobs}
 
 \end{document}

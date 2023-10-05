@@ -8,7 +8,7 @@
 \contentsline {chapter}{\numberline {1}Induzione}{2}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Algebre induttive}{2}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Assiomi di Peano}{2}{subsection.1.1.1}%
-\contentsline {subsection}{\numberline {1.1.2}Algebre induttive}{4}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.2}Algebre induttive}{3}{subsection.1.1.2}%
 \contentsline {section}{\numberline {1.2}Strutture dati induttive}{7}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}Liste}{7}{subsection.1.2.1}%
 \contentsline {subsection}{\numberline {1.2.2}Alberi binari}{8}{subsection.1.2.2}%

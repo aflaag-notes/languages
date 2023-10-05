@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.8.30)  3 OCT 2023 17:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.8.30)  5 OCT 2023 20:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -562,6 +562,11 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \sift@deathcycles=\count331
 \@vwid@loff=\dimen269
 \@vwid@roff=\dimen270
+) (/usr/share/texmf-dist/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
 ) (/usr/share/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
  (/usr/share/texmf-dist/tex/latex/logreq/logreq.sty
@@ -569,10 +574,10 @@ Package: logreq 2010/08/04 v1.0 xml request logger
 \lrq@indent=\count332
  (/usr/share/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
-)) (/usr/share/texmf-dist/tex/latex/base/ifthen.sty
+))
+(/usr/share/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
-)
-(/usr/share/texmf-dist/tex/latex/url/url.sty
+) (/usr/share/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -874,23 +879,24 @@ Package: amsthm 2020/05/29 v2.20.6
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
  (/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )) (/usr/share/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2022/01/05 v1.2f Bold Symbol Support (DPC/FMi)
-\symboldoperators=\mathgroup6
-\symboldletters=\mathgroup7
-\symboldsymbols=\mathgroup8
+\symboldoperators=\mathgroup7
+\symboldletters=\mathgroup8
+\symboldsymbols=\mathgroup9
 Package bm Info: No bold for \OMX/cmex/m/n, using \pmb.
+\symboldlasy=\mathgroup10
 Package bm Info: No bold for \U/msa/m/n, using \pmb.
 Package bm Info: No bold for \U/msb/m/n, using \pmb.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 ) (/usr/share/texmf-dist/tex/latex/esint/esint.sty
 Package: esint 
-\symlargesymbolsA=\mathgroup9
+\symlargesymbolsA=\mathgroup11
 ) (/usr/share/texmf-dist/tex/latex/nicematrix/nicematrix.sty (/usr/share/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2023-02-02 LaTeX2e option processing using LaTeX3 keys
 )
@@ -967,7 +973,7 @@ Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
 \l__nicematrix_brace_yshift_dim=\dimen316
 ) (/usr/share/texmf-dist/tex/latex/stmaryrd/stmaryrd.sty
 Package: stmaryrd 1994/03/03 St Mary's Road symbol package
-\symstmry=\mathgroup10
+\symstmry=\mathgroup12
 LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
 (Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
 ) (/usr/share/texmf-dist/tex/latex/mathtools/mathtools.sty
@@ -1427,14 +1433,22 @@ Package biblatex Info: ... file '"Linguaggi di Programmazione".bbl' not found.
 No file "Linguaggi di Programmazione".bbl.
 Package biblatex Info: Reference section=0 on input line 38.
 Package biblatex Info: Reference segment=0 on input line 38.
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 38.
+(/usr/share/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
 LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 38.
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 38.
 LaTeX Font Info:    Trying to load font information for U+esint on input line 38.
  (/usr/share/texmf-dist/tex/latex/esint/uesint.fd
 File: uesint.fd 
@@ -1545,7 +1559,7 @@ Package cleveref Info: loaded `italian' language definitions on input line 121.
 [2
 
 {/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}]
-Package cleveref Info: loaded `italian' language definitions on input line 149.
+Package cleveref Info: loaded `italian' language definitions on input line 153.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1554,9 +1568,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 149.
+Package cleveref Info: loaded `italian' language definitions on input line 153.
 [3]
-LaTeX Font Info:    Trying to load font information for U+bbm on input line 172.
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 176.
  (/usr/share/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
 )
@@ -1571,7 +1585,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 Package cleveref Info: loaded `italian' language definitions on input line 186.
 [4]
-Package cleveref Info: loaded `italian' language definitions on input line 210.
+Package cleveref Info: loaded `italian' language definitions on input line 219.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1580,13 +1594,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 210.
+Package cleveref Info: loaded `italian' language definitions on input line 219.
 [5]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 239.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 251.
  (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
-Package cleveref Info: loaded `italian' language definitions on input line 243.
+Package cleveref Info: loaded `italian' language definitions on input line 255.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1595,9 +1609,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 243.
+Package cleveref Info: loaded `italian' language definitions on input line 255.
 [6]
-Package cleveref Info: loaded `italian' language definitions on input line 263.
+Package cleveref Info: loaded `italian' language definitions on input line 275.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1606,9 +1620,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 263.
+Package cleveref Info: loaded `italian' language definitions on input line 275.
 [7]
-Package cleveref Info: loaded `italian' language definitions on input line 322.
+Package cleveref Info: loaded `italian' language definitions on input line 334.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1617,9 +1631,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 322.
+Package cleveref Info: loaded `italian' language definitions on input line 334.
 [8]
-Package cleveref Info: loaded `italian' language definitions on input line 371.
+Package cleveref Info: loaded `italian' language definitions on input line 383.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1628,13 +1642,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 371.
+Package cleveref Info: loaded `italian' language definitions on input line 383.
 [9]
-Overfull \hbox (4.39447pt too wide) in paragraph at lines 371--371
+Overfull \hbox (4.39447pt too wide) in paragraph at lines 383--383
 []\T1/cmr/m/it/12 Passo in-dut-ti-vo\T1/cmr/m/n/12 . Sia $\OML/cmm/m/it/12 b \OMS/cmsy/m/n/12 2 []$ \T1/cmr/m/n/12 ta-le che esi-sta-no $\OML/cmm/m/it/12 t; t[] \OMS/cmsy/m/n/12 2 []$ \T1/cmr/m/n/12 ta-li che $[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t; t[]\OT1/cmr/m/n/12 ) =
  []
 
-Package cleveref Info: loaded `italian' language definitions on input line 389.
+Package cleveref Info: loaded `italian' language definitions on input line 401.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1642,9 +1656,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 389.
+Package cleveref Info: loaded `italian' language definitions on input line 401.
 [10]
-Package cleveref Info: loaded `italian' language definitions on input line 412.
+Package cleveref Info: loaded `italian' language definitions on input line 424.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1653,9 +1667,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 412.
+Package cleveref Info: loaded `italian' language definitions on input line 424.
 [11]
-Package cleveref Info: loaded `italian' language definitions on input line 434.
+Package cleveref Info: loaded `italian' language definitions on input line 446.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1664,9 +1678,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 434.
+Package cleveref Info: loaded `italian' language definitions on input line 446.
 [12]
-Package cleveref Info: loaded `italian' language definitions on input line 458.
+Package cleveref Info: loaded `italian' language definitions on input line 470.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1675,9 +1689,23 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 458.
+Package cleveref Info: loaded `italian' language definitions on input line 470.
 [13]
-Package cleveref Info: loaded `italian' language definitions on input line 484.
+Overfull \hbox (1.44492pt too wide) in paragraph at lines 499--500
+\T1/cmr/m/n/12 dunque, nel-la con-ca-te-na-zio-ne $\OML/cmm/m/it/12 E[]$ \T1/cmr/m/n/12 so-vra-scri-ve le tu-ple che so-no pre-sen-ti an-che in $\OML/cmm/m/it/12 E[]$\T1/cmr/m/n/12 . 
+ []
+
+Package cleveref Info: loaded `italian' language definitions on input line 501.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+Package cleveref Info: loaded `italian' language definitions on input line 501.
+[14]
+Package cleveref Info: loaded `italian' language definitions on input line 516.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1686,8 +1714,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 484.
-[14] (./Linguaggi di Programmazione.aux
+Package cleveref Info: loaded `italian' language definitions on input line 516.
+[15] (./Linguaggi di Programmazione.aux
 Package cleveref Info: loaded `italian' language definitions on input line 20.
 Package cleveref Info: loaded `italian' language definitions on input line 21.
 )
@@ -1701,18 +1729,18 @@ Package logreq Info: Writing requests to '"Linguaggi di Programmazione".run.xml'
 
  ) 
 Here is how much of TeX's memory you used:
- 62801 strings out of 477974
- 1450040 string characters out of 5839630
- 2533239 words of memory out of 5000000
- 82100 multiletter control sequences out of 15000+600000
- 538894 words of font info for 89 fonts, out of 8000000 for 9000
+ 62873 strings out of 477974
+ 1451501 string characters out of 5839630
+ 2533355 words of memory out of 5000000
+ 82153 multiletter control sequences out of 15000+600000
+ 539318 words of font info for 93 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  119i,23n,125p,1218b,1778s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </home/aless/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb>
-Output written on "Linguaggi di Programmazione.pdf" (16 pages, 437719 bytes).
+ </home/aless/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/latxfont/lasy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb>
+Output written on "Linguaggi di Programmazione.pdf" (17 pages, 453118 bytes).
 PDF statistics:
- 405 PDF objects out of 1000 (max. 8388607)
- 330 compressed objects within 4 object streams
- 98 named destinations out of 1000 (max. 500000)
+ 427 PDF objects out of 1000 (max. 8388607)
+ 349 compressed objects within 4 object streams
+ 107 named destinations out of 1000 (max. 500000)
  120 words of extra memory for PDF output out of 10000 (max. 10000000)
 

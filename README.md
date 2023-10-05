@@ -5,7 +5,11 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 ## TODO list
 
 - appunti del 3/10
+    - equivalenza di segnature
+    - lemma di lambek
     - scoping statico e dinamico????
     - finisci ambienti and so on
-- rileggi la sintassi astratta
+- rileggere
+    - sintassi astratta
+    - parte modificata oggi
 
