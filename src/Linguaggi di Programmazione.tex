@@ -488,7 +488,7 @@
     \begin{frameddefn}{Ambiente di una grammatica}
         Data una grammatica tale che $\mathrm{Val}$ sia un insieme finito, un \tbf{ambiente} della grammatica è una funzione della forma $$\func{E}{\mathrm{Var}}{\mathrm{Val}}$$ che associa dunque una variabile, ad un possibile valore che può assumere con espressioni della grammatica di riferimento. L'insieme di tutti gli ambienti della grammatica è denotato con $\mathrm{Env}$.
 
-        In simboli, gli ambienti verranno scritti come insiemi di coppie $(x, k)$ con $x \in \mathrm{Var}, k \in \mathrm{Val}$, che descriveranno la mappa definita dall'ambiente stesso.
+        In simboli, gli ambienti verranno scritti come insiemi di coppie $(x, k)$ con $x \in \mathrm{Var}, k \in \mathrm{Val}$, che descriveranno la mappa definita dall'ambiente stesso. Si noti che $E(x)$ è indefinito per ogni $x \in \mathrm{Var} - \dom(E)$.
     \end{frameddefn}
 
     \begin{example}[Ambiente di $Exp$]
