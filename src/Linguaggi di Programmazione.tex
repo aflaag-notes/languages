@@ -513,13 +513,13 @@
 
     \subsection{Semantica operazionale}
 
-    \begin{frameddefn}{Semantica operazionale di una grammatica}
+    \begin{frameddefn}[label={sem opexp}]{Semantica operazionale di una grammatica}
         Data una grammatica $G$, si definisce \tbf{semantica operazionale} della grammatica una relazione, indicata col simbolo $\leadsto$, definita come segue: $$\leadsto \ \subseteq \mathrm{Env} \times G \times \mathrm{Val}$$
 
         Un elemento $(E, M, v) \in \ \leadsto$ è detto \tbf{giudizio operazionale}, e viene scritto col seguente simbolismo: $$\opjud{E}{M}{v}$$ e si legge "valutando $M$, nell'ambiente $E$ si ottiene $v$".
     \end{frameddefn}
 
-    \begin{example}[label={sem op exp}][Semantica operazionale di $Exp$]
+    \begin{example}[Semantica operazionale di $Exp$]
         Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}, e sia $E$ un suo ambiente; allora, sono vere le seguenti asserzioni:
         
         $$[const] \ \opjud{E}{k}{k}$$
@@ -545,56 +545,66 @@
         Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}; allora, l'albero di valutazione dell'espressione $$\letin{x}{3}{x + 4}$$ è il seguente $$\dfrac{\opjud{\varnothing}{3}{3} \quad \dfrac{\opjud{\{(x, 3)\}}{x}{3} \quad \opjud{\{(x,3)\}}{4}{4}}{\opjud{\{(x, 3)\}}{x +4}{7}}}{\opjud{\varnothing}{\letin{x}{3}{x +4}}{7}}$$ ed è valutabile poiché $x \in \dom(\{(x,1)\}) = \{x\}$.
     \end{example}
 
-    \section{Valutazioni}
+    \section{Valutazioni e scoping}
 
-    \subsection{Valutazione eager}
+    \subsection{Definizioni}
 
     \begin{frameddefn}{Valutazione eager}
-        Data una grammatica, la valutazione \tbf{eager} (detta anche \tit{call-by-name}) valuta una data espressione della grammatica non appena questa viene legata ad una variabile.
+        Data una grammatica, la valutazione \tbf{eager} (\tit{call-by-name}) valuta una data espressione della grammatica non appena questa viene legata ad una variabile.
     \end{frameddefn}
 
-    \begin{example}[Valutazione eager su $Exp$]
-        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}, e si consideri la seguente espressione: $$\letin{x}{M}{x + x}$$ essa, valutata attraverso valutazione eager, produce il seguente albero di derivazione: $$\dfrac{\dfrac{\ldots}{\opjud{\varnothing}{M}{v'}} \quad \dfrac{\opjud{\{(x, v')\}}{x}{v'} \quad \opjud{\{(x, v')\}}{x}{v'}}{\opjud{\{(x, v')\}}{x+x}{v}}}{\opjud{\varnothing}{\letin{x}{M}{x + x}}{v}}$$ dove $v, v' \in \mathrm{Var} \mid v = v' + v'$. Si noti dunque che le espressioni $M$ e $x + x$ sono state valutate entrambe sullo stesso livello.
-    \end{example}
+    \begin{frameddefn}{Valutazione lazy}
+        Data una grammatica, la valutazione \tbf{lazy} (\tit{call-by-need}) valuta una data espressione $e$ della grammatica solo quando il suo valore viene richiesto da un'altra espressione, che dunque dipende dal valore di $e$.
+    \end{frameddefn}
 
-    \begin{example}[Valutazione eager su $Exp$]
+    \begin{frameddefn}{Scoping statico}
+        Data una grammatica, la valutazione a \tbf{scoping statico} (\tit{lexical scope}) valuta le variabili TODO
+    \end{frameddefn}
+
+    \begin{frameddefn}{Scoping dinamico}
+        Data una grammatica, la valutazione a \tbf{scoping dinamico} valuta le variabili utilizzando l'ambiente definito in tempo di valutazione.
+    \end{frameddefn}
+
+    \begin{framedobs}{$Exp$ eager}
+        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}; in essa, la valutazione eager statica e dinamica sono equivalenti, poiché nessun espressione della grammatica è influenzata dal tipo si scoping; inoltre, non è necessario ridefinire le clausole.
+    \end{framedobs}
+
+    \begin{example}[Valutazioni eager su $Exp$]
         \label{eager2}
         Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}, e si consideri la seguente espressione: $$\letin{x}{3}{(\letin{y}{x}{(\letin{x}{7}{y + x})})}$$ essa, valutata attraverso valutazione eager, produce il seguente albero di derivazione: \centeredeq{0.99}{$\dfrac{\opjud{\varnothing}{3}{3} \quad \dfrac{\opjud{\{(x, 3)\}}{x}{3} \quad \dfrac{\opjud{\{(x,3),(y,3)\}}{7}{7} \quad \dfrac{\opjud{\{(x,3),(y,3)\}\{(x,7)\}}{y}{3} \quad \opjud{\{(x,3),(y,3)\}\{(x,7)\}}{x}{7}}{\opjud{\{(x,3),(y,3)\}\{(x,7)\}}{y+x}{10}}}{\opjud{\{(x, 3),(y, 3)\}}{\letin{x}{7}{y + x}}{10}}}{\opjud{\{(x, 3)\}}{\letin{y}{x}{(\letin{x}{7}{y + x})}}{10}}}{\opjud{\varnothing}{\letin{x}{3}{(\letin{y}{x}{(\letin{x}{7}{y + x})})}}{10}}$}
     \end{example}
 
-    \subsection{Valutazione lazy}
-    
-    \begin{frameddefn}{Valutazione lazy}
-        Data una grammatica, la valutazione \tbf{lazy} (detta anche \tit{call-by-need}) valuta una data espressione $e$ della grammatica solo quando il suo valore viene richiesto da un'altra espressione, che dunque dipende dal valore di $e$.
-    \end{frameddefn}
-
-    \begin{framedobs}{$Exp$ lazy}
-        Sia $Exp$ la grammatica definita nell'\cref{exp2}; per poter valutare le sue espressioni in maniera lazy, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{sem op exp}.
+    \begin{framedobs}{$Exp$ lazy dinamica}
+        Sia $Exp$ la grammatica definita nell'\cref{exp2}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{sem opexp}.
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup Exp\}$$ dunque gli ambienti possono associare delle variabili anche a delle espressioni, in modo da poter ritardare la valutazione di quest'ultime fin quando non diventa strettamente necessario valutarle;
-            \item $\forall E \subseteq \mathrm{Env}, x \in \mathrm{Var} \quad x \in \dom(E) \land M := E(x) \implies \dfrac{\opjud{E}{M}{v}}{\opjud{E}{x}{v}}$, e questa regola di inferenza include la possibilità di calcolare le variabili il cui valore è associato ad espressioni all'interno dell'ambiente corrente;
-            \item $\forall x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E\{(x, M)\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$, in modo da poter ritardare la valutazione dell'espressione $N$ dopo aver valutato $M$.
+            \item $\forall E \subseteq \mathrm{Env}, x \in \mathrm{Var} \quad x \in \dom(E) \land M := E(x) \implies \dfrac{\opjud{E}{M}{v}}{\opjud{E}{x}{v}}$, per rendere $M$ calcolabile nel momento in cui viene assegnata ad una variabile, attraverso l'ambiente corrente;
+            \item $\forall x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E\{(x, M)\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$, in modo da ritardare la valutazione di $M$.
         \end{itemize}
+
+        Si noti che tale valutazione utilizza lo scoping dinamico, poiché viene utilizzato l'ambiente corrente per valutare le variabili.
     \end{framedobs}
 
-    \begin{example}[Valutazione lazy su $Exp$]
-        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}, e si consideri la seguente espressione $$\letin{x}{M}{x + x}$$ essa, valutata attraverso valutazione lazy, produce il seguente albero di derivazione: $$\dfrac{\dfrac{\dfrac{\dfrac{\ldots}{\opjud{\{(x,M)\}}{M}{v'}}}{\opjud{\{(x, M)\}}{x}{v'}} \quad \dfrac{\dfrac{\ldots}{\opjud{\{(x,M)\}}{M}{v'}}}{\opjud{\{(x, M)\}}{x}{v'}}}{\opjud{\{(x, M)\}}{x+x}{v}}}{\opjud{\varnothing}{\letin{x}{M}{x+x}}{v}}$$ dove $v, v' \in \mathrm{Var} \mid v = v' + v'$. Si noti dunque che è stata valutata prima $M$, poi $x + x$, poiché la seconda espressione dipendeva dal valore della prima.
+    \begin{example}[Valutazioni lazy dinamiche su $Exp$]
+        Si consideri l'espressione definita all'interno dell'\cref{eager2}; essa, valutata attraverso valutazione lazy dinamica, produce il seguente albero di derivazione: $$\dfrac{\dfrac{\dfrac{\dfrac{\dfrac{\dfrac{\opjud{\{(x,3),(y,x)\}\{(x,7)\}}{7}{7}}{\opjud{\{(x,3),(y,x)\}\{(x,7)\}}{x}{7}}}{\opjud{\{(x,3),(y,x)\}\{(x,7)\}}{y}{7}} \quad \dfrac{\opjud{\{(x,3),(y,x)\}\{(x,7)\}}{7}{7}}{\opjud{\{(x,3),(y,x)\}\{(x,7)\}}{x}{7}}}{\opjud{\{(x,3),(y,x)\}\{(x,7)\}}{y+x}{14}}}{\opjud{\{(x,3),(y,x)\}}{\letin{x}{7}{y+x}}{14}}}{\opjud{\{(x,3)\}}{\letin{y}{x}{(\letin{x}{7}{y+x})}}{14}}}{\opjud{\varnothing}{\letin{x}{3}{(\letin{y}{x}{(\letin{x}{7}{y+x})})}}{14}}$$
     \end{example}
 
-    \begin{example}[Valutazione lazy su $Exp$]
-        Si consideri l'espressione definita all'interno dell'\cref{eager2}; essa, valutata attraverso valutazione lazy, produce il seguente albero di derivazione: TODO
+    \begin{framedobs}{$Exp$ lazy statica}
+        Sia $Exp$ la grammatica definita nell'\cref{exp2}; per poter valutare le sue espressioni in maniera lazy statica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{sem opexp}.
+
+        \begin{itemize}
+            \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid \mathrm{Var} \xrightarrow{fin} Exp \times \mathrm{Env} \}$$ dunque gli ambienti possono associare delle variabili anche a delle tuple contenenti espressioni ed ambienti, ed in particolare per una tupla $(x, (M, E))$ di un certo ambiente, si ha che $x$ vale $M$ valutata nell'ambiente $E$; questa correzione permette di tenere traccia dell'ambiente in cui la variabile è stata assegnata;
+            \item $\forall E \subseteq \mathrm{Env}, x \in \mathrm{Var} \quad x \in \dom(E) \land (M, E') := E(x) \implies \dfrac{\opjud{E'}{M}{v}}{\opjud{E}{x}{v}}$, TODO
+            \item $\forall x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E\{(x, (M, E))\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$, TODO
+        \end{itemize}
+
+        Si noti che tale valutazione utilizza lo scoping statico, poiché all'interno dell'ambiente vengono salvati gli ambienti in cui sono state fatte le assegnazioni.
+    \end{framedobs}
+
+    \begin{example}[Valutazioni lazy statiche su $Exp$]
+        Si consideri l'espressione definita all'interno dell'\cref{eager2}; essa, valutata attraverso valutazione lazy statica, produce il seguente albero di derivazione: TODO
     \end{example}
-
-    \section{Scoping}
-
-    \subsection{Scoping statico}
-
-    TODO
-
-    \subsection{Scoping dinamico}
-
-    TODO
 
     \section{Funzioni}
 
@@ -612,7 +622,7 @@
 
     \begin{example}[Grammatica $Fun$]
         \label{fun}
-        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno dell'\cref{exp2}: $$M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N} \ | \ \fn{x}{M} \ | \ MN$$ Inoltre, l'insiemi dei valori assegnabili alle variabili di $Fun$ verrà esteso come segue $$\mathrm{Val} := \{\ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun \times Fun)$$ dunque ad una variabile sarà possibile assegnargli il valore che una clausola $let$ restituisce TODO CONTROLLARE SE È GIUSTO
+        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno dell'\cref{exp2}: $$M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N} \ | \ \fn{x}{M} \ | \ MN$$ Inoltre, l'insieme dei valori assegnabili alle variabili di $Fun$ verrà esteso come segue $$\mathrm{Val} := \{\ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun \times Fun)$$ dunque ad una variabile sarà possibile assegnargli il valore che una clausola $let$ restituisce TODO DA CAMBIARE, ASSICURATI DI COME VA FIXATO, CREDO SIANO FN E NON LET
     \end{example}
 
     \begin{example}[Espressioni su $Fun$]
