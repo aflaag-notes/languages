@@ -607,7 +607,7 @@
     \begin{frameddefn}{Applicazione}
         Sia $G$ una grmamatica; allora, dati due suoi termini $M,N$, è possibile definire su $G$ l'applicazione di $M$ ad $N$, attraverso la seguente sintassi: $MN$ Si noti che tale sintassi è presa in prestito dal lambda calcolo.
 
-        Si noti che un'espressione $MNL$ applica prima $N$ ad $L$, e poi $M$ ad $NL$, dunque la precedenza è da destra verso sinistra, poiché equivale ad una composizione di funzioni.
+        Si noti che un'espressione $MNL$ applica prima $M$ ad $N$, e poi $MN$ ad $L$, dunque la precedenza è da sinistra verso destra, ovvero $(MN)L$.
     \end{frameddefn}
 
     \begin{example}[Grammatica $Fun$]
