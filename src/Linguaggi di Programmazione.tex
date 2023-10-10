@@ -384,9 +384,9 @@
     
     \chapter{Paradigma funzionale}
 
-    \section{Sintassi astratta}
+    \section{Grammatiche}
     
-    \subsection{Grammatiche}
+    \subsection{Definizioni}
 
     \begin{frameddefn}{Grammatica}
         Una \tbf{grammatica} è un insieme di regole che definiscono come manipolare un insieme di stringhe, agendo su elementi sintattici detti \tbf{termini}.
@@ -446,6 +446,10 @@
         Si noti che l'ambiguità trattata nell'\cref{ambiguity} non permetterebbe di poter definire la funzione $\mathrm{eval}$, descritta nell'\cref{eval}. Dunque, per risolvere tale ambiguità, a meno di parentesi (che \tit{non} sono definite all'interno della grammatica) o dell'esplicitazione della composizione di funzioni utilizzata, verrà sottointesa la normale precedenza degli operatori aritmetica durante la valutazione delle stringhe.
     \end{framedobs}
 
+    \section{Assegnazioni}
+
+    \subsection{Definizioni}
+
     \begin{frameddefn}[label={let}]{Clausola $let$}
         Sia $G$ una grammatica; allora, è possibile definire su $G$ una funzione \tbf{$let$}, come segue: $$\func{let}{\mathrm{Var} \times G \times G}{G}$$ e verrà utilizzata attraverso la sintassi $$\letin{\ttt{*variable*}}{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ ed alla variabile $\ttt{*variable*}$ verrà assegnata l'espressione $\ttt{\_expression\_}_1$ \tit{durante la valutazione} di $\ttt{\_expression\_}_2$; la variabile $\ttt{*variable*}$, all'interno di $\ttt{\_expression\_}_2$, prende il nome di \tbf{variabile locale}.
 
@@ -454,7 +458,7 @@
     
     \begin{example}[Estensione di $Exp$]
         \label{exp2}
-        Sia $Exp$ un'estensione della grammatica presente all'interno dell'\cref{exp}, descritta come segue: $$M, N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N}$$
+        Sia $Exp$ la seguente estensione della grammatica presente all'interno dell'\cref{exp}: $$M, N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N}$$
 
         In essa, sono presenti:
 
@@ -474,8 +478,12 @@
         Sia $Exp$ la grammatica dell'\cref{exp2}, ed ammettendo la variabile $y$ in essa, si consideri la seguente espressione: $$\letin{x}{3}{(x + y)}$$ in essa, la variabile $x$ è posta pari a 3, ma ad $y$ non è stato assegnato alcun valore, e dunque risulta essere una variabile libera.
     \end{example}
 
+    \begin{framedobs}{Ambiguità di $let$}
+        Sia $Exp$ la grammatica dell'\cref{exp2}, e si consideri la sua seguente espressione $$\letin{x}{M}{x + y}$$ per qualche espressione $M \in Exp$, e due variabili $x, y \mathrm{Var}$, ammettendo dunque $y$ tra le variabili di $Exp$; si noti che tale espressione è ambigua, poiché potrebbe equivalere a $$(\letin{x}{M}{x}) + y$$ oppure a $$\letin{x}{M}{(x + y)}$$ Per convenzione, all'interno di questi appunti, in assenza di parentesi che descrivano la precedenza degli operatori, si assume la precedenza della seconda espressione mostrata.
+    \end{framedobs}
+
     \begin{framedobs}{Variabili libere di un'espressione}
-        Sia $Exp$ la grammatica dell'\cref{exp2}; su di essa, è possibile definire, ricorsivamente, una funzione in grado di restituire le variabili unbound di una data espressione, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{free}}{Exp}{\powerset{\left(Var\right)}}{e}{\soe{ll}{
+        Sia $Exp$ la grammatica dell'\cref{exp2}; su di essa, è possibile definire, ricorsivamente, una funzione in grado di restituire le variabili unbound di una data espressione, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{free}}{Exp}{\powerset{\left(\mathrm{Var}\right)}}{e}{\soe{ll}{
             \varnothing & \exists \eta \in \N \mid e = k(\eta) \\ 
             \{x\} & \exists x \in \mathrm{Var} \mid e = x \\ 
             \mathrm{free}(M) \cup \mathrm{free}(N) & \exists M, N \in Exp \mid e = M \ \ttt + \ N \lor e = M \ \ttt * \ N \\
@@ -486,7 +494,7 @@
     \subsection{Ambienti}
     
     \begin{frameddefn}{Ambiente di una grammatica}
-        Data una grammatica tale che $\mathrm{Val}$ sia un insieme finito, un \tbf{ambiente} della grammatica è una funzione della forma $$\func{E}{\mathrm{Var}}{\mathrm{Val}}$$ che associa dunque una variabile, ad un possibile valore che può assumere con espressioni della grammatica di riferimento. L'insieme di tutti gli ambienti della grammatica è denotato con $\mathrm{Env}$.
+        Data una grammatica tale che $\mathrm{Val}$ sia un insieme finito, un \tbf{ambiente} della grammatica è una funzione della forma $$E: \mathrm{Var} \xrightarrow{fin} \mathrm{Val}$$ che associa dunque una variabile, ad un possibile valore che può assumere con espressioni della grammatica di riferimento (la notazione $fin$ indica che le funzioni sono \tit{parziali}, dunque non necessariamente definite su tuto il dominio). L'insieme di tutti gli ambienti della grammatica è denotato con $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \}$$
 
         In simboli, gli ambienti verranno scritti come insiemi di coppie $(x, k)$ con $x \in \mathrm{Var}, k \in \mathrm{Val}$, che descriveranno la mappa definita dall'ambiente stesso. Si noti che $E(x)$ è indefinito per ogni $x \in \mathrm{Var} - \dom(E)$.
     \end{frameddefn}
@@ -566,7 +574,7 @@
         \begin{itemize}
             \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup Exp\}$$ dunque gli ambienti possono associare delle variabili anche a delle espressioni, in modo da poter ritardare la valutazione di quest'ultime fin quando non diventa strettamente necessario valutarle;
             \item $\forall E \subseteq \mathrm{Env}, x \in \mathrm{Var} \quad x \in \dom(E) \land M := E(x) \implies \dfrac{\opjud{E}{M}{v}}{\opjud{E}{x}{v}}$, e questa regola di inferenza include la possibilità di calcolare le variabili il cui valore è associato ad espressioni all'interno dell'ambiente corrente;
-            \item $\forall x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E\{(x, M)\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$
+            \item $\forall x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E\{(x, M)\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$, in modo da poter ritardare la valutazione dell'espressione $N$ dopo aver valutato $M$.
         \end{itemize}
     \end{framedobs}
 
@@ -575,12 +583,52 @@
     \end{example}
 
     \begin{example}[Valutazione lazy su $Exp$]
-        Si consideri l'espressione dell'\cref{eager2}; essa, valutata attraverso valutazione lazy, produce il seguente albero di derivazione: TODO
+        Si consideri l'espressione definita all'interno dell'\cref{eager2}; essa, valutata attraverso valutazione lazy, produce il seguente albero di derivazione: TODO
+    \end{example}
 
     \section{Scoping}
-    
+
     \subsection{Scoping statico}
 
+    TODO
+
     \subsection{Scoping dinamico}
+
+    TODO
+
+    \section{Funzioni}
+
+    \subsection{Definizioni}
+
+    \begin{frameddefn}[label={fn}]{Clausola $fn$}
+        Sia $G$ una grammatica; allora, è possibile definire su $G$ una funzione $fn$, come segue: $$\func{fn}{\mathrm{Var} \times G}{G}$$ e verrà utilizzata attraverso la sintassi $$\fn{\ttt{*variable*}}{\ttt{\_expression\_}}$$ che restituisce una funzione avente come parametro $\ttt{*variable*}$, il cui valore sarà utilizzato per valutare $\ttt{\_expression\_}$.
+    \end{frameddefn}
+
+    \begin{frameddefn}{Applicazione}
+        Sia $G$ una grmamatica; allora, dati due suoi termini $M,N$, è possibile definire su $G$ l'applicazione di $M$ ad $N$, attraverso la seguente sintassi: $MN$ Si noti che tale sintassi è presa in prestito dal lambda calcolo.
+
+        Si noti che un'espressione $MNL$ applica prima $N$ ad $L$, e poi $M$ ad $NL$, dunque la precedenza è da destra verso sinistra, poiché equivale ad una composizione di funzioni.
+    \end{frameddefn}
+
+    \begin{example}[Grammatica $Fun$]
+        \label{fun}
+        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno dell'\cref{exp2}: $$M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N} \ | \ \fn{x}{M} \ | \ MN$$ Inoltre, l'insiemi dei valori assegnabili alle variabili di $Fun$ verrà esteso come segue $$\mathrm{Val} := \{\ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun \times Fun)$$ dunque ad una variabile sarà possibile assegnargli il valore che una clausola $let$ restituisce TODO CONTROLLARE SE È GIUSTO
+    \end{example}
+
+    \begin{example}[Espressioni su $Fun$]
+        Sia $Fun$ la grammatica definita all'interno dell'\cref{fun}, e sia $$(\fn{x}{x +1})7$$ una sua espressione; essa, poiché applica la funzione $\fn{x}{x+1}$ all'espressione 7, viene valutata a $$x = 7 \implies x + 1= 7 + 1 = 8$$
+    \end{example}
+
+    \begin{example}[Espressioni su $Fun$]
+        Sia $Fun$ la grammatica definita all'interno dell'\cref{fun}, e sia $$(\fn{x}{x3})(\fn{x}{x+1})$$ una sua espressione; essa, una volta valutata, applica la funzione $\fn{x}{x+1}$ all'espressione 3, e dunque il suo valore è pari a $$x = 3 \implies x + 1 = 3 + 1 = 4$$
+    \end{example}
+
+    \begin{framedobs}{Curryficazione}
+        Si consideri la clausola $fn$ della \cref{fn}; è possibile definirne una notazione contratta, che prende il nome di \tit{curryficazione}, ed è definita come segue: $$\fn{x_1x_2 \ldots x_n}{M} \iff \fn{x_1}{(\fn{x_2}{\ldots (\fn{x_n}{M}) \ldots})}$$ Il processo inverso prende il nome di \tit{uncurryficazione}.
+    \end{framedobs}
+
+    \begin{example}[Curryficazioni]
+        Sia $Fun$ la grammatica dell'\cref{fun}, e sia $$(\fn{xy}{yx})7(\fn{x}{x+1})$$ una sua espressione; la sua uncurryficazione corrisponde alla seguente espressione $$(\fn{x}{\fn{y}{yx}})7(\fn{x}{x+1})$$ TODO COME SE VALUTA
+    \end{example}
 
 \end{document}
