@@ -8,14 +8,10 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
     - equivalenza di segnature
     - lemma di lambek
 - appunti del 9/10
-    - cosa del fin
-    - scoping
-        - scoping statico
-        - scoping dinamico
     - curryficazione
-        - finire esempio
+        - finire funzioni
 - appunti del 10/10
     - tutto
 - rileggere
-    - paradigma funzionale
+    - funzioni
 

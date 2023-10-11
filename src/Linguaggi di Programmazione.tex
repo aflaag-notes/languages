@@ -395,7 +395,7 @@
     \begin{frameddefn}{Forma di Backus-Naur (BNF)}
         La \tbf{forma di Backus-Naur} (\tit{Backus-Naur Form}) è una notazione utilizzata per descrivere la sintassi di grammatiche, ed è definita come segue: $$\ttt{<symbol>}, \ldots, \ttt{<symbol>} ::= \ttt{\_expression\_} \ | \ \ldots \ | \ \ttt{\_expression\_}$$ dove
         \begin{itemize}
-            \item $\ttt{<symbol>}$ è una \tit{metavariabile non terminale}, ovvero, può essere sostituito con regole definite dalla grammatica; si noti che le regole possono essere utilizzate \und{ricorsivamente};
+            \item $\ttt{<symbol>}$ è una \tit{metavariabile non terminale}, ovvero, può essere sostituita con regole definite dalla grammatica; si noti che le regole possono essere utilizzate \und{ricorsivamente};
             \item il simbolo $::=$ indica che ciò che è posto alla sua sinistra deve essere sostituito con ciò che è alla sua destra;
             \item $\ttt{\_expression\_}$ è un espressione che verrà usata per rimpiazzare le metavariabili non terminali, attraverso le regole definite dalla grammatica; le \tit{metavarabili} che compongono le espressioni possono essere \tbf{costanti}, \tbf{variabili}, \tbf{termini} o \tbf{espressioni} contenenti combinazioni delle precedenti, presentando eventualmente anche operazioni sintattiche specifiche.
         \end{itemize}
@@ -410,7 +410,7 @@
             \item \tit{costanti}: $\ttt 0, \ttt 1,  \ldots$
             \item \tit{variabili}: $x$
             \item \tit{termini}: $M$ ed $N$
-            \item \tit{espressioni}: $M \ \ttt + \ N$ e $M \ \ttt * \ N$ (tecnicamente anche le precedenti sono espressioni, ma queste in particolare sfruttano operazioni sintattiche precise)
+            \item \tit{espressioni}: $M \ \ttt + \ N$ e $M \ \ttt * \ N$ (tecnicamente anche le precedenti sono espressioni, ma queste in particolare comprendono anche operazioni sintattiche)
         \end{itemize}
     \end{example}
 
@@ -431,7 +431,7 @@
     \end{frameddefn}
 
     \begin{example}[Linguaggio di $Exp$]
-        Si prenda in considerazione $Exp$, la grammatica definita all'interno dell'\cref{exp}; in essa, prendendo ad esempio le stringhe $\ttt{"4"}$ e $\ttt{"23"}$, si può ottenere la stringa $$\ttt{+}(\ttt{"4"}, \ttt{"23"}) = \ttt{"4 + 23"}$$ dove la \tit{polish notation} --- alla sinistra dell'uguale --- e la forma sintattica canonica --- alla sua destra --- verranno utilizzate intercambiabilmente, poiché puro \tit{syntactic sugar}.
+        Sia $Exp$ la grammatica dell'\cref{exp}; in essa, considerando ad esempio le stringhe $\ttt{"4"}$ e $\ttt{"23"}$, si può ottenere la stringa $$\ttt{+}(\ttt{"4"}, \ttt{"23"}) = \ttt{"4 + 23"}$$ dove la \tit{polish notation} --- alla sinistra dell'uguale --- e la forma sintattica canonica --- alla sua destra --- verranno utilizzate intercambiabilmente, poiché puro \tit{syntactic sugar}.
     \end{example}
 
     \begin{framedobs}[label={eval}]{Valutazione di $Exp$}
@@ -443,7 +443,7 @@
     \end{framedobs}
 
     \begin{framedobs}{Disambiguazione di $Exp$}
-        Si noti che l'ambiguità trattata nell'\cref{ambiguity} non permetterebbe di poter definire la funzione $\mathrm{eval}$, descritta nell'\cref{eval}. Dunque, per risolvere tale ambiguità, a meno di parentesi (che \tit{non} sono definite all'interno della grammatica) o dell'esplicitazione della composizione di funzioni utilizzata, verrà sottointesa la normale precedenza degli operatori aritmetica durante la valutazione delle stringhe.
+        Si noti che l'ambiguità trattata nell'\cref{ambiguity} non permetterebbe di poter definire la funzione $\mathrm{eval}$, descritta nell'\cref{eval}. Dunque, per risolvere tale ambiguità, a meno di parentesi (che \tit{non} sono definite all'interno della grammatica) o dell'esplicitazione della composizione di funzioni utilizzata, verrà sottintesa la normale precedenza degli operatori aritmetica durante la valutazione delle stringhe.
     \end{framedobs}
 
     \section{Assegnazioni}
@@ -451,7 +451,7 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={let}]{Clausola $let$}
-        Sia $G$ una grammatica; allora, è possibile definire su $G$ una funzione \tbf{$let$}, come segue: $$\func{let}{\mathrm{Var} \times G \times G}{G}$$ e verrà utilizzata attraverso la sintassi $$\letin{\ttt{*variable*}}{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ ed alla variabile $\ttt{*variable*}$ verrà assegnata l'espressione $\ttt{\_expression\_}_1$ \tit{durante la valutazione} di $\ttt{\_expression\_}_2$; la variabile $\ttt{*variable*}$, all'interno di $\ttt{\_expression\_}_2$, prende il nome di \tbf{variabile locale}.
+        Sia $G$ una grammatica; allora, è possibile definire su $G$ una funzione \tbf{$let$}, come segue: $$\func{let}{\mathrm{Var} \times G \times G}{G}$$ e verrà utilizzata attraverso la sintassi $$\letin{\ttt{*variable*}}{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ dove alla variabile $\ttt{*variable*}$ verrà assegnata l'espressione $\ttt{\_expression\_}_1$ \tit{durante la valutazione} di $\ttt{\_expression\_}_2$; la variabile $\ttt{*variable*}$, all'interno di $\ttt{\_expression\_}_2$, prende il nome di \tbf{variabile locale}.
 
         Una variabile alla quale non è stata assegnata nessuna espressione prende il nome di \tbf{variable libera} (\tit{unbound variable} in inglese); una variabile non libera è detta \tbf{variabile legata} (\tit{bound variable}).
     \end{frameddefn}
@@ -475,11 +475,11 @@
     \end{example}
 
     \begin{example}[Variabili libere]
-        Sia $Exp$ la grammatica dell'\cref{exp2}, ed ammettendo la variabile $y$ in essa, si consideri la seguente espressione: $$\letin{x}{3}{(x + y)}$$ in essa, la variabile $x$ è posta pari a 3, ma ad $y$ non è stato assegnato alcun valore, e dunque risulta essere una variabile libera.
+        Sia $Exp$ la grammatica dell'\cref{exp2}, ed ammettendo la variabile $y$ in essa, si consideri la seguente espressione: $$\letin{x}{3}{(x + y)}$$ in essa, la variabile $x$ è posta pari a 3, ma ad $y$ non è stato assegnato alcuna espressione, e dunque risulta essere una variabile libera.
     \end{example}
 
     \begin{framedobs}{Ambiguità di $let$}
-        Sia $Exp$ la grammatica dell'\cref{exp2}, e si consideri la sua seguente espressione $$\letin{x}{M}{x + y}$$ per qualche espressione $M \in Exp$, e due variabili $x, y \mathrm{Var}$, ammettendo dunque $y$ tra le variabili di $Exp$; si noti che tale espressione è ambigua, poiché potrebbe equivalere a $$(\letin{x}{M}{x}) + y$$ oppure a $$\letin{x}{M}{(x + y)}$$ Per convenzione, all'interno di questi appunti, in assenza di parentesi che descrivano la precedenza degli operatori, si assume la precedenza della seconda espressione mostrata.
+        Sia $Exp$ la grammatica dell'\cref{exp2}, e si consideri la sua seguente espressione $$\letin{x}{M}{x + y}$$ per qualche espressione $M \in Exp$, e due variabili $x, y \in \mathrm{Var}$, ammettendo dunque $y$ tra le variabili di $Exp$; si noti che tale espressione è ambigua, poiché potrebbe equivalere a $$(\letin{x}{M}{x}) + y$$ oppure a $$\letin{x}{M}{(x + y)}$$ Per convenzione, all'interno di questi appunti, in assenza di parentesi che descrivano la precedenza degli operatori, si assume la precedenza della seconda espressione mostrata.
     \end{framedobs}
 
     \begin{framedobs}{Variabili libere di un'espressione}
@@ -494,20 +494,20 @@
     \subsection{Ambienti}
     
     \begin{frameddefn}{Ambiente di una grammatica}
-        Data una grammatica tale che $\mathrm{Val}$ sia un insieme finito, un \tbf{ambiente} della grammatica è una funzione della forma $$E: \mathrm{Var} \xrightarrow{fin} \mathrm{Val}$$ che associa dunque una variabile, ad un possibile valore che può assumere con espressioni della grammatica di riferimento (la notazione $fin$ indica che le funzioni sono \tit{parziali}, dunque non necessariamente definite su tuto il dominio). L'insieme di tutti gli ambienti della grammatica è denotato con $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \}$$
+        Data una grammatica tale che $\mathrm{Val}$ sia un insieme finito, un \tbf{ambiente} della grammatica è una funzione della forma $$E: \mathrm{Var} \xrightarrow{fin} \mathrm{Val}$$ che associa dunque una variabile ad un possibile valore che può assumere (la notazione $fin$ indica che $E$ è una funzione \tit{parziale}, dunque non necessariamente definita su tutto il dominio). L'insieme di tutti gli ambienti della grammatica è denotato con $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \}$$
 
-        In simboli, gli ambienti verranno scritti come insiemi di coppie $(x, k)$ con $x \in \mathrm{Var}, k \in \mathrm{Val}$, che descriveranno la mappa definita dall'ambiente stesso. Si noti che $E(x)$ è indefinito per ogni $x \in \mathrm{Var} - \dom(E)$.
+        In simboli, gli ambienti verranno scritti come insiemi di coppie $(x, k)$ con $x \in \mathrm{Var}, k \in \mathrm{Val}$, che descriveranno la mappa definita dall'ambiente stesso. Si noti che, per un certo ambiente $E \in \mathrm{Env}$, $E(x)$ è indefinito per ogni $x \in \mathrm{Var} - \dom(E)$.
     \end{frameddefn}
 
-    \begin{example}[Ambiente di $Exp$]
-        Sia $Exp$ la grammatica dell'\cref{exp2}; allora, un possibile ambiente di $Exp$, denotato con $E \in \mathrm{Env}$, è il seguente: $$E := \{(z,3), (y, 9) \}$$ ed esso esprime la possibilità che in $Exp$ $z$ possa essere valutato pari a 3, mentre $y$ pari a 9.
+    \begin{example}[Ambienti di $Exp$]
+        Sia $Exp$ la grammatica dell'\cref{exp2}; allora, un possibile ambiente di $Exp$, denotato con $E \in \mathrm{Env}$, è il seguente: $$E := \{(z,3), (y, 9) \}$$ ed esso esprime la possibilità che in $Exp$ $z$ possa essere valutato pari a 3, mentre $y$ pari a 9 (tecnicamente, le variabili $z$ ed $y$ andrebbero ammesse all'interno della grammatica, ma d'ora in avanti tale precisazione verrà sottintesa).
     \end{example}
 
     \begin{frameddefn}{Concatenazione di ambienti}
-        Siano $E_1$ ed $E_2$ due ambienti di una grammatica; si definisce la \tbf{concatenazione} di $E_1$ ed $E_2$ la seguente funzione $$E_1E_2: \mathrm{Env} \times \mathrm{Env} \to \mathrm{Env} : x \mapsto \soe{ll}{E_2 & x \in \dom{(E_2)} \lor x \in \dom{(E_1)} \cup \dom{(E_2)} \\ E_1(x) & x \in \dom{(E_1)}}$$ dunque, nella concatenazione $E_2$ sovrascrive le tuple che sono presenti anche in $E_1$.
+        Siano $E_1$ ed $E_2$ due ambienti di una grammatica; allora, si definisce \tbf{concatenazione} di $E_1$ ed $E_2$ la seguente funzione $$E_1E_2: \mathrm{Env} \times \mathrm{Env} \to \mathrm{Env} : x \mapsto \soe{ll}{E_2 & x \in \dom{(E_2)} \lor x \in \dom{(E_1)} \cap \dom{(E_2)} \\ E_1(x) & x \in \dom{(E_1)}}$$ dunque, nella concatenazione $E_2$ sovrascrive le tuple che sono presenti anche in $E_1$.
     \end{frameddefn}
 
-    \begin{example}[Concatenazione di ambienti]
+    \begin{example}[Concatenazioni di ambienti]
         Sia $Exp$ la grammatica descritta all'interno del \cref{exp2}, e siano $$\centeredsoe{E_1 := \{(z, 3), (y, 9)\} \\ E_2 := \{(z, 4)\}}$$ due suoi ambienti; allora si ha che $$E_1E_2 := \{(z, 4), (y, 9)\}$$
     \end{example}
 
@@ -516,10 +516,11 @@
     \begin{frameddefn}[label={sem opexp}]{Semantica operazionale di una grammatica}
         Data una grammatica $G$, si definisce \tbf{semantica operazionale} della grammatica una relazione, indicata col simbolo $\leadsto$, definita come segue: $$\leadsto \ \subseteq \mathrm{Env} \times G \times \mathrm{Val}$$
 
-        Un elemento $(E, M, v) \in \ \leadsto$ è detto \tbf{giudizio operazionale}, e viene scritto col seguente simbolismo: $$\opjud{E}{M}{v}$$ e si legge "valutando $M$, nell'ambiente $E$ si ottiene $v$".
+        Un elemento $(E, M, v) \in \ \leadsto$ è detto \tbf{giudizio operazionale}, e viene scritto attraverso il seguente simbolismo: $$\opjud{E}{M}{v}$$ e si legge "valutando $M$, nell'ambiente $E$, si ottiene $v$".
     \end{frameddefn}
 
     \begin{example}[Semantica operazionale di $Exp$]
+        \label{exp2 clauses}
         Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}, e sia $E$ un suo ambiente; allora, sono vere le seguenti asserzioni:
         
         $$[const] \ \opjud{E}{k}{k}$$
@@ -538,11 +539,11 @@
     \end{frameddefn}
 
     \begin{framedobs}{Ambiente iniziale}
-        Per qualsiasi grammatica, meno di specifiche si assume che, all'interno di una valutazione, l'ambiente iniziale sia $\varnothing \subseteq \mathrm{Env}$.
+        Per qualsiasi grammatica --- a meno di specifiche --- si assume che, all'interno di una valutazione, l'ambiente iniziale sia $\varnothing \in \mathrm{Env}$.
     \end{framedobs}
 
     \begin{example}[Alberi di valutazione su $Exp$]
-        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}; allora, l'albero di valutazione dell'espressione $$\letin{x}{3}{x + 4}$$ è il seguente $$\dfrac{\opjud{\varnothing}{3}{3} \quad \dfrac{\opjud{\{(x, 3)\}}{x}{3} \quad \opjud{\{(x,3)\}}{4}{4}}{\opjud{\{(x, 3)\}}{x +4}{7}}}{\opjud{\varnothing}{\letin{x}{3}{x +4}}{7}}$$ ed è valutabile poiché $x \in \dom(\{(x,1)\}) = \{x\}$.
+        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}; allora, l'albero di valutazione dell'espressione $$\letin{x}{3}{x + 4}$$ è il seguente $$\dfrac{\opjud{\varnothing}{3}{3} \quad \dfrac{\opjud{\{(x, 3)\}}{x}{3} \quad \opjud{\{(x,3)\}}{4}{4}}{\opjud{\{(x, 3)\}}{x +4}{7}}}{\opjud{\varnothing}{\letin{x}{3}{x +4}}{7}}$$ e l'espressione è valutabile poiché $x \in \dom(\{(x,1)\}) = \{x\}$.
     \end{example}
 
     \section{Valutazioni e scoping}
@@ -550,11 +551,11 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}{Valutazione eager}
-        Data una grammatica, la valutazione \tbf{eager} (\tit{call-by-name}) valuta una data espressione della grammatica non appena questa viene legata ad una variabile.
+        Data una grammatica, la \tbf{valutazione eager} (\tit{call-by-name}) valuta una data espressione della grammatica non appena questa viene legata ad una variabile.
     \end{frameddefn}
 
     \begin{frameddefn}{Valutazione lazy}
-        Data una grammatica, la valutazione \tbf{lazy} (\tit{call-by-need}) valuta una data espressione $e$ della grammatica solo quando il suo valore viene richiesto da un'altra espressione, che dunque dipende dal valore di $e$.
+        Data una grammatica, la \tbf{valutazione lazy} (\tit{call-by-need}) valuta una data espressione della grammatica solo quando il suo valore viene richiesto da un'altra espressione.
     \end{frameddefn}
 
     \begin{frameddefn}{Scoping statico}
@@ -562,11 +563,11 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Scoping dinamico}
-        Data una grammatica, la valutazione a \tbf{scoping dinamico} valuta le variabili utilizzando l'ambiente definito in tempo di valutazione.
+        Data una grammatica, la valutazione a \tbf{scoping dinamico} valuta le variabili utilizzando l'ambiente definito in tempo di valutazione. TODO NON MI PIACE CAMBIA
     \end{frameddefn}
 
     \begin{framedobs}{$Exp$ eager}
-        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}; in essa, la valutazione eager statica e dinamica sono equivalenti, poiché nessun espressione della grammatica è influenzata dal tipo si scoping; inoltre, non è necessario ridefinire le clausole.
+        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}; in essa, la valutazione eager statica e dinamica sono equivalenti, poiché nessun espressione della grammatica è influenzata dal tipo si scoping valutando in maniera eager; di conseguenza, non è necessario ridefinire le clausole viste nell'\cref{exp2 clauses}.
     \end{framedobs}
 
     \begin{example}[Valutazioni eager su $Exp$]
@@ -575,11 +576,11 @@
     \end{example}
 
     \begin{framedobs}{$Exp$ lazy dinamica}
-        Sia $Exp$ la grammatica definita nell'\cref{exp2}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{sem opexp}.
+        Sia $Exp$ la grammatica definita nell'\cref{exp2}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{exp2 clauses}.
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup Exp\}$$ dunque gli ambienti possono associare delle variabili anche a delle espressioni, in modo da poter ritardare la valutazione di quest'ultime fin quando non diventa strettamente necessario valutarle;
-            \item $\forall E \subseteq \mathrm{Env}, x \in \mathrm{Var} \quad x \in \dom(E) \land M := E(x) \implies \dfrac{\opjud{E}{M}{v}}{\opjud{E}{x}{v}}$, per rendere $M$ calcolabile nel momento in cui viene assegnata ad una variabile, attraverso l'ambiente corrente;
+            \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup Exp\}$$ dunque gli ambienti possono associare delle variabili anche a delle espressioni, in modo da poter ritardare la valutazione di quest'ultime fin quando non diventa strettamente necessario conoscerne il valore;
+            \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var} \quad x \in \dom(E) \land M := E(x) \implies \dfrac{\opjud{E}{M}{v}}{\opjud{E}{x}{v}}$, per rendere $M$ calcolabile, attraverso l'ambiente corrente, nel momento in cui viene assegnata ad una variabile;
             \item $\forall x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E\{(x, M)\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$, in modo da ritardare la valutazione di $M$.
         \end{itemize}
 
@@ -591,19 +592,19 @@
     \end{example}
 
     \begin{framedobs}{$Exp$ lazy statica}
-        Sia $Exp$ la grammatica definita nell'\cref{exp2}; per poter valutare le sue espressioni in maniera lazy statica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{sem opexp}.
+        Sia $Exp$ la grammatica definita nell'\cref{exp2}; per poter valutare le sue espressioni in maniera lazy statica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{exp2 clauses}.
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid \mathrm{Var} \xrightarrow{fin} Exp \times \mathrm{Env} \}$$ dunque gli ambienti possono associare delle variabili anche a delle tuple contenenti espressioni ed ambienti, ed in particolare per una tupla $(x, (M, E))$ di un certo ambiente, si ha che $x$ vale $M$ valutata nell'ambiente $E$; questa correzione permette di tenere traccia dell'ambiente in cui la variabile è stata assegnata;
-            \item $\forall E \subseteq \mathrm{Env}, x \in \mathrm{Var} \quad x \in \dom(E) \land (M, E') := E(x) \implies \dfrac{\opjud{E'}{M}{v}}{\opjud{E}{x}{v}}$, TODO
-            \item $\forall x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E\{(x, (M, E))\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$, TODO
+            \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid \mathrm{Var} \xrightarrow{fin} Exp \times \mathrm{Env} \}$$ dunque gli ambienti possono associare delle variabili anche a delle tuple contenenti espressioni ed ambienti; in particolare, per una tupla $(x, (M, E))$, si ha che $x$ vale $M$ valutata nell'ambiente $E$; questa correzione nella definizione di $\mathrm{Env}$ permette di tenere traccia degli ambienti in cui sono state fatte le assegnazioni;
+            \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var} \quad x \in \dom(E) \land (M, E') := E(x) \implies \dfrac{\opjud{E'}{M}{v}}{\opjud{E}{x}{v}}$, affinché sia possibile valutare le variabili esattamente nell'ambiente in cui gli è stata assegnata l'espressione $M$, e non nell'ambiente corrente;
+            \item $\forall x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E\{(x, (M, E))\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$, in modo da salvare anche l'ambiente in cui alla variabile $x$ è stata assegnata l'espressione $M$.
         \end{itemize}
 
-        Si noti che tale valutazione utilizza lo scoping statico, poiché all'interno dell'ambiente vengono salvati gli ambienti in cui sono state fatte le assegnazioni.
+        Si noti che tale valutazione utilizza lo scoping statico, poiché vengono salvati anche gli ambienti in cui sono state fatte le assegnazioni.
     \end{framedobs}
 
     \begin{example}[Valutazioni lazy statiche su $Exp$]
-        Si consideri l'espressione definita all'interno dell'\cref{eager2}; essa, valutata attraverso valutazione lazy statica, produce il seguente albero di derivazione: TODO
+        Si consideri l'espressione definita all'interno dell'\cref{eager2}; essa, valutata attraverso valutazione lazy statica, produce il seguente albero di derivazione: $$\dfrac{\dfrac{\dfrac{\dfrac{\dfrac{\dfrac{\opjud{\varnothing}{3}{3}}{\opjud{E}{x}{3}}}{\opjud{E''}{y}{3}} \quad \dfrac{\opjud{E'}{7}{7}}{\opjud{E''}{x}{7}}}{\opjud{E'\{(x,(7,E'))\}}{y+x}{10}}}{\opjud{E\{(y,(x, E))\}}{\letin{x}{7}{y+x}}{10}}}{\opjud{\{(x,(3,\varnothing))\}}{\letin{y}{x}{(\letin{x}{7}{y+x})}}{10}}}{\opjud{\varnothing}{\letin{x}{3}{(\letin{y}{x}{(\letin{x}{7}{y+x})})}}{10}}$$ dove \centeredeq{0.99}{$\centeredsoe{E := \{(x,(3,\varnothing))\} \\ E' := E\{(y,(x,E))\} = \{(x,(3,\varnothing))\}\{(y,(x,\{(x,(3,\varnothing))\}))\} \\ E'' := E'\{(x,(7,E'))\} = \{(x,(3,\varnothing))\}\{(y,(x,\{(x,(3,\varnothing))\}))\}\{(x,(7,\{(x,(3,\varnothing))\}\{(y,(x,\{(x,(3,\varnothing))\}))\}))\}}$}
     \end{example}
 
     \section{Funzioni}
@@ -615,14 +616,14 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Applicazione}
-        Sia $G$ una grmamatica; allora, dati due suoi termini $M,N$, è possibile definire su $G$ l'applicazione di $M$ ad $N$, attraverso la seguente sintassi: $MN$ Si noti che tale sintassi è presa in prestito dal lambda calcolo.
+        Sia $G$ una grammatica; allora, dati due suoi termini $M,N$, è possibile definire su $G$ l'applicazione di $M$ ad $N$, attraverso la seguente sintassi: $$MN$$ Tale sintassi è presa in prestito dal lambda calcolo.
 
         Si noti che un'espressione $MNL$ applica prima $M$ ad $N$, e poi $MN$ ad $L$, dunque la precedenza è da sinistra verso destra, ovvero $(MN)L$.
     \end{frameddefn}
 
     \begin{example}[Grammatica $Fun$]
         \label{fun}
-        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno dell'\cref{exp2}: $$M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N} \ | \ \fn{x}{M} \ | \ MN$$ Inoltre, l'insieme dei valori assegnabili alle variabili di $Fun$ verrà esteso come segue $$\mathrm{Val} := \{\ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun \times Fun)$$ dunque ad una variabile sarà possibile assegnargli il valore che una clausola $let$ restituisce TODO DA CAMBIARE, ASSICURATI DI COME VA FIXATO, CREDO SIANO FN E NON LET
+        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno dell'\cref{exp2}: $$M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N} \ | \ \fn{x}{M} \ | \ MN$$ Inoltre, l'insieme dei valori assegnabili ai termini di $Fun$ verrà esteso come segue $$\mathrm{Val} := \{\ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun \times Fun)$$ dunque ad una variabile sarà possibile assegnargli il valore che una clausola $let$ restituisce TODO DA CAMBIARE, ASSICURATI DI COME VA FIXATO, CREDO SIANO FN E NON LET
     \end{example}
 
     \begin{example}[Espressioni su $Fun$]
@@ -630,7 +631,7 @@
     \end{example}
 
     \begin{example}[Espressioni su $Fun$]
-        Sia $Fun$ la grammatica definita all'interno dell'\cref{fun}, e sia $$(\fn{x}{x3})(\fn{x}{x+1})$$ una sua espressione; essa, una volta valutata, applica la funzione $\fn{x}{x+1}$ all'espressione 3, e dunque il suo valore è pari a $$x = 3 \implies x + 1 = 3 + 1 = 4$$
+        Sia $Fun$ la grammatica definita all'interno dell'\cref{fun}, e sia $$(\fn{x}{x3})(\fn{x}{x+1})$$ una sua espressione; essa, una volta valutata, applica inizialmente la funzione $\fn{x}{x}$ all'espressione 3, e dunque il valore risultante è 3, e successivamente applica la funzione $\fn{x}{x+1}$ all'espressione 3, e dunque il suo valore è pari a $$x = 3 \implies x + 1 = 3 + 1 = 4$$ TODO DA RIVEDERE CHE NON SI CAPISCE NIENTE
     \end{example}
 
     \begin{framedobs}{Curryficazione}
