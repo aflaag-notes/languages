@@ -631,7 +631,8 @@
     \end{example}
 
     \begin{example}[Espressioni su $Fun$]
-        Sia $Fun$ la grammatica definita all'interno dell'\cref{fun}, e sia $$(\fn{x}{x3})(\fn{x}{x+1})$$ una sua espressione; essa, una volta valutata, applica inizialmente la funzione $\fn{x}{x}$ all'espressione 3, e dunque il valore risultante è 3, e successivamente applica la funzione $\fn{x}{x+1}$ all'espressione 3, e dunque il suo valore è pari a $$x = 3 \implies x + 1 = 3 + 1 = 4$$ TODO DA RIVEDERE CHE NON SI CAPISCE NIENTE
+        \label{expr fun}
+        Sia $Fun$ la grammatica definita all'interno dell'\cref{fun}, e sia $$(\fn{x}{x3})(\fn{x}{x+1})$$ una sua espressione; essa, una volta valutata, applica la funzione $\fn{x}{x+1}$ all'espressione 3, e dunque il suo valore è pari a $$x = 3 \implies x + 1 = 3 + 1 = 4$$
     \end{example}
 
     \begin{framedobs}{Curryficazione}
@@ -639,7 +640,10 @@
     \end{framedobs}
 
     \begin{example}[Curryficazioni]
-        Sia $Fun$ la grammatica dell'\cref{fun}, e sia $$(\fn{xy}{yx})7(\fn{x}{x+1})$$ una sua espressione; la sua uncurryficazione corrisponde alla seguente espressione $$(\fn{x}{\fn{y}{yx}})7(\fn{x}{x+1})$$ TODO COME SE VALUTA
+        Sia $Fun$ la grammatica dell'\cref{fun}, e sia $$(\fn{xy}{yx})7(\fn{x}{x+1})$$ una sua espressione; la sua uncurryficazione corrisponde alla seguente espressione $$(\fn{x}{\fn{y}{yx}})7(\fn{x}{x+1})$$ che, una volta valutata, diventa $$(\fn{y}{y7})(\fn{x}{x+1})$$ e dunque, analogamente all'\cref{expr fun}, il risultato è $$x= 7 \implies x+1 = 7 + 1= 8$$
     \end{example}
 
+    \begin{example}[Curryficazioni]
+        Sia $Fun$ la grammatica dell'\cref{fun}, e sia $$(\fn{x}{xx})(\fn{x}{xx})$$ una sua espressione; essa, durante la valutazione, va in loop infinito, poiché ad ogni valutazione viene restituita l'espressione di partenza.
+    \end{example}
 \end{document}
