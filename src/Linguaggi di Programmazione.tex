@@ -577,7 +577,7 @@
     \end{framedlem}
 
     \begin{proof}
-        Si noti che, in $Exp$, nessun espressione della grammatica è influenzata dal tipo di scoping, quando si effettuano valutazioni eager; di conseguenza, segue la tesi.
+        Omessa.
     \end{proof}
 
     \begin{example}[$Exp_\mathrm{E}$]
@@ -618,7 +618,7 @@
 
         Differentemente, valutando tale espressione attraverso valutazione lazy statica, produce il seguente albero di derivazione: $$\dfrac{\dfrac{\dfrac{\dfrac{\dfrac{\dfrac{\opjud{\varnothing}{3}{3}}{\opjud{E}{x}{3}}}{\opjud{E''}{y}{3}} \quad \dfrac{\opjud{E'}{7}{7}}{\opjud{E''}{x}{7}}}{\opjud{E'\{(x,(7,E'))\}}{y+x}{10}}}{\opjud{E\{(y,(x, E))\}}{\letin{x}{7}{y+x}}{10}}}{\opjud{\{(x,(3,\varnothing))\}}{\letin{y}{x}{(\letin{x}{7}{y+x})}}{10}}}{\opjud{\varnothing}{\letin{x}{3}{(\letin{y}{x}{(\letin{x}{7}{y+x})})}}{10}}$$ dove $$\centeredsoe{E := \{(x,(3,\varnothing))\} \\ E' := E\{(y,(x,E))\} \\ E'' := E'\{(x,(7,E'))\}}$$
 
-        Allora, poiché le due valutazioni hanno portato a risultati differenti, per la \cref{equiv lang}, segue la tesi.
+        Allora, poiché le due valutazioni producono risultati differenti, per la \cref{equiv lang}, segue la tesi.
     \end{proof}
 
     \section{Funzioni}
@@ -637,7 +637,7 @@
 
     \begin{example}[Grammatica $Fun$]
         \label{fun}
-        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno dell'\cref{exp2}: $$M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N} \ | \ \fn{x}{M} \ | \ MN$$ Inoltre, l'insieme dei valori assegnabili ai termini di $Fun$ verrà esteso come segue $$\mathrm{Val} := \{\ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun)$$ dunque ad una variabile sarà possibile assegnargli il valore che una clausola $fn$ restituisce.
+        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno dell'\cref{exp2}: $$M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N} \ | \ \fn{x}{M} \ | \ MN$$ Inoltre, l'insieme dei valori assegnabili ai termini di $Fun$ verrà esteso come segue $$\mathrm{Val} := \{\ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$
     \end{example}
 
     \begin{example}[Espressioni su $Fun$]
@@ -665,24 +665,24 @@
         Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera eager dinamica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$ dunque come nella \cref{env}
-            \item TODO BOH
-            \item $\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L)} \quad \opjud{E}{N}{v'} \quad \opjud{E\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$ per certi $L \in Fun, v, v' \in \mathrm{Var}$; dunque, per le applicazioni, il primo giudizio operazionale forza $M$ ad essere una funzione (della forma $\fn{x}{L}$ ), il secondo valuta $N$, ed il terzo valuta $L$ con $x$ pari al valore di $N$.
+            \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$ (si noti che $\mathrm{Val}$ è stato esteso nell'\cref{fun});
+            \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M)}$ per la valutazione delle funzioni;
+            \item $\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L)} \quad \opjud{E}{N}{v'} \quad \opjud{E\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$ per certi $x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque, per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione, il secondo valuta $N$, ed il terzo valuta $L$ con $x$ pari al valore di $N$.
         \end{itemize}
 
-        Si noti che tale valutazione risulta essere eager, poiché $M$ viene valutata immediatamente. TODO CONTROLLA CHE SIA GIUSTO
+        Si noti che tale valutazione risulta essere eager, poiché $N$ viene valutata immediatamente.
     \end{framedobs}
 
     \begin{framedobs}{$Fun_\mathrm{ES}$}
         Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera eager statica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \times \mathrm{Env}\}$$ TODO
-            \item TODO
-            \item $\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L,E')} \quad \opjud{E}{N}{v'} \quad \opjud{E'\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$ per certi $E' \in \mathrm{Env}, L \in Fun, v, v' \in \mathrm{Var}$; dunque, per le applicazioni, il primo giudizio operazionale forza $M$ ad essere una funzione (della forma $\fn{x}{L}$ TODO CONTROLLA), il secondo valuta $N$, ed il terzo valuta $L$ con $x$ pari al valore di $N$. TODO AGGIORNA CHE È SBAGLIATO
+            \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$ (si noti che $\mathrm{Val}$ è stato esteso nell'\cref{fun});
+            \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M,E)}$ per la valutazione delle funzioni;
+            \item \resizable{0.94}{$\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L,E')} \quad \opjud{E}{N}{v'} \quad \opjud{E'\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$} per certi $E' \in \mathrm{Env}, x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque, per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione, salvando inoltre l'ambiente in cui la funzione $M$ è stata valutata, il secondo valuta $N$, ed il terzo valuta $L$ con $x$ pari al valore di $N$, ma all'interno dell'ambiente che era stato salvato valutando la funzione $M$.
         \end{itemize}
 
-        Si noti che tale valutazione risulta essere eager, poiché $M$ viene valutata immediatamente. TODO CONTROLLA CHE SIA GIUSTO
+        Si noti che tale valutazione risulta essere eager, poiché $N$ viene valutata immediatamente, ed è a scoping statico poiché viene riportato l'ambiente in cui le applicazioni vengono effettuate.
     \end{framedobs}
 
     \begin{framedlem}{$Fun_\mathrm{ES}$ e $Fun_\mathrm{ED}$}
@@ -694,7 +694,25 @@
 
         dove $$\centeredsoe{E := \{(x,7)\} \\ E' := E\{(y,(z,x))\} \\ E'' := E'\{(x,3)\}}$$
 
-        Differentemente, valutando tale espressione attraverso valutazione eager statica, produce il seguente albero di derivazione: TODO $$$$
+        Differentemente, valutando tale espressione attraverso valutazione eager statica, produce il seguente albero di derivazione: $$(*) \quad \dfrac{\opjud{E'}{3}{3} \quad \dfrac{\opjud{E''}{y}{(z,x,E)} \quad \opjud{E''}{x}{3} \quad \opjud{E\{(z,3)\}}{x}{7}}{\opjud{E'\{(x,3)\}}{yx}{7}}}{\opjud{E\{(y,(z,x,E))\}}{\letin{x}{3}{yx}}{7}}$$ \centeredeq{0.99}{$\dfrac{\opjud{\varnothing}{7}{7} \quad \dfrac{\opjud{E}{\fn{y}{\letin{x}{3}{yx}}}{((y,\letin{x}{3}{yx}),E)} \quad \opjud{E}{\fn{z}{x}}{(z,x,E)} \quad (*)}{\opjud{\{(x,7)\}}{(\fn{y}{\letin{x}{3}{yx}})(\fn{z}{x})}{7}}}{\opjud{\varnothing}{\letin{x}{7}{((\fn{y}{\letin{x}{3}{yx}})(\fn{z}{x}))}}{7}}$} dove $$\centeredsoe{E: =\{(x,7)\} \\ E' := E\{(y,(z,x,E))\} \\ E'' := E'\{(x,3)\}}$$
+
+        Allora, poiché le due valutazioni producono risultati differenti, per la \cref{equiv lang}, segue la tesi.
+    \end{proof}
+
+    \begin{framedobs}{$Fun_\mathrm{LD}$}
+        TODO
+    \end{framedobs}
+
+    \begin{framedobs}{$Fun_\mathrm{LS}$}
+        TODO
+    \end{framedobs}
+
+    \begin{framedlem}{$Fun_\mathrm{LS}$ e $Fun_\mathrm{LD}$}
+        Sia $Fun$ la grammatica definita nell'\cref{fun}; allora, si ha che $$Fun_\mathrm{LS} \not\equiv Fun_\mathrm{LD}$$
+    \end{framedlem}
+
+    \begin{proof}
+        Omessa.
     \end{proof}
 
 \end{document}
