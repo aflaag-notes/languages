@@ -637,7 +637,7 @@
 
     \begin{example}[Grammatica $Fun$]
         \label{fun}
-        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno dell'\cref{exp2}: $$M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N} \ | \ \fn{x}{M} \ | \ MN$$ Inoltre, l'insieme dei valori assegnabili ai termini di $Fun$ verrà esteso come segue $$\mathrm{Val} := \{\ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$
+        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno dell'\cref{exp2}: $$M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N} \ | \ \fn{x}{M} \ | \ MN$$
     \end{example}
 
     \begin{example}[Espressioni su $Fun$]
@@ -661,11 +661,14 @@
         Sia $Fun$ la grammatica dell'\cref{fun}, e sia $$(\fn{x}{xx})(\fn{x}{xx})$$ una sua espressione; essa, durante la valutazione, va in loop infinito, poiché ad ogni valutazione viene restituita l'espressione di partenza.
     \end{example}
 
+    \subsection{Semantiche operazionali}
+
     \begin{framedobs}{$Fun_\mathrm{ED}$}
         Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera eager dinamica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$ (si noti che $\mathrm{Val}$ è stato esteso nell'\cref{fun});
+            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1 , \ldots \} \cup (\mathrm{Var} \times Fun)$$ affinché i giudizi operazionali di $Fun$ possano contenere tuple;
+            \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$
             \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M)}$ per la valutazione delle funzioni;
             \item $\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L)} \quad \opjud{E}{N}{v'} \quad \opjud{E\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$ per certi $x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque, per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione, il secondo valuta $N$, ed il terzo valuta $L$ con $x$ pari al valore di $N$.
         \end{itemize}
@@ -677,7 +680,8 @@
         Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera eager statica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$ (si noti che $\mathrm{Val}$ è stato esteso nell'\cref{fun});
+            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$ affinché i giudizi operazionali di $Fun$ possano contenere triple;
+            \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$
             \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M,E)}$ per la valutazione delle funzioni;
             \item \resizable{0.94}{$\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L,E')} \quad \opjud{E}{N}{v'} \quad \opjud{E'\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$} per certi $E' \in \mathrm{Env}, x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque, per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione, salvando inoltre l'ambiente in cui la funzione $M$ è stata valutata, il secondo valuta $N$, ed il terzo valuta $L$ con $x$ pari al valore di $N$, ma all'interno dell'ambiente che era stato salvato valutando la funzione $M$.
         \end{itemize}
