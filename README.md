@@ -7,11 +7,8 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 - appunti del 3/10
     - equivalenza di segnature
     - lemma di lambek
-- appunti del 9/10
-    - curryficazione
-        - finire funzioni
 - appunti del 10/10
-    - tutto
+    - finire
 - rileggere
     - funzioni
 
