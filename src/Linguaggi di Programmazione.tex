@@ -707,7 +707,7 @@
         Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{ f \mid f: \mathrm{Var} \xrightarrow{fin} \mathrm{Fun}$$
+            \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{ f \mid f: \mathrm{Var} \xrightarrow{fin} \mathrm{Fun} \}$$
             \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun)$$ affinché i giudizi operazionali di $Fun$ possano contenere tuple;
             \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M)}$ per la valutazione delle funzioni;
             \item $\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L)} \quad \opjud{E'\{(x,N)\}}{L}{v}}{\opjud{E}{MN}{v}}$ per certi $x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque , per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione, mentre il secondo valuta $L$ con $x$ pari ad $N$ (e non al valore che questa assume).
@@ -736,8 +736,13 @@
     \end{proof}
 
     \begin{frameddefn}{Espressione $\omega$}
-        TODO
+        Data una grammatica, l'\tbf{espressione $\omega$} è l'espressione composta dalla più piccola funzione che entra in ricorsione infinita, senza chiamare sé stessa.
     \end{frameddefn}
+
+    \begin{example}[Espressione $\omega$ di $Fun$]
+        \label{omega fun}
+        Sia $Fun$ la grammatica definita all'interno dell'\cref{fun}; allora, una sua espressione $\omega$ è la seguente: $$\omega := (\fn{x}{xx})(\fn{x}{xx})$$ Essa risulta essere un'espressione $\omega$ per $Fun$, poiché la sua valutazione entra in ricorsione infinita indipendentemente dalla semantica scelta.
+    \end{example}
 
     \begin{framedlem}{Semantiche di $Fun$}
         Sia $Fun$ la grammatica definita nell'\cref{fun}; allora, si ha che $$Fun_\mathrm{LD} \not\equiv Fun_\mathrm{ED} \not\equiv Fun_\mathrm{ES} \not\equiv Fun_\mathrm{LS}$$
@@ -751,7 +756,7 @@
             \item $Fun_\mathrm{LS} \not\equiv Fun_\mathrm{LD}$ per il \cref{fun lemma pt2}
         \end{itemize}
 
-        mentre, per quanto riguarda $Fun_\mathrm{ED} \not\equiv Fun_\mathrm{LD}$ e $Fun_\mathrm{ES} \not\equiv Fun_\mathrm{LS}$, si consideri TODO
+        mentre, per quanto riguarda $Fun_\mathrm{ED} \not\equiv Fun_\mathrm{LD}$ e $Fun_\mathrm{ES} \not\equiv Fun_\mathrm{LS}$, si prenda l'espressione $\omega$ di $Fun$, presentata all'interno dell'\cref{omega fun}, e si consideri la seguente espressione $$\letin{x}{\omega}{69}$$ questa, quando valutata in maniera eager --- indipendentemente dallo scoping --- richiederebbe di valutare immediatamente l'espressione $\omega$, la quale è invalutabile per definizione; invece, quando valutata in maniera lazy --- indipendentemente dallo scoping --- rimanderebbe il calcolo dell'espressione $\omega$, restituendo 69 come risultato. Dunque, segue la tesi.
     \end{proof}
 
 \end{document}

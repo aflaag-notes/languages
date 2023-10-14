@@ -8,7 +8,7 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
     - equivalenza di segnature
     - lemma di lambek
 - appunti del 10/10
-    - finire
+    - finire (simone ancora non ha fatto)
 - rileggere
     - funzioni
 
