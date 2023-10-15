@@ -654,7 +654,7 @@
     \end{framedobs}
 
     \begin{example}[Curryficazioni]
-        Sia $Fun$ la grammatica dell'\cref{fun}, e sia $$(\fn{xy}{yx})7(\fn{x}{x+1})$$ una sua espressione; la sua uncurryficazione corrisponde alla seguente espressione $$(\fn{x}{\fn{y}{yx}})7(\fn{x}{x+1})$$ che, una volta valutata, diventa $$(\fn{y}{y7})(\fn{x}{x+1})$$ e dunque, analogamente all'\cref{expr fun}, il risultato è $$x= 7 \implies x+1 = 7 + 1= 8$$
+        Sia $Fun$ la grammatica dell'\cref{fun}, e sia $$(\fn{xy}{yx})7(\fn{x}{x+1})$$ una sua espressione; una volta effettuata l'uncurryficazione, si ottiene la seguente espressione: $$(\fn{x}{\fn{y}{yx}})7(\fn{x}{x+1})$$ che, una volta valutata, diventa $$(\fn{y}{y7})(\fn{x}{x+1})$$ e dunque, analogamente all'\cref{expr fun}, il risultato è $$x= 7 \implies x+1 = 7 + 1= 8$$
     \end{example}
 
     \begin{example}[Curryficazioni]
@@ -683,10 +683,10 @@
             \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$
             \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$ affinché i giudizi operazionali di $Fun$ possano contenere triple;
             \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M,E)}$ per la valutazione delle funzioni;
-            \item \resizable{0.94}{$\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L,E')} \quad \opjud{E}{N}{v'} \quad \opjud{E'\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$} per certi $E' \in \mathrm{Env}, x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque, per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione, salvando inoltre l'ambiente in cui la funzione $M$ è stata valutata, il secondo valuta $N$, ed il terzo valuta $L$ con $x$ pari al valore di $N$, ma all'interno dell'ambiente che era stato salvato valutando la funzione $M$.
+            \item \resizable{0.94}{$\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L,E')} \quad \opjud{E}{N}{v'} \quad \opjud{E'\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$} per certi $E' \in \mathrm{Env}, x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque, per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione --- salvando inoltre l'ambiente in cui la funzione $M$ è stata valutata --- il secondo valuta $N$, ed il terzo valuta $L$ con $x$ pari al valore di $N$, ma all'interno dell'ambiente che era stato salvato valutando la funzione $M$.
         \end{itemize}
 
-        Si noti che tale valutazione risulta essere eager, poiché $N$ viene valutata immediatamente, ed è a scoping statico poiché viene riportato l'ambiente in cui le applicazioni vengono effettuate.
+        Si noti che tale valutazione risulta essere eager, poiché $N$ viene valutata immediatamente, ed è a scoping statico poiché viene riportato l'ambiente in cui le valutazioni vengono effettuate.
     \end{framedobs}
 
     \begin{framedlem}[label={fun lemma pt1}]{$Fun_\mathrm{ES}$ e $Fun_\mathrm{ED}$}
@@ -707,24 +707,26 @@
         Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{ f \mid f: \mathrm{Var} \xrightarrow{fin} \mathrm{Fun} \}$$
+            \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{ f \mid f: \mathrm{Var} \xrightarrow{fin} Fun \}$$
             \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun)$$ affinché i giudizi operazionali di $Fun$ possano contenere tuple;
             \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M)}$ per la valutazione delle funzioni;
-            \item $\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L)} \quad \opjud{E'\{(x,N)\}}{L}{v}}{\opjud{E}{MN}{v}}$ per certi $x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque , per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione, mentre il secondo valuta $L$ con $x$ pari ad $N$ (e non al valore che questa assume).
+            \item $\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L)} \quad \opjud{E'\{(x,N)\}}{L}{v}}{\opjud{E}{MN}{v}}$ per certi $x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque, per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione, mentre il secondo valuta $L$ con $x$ pari ad $N$ --- e non al valore che questa assume.
         \end{itemize}
 
-        Si noti che tale valutazione risulta essere lazy, poiché $N$ non viene valutato, e viene ritardato il calcolo finché non strettamente necessario.
+        Si noti che tale valutazione risulta essere lazy, poiché $N$ non viene valutata immediatamente, ma ne viene ritardato il calcolo finché non strettamente necessario.
     \end{framedobs}
 
     \begin{framedobs}{$Fun_\mathrm{LS}$}
         Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera lazy statica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid f :\mathrm{Var} \xrightarrow{fin} \mathrm{Var} \times Fun \times \mathrm{Env}\}$$ dunque, la sua definizione è ricorsiva TODO CONTROLLA CHE SIA GIUSTO, IN CASO SCRIVILO ANCHE SOPRA
+            \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid f :\mathrm{Var} \xrightarrow{fin} Fun \times \mathrm{Env}\}$$ dunque, la sua definizione è ricorsiva
             \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{\ttt 0, \ttt 1, \ldots\} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$
-            \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M)}$ per la valutazione delle funzioni;
-            \item $\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L,E')} \quad \opjud{E'\{(x,N,E)\}}{L}{v}}{\opjud{E}{MN}{v}}$ per certi $E' \in \mathrm{Env}, x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque, per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione, salvando inoltre l'ambiente in cui la funzione $M$ è stata valutata, mentre il secondo valuta $L$ senza valutare l'espressione $N$, ma semplicemente ponendo $x$ pari ad $N$ (e non il suo valore), all'interno dell'ambiente che era stato salvato valutando la funzione $M$.
+            \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M,E)}$ per la valutazione delle funzioni;
+            \item $\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L,E')} \quad \opjud{E'\{(x,(N,E))\}}{L}{v}}{\opjud{E}{MN}{v}}$ per certi $E' \in \mathrm{Env}, x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque, per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione --- salvando inoltre l'ambiente in cui la funzione $M$ è stata valutata --- mentre il secondo valuta $L$ senza valutare l'espressione $N$, ma ponendo solamente $x$ pari ad $N$ -- e non al suo valore --- all'interno dell'ambiente in cui è stata effettuata l'applicazione $MN$.
         \end{itemize}
+
+        Si noti che tale valutazione risulta essere lazy, poiché $N$ non viene valutata immediatamente, ed è a scoping statico poiché viene riportato l'ambiente in cui le valutazioni vengono effettuate.
     \end{framedobs}
 
     \begin{framedlem}[label={fun lemma pt2}]{$Fun_\mathrm{LS}$ e $Fun_\mathrm{LD}$}
@@ -736,7 +738,7 @@
     \end{proof}
 
     \begin{frameddefn}{Espressione $\omega$}
-        Data una grammatica, l'\tbf{espressione $\omega$} è l'espressione composta dalla più piccola funzione che entra in ricorsione infinita, senza chiamare sé stessa.
+        Data una grammatica, l'\tbf{espressione $\omega$} è un'espressione composta dalla più piccola funzione che entra in ricorsione infinita senza chiamare sé stessa.
     \end{frameddefn}
 
     \begin{example}[Espressione $\omega$ di $Fun$]
@@ -756,7 +758,7 @@
             \item $Fun_\mathrm{LS} \not\equiv Fun_\mathrm{LD}$ per il \cref{fun lemma pt2}
         \end{itemize}
 
-        mentre, per quanto riguarda $Fun_\mathrm{ED} \not\equiv Fun_\mathrm{LD}$ e $Fun_\mathrm{ES} \not\equiv Fun_\mathrm{LS}$, si prenda l'espressione $\omega$ di $Fun$, presentata all'interno dell'\cref{omega fun}, e si consideri la seguente espressione $$\letin{x}{\omega}{69}$$ questa, quando valutata in maniera eager --- indipendentemente dallo scoping --- richiederebbe di valutare immediatamente l'espressione $\omega$, la quale è invalutabile per definizione; invece, quando valutata in maniera lazy --- indipendentemente dallo scoping --- rimanderebbe il calcolo dell'espressione $\omega$, restituendo 69 come risultato. Dunque, segue la tesi.
+        mentre, per quanto riguarda $Fun_\mathrm{ED} \not\equiv Fun_\mathrm{LD}$ e $Fun_\mathrm{ES} \not\equiv Fun_\mathrm{LS}$, si prenda l'espressione $\omega$ di $Fun$, presentata all'interno dell'\cref{omega fun}, e si consideri la seguente espressione $$\letin{x}{\omega}{69} \footnote{Nice.}$$ questa, quando valutata in maniera eager --- indipendentemente dallo scoping --- richiederebbe di valutare immediatamente l'espressione $\omega$, la quale è invalutabile per definizione; mentre, quando valutata in maniera lazy --- indipendentemente dallo scoping --- rimanderebbe il calcolo dell'espressione $\omega$, restituendo 69 come risultato. Dunque, poiché si ottengono risultati diversi a seconda della semantica utilizzata per valutare tale espressione, segue la tesi.
     \end{proof}
 
 \end{document}
