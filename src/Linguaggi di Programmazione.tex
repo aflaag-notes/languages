@@ -761,4 +761,52 @@
         mentre, per quanto riguarda $Fun_\mathrm{ED} \not\equiv Fun_\mathrm{LD}$ e $Fun_\mathrm{ES} \not\equiv Fun_\mathrm{LS}$, si prenda l'espressione $\omega$ di $Fun$, presentata all'interno dell'\cref{omega fun}, e si consideri la seguente espressione $$\letin{x}{\omega}{69} \footnote{Nice.}$$ questa, quando valutata in maniera eager --- indipendentemente dallo scoping --- richiederebbe di valutare immediatamente l'espressione $\omega$, la quale è invalutabile per definizione; mentre, quando valutata in maniera lazy --- indipendentemente dallo scoping --- rimanderebbe il calcolo dell'espressione $\omega$, restituendo 69 come risultato. Dunque, poiché si ottengono risultati diversi a seconda della semantica utilizzata per valutare tale espressione, segue la tesi.
     \end{proof}
 
+    \section{Lambda calcolo}
+
+    \subsection{Numeri di Church}
+
+    \begin{frameddefn}{Numeri di Church}
+        La \tbf{rappresentazione di Church} dei numeri naturali, denotata con $\N_\lambda$ è la seguente:
+        \begin{itemize}
+            \item $0_\lambda := \fn{x}{\fn{y}{y}} \iff \fn{xy}{y}$
+            \item $\mathrm{succ}_\lambda := \fn{z}{(\fn{x}{\fn{y}{z x (x y)})}} \iff \fn{zxy}{zx(xy)}$
+        \end{itemize}
+    \end{frameddefn}
+
+    \begin{example}[$1_\lambda$ di Church]
+        \label{1 church}
+        Per calcolare l'$1_\lambda \in \N_\lambda$ di Church, è sufficiente valutare $\mathrm{succ}_\lambda(0_\lambda)$, e dunque $$\centeredsoe{(\fn{zxy}{zx(xy)})(\fn{xy}{y}) \longrightarrow \fn{xy}{(\fn{xy}{y})x(xy)} \longrightarrow \\ \longrightarrow \fn{xy}{(\fn{y}{y})(xy)} \longrightarrow \fn{xy}{xy}}$$
+    \end{example}
+
+    \begin{example}[$2_\lambda$ di Church]
+        \label{2 church}
+        Per calcolare il $2_\lambda \in \N_\lambda$ di Church, è sufficiente valutare $\mathrm{succ}_\lambda(1_\lambda)$, e dunque $$\centeredsoe{(\fn{zxy}{zx(xy)})(\fn{xy}{xy}) \longrightarrow \fn{xy}{(\fn{xy}{xy})x(xy)} \longrightarrow \\ \longrightarrow \fn{xy}{(\fn{y}{xy})(xy)} \longrightarrow \fn{xy}{xxy}}$$
+    \end{example}
+
+    \begin{framedprop}{Algebra dei numeri di Church}
+        Si consideri l'algebra dei numeri di Church, definita come $(\N_\lambda, \mathrm{zero}_\lambda, \mathrm{succ}_\lambda)$, dove $$\funcmap{\mathrm{zero}_\lambda}{\1}{\N_\lambda}{x}{0_\lambda}$$ essa è un'algebra induttiva.
+    \end{framedprop}
+
+    \begin{proof}
+        Omessa.
+    \end{proof}
+
+    \begin{framedobs}{Funzione $\mathrm{eval}_\lambda$}
+        Si considerino l'\cref{1 church} e l'\cref{2 church}, e si noti che $$\centeredsoe{0_\lambda := \fn{xy}{y} \\ 1_\lambda := \fn{xy}{xy} \\ 2_\lambda :=\fn{xy}{x(xy)} \\ \vdots}$$ dunque, la corrispondenza tra $\N$ e $\N_\lambda$ è data dal \tit{numero di applicazioni effettuate} ad una qualche variabile, infatti è possibile costruire il seguente isomorfismo tra le algebre $(\N, \mathrm{zero}, \mathrm{succ})$ e $(\N_\lambda, \mathrm{zero}_\lambda, \mathrm{succ}_\lambda)$: $$\funcmap{\varphi}{\N}{\N_\lambda}{n}{\fn{xy}{\underbrace{x \cdots x}_{n \ \mathrm{volte}}y}}$$ dove $x$ dunque è una funzione che può essere applicata ad una certa variabile $y$.
+
+        È possibile definire una funzione che, dato un numero di Church, restituisce il corrispondente numero naturale (dunque l'equivalente di $\varphi^{-1}$), come segue: $$\mathrm{eval}_\lambda := \fn{z}{z (\fn{x}{x+1}) 0}$$ poiché applica la funzione $\mathrm{succ}_{\N}$ esattamente $z$ volte --- e dunque necessariamente $z \in \N_\lambda$.
+    \end{framedobs}
+
+    \begin{example}[Corrispondenze tra $\N_lambda$ e $\N$]
+        Per calcolare $\mathrm{eval}_\lambda(1_\lambda)$ è necessario svolgere i seguenti calcoli: $$\centeredsoe{(\fn{z}{z (\fn{x}{x+1})0})(\fn{xy}{xy}) \longrightarrow (\fn{xy}{xy})(\fn{x}{x+1})0 \longrightarrow \\ \longrightarrow (\fn{y}{(\fn{x}{x+1})y})0 \longrightarrow (\fn{x}{x+1})0 \longrightarrow 1}$$
+    \end{example}
+
+    \begin{framedobs}{Operazione $\mathrm{sum}_\lambda$}
+        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di somma, come segue: $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z x (w x y)}})}} \iff \fn{zwxy}{zx(wxy)}$$ poiché alla variabile $y$ viene prima applicata $x$ esattamente $w$ volte --- il quale deve dunque essere un numero di Church, e successivamente viene applicata $x$ altre $z$ volte --- e ciò richiede che anche questo sia in $\N_\lambda$.
+    \end{framedobs}
+
+    \begin{example}[Somme in $\N_\lambda$]
+        Per calcolare $\mathrm{sum}_\lambda(2_\lambda, 1_\lambda)$ è necessario svolgere i seguenti calcoli: $$\centeredsoe{(\fn{zwxy}{zx(wxy)})(\fn{xy}{x(xy)})(\fn{xy}{xy}) \longrightarrow \\ \longrightarrow (\fn{wxy}{(\fn{xy}{x(xy)})x(wxy)})(\fn{xy}{xy}) \longrightarrow \\ \longrightarrow (\fn{wxy}{(\fn{y}{x(xy)})(wxy)})(\fn{xy}{xy}) \longrightarrow \\ \longrightarrow (\fn{wxy}{x(x(wxy))})(\fn{xy}{xy}) \longrightarrow \fn{xy}{x(x((\fn{xy}{xy})xy))} \longrightarrow \\ \longrightarrow \fn{xy}{x(x((\fn{y}{xy})y))} \longrightarrow \fn{xy}{x(x(xy))} =: 3_\lambda}$$
+    \end{example}
+
 \end{document}
