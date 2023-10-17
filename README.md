@@ -7,6 +7,6 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 - appunti del 3/10
     - equivalenza di segnature
     - lemma di lambek
-- rileggere
-    - lambda calcolo
+- appunti del 17/10
+    - tutto
 
