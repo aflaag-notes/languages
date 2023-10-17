@@ -453,7 +453,7 @@
     \begin{frameddefn}[label={let}]{Clausola $let$}
         Sia $G$ una grammatica; allora, è possibile definire su $G$ una funzione \tbf{$let$}, come segue: $$\func{let}{\mathrm{Var} \times G \times G}{G}$$ e verrà utilizzata attraverso la sintassi $$\letin{\ttt{*variable*}}{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ dove alla variabile $\ttt{*variable*}$ verrà assegnata l'espressione $\ttt{\_expression\_}_1$ \tit{durante la valutazione} di $\ttt{\_expression\_}_2$; la variabile $\ttt{*variable*}$, all'interno di $\ttt{\_expression\_}_2$, prende il nome di \tbf{variabile locale}.
 
-        Una variabile alla quale non è stata assegnata nessuna espressione prende il nome di \tbf{variable libera} (\tit{unbound variable} in inglese); una variabile non libera è detta \tbf{variabile legata} (\tit{bound variable}).
+        Una variabile alla quale non è stata assegnata nessuna espressione prende il nome di \tbf{variable libera} (\tit{free variable} in inglese); una variabile non libera è detta \tbf{variabile legata} (\tit{bound variable}). L'azione di legare o liberare una variabile è detta \tbf{variable binding}.
     \end{frameddefn}
     
     \begin{example}[Estensione di $Exp$]
@@ -482,8 +482,8 @@
         Sia $Exp$ la grammatica dell'\cref{exp2}, e si consideri la sua seguente espressione $$\letin{x}{M}{x + y}$$ per qualche espressione $M \in Exp$, e due variabili $x, y \in \mathrm{Var}$, ammettendo dunque $y$ tra le variabili di $Exp$; si noti che tale espressione è ambigua, poiché potrebbe equivalere a $$(\letin{x}{M}{x}) + y$$ oppure a $$\letin{x}{M}{(x + y)}$$ Per convenzione, all'interno di questi appunti, in assenza di parentesi che descrivano la precedenza degli operatori, si assume la precedenza della seconda espressione mostrata.
     \end{framedobs}
 
-    \begin{framedobs}{Variabili libere di un'espressione}
-        Sia $Exp$ la grammatica dell'\cref{exp2}; su di essa, è possibile definire, ricorsivamente, una funzione in grado di restituire le variabili unbound di una data espressione, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{free}}{Exp}{\powerset{\left(\mathrm{Var}\right)}}{e}{\soe{ll}{
+    \begin{framedobs}{Variabili libere di $Exp$}
+        Sia $Exp$ la grammatica dell'\cref{exp2}; su di essa, è possibile definire, ricorsivamente, una funzione in grado di restituire le variabili free di una data espressione, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{free}}{Exp}{\powerset{\left(\mathrm{Var}\right)}}{e}{\soe{ll}{
             \varnothing & \exists \eta \in \N \mid e = k(\eta) \\ 
             \{x\} & \exists x \in \mathrm{Var} \mid e = x \\ 
             \mathrm{free}(M) \cup \mathrm{free}(N) & \exists M, N \in Exp \mid e = M \ \ttt + \ N \lor e = M \ \ttt * \ N \\
@@ -569,7 +569,7 @@
     \begin{frameddefn}[label={equiv lang}]{Equivalenza di semantiche operazionali}
         Data una grammatica, due sue semantiche operazionali sono dette \tbf{equivalenti} se, presa una qualunque espressione di $G$, quando questa viene valutata attraverso le due semantiche, produce lo stesso risultato.
 
-        In simboli, data una grammatica $G$, e due sue semantiche operazionali $\mathrm{A}$ e $\mathrm{B}$, se queste sono equivalenti, la loro equivalenza viene denotata con il seguente simbolismo $$G_\mathrm{A} \equiv G_\mathrm{B}$$
+        In simboli, data una grammatica $G$, e due sue semantiche operazionali $\mathrm{A}$ e $\mathrm{B}$, se queste sono equivalenti, la loro equivalenza viene denotata con il seguente simbolismo: $$G_\mathrm{A} \equiv G_\mathrm{B}$$
     \end{frameddefn}
 
     \begin{framedlem}{$Exp_\mathrm{ES}$ e $Exp_\mathrm{ED}$}
@@ -761,6 +761,17 @@
         mentre, per quanto riguarda $Fun_\mathrm{ED} \not\equiv Fun_\mathrm{LD}$ e $Fun_\mathrm{ES} \not\equiv Fun_\mathrm{LS}$, si prenda l'espressione $\omega$ di $Fun$, presentata all'interno dell'\cref{omega fun}, e si consideri la seguente espressione $$\letin{x}{\omega}{69} \footnote{Nice.}$$ questa, quando valutata in maniera eager --- indipendentemente dallo scoping --- richiederebbe di valutare immediatamente l'espressione $\omega$, la quale è invalutabile per definizione; mentre, quando valutata in maniera lazy --- indipendentemente dallo scoping --- rimanderebbe il calcolo dell'espressione $\omega$, restituendo 69 come risultato. Dunque, poiché si ottengono risultati diversi a seconda della semantica utilizzata per valutare tale espressione, segue la tesi.
     \end{proof}
 
+    \begin{framedobs}{Variabili libere di $Fun$}
+        Sia $Fun$ la grammatica dell'\cref{fun}; su di essa, è possibile definire, ricorsivamente, una funzione in grado di restituire le variabili free di una data espressione, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{free}}{Fun}{\powerset{\left(\mathrm{Var}\right)}}{e}{\soe{ll}{
+            \varnothing & \exists \eta \in \N \mid e = k(\eta) \\ 
+            \{x\} & \exists x \in \mathrm{Var} \mid e = x \\ 
+            \mathrm{free}(M) \cup \mathrm{free}(N) & \exists M, N \in Fun \mid e = M \ \ttt + \ N \lor e = M \ \ttt * \ N \\
+            \mathrm{free}(M) \cup (\mathrm{free}(N) - \{x\}) & \exists x \in \mathrm{Var}, M, N \in Fun \mid e = (\letin{x}{M}{N}) \\
+            \mathrm{free}(M) - \{x\} & \exists x \in \mathrm{Var} , M \in Fun \mid e = (\fn{x}{M}) \\
+            \mathrm{free}(M) \cup \mathrm{free}(N) & \exists M,N \in Fun \mid e = (MN)
+        }}$}
+    \end{framedobs}
+
     \section{Lambda calcolo}
 
     \subsection{Numeri di Church}
@@ -807,6 +818,91 @@
 
     \begin{example}[Somme in $\N_\lambda$]
         Per calcolare $\mathrm{sum}_\lambda(2_\lambda, 1_\lambda)$ è necessario svolgere i seguenti calcoli: $$\centeredsoe{(\fn{zwxy}{zx(wxy)})(\fn{xy}{x(xy)})(\fn{xy}{xy}) \longrightarrow \\ \longrightarrow (\fn{wxy}{(\fn{xy}{x(xy)})x(wxy)})(\fn{xy}{xy}) \longrightarrow \\ \longrightarrow (\fn{wxy}{(\fn{y}{x(xy)})(wxy)})(\fn{xy}{xy}) \longrightarrow \\ \longrightarrow (\fn{wxy}{x(x(wxy))})(\fn{xy}{xy}) \longrightarrow \fn{xy}{x(x((\fn{xy}{xy})xy))} \longrightarrow \\ \longrightarrow \fn{xy}{x(x((\fn{y}{xy})y))} \longrightarrow \fn{xy}{x(x(xy))} =: 3_\lambda}$$
+    \end{example}
+
+    \begin{framedobs}{Operazione $\mathrm{prod}_\lambda$}
+        TODO DA CAMBIARE
+        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di somma, come segue: $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z x (w x y)}})}} \iff \fn{zwxy}{zx(wxy)}$$ poiché alla variabile $y$ viene prima applicata $x$ esattamente $w \in \N_\lambda$ volte ad $y$, e successivamente ad esso viene applicata $x$ altre $z \in \N_\lambda$ volte. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{z \ \mathrm{succ}_\lambda \ w}}$$ poiché viene applicata la funzione di successore $\mathrm{succ}_\lambda$ a $w \in \N_\lambda$, esattamente $z \in \N_\lambda$ volte.
+    \end{framedobs}
+
+    \begin{framedobs}{Operazione $\mathrm{power}_\lambda$}
+        TODO DA CAMBIARE
+        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di somma, come segue: $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z x (w x y)}})}} \iff \fn{zwxy}{zx(wxy)}$$ poiché alla variabile $y$ viene prima applicata $x$ esattamente $w \in \N_\lambda$ volte ad $y$, e successivamente ad esso viene applicata $x$ altre $z \in \N_\lambda$ volte. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{z \ \mathrm{succ}_\lambda \ w}}$$ poiché viene applicata la funzione di successore $\mathrm{succ}_\lambda$ a $w \in \N_\lambda$, esattamente $z \in \N_\lambda$ volte.
+    \end{framedobs}
+
+    \begin{frameddefn}{Logica booleana di Church}
+        TODO
+    \end{frameddefn}
+
+    TODO
+
+    \subsection{Lambda calcolo}
+
+    \begin{frameddefn}{Lambda calcolo}
+        Il \tbf{lambda calcolo} è un sistema formale atto ad analizzare formalmente le funzioni e le loro applicazioni. La grammatica del lambda calcolo è la seguente $$M,N ::= x \ | \ \lambda x . M \ \mid \ MN$$ dove $\lambda x.M$ indica una funzione della forma $\fn{x}{M}$, e prende il nome di \tbf{lambda astrazione}. Le espressioni del lambda calcolo sono dette \tbf{lambda espressioni}.
+    \end{frameddefn}
+
+    \begin{example}[Lambda espressioni]
+        I seguenti sono esempi di espressioni del lambda calcolo
+
+        \begin{itemize}
+            \item $(\lambda x.x +1)2$ corrisponde a $(\fn{x}{x+1})2$ ed equivale a 3
+            \item $\lambda xy.x(x(xy))$ corrisponde a $\fn{xy}{x(x(xy))}$, ovvero $3_\lambda \in \N_\lambda$
+            \item $(\lambda x.xy)(\lambda x.x)$ equivale ad $y$
+        \end{itemize}
+    \end{example}
+
+    \begin{frameddefn}[label={sub}]{Sostituzione}
+        L'operazione di \tbf{sostituzione}, denotata con il simbolismo $$M[N/x]$$ rimpiazza ogni occorrenza della variabile $x$ all'interno dell'espressione $M$, con il termine $N$.
+    \end{frameddefn}
+
+    \begin{example}[Sostituzioni]
+        I seguenti sono esempi di sostitutioni in espressioni:
+
+        \begin{itemize}
+            \item $(xy)[\lambda z.z/x]$ corrisponde a $(\lambda z.z)y$, ovvero $y$
+            \item $(\fn{x}{y})[x/y]$ corrisponde a $\fn{x}{x}$
+        \end{itemize}
+    \end{example}
+
+    \begin{framedobs}{Cattura di variabili}
+        L'operazione di sostituzione, definita nella \cref{sub}, potrebbe cambiare il binding delle variabili definite; tale fenomeno prende il nome di \tbf{cattura di variabili}.
+    \end{framedobs}
+
+    \begin{example}[Catture di variabili]
+        Si consideri la seguente espressione: $$(\lambda y.M)[N/x]$$ se $N$ contenesse la variabile $y$ in modo libero, si avrebbe che $$\lambda y.(M[N/x])$$ non sarebbe equivalente all'espressione di partenza, poiché $y$ diverrebbe legata. Dunque, la loro equivalenza è garantita solamente se $y \notin \mathrm{free}(N)$.
+    \end{example}
+
+    \begin{frameddefn}{Alfa conversione}
+        Data una lambda astrazione $\lambda x.M$, si definisce \tbf{alfa conversione} la regola secondo la quale ogni occorrenza di $x$ nella lambda astrazione viene rimpiazzata con un altra variabile. In simboli $$\lambda x.M \alphaconv \lambda y.(M[y/x])$$
+    \end{frameddefn}
+
+    \begin{example}[Alfa conversioni]
+        TODO
+    \end{example}
+
+    \begin{frameddefn}{Alfa equivalenza}
+        Due lambda astrazioni $\lambda x.M$ e $\lambda y.N$ sono dette \tbf{alfa equivalenti}, indicato con il simbolo $\equiv_\alpha$ se è vera la seguente: $$\lambda x.M \equiv_\alpha \lambda .N \iff \soe{l}{\lambda x.M \alphaconv \lambda y.(N[y/x]) \\ \lambda y.N \alphaconv \lambda x.(M[x/y])}$$
+    \end{frameddefn}
+
+    \begin{example}[Alfa equivalenze]
+        Si considerino le due seguenti lambda astrazioni $$\centeredsoe{\lambda x.xy \\ \lambda z.zy}$$ si noti che $$\soe{l}{\lambda x.xy \alphaconv \lambda z.zy \\ \lambda z.zy \alphaconv \lambda x.xy} \iff \lambda x.xy \equiv_\alpha \lambda z.zy$$ dunque le due lambda astrazioni sono alfa equivalenti. Si considerino invece le due seguenti lambda astrazioni $$\centeredsoe{TODO}$$
+    \end{example}
+
+    \begin{frameddefn}{Beta conversione}
+        Data una lambda espressione $(\lambda x.M)$, si definisce \tbf{beta conversione} la regola secondo la quale ogni occorrenza di $x$ all'interno di $M$ viene rimpiazzata dal termine $N$. In simboli $$(\lambda x.M)N \betaconv M[N/x]$$ Di fatto, la beta conversione corrisponde ad un passo computazionale.
+    \end{frameddefn}
+
+    \begin{example}[Beta conversioni]
+        TODO
+    \end{example}
+
+    \begin{frameddefn}{Eta conversione}
+        TODO
+    \end{frameddefn}
+
+    \begin{example}[Eta conversioni]
+        TODO
     \end{example}
 
 \end{document}

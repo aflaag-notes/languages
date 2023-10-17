@@ -4,9 +4,12 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 
 ## TODO list
 
+- definisci le chiusure
 - appunti del 3/10
     - equivalenza di segnature
     - lemma di lambek
 - appunti del 17/10
-    - tutto
+    - finisci
+- rileggere
+    - da bool di church in poi
 
