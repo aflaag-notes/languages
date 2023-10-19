@@ -1,11 +1,11 @@
 # Fdb version 4
-["biber Linguaggi di Programmazione"] 1697531967 "Linguaggi di Programmazione.bcf" "Linguaggi di Programmazione.bbl" "Linguaggi di Programmazione" 1697559933 2
-  "Linguaggi di Programmazione.bcf" 1697559933 106652 37e852c976e785a4cd766daafd7c931b "pdflatex"
+["biber Linguaggi di Programmazione"] 1697712035 "Linguaggi di Programmazione.bcf" "Linguaggi di Programmazione.bbl" "Linguaggi di Programmazione" 1697712267 2
+  "Linguaggi di Programmazione.bcf" 1697712267 106652 37e852c976e785a4cd766daafd7c931b "pdflatex"
   (generated)
   "Linguaggi di Programmazione.bbl"
   "Linguaggi di Programmazione.blg"
   (rewritten before read)
-["pdflatex"] 1697559925 "Linguaggi di Programmazione.tex" "Linguaggi di Programmazione.pdf" "Linguaggi di Programmazione" 1697559933 0
+["pdflatex"] 1697712259 "Linguaggi di Programmazione.tex" "Linguaggi di Programmazione.pdf" "Linguaggi di Programmazione" 1697712267 0
   "../Nyx/logo.png" 1695664046 91419 8de48debf770a599a084520c83ce5d80 ""
   "../Nyx/nyx-frames.sty" 1697558880 2897 52f45de66f906d6adc47d65869e6e616 ""
   "../Nyx/nyx-macros.sty" 1697555034 4809 ebf1f8c2727804072fe708f4d9c30040 ""
@@ -365,12 +365,12 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1689853683 40684 9b9ec0b4288972636ff6a3b9c4238efc ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1693381028 4483110 adb1e1d04498b9576f1f17c4219c5e03 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1693380976 6769488 5b7e4d8b8dc08b722ee96f876127df85 ""
-  "Linguaggi di Programmazione.aux" 1697559933 8470 21bbcfb74ec4815193d976eaf369c696 "pdflatex"
+  "Linguaggi di Programmazione.aux" 1697712267 8921 b4739b77a79db267b706bdd84ec45a9f "pdflatex"
   "Linguaggi di Programmazione.bbl" 0 -1 0 "biber Linguaggi di Programmazione"
-  "Linguaggi di Programmazione.out" 1697559933 3054 4e11a968a7b2fb8b67345b0e52dbbde8 "pdflatex"
-  "Linguaggi di Programmazione.run.xml" 1697559933 2440 4bb3062d0e681804c5fd4af25aa47c97 "pdflatex"
-  "Linguaggi di Programmazione.tex" 1697559925 70067 fef78b5127112f30b81bc6f95069e710 ""
-  "Linguaggi di Programmazione.toc" 1697559933 2243 686f0e5b8a7810e42d999f96b3df9aca "pdflatex"
+  "Linguaggi di Programmazione.out" 1697712267 3250 2b2fe007c14c054f2b21aa45c900bfe0 "pdflatex"
+  "Linguaggi di Programmazione.run.xml" 1697712267 2440 4bb3062d0e681804c5fd4af25aa47c97 "pdflatex"
+  "Linguaggi di Programmazione.tex" 1697712257 73937 129f10178c8522e91f7203a1646fc61d ""
+  "Linguaggi di Programmazione.toc" 1697712267 2339 3ffc49a8dadbb35345c2945bf8c5e3f6 "pdflatex"
   (generated)
   "Linguaggi di Programmazione.aux"
   "Linguaggi di Programmazione.bcf"
