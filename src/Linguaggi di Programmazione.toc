@@ -27,4 +27,4 @@
 \contentsline {section}{\numberline {2.5}Lambda calcolo}{29}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Numeri di Church}{29}{subsection.2.5.1}%
 \contentsline {subsection}{\numberline {2.5.2}Logica booleana di Church}{32}{subsection.2.5.2}%
-\contentsline {subsection}{\numberline {2.5.3}Lambda calcolo}{33}{subsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.5.3}Lambda calcolo}{34}{subsection.2.5.3}%

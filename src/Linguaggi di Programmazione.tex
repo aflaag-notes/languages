@@ -823,7 +823,7 @@
     \end{example}
 
     \begin{framedobs}{Operazione $\mathrm{prod}_\lambda$}
-        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di prodotto, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z(wx)y}})}} \iff \fn{zwxy}{z(wx)y}$$ poiché TODO. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{z (\mathrm{sum}_\lambda \ w)0_\lambda}} \iff \fn{zw}{z(\mathrm{sum}_\lambda \ w)0_\lambda}$$ poiché TODO.
+        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di prodotto, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z(wx)y}})}} \iff \fn{zwxy}{z(wx)y}$$ poiché alla variabile $y$ viene applicata la funzione $z(wx)$, che equivale alla funzione $wx$ composta su sé stessa $z$ volte --- e dunque $z, w \in \N_\lambda$. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{z (\mathrm{sum}_\lambda \ w)0_\lambda}} \iff \fn{zw}{z(\mathrm{sum}_\lambda \ w)0_\lambda}$$ poiché allo $0_\lambda$ viene applicata la funzione $z(\mathrm{sum}_\lambda \ w)$, che equivale alla funzione $(\mathrm{sum}_\lambda \ w)$ --- la quale restituisce una funzione che si aspetta il secondo argomento a cui applicare la somma, che sarà $0_\lambda$ --- composta su sé stessa $z \in \N_\lambda$ volte.
     \end{framedobs}
 
     \begin{framedobs}{Operazione $\mathrm{power}_\lambda$}
@@ -840,10 +840,6 @@
             \item $\mathrm{false}_\lambda := \fn{x}{\fn{y}{y}} \iff \fn{xy}{y}$
         \end{itemize}
     \end{frameddefn}
-
-    \begin{framedobs}{Significato di $B_\lambda$}
-        TODO
-    \end{framedobs}
 
     \begin{framedobs}{Funzione $\mathrm{evalBool}_\lambda$}
         Si consideri la grammatica definita all'interno dell'\cref{fun}; è possibile estenderla affinché includa anche i valori booleani $true$ e $false$. Dunque, è possibile definire una funzione che, dato un booleano di Church, restituisce il corrispondente valore booleano, come segue: $$\mathrm{evalBool}_\lambda := \fn{z}{z \ true \ false}$$
@@ -915,7 +911,7 @@
     \end{frameddefn}
 
     \begin{example}[Alfa conversioni]
-        TODO
+        Si consideri la seguente lambda astrazione $$\lambda x.x(\lambda z.zw)$$ allora, ad esempio, è vero che $$\lambda x.x(\lambda z.zw) \alphaconv \lambda z.z(\lambda z.zw)$$ avendo rimpiazzato $x$ con $z$.
     \end{example}
 
     \begin{frameddefn}{Alfa equivalenza}
@@ -923,7 +919,7 @@
     \end{frameddefn}
 
     \begin{example}[Alfa equivalenze]
-        Si considerino le due seguenti lambda astrazioni $$\centeredsoe{\lambda x.xy \\ \lambda z.zy}$$ si noti che $$\soe{l}{\lambda x.xy \alphaconv \lambda z.zy \\ \lambda z.zy \alphaconv \lambda x.xy} \iff \lambda x.xy \equiv_\alpha \lambda z.zy$$ dunque le due lambda astrazioni sono alfa equivalenti. Si considerino invece le due seguenti lambda astrazioni $$\centeredsoe{TODO}$$
+        Si considerino le due seguenti lambda astrazioni $$\centeredsoe{\lambda x.xy \\ \lambda z.zy}$$ e si noti che $$\soe{l}{\lambda x.xy \alphaconv \lambda z.zy \\ \lambda z.zy \alphaconv \lambda x.xy} \iff \lambda x.xy \equiv_\alpha \lambda z.zy$$ dunque le due lambda astrazioni sono alfa equivalenti. Si considerino invece le due seguenti lambda astrazioni $$\centeredsoe{\lambda x.x (\lambda z.z w) \\ \lambda z.z(\lambda z.zw)}$$ e si noti, differentemente, che $$\soe{l}{\lambda x.x (\lambda z.zw) \alphaconv \lambda z.z(\lambda z.z w) \\ \lambda z.z(\lambda z.zw) \ \not\mathrel{\mkern-5mu\longrightarrow_{\alpha}} \lambda x.x(\lambda z.zw) } \implies \lambda x.x(\lambda z.zw) \not\equiv_\alpha \lambda z.z(\lambda z.zw)$$
     \end{example}
 
     \begin{frameddefn}{Beta conversione}

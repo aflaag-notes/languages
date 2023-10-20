@@ -5,10 +5,11 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 ## TODO list
 
 - finire i TODOs
+    - finire TODOs lambda calcolo
 - definisci le chiusure
 - appunti del 3/10
     - equivalenza di segnature
     - lemma di lambek
 - rileggere
-    - da bool di church in poi
+    - da obs 2.5.1.4
 
