@@ -28,3 +28,6 @@
 \contentsline {subsection}{\numberline {2.5.1}Numeri di Church}{29}{subsection.2.5.1}%
 \contentsline {subsection}{\numberline {2.5.2}Logica booleana di Church}{32}{subsection.2.5.2}%
 \contentsline {subsection}{\numberline {2.5.3}Lambda calcolo}{34}{subsection.2.5.3}%
+\contentsline {chapter}{\numberline {3}Paradigma imperativo}{37}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Programmi}{37}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Definizioni}{37}{subsection.3.1.1}%

@@ -522,9 +522,8 @@
     \begin{example}[Semantica operazionale di $Exp$]
         \label{exp2 clauses}
         Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}, e sia $E$ un suo ambiente; allora, sono vere le seguenti asserzioni:
-        
         $$[const] \ \opjud{E}{k}{k}$$
-        $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid E(x) = v \implies [var] \ \opjud{E}{x}{v}$$
+        $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid E(x) = v \implies [vars] \ \opjud{E}{x}{v}$$
         \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' + v'' \implies [plus] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M \ \ttt + \ N}{v}}$}
         \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' \cdot v'' \implies [times] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M \ \ttt * \ N}{v}}$}
         $$\forall v, v' \in \mathrm{Val}, x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E\{(x, v')\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$$
@@ -941,5 +940,63 @@
     \begin{framedobs}{Cattura nelle eta conversioni}
         Si noti che, all'interno della \cref{eta conv}, la condizione per cui $x$ non sia libera garantisce che la conversione produca espressioni equivalenti; infatti, se $x$ fosse libera in $M$, poiché non lo sarebbe comunque in $(\lambda x.Mx)$, l'eta conversione non avrebbe mantenuto l'equivalenza.
     \end{framedobs}
+
+    \chapter{Paradigma imperativo}
+
+    \section{Programmi}
+    
+    \subsection{Definizioni}
+
+    \begin{frameddefn}{Programma}
+        Nel paradigma imperativo, un \tbf{programma} è un componente semantico che non restituisce valori --- dunque non ha \tit{side effect} --- ma cambiano il valore della \tbf{memoria}, ovvero un insieme arbitrario di elementi.
+    \end{frameddefn}
+
+    \begin{frameddefn}{Clausola $skip$}
+        Sia $G$ una grammatica; allora, è possibile definire su $G$ la clausola $skip$, che equivale a non effettuare alcuna operazione.
+    \end{frameddefn}
+    
+    \begin{frameddefn}{Clausola $;$}
+        Sia $G$ una grammatica composta da programmi, e sia $G_p$ l'insieme dei suoi programmi; allora, è possibile definire su $G$ una funzione \curlyquotes{;}, come segue: $$\func{\textrm{\curlyquotes{;}}}{G_p \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\ttt{<program>}_1;\ttt{<program>}_2$$ che sta ad indicare che verrà prima eseguito $\ttt{<program>}_1$, e successivamente $\ttt{<program>}_2$.
+    \end{frameddefn}
+
+    \begin{frameddefn}{Clausola \tit{ite}}
+        Sia $G$ una grammatica composta da programmi, e siano $G_p$ ed $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $ite$ (\tit{if-then-else}), come segue: $$\func{ite}{G_M \times G_p \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\ite{\ttt{\_expression\_}}{\ttt{<program>}_1}{\ttt{<program>}_2}$$ dove se $M$ è un espressione che può essere valutata a $true$, verrà eseguito $\ttt{<program>}_1$, altrimenti verrà eseguito $\ttt{<program>}_2$.
+    \end{frameddefn}
+
+    \begin{frameddefn}{Clausola $while$}
+        Sia $G$ una grammatica composta da programmi, e siano $G_p$ ed $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $while$, come segue: $$\func{while}{G_M \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\while{\ttt{\_expression\_}}{\ttt{<program>}}$$ dove --- se \ttt{\_expression\_} è un espressione che può essere valutata a $true$ o $false$ --- viene eseguito $\ttt{<program>}$ fintanto che \ttt{\_expression\_} viene valutata a $true$.
+    \end{frameddefn}
+
+    \begin{frameddefn}{Clausola $var$}
+        TODO
+    \end{frameddefn}
+
+    \begin{frameddefn}{Clausola $:=$}
+        TODO
+    \end{frameddefn}
+
+    \begin{example}[Grammatica $Imp$]
+        \label{imp}
+        Si consideri la grammatica $Exp$ definita all'interno dell'\cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estenderla come segue: $$M,N ::= k \ | \ true \ | \ false \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ \ttt < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la seguente grammatica: $$p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ x:=M $$ L'insieme degli ambienti di $Imp$ viene definito come segue $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc} \}$$ dove $\mathrm{Loc}$ è un insieme di locazioni di memoria; inoltre, ad $Imp$ viene fornito il seguente insieme $$\mathrm{Store} := \{f \mid f : \mathrm{Loc} \xrightarrow{fin} \mathrm{Val} \}$$ ed infine, vengono definiti due tipi di giudizi operazionali per $Imp$, come segue: $$\centeredsoe{\leadsto_M \ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \leadsto_p \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ poiché i giudizi operazionali delle espressioni --- della prima relazione --- sono in grado di restituire valori, ma non di cambiare la memoria, mentre i giudizi operazionali dei programmi --- della seconda relazione --- non restituiscono valori, ma alterano lo stato della memoria (si noti che verrà utilizzato il simbolo $\leadsto$ all'interno delle valutazioni di entrambe i giudizi). Tali giudizi operazionali verranno indicati col seguente simbolismo $$\centeredsoe{\opjud{E}{M,S}{v} \\ \opjud{E}{p,S}{S}}$$
+    \end{example}
+
+    \begin{example}[Semantica operazionale di $Imp$]
+        Sia $Imp$ la grammatica definita all'interno dell'\cref{imp}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, su di essa si definiscono le seguenti semantiche:
+        $$[const] \ \opjud{E}{k,S}{S}$$
+        $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Var} \mid S(E(x)) = v \implies [vars] \ \opjud{E}{x,S}{v}$$
+        \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 + v_2 \implies [plus] \ \dfrac{\opjud{E}{M,S}{v_1} \quad \opjud{E}{N,S}{v_2}}{\opjud{E}{M \ \ttt + \ N}{v}}$}
+        \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 \cdot v_2 \implies [times] \ \dfrac{\opjud{E}{M,S}{v_1} \quad \opjud{E}{N,S}{v_2}}{\opjud{E}{M \ \ttt * \ N}{v}}$}
+        $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 < v_2 \implies [lt_1] \ \dfrac{\opjud{E}{M,S}{v_1} \quad \opjud{E}{N,S}{v_2}}{\opjud{E}{M \ \ttt < \ N,S}{true}}$$
+        $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjud{E}{M,S}{v_1} \quad \opjud{E}{N,S}{v_2}}{\opjud{E}{M \ \ttt < \ N,S}{false}}$$
+        $$[skip] \ \opjud{E}{skip,S}{S}$$
+        $$\forall p, q \in Imp, S_1, S_2 \in \mathrm{Store} \quad [seq] \ \dfrac{\opjud{E}{p, S}{S_1} \quad \opjud{E}{q, S_1}{S_2}}{\opjud{E}{p;q,S}{S_2}}$$
+        $$\forall p, q \in Imp, S_1 \in \mathrm{Store} \quad [ite_1] \ \dfrac{\opjud{E}{M, S}{true} \quad \opjud{E}{p,S}{S_1}}{\opjud{E}{\ite{M}{p}{q},S}{S_1}}$$
+        $$\forall p, q \in Imp, S_2 \in \mathrm{Store} \quad [ite_2] \ \dfrac{\opjud{E}{M, S}{false} \quad \opjud{E}{p,S}{S_2}}{\opjud{E}{\ite{M}{p}{q},S}{S_2}}$$
+        \centeredeq{0.9}{$\forall M \in Exp, S_1, S_2 \in \mathrm{Store} \quad [while_1] \ \dfrac{\opjud{E}{M,S}{true} \quad \opjud{E}{p,S}{S_1} \quad \opjud{E}{\while{M}{p}, S_1}{S_2}}{\opjud{E}{\while{M}{p, S}}{S_2}}$}
+        $$\forall M \in Exp \quad [while_2] \ \dfrac{\opjud{E}{M,S}{false}}{\opjud{E}{\while{M}{p, S}}{S}}$$
+        $$\forall x \in \mathrm{Var}, M \in Exp, p \in Imp, S_1 \in \mathrm{Store}, v \in \mathrm{Val} \quad \exists l \in \mathrm{Loc} \mid l \notin \mathrm{codom}(E) \implies$$
+        $$\implies [var] \ \dfrac{\opjud{E}{M,S}{v} \quad \opjud{E\{(x,l)\}}{p,S\{(l,v)\}}{S_1}}{\opjud{E}{\varin{x}{M}{p},S}{S_1}}$$
+        $$\forall x \in \mathrm{Var}, M \in Exp \quad \exists l \in \mathrm{Loc} \mid E(x) = l \implies [assign] \ \dfrac{\opjud{E}{M,S}{v}}{\opjud{E}{x := M, S}{S\{(l, v)\}}}$$
+    \end{example}
 
 \end{document}
