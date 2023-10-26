@@ -5,14 +5,15 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 ## TODO list
 
 - finire i TODOs
-    - finire TODOs lambda calcolo
-- definisci le chiusure
+- definizione di chiusura
 - appunti del 3/10
     - equivalenza di segnature
     - lemma di lambek
 - appunti 23/10
-    - finire
     - controllare se c'è altro da mettere
+    - refactora lo store
+- appunti 24/10
+    - tutto
 - rileggere
     - da obs 2.5.1.4
 
