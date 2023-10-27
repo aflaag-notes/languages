@@ -857,7 +857,7 @@
     \end{framedobs}
 
     \begin{framedobs}{Operazione $\mathrm{not}_\lambda$}
-        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di negazione come segue: $$\mathrm{not}_\lambda := \fn{z}{(\fn{x}\fn{y}{zyx})} \iff \fn{zxy}{zyx}$$ poiché, dato un $z \in B_\lambda$, tale funzione passa a $z$ le variabili $x$ ed $y$ scambiate di posto. Si noti che l'operazione è simile all'operazione $\mathrm{ite}_\lambda$ definita nell'\cref{ite}, poiché è possibile interpretarla come l'inverso dell'operazione \tit{if-then-else}.
+        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di negazione come segue: $$\mathrm{not}_\lambda := \fn{z}{(\fn{x}\fn{y}{zyx})} \iff \fn{zxy}{zyx}$$ poiché tale funzione passa ad un certo $z \in B_\lambda$ le variabili $x$ ed $y$ scambiate di posto. Si noti che l'operazione è simile all'operazione $\mathrm{ite}_\lambda$ definita nell'\cref{ite}, poiché è possibile interpretarla come l'inverso dell'operazione \tit{if-then-else}.
     \end{framedobs}
 
     \begin{framedobs}{Operazione $\mathrm{or}_\lambda$}
@@ -871,11 +871,11 @@
     \subsection{Lambda calcolo}
 
     \begin{frameddefn}{Lambda calcolo}
-        Il \tbf{lambda calcolo} è un sistema formale atto ad analizzare formalmente le funzioni e le loro applicazioni. La grammatica del lambda calcolo è la seguente $$M,N ::= x \ | \ \lambda x . M \ \mid \ MN$$ dove $\lambda x.M$ indica una funzione della forma $\fn{x}{M}$, e prende il nome di \tbf{lambda astrazione}. Le espressioni del lambda calcolo sono dette \tbf{lambda espressioni}.
+        Il \tbf{lambda calcolo} è un sistema formale atto ad analizzare le funzioni e le loro applicazioni. La grammatica del lambda calcolo è la seguente $$M,N ::= x \ | \ \lambda x . M \ | \ MN$$ dove $\lambda x.M$ indica una funzione della forma $\fn{x}{M}$, e prende il nome di \tbf{lambda astrazione}. Le espressioni del lambda calcolo sono dette \tbf{lambda espressioni}.
     \end{frameddefn}
 
     \begin{example}[Lambda espressioni]
-        I seguenti sono esempi di espressioni del lambda calcolo
+        I seguenti sono esempi di espressioni del lambda calcolo:
 
         \begin{itemize}
             \item $(\lambda x.x +1)2$ corrisponde a $(\fn{x}{x+1})2$ ed equivale a 3
@@ -885,11 +885,11 @@
     \end{example}
 
     \begin{frameddefn}[label={sub}]{Sostituzione}
-        Date due espressioni $M$ ed $N$, ed una variabile $x$, l'operazione di \tbf{sostituzione} rimpiazza ogni occorrenza della variabile $x$ all'interno dell'espressione $M$, con il termine $N$. In simboli $$M[N/x]$$ 
+        Date due espressioni $M$ ed $N$, ed una variabile $x$, l'operazione di \tbf{sostituzione} rimpiazza ogni occorrenza della variabile $x$ --- all'interno dell'espressione $M$ --- con il termine $N$. In simboli $$M[N/x]$$ 
     \end{frameddefn}
 
     \begin{example}[Sostituzioni]
-        I seguenti sono esempi di sostitutioni in espressioni:
+        I seguenti sono esempi di sostitutioni all'interno di espressioni:
 
         \begin{itemize}
             \item $(xy)[\lambda z.z/x]$ corrisponde a $(\lambda z.z)y$, ovvero $y$
@@ -947,12 +947,16 @@
     
     \subsection{Memoria}
 
-    \begin{frameddefn}{Store}
-        TODO SPOSTA GLI STORE DELL'ESEMPIO 3.1.1.2 QUA
-    \end{frameddefn}
-
     \begin{frameddefn}{Programma}
         Nel paradigma imperativo, un \tbf{programma} è un componente semantico che non restituisce valori --- dunque non ha \tit{side effect} --- ma cambiano il valore della memoria.
+    \end{frameddefn}
+
+    \begin{frameddefn}[label={store},breakable]{Memoria}
+        Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; per simulare la \tbf{memoria}, all'interno del paradigma imperativo verranno utilizzati ambienti definiti come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc} \}$$ dove $\mathrm{Loc}$ è un insieme di locazioni di memoria; inoltre, si definisce il seguente insieme $$\mathrm{Store} := \{f \mid f : \mathrm{Loc} \xrightarrow{fin} \mathrm{Val} \}$$ dunque, le funzioni $E \in \mathrm{Env}$ associano le variabili ad una locazione in memoria, mentre le funzioni $S \in \mathrm{Store}$ associano le locazioni ai valori, simulando quindi la struttura dei \tit{puntatori}, i quali caratterizzano i linguaggi imperativi.
+
+        Infine, per effettuare le valutazioni, vengono definiti i due seguenti tipi di giudizi operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times G_M \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times G_p \times \mathrm{Store} \times \mathrm{Store}}$$ poiché i giudizi operazionali delle espressioni --- della prima relazione --- sono in grado di restituire valori, ma non di cambiare la memoria, mentre i giudizi operazionali dei programmi --- della seconda relazione --- non restituiscono valori, ma alterano lo stato della memoria. Per brevità, verrà utilizzato il simbolo $\leadsto$ all'interno delle valutazioni di entrambe i giudizi.
+
+         Tali giudizi operazionali verranno indicati col seguente simbolismo $$\centeredsoe{\opjudstore{E}{M}{S}{v} \\ \opjudstore{E}{p}{S}{S}}$$
     \end{frameddefn}
 
     \subsection{Clausole imperative}
@@ -961,8 +965,8 @@
         Sia $G$ una grammatica; allora, è possibile definire su $G$ la clausola $skip$, che equivale a non effettuare alcuna operazione.
     \end{frameddefn}
     
-    \begin{frameddefn}{Clausola $;$}
-        Sia $G$ una grammatica composta da programmi, e sia $G_p$ l'insieme dei suoi programmi; allora, è possibile definire su $G$ una funzione \curlyquotes{;}, come segue: $$\func{\textrm{\curlyquotes{;}}}{G_p \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\ttt{<program>}_1;\ttt{<program>}_2$$ che sta ad indicare che verrà prima eseguito $\ttt{<program>}_1$, e successivamente $\ttt{<program>}_2$.
+    \begin{frameddefn}{Clausola $seq$}
+        Sia $G$ una grammatica composta da programmi, e sia $G_p$ l'insieme dei suoi programmi; allora, è possibile definire su $G$ una funzione $seq$, come segue: $$\func{seq}{G_p \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\ttt{<program>}_1;\ttt{<program>}_2$$ che sta ad indicare che verrà prima eseguito $\ttt{<program>}_1$, e successivamente $\ttt{<program>}_2$.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola \tit{ite}}
@@ -978,15 +982,16 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $:=$}
-        TODO
+        Sia $G$ una grammatica composta da programmi, e sia $G_M$ l'insieme delle sue espressioni; allora, è possibile deifnire su $G$ una funzione $assign$, come segue: $$\func{assign}{\mathrm{Var} \times G_M}{G}$$ e verrà utilizzata attraverso la sintassi $$\ttt{*variable*}  := \ttt{\_expression\_}$$ all'interno della quale, a \ttt{*variable*}, verrà assegnato il valore di \ttt{\_expression\_}.
     \end{frameddefn}
 
     \begin{example}[Grammatica $Imp$]
         \label{imp}
-        Si consideri la grammatica $Exp$ definita all'interno dell'\cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estenderla come segue: $$M,N ::= k \ | \ true \ | \ false \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ \ttt < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la seguente grammatica: $$p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ x:=M $$ L'insieme degli ambienti di $Imp$ viene definito come segue $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc} \}$$ dove $\mathrm{Loc}$ è un insieme di locazioni di memoria; inoltre, ad $Imp$ viene fornito il seguente insieme $$\mathrm{Store} := \{f \mid f : \mathrm{Loc} \xrightarrow{fin} \mathrm{Val} \}$$ ed infine, vengono definiti due tipi di giudizi operazionali per $Imp$, come segue: $$\centeredsoe{\leadsto_M \ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \leadsto_p \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ poiché i giudizi operazionali delle espressioni --- della prima relazione --- sono in grado di restituire valori, ma non di cambiare la memoria, mentre i giudizi operazionali dei programmi --- della seconda relazione --- non restituiscono valori, ma alterano lo stato della memoria (si noti che verrà utilizzato il simbolo $\leadsto$ all'interno delle valutazioni di entrambe i giudizi). Tali giudizi operazionali verranno indicati col seguente simbolismo $$\centeredsoe{\opjudstore{E}{M}{S}{v} \\ \opjudstore{E}{p}{S}{S}}$$
+        Si consideri la grammatica $Exp$ definita all'interno dell'\cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estenderla come segue: $$M,N ::= k \ | \ true \ | \ false \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ \ttt < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la seguente grammatica: $$p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ x:=M $$ L'insieme degli ambienti di $Imp$ segue la definizione della \cref{store}.
     \end{example}
 
     \begin{example}[Semantica operazionale di $Imp$]
+        \label{imp sem}
         Sia $Imp$ la grammatica definita all'interno dell'\cref{imp}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, su di essa si definiscono le seguenti semantiche:
         $$[const] \ \opjudstore{E}{k}{S}{S}$$
         $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Var} \mid S(E(x)) = v \implies [vars] \ \opjudstore{E}{x}{S}{v}$$
@@ -1001,20 +1006,27 @@
         \centeredeq{0.9}{$\forall M \in Exp, S_1, S_2 \in \mathrm{Store} \quad [while_1] \ \dfrac{\opjudstore{E}{M}{S}{true} \quad \opjudstore{E}{p}{S}{S_1} \quad \opjudstore{E}{\while{M}{p}}{ S_1}{S_2}}{\opjudstore{E}{\while{M}{p}}{ S}{S_2}}$}
         $$\forall M \in Exp \quad [while_2] \ \dfrac{\opjudstore{E}{M}{S}{false}}{\opjudstore{E}{\while{M}{p}}{S}{S}}$$
         $$\forall x \in \mathrm{Var}, M \in Exp, p \in Imp, S_1 \in \mathrm{Store}, v \in \mathrm{Val} \quad \exists l \in \mathrm{Loc} \mid l \notin \mathrm{codom}(E) \implies$$
-        $$\implies [var] \ \dfrac{\opjudstore{E}{M}{S}{v} \quad \opjudstore{E\{(x}{l)\}}{p,S\{(l,v)\}}{S_1}}{\opjudstore{E}{\varin{x}{M}{p}}{S}{S_1}}$$
+        $$\implies [var] \ \dfrac{\opjudstore{E}{M}{S}{v} \quad \opjudstore{E\{(x,l)\}}{p}{S\{(l,v)\}}{S_1}}{\opjudstore{E}{\varin{x}{M}{p}}{S}{S_1}}$$
         $$\forall x \in \mathrm{Var}, M \in Exp \quad \exists l \in \mathrm{Loc} \mid E(x) = l \implies [assign] \ \dfrac{\opjudstore{E}{M}{S}{v}}{\opjudstore{E}{x := M}{ S}{S\{(l, v)\}}}$$
     \end{example}
 
     \begin{example}[Grammatica $All$]
+        \label{all}
         Sia $All$ la grammatica composta dalle seguenti grammatiche:
 
         $$k ::= \ttt 0 \ | \ \ttt 1 \ | \ \ldots \ | \ true \ | \ false$$
         $$V ::= x \ | \ x[M]$$
         $$M, N ::= k \ | \ V \ | \ M \ \ttt + \ N \ | \ M \ \ttt < \ N$$
         $$p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ |$$
-        $$| \ \arrin{x}{[M_0, \ldots, M_n]}{p} \ | \ V := M \ | \ V:= M \ | \ \procin{y}{x}{p}{x} \ | \ \call{y}{M}$$
+        $$| \ \arrin{x}{[M_0, \ldots, M_n]}{p} \ | \ V := M \ | \ \procin{y}{x}{p}{x} \ | \ \call{y}{M}$$
 
         TODO
+    \end{example}
+
+    \begin{example}
+        Sia \cref{all} la grammatica definita all'interno dell'\cref{all}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, in aggiunta alle semantiche descritte nell'\cref{imp sem}, si definiscono le seguenti:
+
+        $$\forall x \in \mathrm{Var} \quad E(x) = l \implies \dfrac{}{\opjudstore[V]{E}{x}{S}{l}}$$
     \end{example}
 
 \end{document}

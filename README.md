@@ -15,5 +15,5 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 - appunti 24/10
     - tutto
 - rileggere
-    - da obs 2.5.1.4
+    - da esempio 2.5.3.3 pag 34
 
