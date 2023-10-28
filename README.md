@@ -4,6 +4,7 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 
 ## TODO list
 
+- CAMBIARE "SEMANTICHE" CON "REGOLE"?
 - finire i TODOs
 - definizione di chiusura
 - appunti del 3/10

@@ -521,7 +521,7 @@
 
     \begin{example}[Semantica operazionale di $Exp$]
         \label{exp2 clauses}
-        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}, e sia $E$ un suo ambiente; allora, sono vere le seguenti asserzioni:
+        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}, e sia $E$ un suo ambiente; allora, si definiscono le seguenti regole operazionali:
         $$[const] \ \opjud{E}{k}{k}$$
         $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid E(x) = v \implies [vars] \ \opjud{E}{x}{v}$$
         \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' + v'' \implies [plus] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M \ \ttt + \ N}{v}}$}
@@ -951,12 +951,8 @@
         Nel paradigma imperativo, un \tbf{programma} è un componente semantico che non restituisce valori --- dunque non ha \tit{side effect} --- ma cambiano il valore della memoria.
     \end{frameddefn}
 
-    \begin{frameddefn}[label={store},breakable]{Memoria}
-        Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; per simulare la \tbf{memoria}, all'interno del paradigma imperativo verranno utilizzati ambienti definiti come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc} \}$$ dove $\mathrm{Loc}$ è un insieme di locazioni di memoria; inoltre, si definisce il seguente insieme $$\mathrm{Store} := \{f \mid f : \mathrm{Loc} \xrightarrow{fin} \mathrm{Val} \}$$ dunque, le funzioni $E \in \mathrm{Env}$ associano le variabili ad una locazione in memoria, mentre le funzioni $S \in \mathrm{Store}$ associano le locazioni ai valori, simulando quindi la struttura dei \tit{puntatori}, i quali caratterizzano i linguaggi imperativi.
-
-        Infine, per effettuare le valutazioni, vengono definiti i due seguenti tipi di giudizi operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times G_M \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times G_p \times \mathrm{Store} \times \mathrm{Store}}$$ poiché i giudizi operazionali delle espressioni --- della prima relazione --- sono in grado di restituire valori, ma non di cambiare la memoria, mentre i giudizi operazionali dei programmi --- della seconda relazione --- non restituiscono valori, ma alterano lo stato della memoria. Per brevità, verrà utilizzato il simbolo $\leadsto$ all'interno delle valutazioni di entrambe i giudizi.
-
-         Tali giudizi operazionali verranno indicati col seguente simbolismo $$\centeredsoe{\opjudstore{E}{M}{S}{v} \\ \opjudstore{E}{p}{S}{S}}$$
+    \begin{frameddefn}[label={store}]{Memoria}
+        Sia $G$ una grammatica composta da programmi; per simulare la \tbf{memoria}, all'interno del paradigma imperativo verranno utilizzati ambienti definiti come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc} \}$$ dove $\mathrm{Loc}$ è un insieme di locazioni di memoria; inoltre, si definisce il seguente insieme $$\mathrm{Store} := \{f \mid f : \mathrm{Loc} \xrightarrow{fin} \mathrm{Val} \}$$ dunque, le funzioni $E \in \mathrm{Env}$ associano le variabili ad una locazione in memoria, mentre le funzioni $S \in \mathrm{Store}$ associano le locazioni ai valori, simulando quindi la struttura dei \tit{puntatori}, i quali caratterizzano i linguaggi imperativi.
     \end{frameddefn}
 
     \subsection{Clausole imperative}
@@ -987,14 +983,18 @@
 
     \begin{example}[Grammatica $Imp$]
         \label{imp}
-        Si consideri la grammatica $Exp$ definita all'interno dell'\cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estenderla come segue: $$M,N ::= k \ | \ true \ | \ false \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ \ttt < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la seguente grammatica: $$p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ x:=M $$ L'insieme degli ambienti di $Imp$ segue la definizione della \cref{store}.
+        Si consideri la grammatica $Exp$ definita all'interno dell'\cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estenderla come segue: $$M,N ::= k \ | \ true \ | \ false \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ \ttt < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S}}$$
     \end{example}
+
+    \begin{framedobs}{Semantiche di $Imp$}
+        Sia $Imp$ la grammatica dell'\cref{imp}, e si considerino le sue semantiche operazionali; esse sono definite tali che la semantica $\stackrel{M}{\leadsto}$ delle espressioni sia in grado di restituire valori, ma non di cambiare la memoria, mentre la semantica $\stackrel{p}{\leadsto}$ dei programmi non restituisca valori, ma alteri lo stato della memoria. 
+    \end{framedobs}
 
     \begin{example}[Semantica operazionale di $Imp$]
         \label{imp sem}
-        Sia $Imp$ la grammatica definita all'interno dell'\cref{imp}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, su di essa si definiscono le seguenti semantiche:
+        Sia $Imp$ la grammatica definita all'interno dell'\cref{imp}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, si definiscono le seguenti regole operazionali (si noti che, per brevità, verrà utilizzato il simbolo $\leadsto$ all'interno dei giudizi di entrambe le semantiche di $Imp$):
         $$[const] \ \opjudstore{E}{k}{S}{S}$$
-        $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Var} \mid S(E(x)) = v \implies [vars] \ \opjudstore{E}{x}{S}{v}$$
+        $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid S(E(x)) = v \implies [vars] \ \opjudstore{E}{x}{S}{v}$$
         \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 + v_2 \implies [plus] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt + \ N}{S}{v}}$}
         \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 \cdot v_2 \implies [times] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt * \ N}{S}{v}}$}
         $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt < \ N}{S}{true}}$$
@@ -1010,23 +1010,59 @@
         $$\forall x \in \mathrm{Var}, M \in Exp \quad \exists l \in \mathrm{Loc} \mid E(x) = l \implies [assign] \ \dfrac{\opjudstore{E}{M}{S}{v}}{\opjudstore{E}{x := M}{ S}{S\{(l, v)\}}}$$
     \end{example}
 
+    \subsection{Memoria contigua}
+
+    \begin{frameddefn}{Memoria contigua}
+        Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; al fine di implementare gli \tit{array} all'interno del paradigma imperativo, è necessario definire la \tbf{memoria contigua}, e le locazioni di memoria contigue verranno indicate con $\mathrm{Loc}^+$.
+    \end{frameddefn}
+
+    \subsection{Clausole imperative a memoria contigua}
+
+    \begin{frameddefn}{Clausola $loc$}
+        TODO
+    \end{frameddefn}
+
+    \begin{frameddefn}{Clausola $arr$}
+        TODO
+    \end{frameddefn}
+
+    \begin{frameddefn}{Clausola $proc$}
+        TODO
+    \end{frameddefn}
+
+    \begin{frameddefn}{Clausola $call$}
+        TODO
+    \end{frameddefn}
+
     \begin{example}[Grammatica $All$]
         \label{all}
-        Sia $All$ la grammatica composta dalle seguenti grammatiche:
+        Sia $All$ la grammatica, estensione di $Imp$ definita nell'\cref{imp}, composta dalle seguenti grammatiche:
 
-        $$k ::= \ttt 0 \ | \ \ttt 1 \ | \ \ldots \ | \ true \ | \ false$$
-        $$V ::= x \ | \ x[M]$$
-        $$M, N ::= k \ | \ V \ | \ M \ \ttt + \ N \ | \ M \ \ttt < \ N$$
-        $$p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ |$$
-        $$| \ \arrin{x}{[M_0, \ldots, M_n]}{p} \ | \ V := M \ | \ \procin{y}{x}{p}{x} \ | \ \call{y}{M}$$
+        $$\leftsoe{k ::= \ttt 0 \ | \ \ttt 1 \ | \ \ldots \ | \ true \ | \ false \\ V ::= x \ | \ x[M] \\ M, N ::= k \ | \ V \ | \ M \ \ttt + \ N \ | \ | \ M \ \ttt * \ N \ | \ M \ \ttt < \ N \\ p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \\ \quad \quad \quad \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ \arrin{x}{[M_0, \ldots, M_n]}{p} \ | \\ \quad \quad \quad \ | \ V := M \ | \ \procin{y}{x}{p}{x} \ | \ \call{y}{M}}$$
 
-        TODO
+        Dunque, essa è composta da:
+
+        \begin{enumerate}[label=\roman*), font=\itshape]
+            \item una grammatica per le \tit{costanti};
+            \item una grammatica per le \tit{espressioni assegnabili}, che prende il nome di $LExp$ (\tit{left expressions}); per valutare le sue espressioni, si introduce la seguente semantica: $$\stackrel{V}{\leadsto} \ \subseteq \mathrm{Env} \times LExp \times \mathrm{Store} \times \mathrm{Loc}$$
+            \item una grammatica per le \tit{espressioni valutabili}, la quale consiste in un'estensione di $Exp$ definita nell'\cref{exp};
+            \item una grammatica per i \tit{programmi}, la quale consiste in un'estensione di $Imp$ definita nell'\cref{imp}.
+        \end{enumerate}
+
+        Si noti che, poiché tale grammatica supporta gli array, è necessario fornire ad $All$ locazioni di memoria contigue. Inoltre, l'insieme degli ambienti di $All$ è definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc}^+ \cup (\mathrm{Var} \times All \times \mathrm{Env})\}$$
     \end{example}
 
     \begin{example}
-        Sia \cref{all} la grammatica definita all'interno dell'\cref{all}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, in aggiunta alle semantiche descritte nell'\cref{imp sem}, si definiscono le seguenti:
+        \label{all sem}
+        Sia $All$ la grammatica definita all'interno dell'\cref{all}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, in aggiunta alle regole $$[const], \ [plus], \ [times], \ [lt_1], \ [lt_2], \ [skip], \ [seq], \ [ite_1], \ [ite_2], \ [while_1], \ [while_2]$$ descritte nell'\cref{imp sem}, si definiscono le seguenti:
 
-        $$\forall x \in \mathrm{Var} \quad E(x) = l \implies \dfrac{}{\opjudstore[V]{E}{x}{S}{l}}$$
+        $$\forall x \in \mathrm{Var} \quad \exists l \in \mathrm{Loc}^+ \mid E(x) = l \implies [loc_1] \ \opjudstore[V]{E}{x}{S}{l}$$
+        \centeredeq{0.9}{$\forall n \in \N, x \in \mathrm{Var} \quad \exists l_0, \ldots, l_n \in \mathrm{Loc}^+ \mid E(x) = \abk{l_0, \ldots, l_n} \implies \forall m \in [0, n] \quad [loc_2] \ \dfrac{\opjudstore[M]{E}{M}{S}{m}}{\opjudstore[V]{E}{x[M]}{S}{l_m}}$}
+        $$\forall V \in LExp, l \in \mathrm{Loc} \quad \exists v \in \mathrm{Val} \mid S(l) = v \implies [ref] \ \dfrac{\opjudstore[V]{E}{V}{S}{l}}{\opjudstore[M]{E}{V}{S}{v}}$$
     \end{example}
+
+    \begin{framedobs}{Variabili in $All$}
+        Si considerino le regole della grammatica $All$, definite all'interno dell'\cref{all sem}, e si noti che in essa non è presente la regola di inferenza $[vars]$; infatti, all'interno di $All$, l'unico modo per accedere al valore di una variabile è tramite \tit{reference}, dunque utilizzando $[loc_1]$ assieme a $[ref]$. Questo è necessario poiché $All$ supporta gli array, e dunque TODO.
+    \end{framedobs}
 
 \end{document}
