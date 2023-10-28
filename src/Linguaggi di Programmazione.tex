@@ -522,11 +522,14 @@
     \begin{example}[Semantica operazionale di $Exp$]
         \label{exp2 clauses}
         Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}, e sia $E$ un suo ambiente; allora, si definiscono le seguenti regole operazionali:
-        $$[const] \ \opjud{E}{k}{k}$$
-        $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid E(x) = v \implies [vars] \ \opjud{E}{x}{v}$$
-        \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' + v'' \implies [plus] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M \ \ttt + \ N}{v}}$}
-        \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' \cdot v'' \implies [times] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M \ \ttt * \ N}{v}}$}
-        $$\forall v, v' \in \mathrm{Val}, x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E\{(x, v')\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$$
+        
+        \begin{itemize}
+            \item \tbf{costanti}: $$[const] \ \opjud{E}{k}{k}$$
+            \item \tbf{variabili}: $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid E(x) = v \implies [vars] \ \opjud{E}{x}{v}$$
+            \item \tbf{somme}: \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' + v'' \implies [plus] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M \ \ttt + \ N}{v}}$}
+            \item \tbf{prodotti}: \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' \cdot v'' \implies [times] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M \ \ttt * \ N}{v}}$}
+            \item \tbf{dichiarazioni ed assegnazioni}: $$\forall v, v' \in \mathrm{Val}, x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E\{(x, v')\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$$
+        \end{itemize}
     \end{example}
 
     \begin{frameddefn}{Equivalenza operazionale}
@@ -993,27 +996,26 @@
     \begin{example}[Semantica operazionale di $Imp$]
         \label{imp sem}
         Sia $Imp$ la grammatica definita all'interno dell'\cref{imp}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, si definiscono le seguenti regole operazionali (si noti che, per brevità, verrà utilizzato il simbolo $\leadsto$ all'interno dei giudizi di entrambe le semantiche di $Imp$):
-        $$[const] \ \opjudstore{E}{k}{S}{S}$$
-        $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid S(E(x)) = v \implies [vars] \ \opjudstore{E}{x}{S}{v}$$
-        \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 + v_2 \implies [plus] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt + \ N}{S}{v}}$}
-        \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 \cdot v_2 \implies [times] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt * \ N}{S}{v}}$}
-        $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt < \ N}{S}{true}}$$
-        $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt < \ N}{S}{false}}$$
-        $$[skip] \ \opjudstore{E}{skip}{S}{S}$$
-        $$\forall p, q \in Imp, S_1, S_2 \in \mathrm{Store} \quad [seq] \ \dfrac{\opjudstore{E}{p}{ S}{S_1} \quad \opjudstore{E}{q}{ S_1}{S_2}}{\opjudstore{E}{p;q}{S}{S_2}}$$
-        $$\forall p, q \in Imp, S_1 \in \mathrm{Store} \quad [ite_1] \ \dfrac{\opjudstore{E}{M}{ S}{true} \quad \opjudstore{E}{p}{S}{S_1}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S_1}}$$
-        $$\forall p, q \in Imp, S_2 \in \mathrm{Store} \quad [ite_2] \ \dfrac{\opjudstore{E}{M}{ S}{false} \quad \opjudstore{E}{p}{S}{S_2}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S_2}}$$
-        \centeredeq{0.9}{$\forall M \in Exp, S_1, S_2 \in \mathrm{Store} \quad [while_1] \ \dfrac{\opjudstore{E}{M}{S}{true} \quad \opjudstore{E}{p}{S}{S_1} \quad \opjudstore{E}{\while{M}{p}}{ S_1}{S_2}}{\opjudstore{E}{\while{M}{p}}{ S}{S_2}}$}
-        $$\forall M \in Exp \quad [while_2] \ \dfrac{\opjudstore{E}{M}{S}{false}}{\opjudstore{E}{\while{M}{p}}{S}{S}}$$
-        $$\forall x \in \mathrm{Var}, M \in Exp, p \in Imp, S_1 \in \mathrm{Store}, v \in \mathrm{Val} \quad \exists l \in \mathrm{Loc} \mid l \notin \mathrm{codom}(E) \implies$$
-        $$\implies [var] \ \dfrac{\opjudstore{E}{M}{S}{v} \quad \opjudstore{E\{(x,l)\}}{p}{S\{(l,v)\}}{S_1}}{\opjudstore{E}{\varin{x}{M}{p}}{S}{S_1}}$$
-        $$\forall x \in \mathrm{Var}, M \in Exp \quad \exists l \in \mathrm{Loc} \mid E(x) = l \implies [assign] \ \dfrac{\opjudstore{E}{M}{S}{v}}{\opjudstore{E}{x := M}{ S}{S\{(l, v)\}}}$$
+
+        \begin{itemize}
+            \item \tbf{costanti}: $$[const] \ \opjudstore{E}{k}{S}{S}$$
+            \item \tbf{variabili}: $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid S(E(x)) = v \implies [vars] \ \opjudstore{E}{x}{S}{v}$$
+            \item \tbf{somme}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 + v_2 \implies [plus] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt + \ N}{S}{v}}$}
+            \item \tbf{prodotti}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 \cdot v_2 \implies [times] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt * \ N}{S}{v}}$}
+            \item \tbf{minorazioni}: $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt < \ N}{S}{true}}$$ $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt < \ N}{S}{false}}$$
+            \item \tbf{skip}: $$[skip] \ \opjudstore{E}{skip}{S}{S}$$
+            \item \tbf{esecuzioni sequenziali}: $$\forall p, q \in Imp, S_1, S_2 \in \mathrm{Store} \quad [seq] \ \dfrac{\opjudstore{E}{p}{ S}{S_1} \quad \opjudstore{E}{q}{ S_1}{S_2}}{\opjudstore{E}{p;q}{S}{S_2}}$$
+            \item \tbf{if-then-else}: $$\forall p, q \in Imp, S_1 \in \mathrm{Store} \quad [ite_1] \ \dfrac{\opjudstore{E}{M}{ S}{true} \quad \opjudstore{E}{p}{S}{S_1}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S_1}}$$ $$\forall p, q \in Imp, S_2 \in \mathrm{Store} \quad [ite_2] \ \dfrac{\opjudstore{E}{M}{S}{false} \quad \opjudstore{E}{p}{S}{S_2}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S_2}}$$
+            \item \tbf{while}: \centeredeq{0.9}{$\forall M \in Exp, S_1, S_2 \in \mathrm{Store} \quad [while_1] \ \dfrac{\opjudstore{E}{M}{S}{true} \quad \opjudstore{E}{p}{S}{S_1} \quad \opjudstore{E}{\while{M}{p}}{ S_1}{S_2}}{\opjudstore{E}{\while{M}{p}}{ S}{S_2}}$} $$\forall M \in Exp \quad [while_2] \ \dfrac{\opjudstore{E}{M}{S}{false}}{\opjudstore{E}{\while{M}{p}}{S}{S}}$$
+            \item \tbf{dichiarazioni ed assegnazioni}: $$\forall x \in \mathrm{Var}, M \in Exp, p \in Imp, S_1 \in \mathrm{Store}, v \in \mathrm{Val} \quad \exists l \in \mathrm{Loc} \mid l \notin \dom(S) \implies$$ $$\implies [var] \ \dfrac{\opjudstore{E}{M}{S}{v} \quad \opjudstore{E\{(x,l)\}}{p}{S\{(l,v)\}}{S_1}}{\opjudstore{E}{\varin{x}{M}{p}}{S}{S_1}}$$
+            \item \tbf{assegnazioni}: \centeredeq{0.9}{$\forall x \in \mathrm{Var}, M \in Exp \quad \exists l \in \mathrm{Loc} \mid E(x) = l \implies [assign] \ \dfrac{\opjudstore{E}{M}{S}{v}}{\opjudstore{E}{x := M}{ S}{S\{(l, v)\}}}$}
+        \end{itemize}
     \end{example}
 
     \subsection{Memoria contigua}
 
     \begin{frameddefn}{Memoria contigua}
-        Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; al fine di implementare gli \tit{array} all'interno del paradigma imperativo, è necessario definire la \tbf{memoria contigua}, e le locazioni di memoria contigue verranno indicate con $\mathrm{Loc}^+$.
+        Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; al fine di implementare gli \tit{array} all'interno del paradigma imperativo, è necessario definire la \tbf{memoria contigua}, dunque si definisce il seguente insieme di locazioni $$\displaystyle \mathrm{Loc}^+ := \bigcup_{n \in \N}{\mathrm{Loc}^n}$$ poiché è in grado di supportare infinite sequenze di elementi, e si assume che queste siano contigue in memoria.
     \end{frameddefn}
 
     \subsection{Clausole imperative a memoria contigua}
@@ -1056,9 +1058,16 @@
         \label{all sem}
         Sia $All$ la grammatica definita all'interno dell'\cref{all}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, in aggiunta alle regole $$[const], \ [plus], \ [times], \ [lt_1], \ [lt_2], \ [skip], \ [seq], \ [ite_1], \ [ite_2], \ [while_1], \ [while_2]$$ descritte nell'\cref{imp sem}, si definiscono le seguenti:
 
-        $$\forall x \in \mathrm{Var} \quad \exists l \in \mathrm{Loc}^+ \mid E(x) = l \implies [loc_1] \ \opjudstore[V]{E}{x}{S}{l}$$
-        \centeredeq{0.9}{$\forall n \in \N, x \in \mathrm{Var} \quad \exists l_0, \ldots, l_n \in \mathrm{Loc}^+ \mid E(x) = \abk{l_0, \ldots, l_n} \implies \forall m \in [0, n] \quad [loc_2] \ \dfrac{\opjudstore[M]{E}{M}{S}{m}}{\opjudstore[V]{E}{x[M]}{S}{l_m}}$}
-        $$\forall V \in LExp, l \in \mathrm{Loc} \quad \exists v \in \mathrm{Val} \mid S(l) = v \implies [ref] \ \dfrac{\opjudstore[V]{E}{V}{S}{l}}{\opjudstore[M]{E}{V}{S}{v}}$$
+        \begin{itemize}
+            \item \tbf{locazioni}: $$\forall x \in \mathrm{Var} \quad \exists l \in \mathrm{Loc}^+ \mid E(x) = l \implies [loc_1] \ \opjudstore[V]{E}{x}{S}{l}$$
+            \item \tbf{locazioni in array}: $$\forall n \in \N, x \in \mathrm{Var} \quad \exists (l_0, \ldots, l_n) \in \mathrm{Loc}^+ \mid E(x) = \abk{l_0, \ldots, l_n} \implies$$ $$\implies \forall m \in [0, n] \quad [loc_2] \ \dfrac{\opjudstore[M]{E}{M}{S}{m}}{\opjudstore[V]{E}{x[M]}{S}{l_m}}$$
+            \item \tbf{reference}: $$\forall V \in LExp, l \in \mathrm{Loc} \quad \exists v \in \mathrm{Val} \mid S(l) = v \implies [ref] \ \dfrac{\opjudstore[V]{E}{V}{S}{l}}{\opjudstore[M]{E}{V}{S}{v}}$$
+            \item \tbf{assegnazioni}: \centeredeq{0.9}{$\forall V \in LExp, M \in Exp, l \in \mathrm{Loc}, v \in \mathrm{Val} \quad [assign] \ \dfrac{\opjudstore[M]{E}{M}{S}{v} \quad \opjudstore[V]{E}{V}{S}{l}}{\opjudstore[p]{E}{V := M}{S}{S\{(l,v)\}}}$}
+            \item \tbf{array}: $$\forall n \in \N, S_1 \in \mathrm{Store}, x \in \mathrm{Var}, M_0, \ldots, M_n \in Exp, p \in Imp, v_0, \ldots, v_n \in \mathrm{Val}$$ $$\exists (l_0, \ldots, l_n) \in \mathrm{Loc}^+ \mid l_0, \ldots, l_n \notin \dom(S) \implies$$ \centeredeq{0.9}{$\implies [arr] \ \dfrac{\opjudstore[M]{E}{M_0}{S}{v_0} \quad \ldots \quad \opjudstore[M]{E}{M_n}{S}{v_n} \quad \opjudstore[p]{E\{(x, (l_0, \ldots, l_n))\}}{p}{S\{(l_0, v_0), \ldots, (l_n, v_n)\}}{S_1}}{\opjudstore[p]{E}{\arrin{x}{[M_0, \ldots, M_n]}{p}}{S}{S_1}}$}
+            \item \tbf{procedure}: $$\forall y,x \in \mathrm{Var}, p, q \in Imp, S_1 \in \mathrm{Store} \quad [proc] \ \dfrac{\opjudstore[p]{E\{(y,(x,p, E))\}}{q}{S}{S_1}}{\opjudstore[p]{E}{\procin{y}{x}{p}{q}}{S}{S_1}}$$
+            \item \tbf{call-by-reference}: TODO
+            \item \tbf{call-by-name}: TODO
+        \end{itemize}
     \end{example}
 
     \begin{framedobs}{Variabili in $All$}
