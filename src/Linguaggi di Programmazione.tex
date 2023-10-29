@@ -553,11 +553,11 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}{Valutazione eager}
-        Data una grammatica, la \tbf{valutazione eager} (\tit{call-by-name}) valuta una data espressione della grammatica non appena questa viene legata ad una variabile. In simboli, la valutazione eager verrà indicata con il pedice $\mathrm{E}$.
+        Data una grammatica, la \tbf{valutazione eager} valuta una data espressione della grammatica non appena questa viene legata ad una variabile. In simboli, la valutazione eager verrà indicata con il pedice $\mathrm{E}$.
     \end{frameddefn}
 
     \begin{frameddefn}{Valutazione lazy}
-        Data una grammatica, la \tbf{valutazione lazy} (\tit{call-by-need}) valuta una data espressione della grammatica solo quando il suo valore viene richiesto da un'altra espressione. In simboli, la valutazione lazy verrà indicata con il pedice $\mathrm{L}$.
+        Data una grammatica, la \tbf{valutazione lazy} valuta una data espressione della grammatica solo quando il suo valore viene richiesto da un'altra espressione. In simboli, la valutazione lazy verrà indicata con il pedice $\mathrm{L}$.
     \end{frameddefn}
 
     \begin{frameddefn}{Scoping statico}
@@ -1004,10 +1004,10 @@
             \item \tbf{prodotti}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 \cdot v_2 \implies [times] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt * \ N}{S}{v}}$}
             \item \tbf{minorazioni}: $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt < \ N}{S}{true}}$$ $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt < \ N}{S}{false}}$$
             \item \tbf{skip}: $$[skip] \ \opjudstore{E}{skip}{S}{S}$$
-            \item \tbf{esecuzioni sequenziali}: $$\forall p, q \in Imp, S_1, S_2 \in \mathrm{Store} \quad [seq] \ \dfrac{\opjudstore{E}{p}{ S}{S_1} \quad \opjudstore{E}{q}{ S_1}{S_2}}{\opjudstore{E}{p;q}{S}{S_2}}$$
-            \item \tbf{if-then-else}: $$\forall p, q \in Imp, S_1 \in \mathrm{Store} \quad [ite_1] \ \dfrac{\opjudstore{E}{M}{ S}{true} \quad \opjudstore{E}{p}{S}{S_1}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S_1}}$$ $$\forall p, q \in Imp, S_2 \in \mathrm{Store} \quad [ite_2] \ \dfrac{\opjudstore{E}{M}{S}{false} \quad \opjudstore{E}{p}{S}{S_2}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S_2}}$$
-            \item \tbf{while}: \centeredeq{0.9}{$\forall M \in Exp, S_1, S_2 \in \mathrm{Store} \quad [while_1] \ \dfrac{\opjudstore{E}{M}{S}{true} \quad \opjudstore{E}{p}{S}{S_1} \quad \opjudstore{E}{\while{M}{p}}{ S_1}{S_2}}{\opjudstore{E}{\while{M}{p}}{ S}{S_2}}$} $$\forall M \in Exp \quad [while_2] \ \dfrac{\opjudstore{E}{M}{S}{false}}{\opjudstore{E}{\while{M}{p}}{S}{S}}$$
-            \item \tbf{dichiarazioni ed assegnazioni}: $$\forall x \in \mathrm{Var}, M \in Exp, p \in Imp, S_1 \in \mathrm{Store}, v \in \mathrm{Val} \quad \exists l \in \mathrm{Loc} \mid l \notin \dom(S) \implies$$ $$\implies [var] \ \dfrac{\opjudstore{E}{M}{S}{v} \quad \opjudstore{E\{(x,l)\}}{p}{S\{(l,v)\}}{S_1}}{\opjudstore{E}{\varin{x}{M}{p}}{S}{S_1}}$$
+            \item \tbf{esecuzioni sequenziali}: $$\forall p, q \in Imp, S', S'' \in \mathrm{Store} \quad [seq] \ \dfrac{\opjudstore{E}{p}{ S}{S'} \quad \opjudstore{E}{q}{ S'}{S''}}{\opjudstore{E}{p;q}{S}{S''}}$$
+            \item \tbf{if-then-else}: $$\forall p, q \in Imp, S' \in \mathrm{Store} \quad [ite_1] \ \dfrac{\opjudstore{E}{M}{ S}{true} \quad \opjudstore{E}{p}{S}{S'}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S'}}$$ $$\forall p, q \in Imp, S'' \in \mathrm{Store} \quad [ite_2] \ \dfrac{\opjudstore{E}{M}{S}{false} \quad \opjudstore{E}{p}{S}{S''}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S''}}$$
+            \item \tbf{while}: \centeredeq{0.9}{$\forall M \in Exp, S', S'' \in \mathrm{Store} \quad [while_1] \ \dfrac{\opjudstore{E}{M}{S}{true} \quad \opjudstore{E}{p}{S}{S'} \quad \opjudstore{E}{\while{M}{p}}{ S'}{S''}}{\opjudstore{E}{\while{M}{p}}{ S}{S''}}$} $$\forall M \in Exp \quad [while_2] \ \dfrac{\opjudstore{E}{M}{S}{false}}{\opjudstore{E}{\while{M}{p}}{S}{S}}$$
+            \item \tbf{dichiarazioni ed assegnazioni}: $$\forall x \in \mathrm{Var}, M \in Exp, p \in Imp, S' \in \mathrm{Store}, v \in \mathrm{Val} \quad \exists l \in \mathrm{Loc} \mid l \notin \dom(S) \implies$$ $$\implies [var] \ \dfrac{\opjudstore{E}{M}{S}{v} \quad \opjudstore{E\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore{E}{\varin{x}{M}{p}}{S}{S'}}$$
             \item \tbf{assegnazioni}: \centeredeq{0.9}{$\forall x \in \mathrm{Var}, M \in Exp \quad \exists l \in \mathrm{Loc} \mid E(x) = l \implies [assign] \ \dfrac{\opjudstore{E}{M}{S}{v}}{\opjudstore{E}{x := M}{ S}{S\{(l, v)\}}}$}
         \end{itemize}
     \end{example}
@@ -1063,15 +1063,43 @@
             \item \tbf{locazioni in array}: $$\forall n \in \N, x \in \mathrm{Var} \quad \exists (l_0, \ldots, l_n) \in \mathrm{Loc}^+ \mid E(x) = \abk{l_0, \ldots, l_n} \implies$$ $$\implies \forall m \in [0, n] \quad [loc_2] \ \dfrac{\opjudstore[M]{E}{M}{S}{m}}{\opjudstore[V]{E}{x[M]}{S}{l_m}}$$
             \item \tbf{reference}: $$\forall V \in LExp, l \in \mathrm{Loc} \quad \exists v \in \mathrm{Val} \mid S(l) = v \implies [ref] \ \dfrac{\opjudstore[V]{E}{V}{S}{l}}{\opjudstore[M]{E}{V}{S}{v}}$$
             \item \tbf{assegnazioni}: \centeredeq{0.9}{$\forall V \in LExp, M \in Exp, l \in \mathrm{Loc}, v \in \mathrm{Val} \quad [assign] \ \dfrac{\opjudstore[M]{E}{M}{S}{v} \quad \opjudstore[V]{E}{V}{S}{l}}{\opjudstore[p]{E}{V := M}{S}{S\{(l,v)\}}}$}
-            \item \tbf{array}: $$\forall n \in \N, S_1 \in \mathrm{Store}, x \in \mathrm{Var}, M_0, \ldots, M_n \in Exp, p \in Imp, v_0, \ldots, v_n \in \mathrm{Val}$$ $$\exists (l_0, \ldots, l_n) \in \mathrm{Loc}^+ \mid l_0, \ldots, l_n \notin \dom(S) \implies$$ \centeredeq{0.9}{$\implies [arr] \ \dfrac{\opjudstore[M]{E}{M_0}{S}{v_0} \quad \ldots \quad \opjudstore[M]{E}{M_n}{S}{v_n} \quad \opjudstore[p]{E\{(x, (l_0, \ldots, l_n))\}}{p}{S\{(l_0, v_0), \ldots, (l_n, v_n)\}}{S_1}}{\opjudstore[p]{E}{\arrin{x}{[M_0, \ldots, M_n]}{p}}{S}{S_1}}$}
-            \item \tbf{procedure}: $$\forall y,x \in \mathrm{Var}, p, q \in Imp, S_1 \in \mathrm{Store} \quad [proc] \ \dfrac{\opjudstore[p]{E\{(y,(x,p, E))\}}{q}{S}{S_1}}{\opjudstore[p]{E}{\procin{y}{x}{p}{q}}{S}{S_1}}$$
-            \item \tbf{call-by-reference}: TODO
-            \item \tbf{call-by-name}: TODO
+            \item \tbf{array}: $$\forall n \in \N, S' \in \mathrm{Store}, x \in \mathrm{Var}, M_0, \ldots, M_n \in Exp, p \in Imp, v_0, \ldots, v_n \in \mathrm{Val}$$ $$\exists (l_0, \ldots, l_n) \in \mathrm{Loc}^+ \mid l_0, \ldots, l_n \notin \dom(S) \implies$$ \centeredeq{0.9}{$\implies [arr] \ \dfrac{\opjudstore[M]{E}{M_0}{S}{v_0} \quad \ldots \quad \opjudstore[M]{E}{M_n}{S}{v_n} \quad \opjudstore[p]{E\{(x, (l_0, \ldots, l_n))\}}{p}{S\{(l_0, v_0), \ldots, (l_n, v_n)\}}{S'}}{\opjudstore[p]{E}{\arrin{x}{[M_0, \ldots, M_n]}{p}}{S}{S'}}$}
+            \item \tbf{procedure}: $$\forall y,x \in \mathrm{Var}, p, q \in Imp, S' \in \mathrm{Store} \quad [proc] \ \dfrac{\opjudstore[p]{E\{(y,(x,p, E))\}}{q}{S}{S'}}{\opjudstore[p]{E}{\procin{y}{x}{p}{q}}{S}{S'}}$$
         \end{itemize}
+
+        Per quanto concerne le regole della clausola $call$, si consultino l'\cref{all v}, l'\cref{all r} e l'\cref{all n}.
     \end{example}
 
     \begin{framedobs}{Variabili in $All$}
         Si considerino le regole della grammatica $All$, definite all'interno dell'\cref{all sem}, e si noti che in essa non è presente la regola di inferenza $[vars]$; infatti, all'interno di $All$, l'unico modo per accedere al valore di una variabile è tramite \tit{reference}, dunque utilizzando $[loc_1]$ assieme a $[ref]$. Questo è necessario poiché $All$ supporta gli array, e dunque TODO.
+    \end{framedobs}
+
+    \subsection{Semantiche delle chiamate}
+
+    \begin{frameddefn}{Semantiche di $call$}
+        TODO
+    \end{frameddefn}
+
+    \begin{framedobs}[label={all v}]{$All_\mathrm{V}$}
+        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-value}, è necessario definire la seguente regola di inferenza: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies \dfrac{\opjudstore[M]{E}{M}{S}{v} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore[p]{E}{\call{y}{M}}{S}{S'}}$$ per certi $E, E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$, poiché:
+
+        \begin{itemize}
+            \item l'espressione $M$ viene valutata attraverso la semantica $\stackrel{M}{\leadsto}$, la quale restituisce un valore $v$;
+            \item viene effettuato il calcolo di $p$, con l'ambiente salvato precedentemente concatenato $(x,l)$, e con lo store corrente concatenato a $(l,v)$, per una qualche nuova locazione di memoria $l$.
+        \end{itemize}
+    \end{framedobs}
+
+    \begin{framedobs}[label={all r}]{$All_\mathrm{R}$}
+        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-reference}, è necessario definire la seguente regola di inferenza: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies \dfrac{\opjudstore[V]{E}{M}{S}{l} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{M}}{S}{S'}}$$ per certi $E,E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$, poiché
+
+        \begin{itemize}
+            \item l'espressione $M$ viene valutata attraverso la semantica $\stackrel{V}{\leadsto}$, la quale restituisce una locazione $l$;
+            \item TODO
+        \end{itemize}
+    \end{framedobs}
+
+    \begin{framedobs}[label={all n}]{$All_\mathrm{N}$}
+        TODO
     \end{framedobs}
 
 \end{document}
