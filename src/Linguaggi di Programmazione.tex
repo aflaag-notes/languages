@@ -1040,7 +1040,7 @@
         \label{all}
         Sia $All$ la grammatica, estensione di $Imp$ definita nell'\cref{imp}, composta dalle seguenti grammatiche:
 
-        $$\leftsoe{k ::= \ttt 0 \ | \ \ttt 1 \ | \ \ldots \ | \ true \ | \ false \\ V ::= x \ | \ x[M] \\ M, N ::= k \ | \ V \ | \ M \ \ttt + \ N \ | \ | \ M \ \ttt * \ N \ | \ M \ \ttt < \ N \\ p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \\ \quad \quad \quad \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ \arrin{x}{[M_0, \ldots, M_n]}{p} \ | \\ \quad \quad \quad \ | \ V := M \ | \ \procin{y}{x}{p}{x} \ | \ \call{y}{M}}$$
+        $$\leftsoe{k ::= \ttt 0 \ | \ \ttt 1 \ | \ \ldots \ | \ true \ | \ false \\ V ::= x \ | \ x[M] \\ M, N ::= k \ | \ V \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ \ttt < \ N \\ p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \\ \quad \quad \quad \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ \arrin{x}{[M_0, \ldots, M_n]}{p} \ | \\ \quad \quad \quad \ | \ V := M \ | \ \procin{y}{x}{p}{x} \ | \ \call{y}{M}}$$
 
         Dunque, essa è composta da:
 
@@ -1081,7 +1081,7 @@
     \end{frameddefn}
 
     \begin{framedobs}[label={all v}]{$All_\mathrm{V}$}
-        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-value}, è necessario definire la seguente regola di inferenza: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies \dfrac{\opjudstore[M]{E}{M}{S}{v} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore[p]{E}{\call{y}{M}}{S}{S'}}$$ per certi $E, E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$, poiché:
+        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-value}, è necessario definire la seguente regola di inferenza: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies [call]_value \ \dfrac{\opjudstore[M]{E}{M}{S}{v} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore[p]{E}{\call{y}{M}}{S}{S'}}$$ per certi $E, E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$, poiché:
 
         \begin{itemize}
             \item l'espressione $M$ viene valutata attraverso la semantica $\stackrel{M}{\leadsto}$, la quale restituisce un valore $v$;
@@ -1090,7 +1090,7 @@
     \end{framedobs}
 
     \begin{framedobs}[label={all r}]{$All_\mathrm{R}$}
-        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-reference}, è necessario definire la seguente regola di inferenza: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies \dfrac{\opjudstore[V]{E}{V}{S}{l} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$ per certi $E,E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$, poiché
+        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-reference}, è necessario definire la seguente regola di inferenza: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies [call]_ref \ \dfrac{\opjudstore[V]{E}{V}{S}{l} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$ per certi $E,E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$, poiché
 
         \begin{itemize}
             \item l'espressione $M$ viene valutata attraverso la semantica $\stackrel{V}{\leadsto}$, la quale restituisce una locazione $l$;
@@ -1099,7 +1099,21 @@
     \end{framedobs}
 
     \begin{framedobs}[label={all n}]{$All_\mathrm{N}$}
-        TODO
+        TODO RILEGGI QUESTO PERCHE L'HAI SCRITTO SENZA CAPIRLO
+        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-name}, è necessario ridefinire l'insieme degli ambienti, come segue $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow \mathrm{Loc}^+ \cup (\mathrm{Var} \times All \times \mathrm{Env}) \cup (LExp \times \mathrm{Env})\}$$ ed inoltre vengono aggiunte le due regole di inferenza che seguono:
+
+        \begin{itemize}
+            \item \tbf{TODO CHE VOR DI}: $$TODO$$ $$E(x) = (V, E') \implies [call]_name \ \dfrac{\opjudstore[V]{E'}{V}{S}{l}}{\opjudstore[V]{E}{x}{S}{l}}$$
+            \item \tbf{call-by-name}: $$TODO$$ $$E(y) = (x, p, E') \implies [call]_name \ \dfrac{\opjudstore[p]{E'\{(x,(V,E))\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$
+        \end{itemize}
+
+        per certi $E, E' \in \mathrm{Env}, S, S' \in \mathrm{Store}$.
     \end{framedobs}
+
+    \begin{example}[Grammatica $While$]
+
+    $$\leftsoe{M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \\ A,B ::= true \ | \ false \ | \ A TODO È DA FARE? }$$
+    
+    \end{example}
 
 \end{document}
