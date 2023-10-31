@@ -1,18 +1,18 @@
 # Fdb version 4
-["biber Linguaggi di Programmazione"] 1698506774 "Linguaggi di Programmazione.bcf" "Linguaggi di Programmazione.bbl" "Linguaggi di Programmazione" 1698689069 2
-  "Linguaggi di Programmazione.bcf" 1698689069 106652 37e852c976e785a4cd766daafd7c931b "pdflatex"
+["biber Linguaggi di Programmazione"] 1698746704 "Linguaggi di Programmazione.bcf" "Linguaggi di Programmazione.bbl" "Linguaggi di Programmazione" 1698749657 2
+  "Linguaggi di Programmazione.bcf" 1698749657 106652 37e852c976e785a4cd766daafd7c931b "pdflatex"
   (generated)
   "Linguaggi di Programmazione.bbl"
   "Linguaggi di Programmazione.blg"
   (rewritten before read)
-["pdflatex"] 1698689060 "Linguaggi di Programmazione.tex" "Linguaggi di Programmazione.pdf" "Linguaggi di Programmazione" 1698689069 0
-  "../Nyx/logo.png" 1695664046 91419 8de48debf770a599a084520c83ce5d80 ""
-  "../Nyx/nyx-frames.sty" 1698608106 2897 52f45de66f906d6adc47d65869e6e616 ""
-  "../Nyx/nyx-macros.sty" 1698505546 5405 8534b58983816683648b9201fa9e9d84 ""
-  "../Nyx/nyx-packages.sty" 1696527733 1805 8d6e3ffd81d32ae52e26095b631d1981 ""
-  "../Nyx/nyx-styles.sty" 1696262597 2714 20ee228cdb20f06001caefe62143426a ""
-  "../Nyx/nyx-title.sty" 1695664046 3255 b8b7faa898231df2f4371d144bf17fa9 ""
-  "/home/aless/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk" 1695724000 8424 de7e98f7b37fec9a823aec1c4d2c5450 ""
+["pdflatex"] 1698749650 "Linguaggi di Programmazione.tex" "Linguaggi di Programmazione.pdf" "Linguaggi di Programmazione" 1698749657 0
+  "../Nyx/logo.png" 1698583940 91419 8de48debf770a599a084520c83ce5d80 ""
+  "../Nyx/nyx-frames.sty" 1698747060 2897 52f45de66f906d6adc47d65869e6e616 ""
+  "../Nyx/nyx-macros.sty" 1698746801 5450 710bbc688ed05ffc4342d61a4828fd72 ""
+  "../Nyx/nyx-packages.sty" 1698583940 1805 8d6e3ffd81d32ae52e26095b631d1981 ""
+  "../Nyx/nyx-styles.sty" 1698583940 2714 20ee228cdb20f06001caefe62143426a ""
+  "../Nyx/nyx-title.sty" 1698583940 3255 b8b7faa898231df2f4371d144bf17fa9 ""
+  "/home/phantasm/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk" 1698745937 8424 06c4aaf938a9fd6feac3342444dd0068 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1689853683 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1689853683 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc" 1689853683 2457 aaabbccba4df2a7f7371410ee4e075a3 ""
@@ -363,14 +363,14 @@
   "/usr/share/texmf-dist/tex/latex/zref/zref-abspage.sty" 1689853683 2245 c8a4088d07cffc2e5207730c738edd76 ""
   "/usr/share/texmf-dist/tex/latex/zref/zref-base.sty" 1689853683 20785 71a3d72ab517959a6979c27e6176bec1 ""
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1689853683 40684 9b9ec0b4288972636ff6a3b9c4238efc ""
-  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1693381028 4483110 adb1e1d04498b9576f1f17c4219c5e03 ""
-  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1693380976 6769488 5b7e4d8b8dc08b722ee96f876127df85 ""
-  "Linguaggi di Programmazione.aux" 1698689069 11006 0bc61a650d5c65a1837f574ea313b086 "pdflatex"
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1698745704 4483110 adb1e1d04498b9576f1f17c4219c5e03 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1698745805 6769496 8da79d5b245bca1661c0e860a497686f ""
+  "Linguaggi di Programmazione.aux" 1698749657 11703 81b306801a874362f794ef55de8f7607 "pdflatex"
   "Linguaggi di Programmazione.bbl" 0 -1 0 "biber Linguaggi di Programmazione"
-  "Linguaggi di Programmazione.out" 1698689069 4356 fed7712d655cb535a5db859d49796574 "pdflatex"
-  "Linguaggi di Programmazione.run.xml" 1698689069 2440 4bb3062d0e681804c5fd4af25aa47c97 "pdflatex"
-  "Linguaggi di Programmazione.tex" 1698689060 93062 8af3ef40d9cf8f806402e702106039e5 ""
-  "Linguaggi di Programmazione.toc" 1698689069 2946 879955087f9be081b095055800b24720 "pdflatex"
+  "Linguaggi di Programmazione.out" 1698749657 4577 5df69f4c91a5181d41dc41ecc2c9ee4a "pdflatex"
+  "Linguaggi di Programmazione.run.xml" 1698749657 2440 4bb3062d0e681804c5fd4af25aa47c97 "pdflatex"
+  "Linguaggi di Programmazione.tex" 1698749649 95942 b22943606bd2350d72accc62e965dbbb ""
+  "Linguaggi di Programmazione.toc" 1698749657 3147 1c585bd014e433ed75e09df3eaf028db "pdflatex"
   (generated)
   "Linguaggi di Programmazione.aux"
   "Linguaggi di Programmazione.bcf"

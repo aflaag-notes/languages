@@ -516,7 +516,7 @@
     \begin{frameddefn}[label={sem opexp}]{Semantica operazionale di una grammatica}
         Data una grammatica $G$, si definisce \tbf{semantica operazionale} della grammatica una relazione, indicata col simbolo $\leadsto$, definita come segue: $$\leadsto \ \subseteq \mathrm{Env} \times G \times \mathrm{Val}$$
 
-        Un elemento $(E, M, v) \in \ \leadsto$ è detto \tbf{giudizio operazionale}, e viene scritto attraverso il seguente simbolismo: $$\opjud{E}{M}{v}$$ e si legge "valutando $M$, nell'ambiente $E$, si ottiene $v$".
+        Un elemento $(E, M, v) \in \ \leadsto$ è detto \tbf{giudizio operazionale}, e viene scritto attraverso il seguente simbolismo: $$\opjud{E}{M}{v}$$ e si legge \curlyquotes{valutando $M$, nell'ambiente $E$, si ottiene $v$}.
     \end{frameddefn}
 
     \begin{example}[Semantica operazionale di $Exp$]
@@ -1110,10 +1110,45 @@
         per certi $E, E' \in \mathrm{Env}, S, S' \in \mathrm{Store}$.
     \end{framedobs}
 
-    \begin{example}[Grammatica $While$]
-
-        $$\leftsoe{M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \\ A,B ::= true \ | \ false \ | \ A TODO È DA FARE? }$$
+    \chapter{TODO}
     
+    \section{TODO}
+
+    \subsection{TODO}
+
+    \begin{frameddefn}{Tripla di Hoare}
+        Si definisce \tbf{tripla di Hoare} la seguente clausola: $$\hoare{A}{p}{B}$$ dove $A$ --- che prende il nome di \tbf{precondizione} --- e $B$ --- che prende il nome di \tbf{postcondizione} --- sono espressioni booleane, e $p$ è un programma. La sua \tit{interpretazione di correttezza parziale} è la seguente: \curlyquotes{stando in uno stato che soddisfa $A$, ed eseguendo $p$ a partire da quest'ultimo, se $p$ termina, allora esso terminerà in uno stato che soddisfa $B$}.
+    \end{frameddefn}
+
+    \begin{frameddefn}[label={formula}]{Formula}
+        Si definisce \tbf{formula} una proposizione appartenente alla seguente grammatica: $$\varphi ::= A \ | \ \hoare{A}{p}{Q}$$ dove $A$ e $B$ sono espressioni booleane, e $p$ è un programma.
+    \end{frameddefn}
+
+    \begin{framedprop}{Regole di inferenza}
+        Si considerino le formule descritte all'interno della \cref{formula}; allora, si definiscono le seguenti regole di inferenza:
+
+        \begin{itemize}
+            \item \tbf{true}: $$\hoare{A}{p}{true}$$ poiché, per qualsiasi programma $p$, indipendentemente dalla precondizione $A$, ogni espressione booleana di postcondizione soddisferà $true$;
+            \item \tbf{false}: $$\hoare{false}{p}{B}$$ poiché la tripla di Hoare è vera a vuoto, in quando la precondizione non può essere soddisfatta poiché è $false$;
+            \item \tbf{strengthening}: $$\dfrac{A \supset B \quad \hoare{B}{p}{C}}{\hoare{A}{p}{C}}$$ poiché TODO;
+            \item \tbf{weakening}: $$\dfrac{B \supset A \quad \hoare{C}{p}{A}}{\hoare{C}{p}{A}}$$ poiché TODO; si noti che le regole di \tit{strengthening} e di \tit{weakening} sono l'una il duale dell'altra;
+            \item \tbf{and}: $$\dfrac{\hoare{A}{p}{B_0} \quad \hoare{A}{p}{B_1} \quad \ldots \quad \hoare{A}{p}{B_n}}{\hoare{A}{p}{B_0 \land B_1 \land \ldots \land B_n}}$$ poiché TODO;
+            \item \tbf{or}: $$\dfrac{\hoare{B_0}{p}{A} \quad \hoare{B_1}{p}{A} \quad \ldots \quad \hoare{B_n}{p}{A}}{\hoare{B_0 \lor B_1 \lor \ldots \lor B_n}{p}{A}}$$ poiché TODO; si noti che le regole \tit{and} ed \tit{or} sono l'una il duale dell'altra;
+        \end{itemize}
+    \end{framedprop}
+
+    \begin{example}[Semantica assiomatica di $Imp$]
+        \label{imp bool}
+        TODO $$\leftsoe{M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \\ A,B ::= true \ | \ false \ | \ A \supset B \ | \ M <  N \ | \ M = N \\ p,q ::= skip \ | \ p;q \ | \ x:=M \ | \ \ite{B}{p}{q} \ | \ \while{B}{p}}$$
+    \end{example}
+
+    \begin{example}[Significati assiomatici di $Imp$]
+        Si consideri la grammatica definita all'interno dell'\cref{imp bool}; su di essa, si definiscono i seguenti \tit{significati assiomatici}, anche dette \tit{regole di inferenza speciali}:
+
+        \begin{itemize}
+            \item \tbf{skip}: $$\hoare{A}{skip}{A}$$
+            \item \tbf{esecuzione sequenziale}: $$\dfrac{\hoare{A}{p}{B} TODO}{\hoare{A}{p;q}{B}}$$
+        \end{itemize}
     \end{example}
 
 \end{document}
