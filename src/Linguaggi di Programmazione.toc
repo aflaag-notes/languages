@@ -33,8 +33,8 @@
 \contentsline {subsection}{\numberline {3.1.1}Memoria}{37}{subsection.3.1.1}%
 \contentsline {subsection}{\numberline {3.1.2}Clausole imperative}{38}{subsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.1.3}Memoria contigua}{41}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Clausole imperative a memoria contigua}{41}{subsection.3.1.4}%
-\contentsline {subsection}{\numberline {3.1.5}Semantiche delle chiamate}{44}{subsection.3.1.5}%
-\contentsline {chapter}{\numberline {4}TODO}{46}{chapter.4}%
-\contentsline {section}{\numberline {4.1}TODO}{46}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}TODO}{46}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {3.1.4}Clausole imperative a memoria contigua}{42}{subsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.1.5}Semantiche delle chiamate}{45}{subsection.3.1.5}%
+\contentsline {chapter}{\numberline {4}TODO}{47}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Logica di Hoare}{47}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Definizioni}{47}{subsection.4.1.1}%

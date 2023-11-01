@@ -587,7 +587,7 @@
         Sia $Exp$ la grammatica definita nell'\cref{exp2}, e si consideri la seguente espressione: $$\letin{x}{3}{(\letin{y}{x}{(\letin{x}{7}{y + x})})}$$ essa, valutata attraverso valutazione eager, produce il seguente albero di derivazione: \centeredeq{0.99}{$\dfrac{\opjud{\varnothing}{3}{3} \quad \dfrac{\opjud{\{(x, 3)\}}{x}{3} \quad \dfrac{\opjud{\{(x,3),(y,3)\}}{7}{7} \quad \dfrac{\opjud{\{(x,3),(y,3)\}\{(x,7)\}}{y}{3} \quad \opjud{\{(x,3),(y,3)\}\{(x,7)\}}{x}{7}}{\opjud{\{(x,3),(y,3)\}\{(x,7)\}}{y+x}{10}}}{\opjud{\{(x, 3),(y, 3)\}}{\letin{x}{7}{y + x}}{10}}}{\opjud{\{(x, 3)\}}{\letin{y}{x}{(\letin{x}{7}{y + x})}}{10}}}{\opjud{\varnothing}{\letin{x}{3}{(\letin{y}{x}{(\letin{x}{7}{y + x})})}}{10}}$}
     \end{example}
 
-    \begin{framedobs}{$Exp_\mathrm{LD}$}
+    \begin{framedprop}{$Exp_\mathrm{LD}$}
         Sia $Exp$ la grammatica definita nell'\cref{exp2}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{exp2 clauses}:
 
         \begin{itemize}
@@ -597,9 +597,9 @@
         \end{itemize}
 
         Si noti che tale valutazione utilizza lo scoping dinamico, poiché viene utilizzato l'ambiente corrente per valutare le variabili.
-    \end{framedobs}
+    \end{framedprop}
 
-    \begin{framedobs}{$Exp_\mathrm{LS}$}
+    \begin{framedprop}{$Exp_\mathrm{LS}$}
         Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}; per poter valutare le sue espressioni in maniera lazy statica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{exp2 clauses}:
 
         \begin{itemize}
@@ -609,7 +609,7 @@
         \end{itemize}
 
         Si noti che tale valutazione utilizza lo scoping statico, poiché vengono salvati anche gli ambienti in cui sono state fatte le assegnazioni.
-    \end{framedobs}
+    \end{framedprop}
 
     \begin{framedlem}{$Exp_\mathrm{LS}$ e $Exp_\mathrm{LD}$}
         Sia $Exp$ la grammatica definita nell'\cref{exp2}; allora, si ha che $$Exp_\mathrm{LS} \not\equiv Exp_\mathrm{LD}$$
@@ -651,9 +651,9 @@
         Sia $Fun$ la grammatica definita all'interno dell'\cref{fun}, e sia $$(\fn{x}{x3})(\fn{x}{x+1})$$ una sua espressione; essa, una volta valutata, applica la funzione $\fn{x}{x+1}$ all'espressione 3, e dunque il suo valore è pari a $$x = 3 \implies x + 1 = 3 + 1 = 4$$
     \end{example}
 
-    \begin{framedobs}{Curryficazione}
+    \begin{frameddefn}{Curryficazione}
         Si consideri la clausola $fn$ della \cref{fn}; è possibile definirne una notazione contratta, che prende il nome di \tit{curryficazione}, ed è definita come segue: $$\fn{x_1x_2 \ldots x_n}{M} \iff \fn{x_1}{(\fn{x_2}{\ldots (\fn{x_n}{M}) \ldots})}$$ Il processo inverso prende il nome di \tit{uncurryficazione}.
-    \end{framedobs}
+    \end{frameddefn}
 
     \begin{example}[Curryficazioni]
         Sia $Fun$ la grammatica dell'\cref{fun}, e sia $$(\fn{xy}{yx})7(\fn{x}{x+1})$$ una sua espressione; una volta effettuata l'uncurryficazione, si ottiene la seguente espressione: $$(\fn{x}{\fn{y}{yx}})7(\fn{x}{x+1})$$ che, una volta valutata, diventa $$(\fn{y}{y7})(\fn{x}{x+1})$$ e dunque, analogamente all'\cref{expr fun}, il risultato è $$x= 7 \implies x+1 = 7 + 1= 8$$
@@ -665,7 +665,7 @@
 
     \subsection{Semantiche operazionali}
 
-    \begin{framedobs}{$Fun_\mathrm{ED}$}
+    \begin{framedprop}{$Fun_\mathrm{ED}$}
         Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera eager dinamica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
@@ -676,9 +676,9 @@
         \end{itemize}
 
         Si noti che tale valutazione risulta essere eager, poiché $N$ viene valutata immediatamente.
-    \end{framedobs}
+    \end{framedprop}
 
-    \begin{framedobs}{$Fun_\mathrm{ES}$}
+    \begin{framedprop}{$Fun_\mathrm{ES}$}
         Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera eager statica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
@@ -689,7 +689,7 @@
         \end{itemize}
 
         Si noti che tale valutazione risulta essere eager, poiché $N$ viene valutata immediatamente, ed è a scoping statico poiché viene riportato l'ambiente in cui le valutazioni vengono effettuate.
-    \end{framedobs}
+    \end{framedprop}
 
     \begin{framedlem}[label={fun lemma pt1}]{$Fun_\mathrm{ES}$ e $Fun_\mathrm{ED}$}
         Sia $Fun$ la grammatica definita nell'\cref{fun}; allora, si ha che $$Fun_\mathrm{ES} \not\equiv Fun_\mathrm{ED}$$
@@ -705,7 +705,7 @@
         Allora, poiché le due valutazioni producono risultati differenti, per la \cref{equiv lang}, segue la tesi.
     \end{proof}
 
-    \begin{framedobs}{$Fun_\mathrm{LD}$}
+    \begin{framedprop}{$Fun_\mathrm{LD}$}
         Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
@@ -716,9 +716,9 @@
         \end{itemize}
 
         Si noti che tale valutazione risulta essere lazy, poiché $N$ non viene valutata immediatamente, ma ne viene ritardato il calcolo finché non strettamente necessario.
-    \end{framedobs}
+    \end{framedprop}
 
-    \begin{framedobs}{$Fun_\mathrm{LS}$}
+    \begin{framedprop}{$Fun_\mathrm{LS}$}
         Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera lazy statica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
@@ -729,7 +729,7 @@
         \end{itemize}
 
         Si noti che tale valutazione risulta essere lazy, poiché $N$ non viene valutata immediatamente, ed è a scoping statico poiché viene riportato l'ambiente in cui le valutazioni vengono effettuate.
-    \end{framedobs}
+    \end{framedprop}
 
     \begin{framedlem}[label={fun lemma pt2}]{$Fun_\mathrm{LS}$ e $Fun_\mathrm{LD}$}
         Sia $Fun$ la grammatica definita nell'\cref{fun}; allora, si ha che $$Fun_\mathrm{LS} \not\equiv Fun_\mathrm{LD}$$
@@ -808,29 +808,29 @@
         Si considerino l'\cref{1 church} e l'\cref{2 church}, e si noti che $$\centeredsoe{0_\lambda := \fn{xy}{y} \\ 1_\lambda := \fn{xy}{xy} \\ 2_\lambda :=\fn{xy}{x(xy)} \\ \vdots}$$ dunque, la corrispondenza tra $\N$ e $\N_\lambda$ è data dal \tit{numero di applicazioni effettuate} ad una qualche variabile. Infatti è possibile costruire il seguente isomorfismo tra le algebre $(\N, \mathrm{zero}, \mathrm{succ})$ e $(\N_\lambda, \mathrm{zero}_\lambda, \mathrm{succ}_\lambda)$: $$\funcmap{\varphi}{\N}{\N_\lambda}{n}{\fn{xy}{\underbrace{x \cdots (x}_{n \ \mathrm{volte}}y)}}$$ dove $x$ è dunque una funzione, che può essere applicata ad una certa variabile $y$.
     \end{framedobs}
 
-    \begin{framedobs}{Funzione $\mathrm{eval}_\lambda$}
+    \begin{framedprop}{Funzione $\mathrm{eval}_\lambda$}
         È possibile definire una funzione che, dato un numero di Church, restituisce il corrispondente numero naturale, come segue: $$\mathrm{eval}_\lambda := \fn{z}{z (\fn{x}{x+1}) 0}$$ poiché applica la funzione $\mathrm{succ}_{\N}$ esattamente $z \in \N_\lambda$ volte a 0.
-    \end{framedobs}
+    \end{framedprop}
 
     \begin{example}[Corrispondenze tra $\N_\lambda$ e $\N$]
         Per valutare $\mathrm{eval}_\lambda(1_\lambda)$ è necessario svolgere i seguenti calcoli: $$\centeredsoe{(\fn{z}{z (\fn{x}{x+1})0})(\fn{xy}{xy}) \longrightarrow (\fn{xy}{xy})(\fn{x}{x+1})0 \longrightarrow \\ \longrightarrow (\fn{y}{(\fn{x}{x+1})y})0 \longrightarrow (\fn{x}{x+1})0 \longrightarrow 1}$$
     \end{example}
 
-    \begin{framedobs}{Operazione $\mathrm{sum}_\lambda$}
+    \begin{framedprop}{Operazione $\mathrm{sum}_\lambda$}
         Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di somma, come segue: $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z x (w x y)}})}} \iff \fn{zwxy}{zx(wxy)}$$ poiché alla variabile $y$ viene prima applicata $x$ esattamente $w \in \N_\lambda$ volte ad $y$, e successivamente ad esso viene applicata $x$ altre $z \in \N_\lambda$ volte. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue: $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{z \ \mathrm{succ}_\lambda \ w}} \iff \fn{zw}{z \ \mathrm{succ}_\lambda \ w}$$ poiché viene applicata la funzione di successore $\mathrm{succ}_\lambda$ a $w \in \N_\lambda$, esattamente $z \in \N_\lambda$ volte.
-    \end{framedobs}
+    \end{framedprop}
 
     \begin{example}[Somme in $\N_\lambda$]
         Per calcolare $\mathrm{sum}_\lambda(2_\lambda, 1_\lambda)$ è necessario svolgere i seguenti calcoli: $$\centeredsoe{(\fn{zwxy}{zx(wxy)})(\fn{xy}{x(xy)})(\fn{xy}{xy}) \longrightarrow \\ \longrightarrow (\fn{wxy}{(\fn{xy}{x(xy)})x(wxy)})(\fn{xy}{xy}) \longrightarrow \\ \longrightarrow (\fn{wxy}{(\fn{y}{x(xy)})(wxy)})(\fn{xy}{xy}) \longrightarrow \\ \longrightarrow (\fn{wxy}{x(x(wxy))})(\fn{xy}{xy}) \longrightarrow \fn{xy}{x(x((\fn{xy}{xy})xy))} \longrightarrow \\ \longrightarrow \fn{xy}{x(x((\fn{y}{xy})y))} \longrightarrow \fn{xy}{x(x(xy))} =: 3_\lambda}$$
     \end{example}
 
-    \begin{framedobs}{Operazione $\mathrm{prod}_\lambda$}
+    \begin{framedprop}{Operazione $\mathrm{prod}_\lambda$}
         Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di prodotto, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z(wx)y}})}} \iff \fn{zwxy}{z(wx)y}$$ poiché alla variabile $y$ viene applicata la funzione $z(wx)$, che equivale alla funzione $wx$ composta su sé stessa $z$ volte --- e dunque $z, w \in \N_\lambda$. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{z (\mathrm{sum}_\lambda \ w)0_\lambda}} \iff \fn{zw}{z(\mathrm{sum}_\lambda \ w)0_\lambda}$$ poiché allo $0_\lambda$ viene applicata la funzione $z(\mathrm{sum}_\lambda \ w)$, che equivale alla funzione $(\mathrm{sum}_\lambda \ w)$ --- la quale restituisce una funzione che si aspetta il secondo argomento a cui applicare la somma, che sarà $0_\lambda$ --- composta su sé stessa $z \in \N_\lambda$ volte.
-    \end{framedobs}
+    \end{framedprop}
 
-    \begin{framedobs}{Operazione $\mathrm{power}_\lambda$}
+    \begin{framedprop}{Operazione $\mathrm{power}_\lambda$}
         Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di elevamento a potenza, come segue: $$\mathrm{power}_\lambda := \fn{z}{\fn{w}{wz}}$$ TODO.
-    \end{framedobs}
+    \end{framedprop}
 
     \subsection{Logica booleana di Church}
 
@@ -843,33 +843,33 @@
         \end{itemize}
     \end{frameddefn}
 
-    \begin{framedobs}{Funzione $\mathrm{evalBool}_\lambda$}
+    \begin{framedprop}{Funzione $\mathrm{evalBool}_\lambda$}
         Si consideri la grammatica definita all'interno dell'\cref{fun}; è possibile estenderla affinché includa anche i valori booleani $true$ e $false$. Dunque, è possibile definire una funzione che, dato un booleano di Church, restituisce il corrispondente valore booleano, come segue: $$\mathrm{evalBool}_\lambda := \fn{z}{z \ true \ false}$$
-    \end{framedobs}
+    \end{framedprop}
 
     \begin{example}[Valutazione di $\mathrm{true}_\lambda$]
         Per valutare $\mathrm{evalBool}_\lambda(\mathrm{true}_\lambda)$, è sufficiente svolgere i seguenti calcoli: $$\centeredsoe{(\fn{z}{z \ true \ false})(\fn{xy}{x}) \longrightarrow (\fn{xy}{x})true \ false \longrightarrow \\ \longrightarrow (\fn{y}{true})false \longrightarrow true}$$
     \end{example}
 
-    \begin{framedobs}[label={ite}]{Operazione $\mathrm{ite}_\lambda$}
+    \begin{framedprop}[label={ite}]{Operazione $\mathrm{ite}_\lambda$}
         Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica \tit{if-then-else}, come segue: $$\mathrm{ite}_\lambda := \fn{z}{\fn{u}{\fn{v}{zuv}}} \iff \fn{zuv}{zuv}$$ poiché dato un $z \in B_\lambda$, la funzione restituirà $u$ se $z$ è $\mathrm{true}_\lambda$, altrimenti $v$.
-    \end{framedobs}
+    \end{framedprop}
 
-    \begin{framedobs}{Operazione $\mathrm{if}_\lambda$}
+    \begin{framedprop}{Operazione $\mathrm{if}_\lambda$}
         Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica \tit{if}, come segue: $$\mathrm{if}_\lambda := \fn{z}{\fn{u}{z \ u \ \mathrm{true}_\lambda}} \iff \fn{zu}{z \ u \ \mathrm{true}_\lambda}$$ poiché l'operazione è equivalente ad $\mathrm{ite}_\lambda$ definita all'interno dell'\cref{ite}, ma il branch dell'\tit{else} restituisce sempre $\mathrm{true}_\lambda$.
-    \end{framedobs}
+    \end{framedprop}
 
-    \begin{framedobs}{Operazione $\mathrm{not}_\lambda$}
-        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di negazione come segue: $$\mathrm{not}_\lambda := \fn{z}{(\fn{x}\fn{y}{zyx})} \iff \fn{zxy}{zyx}$$ poiché tale funzione passa ad un certo $z \in B_\lambda$ le variabili $x$ ed $y$ scambiate di posto. Si noti che l'operazione è simile all'operazione $\mathrm{ite}_\lambda$ definita nell'\cref{ite}, poiché è possibile interpretarla come l'inverso dell'operazione \tit{if-then-else}.
-    \end{framedobs}
+    \begin{framedprop}{Operazione $\mathrm{not}_\lambda$}
+        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di negazione come segue: $$\mathrm{not}_\lambda := \fn{z}{(\fn{x}\fn{y}{zyx})} \iff \fn{zxy}{zyx}$$ poiché tale funzione passa ad un certo $z \in B_\lambda$ le variabili $x$ ed $y$ scambiate di posto. Si noti che l'operazione è simile all'operazione $\mathrm{ite}_\lambda$ definita nella \cref{ite}, poiché è possibile interpretarla come l'inverso dell'operazione \tit{if-then-else}.
+    \end{framedprop}
 
-    \begin{framedobs}{Operazione $\mathrm{or}_\lambda$}
+    \begin{framedprop}{Operazione $\mathrm{or}_\lambda$}
         Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di $or$, come segue: $$\mathrm{or}_\lambda := \fn{z}{\fn{w}{\mathrm{if}_\lambda(\mathrm{not}_\lambda \ z)w}} \iff \fn{zw}{\mathrm{if}_\lambda(\mathrm{not}_\lambda \ z)w}$$ poiché TODO
-    \end{framedobs}
+    \end{framedprop}
 
-    \begin{framedobs}{Operazione $\mathrm{and}_\lambda$}
+    \begin{framedprop}{Operazione $\mathrm{and}_\lambda$}
         Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di $and$, come segue: $$\mathrm{and}_\lambda := \fn{z}{\fn{w}{\mathrm{not}_\lambda(\mathrm{if}_\lambda \ z (\mathrm{not}_\lambda \ w))}}$$ poiché TODO
-    \end{framedobs}
+    \end{framedprop}
 
     \subsection{Lambda calcolo}
 
@@ -986,7 +986,7 @@
 
     \begin{example}[Grammatica $Imp$]
         \label{imp}
-        Si consideri la grammatica $Exp$ definita all'interno dell'\cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estenderla come segue: $$M,N ::= k \ | \ true \ | \ false \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ \ttt < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S}}$$
+        Si consideri la grammatica $Exp$ definita all'interno dell'\cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estenderla come segue: $$M,N ::= k \ | \ true \ | \ false \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S}}$$
     \end{example}
 
     \begin{framedobs}{Semantiche di $Imp$}
@@ -1002,7 +1002,7 @@
             \item \tbf{variabili}: $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid S(E(x)) = v \implies [vars] \ \opjudstore{E}{x}{S}{v}$$
             \item \tbf{somme}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 + v_2 \implies [plus] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt + \ N}{S}{v}}$}
             \item \tbf{prodotti}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 \cdot v_2 \implies [times] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt * \ N}{S}{v}}$}
-            \item \tbf{minorazioni}: $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt < \ N}{S}{true}}$$ $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt < \ N}{S}{false}}$$
+            \item \tbf{minorazioni}: $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{true}}$$ $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{false}}$$
             \item \tbf{skip}: $$[skip] \ \opjudstore{E}{skip}{S}{S}$$
             \item \tbf{esecuzioni sequenziali}: $$\forall p, q \in Imp, S', S'' \in \mathrm{Store} \quad [seq] \ \dfrac{\opjudstore{E}{p}{ S}{S'} \quad \opjudstore{E}{q}{ S'}{S''}}{\opjudstore{E}{p;q}{S}{S''}}$$
             \item \tbf{if-then-else}: $$\forall p, q \in Imp, S' \in \mathrm{Store} \quad [ite_1] \ \dfrac{\opjudstore{E}{M}{ S}{true} \quad \opjudstore{E}{p}{S}{S'}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S'}}$$ $$\forall p, q \in Imp, S'' \in \mathrm{Store} \quad [ite_2] \ \dfrac{\opjudstore{E}{M}{S}{false} \quad \opjudstore{E}{p}{S}{S''}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S''}}$$
@@ -1020,11 +1020,11 @@
 
     \subsection{Clausole imperative a memoria contigua}
 
-    \begin{frameddefn}{Clausola $loc$}
-        TODO
+    \begin{frameddefn}{Clausola $arr$}
+        Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $arr$, come segue: $$\func{arr}{\mathrm{Var} \times G_M^+ \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\arrin{\ttt{*variable*}}{[\ttt{\_expression\_}_1, \ldots, \ttt{\_expression\_}_n]}{\ttt{<program>}}$$ la quale pone $\ttt{*variable*}$ pari all'array $[\ttt{\_expression\_}_1, \ldots, \ttt{\_expression\_}_n]$, all'interno di $\ttt{<program>}$.
     \end{frameddefn}
 
-    \begin{frameddefn}{Clausola $arr$}
+    \begin{frameddefn}{Clausola $loc$}
         TODO
     \end{frameddefn}
 
@@ -1080,25 +1080,25 @@
         TODO
     \end{frameddefn}
 
-    \begin{framedobs}[label={all v}]{$All_\mathrm{V}$}
+    \begin{framedprop}[label={all v}]{$All_\mathrm{V}$}
         Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-value}, è necessario definire la seguente regola di inferenza: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies [call]_{value} \ \dfrac{\opjudstore[M]{E}{M}{S}{v} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore[p]{E}{\call{y}{M}}{S}{S'}}$$ per certi $E, E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$, poiché:
 
         \begin{itemize}
             \item l'espressione $M$ viene valutata attraverso la semantica $\stackrel{M}{\leadsto}$, la quale restituisce un valore $v$;
             \item viene effettuato il calcolo di $p$, con l'ambiente salvato precedentemente concatenato $(x,l)$, e con lo store corrente concatenato a $(l,v)$, per una qualche nuova locazione di memoria $l$.
         \end{itemize}
-    \end{framedobs}
+    \end{framedprop}
 
-    \begin{framedobs}[label={all r}]{$All_\mathrm{R}$}
+    \begin{framedprop}[label={all r}]{$All_\mathrm{R}$}
         Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-reference}, è necessario definire la seguente regola di inferenza: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies [call]_{ref} \ \dfrac{\opjudstore[V]{E}{V}{S}{l} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$ per certi $E,E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$, poiché
 
         \begin{itemize}
             \item l'espressione $M$ viene valutata attraverso la semantica $\stackrel{V}{\leadsto}$, la quale restituisce una locazione $l$;
             \item TODO
         \end{itemize}
-    \end{framedobs}
+    \end{framedprop}
 
-    \begin{framedobs}[label={all n}]{$All_\mathrm{N}$}
+    \begin{framedprop}[label={all n}]{$All_\mathrm{N}$}
         TODO RILEGGI QUESTO PERCHE L'HAI SCRITTO SENZA CAPIRLO
         Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-name}, è necessario ridefinire l'insieme degli ambienti, come segue $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc}^+ \cup (\mathrm{Var} \times All \times \mathrm{Env}) \cup (LExp \times \mathrm{Env})\}$$ ed inoltre vengono aggiunte le due regole di inferenza che seguono:
 
@@ -1108,32 +1108,40 @@
         \end{itemize}
 
         per certi $E, E' \in \mathrm{Env}, S, S' \in \mathrm{Store}$.
-    \end{framedobs}
+    \end{framedprop}
+
+    \begin{framedlem}{Semantiche di $All$}
+        Sia $All$ la grammatica definita nell'\cref{all}; allora, si ha che $$All_\mathrm{V} \not\equiv All_\mathrm{R} \not\equiv All_\mathrm{N}$$
+    \end{framedlem}
+    
+    \begin{proof}
+        Omessa.
+    \end{proof}
 
     \chapter{TODO}
     
-    \section{TODO}
+    \section{Logica di Hoare}
 
-    \subsection{TODO}
+    \subsection{Definizioni}
 
     \begin{frameddefn}{Tripla di Hoare}
         Si definisce \tbf{tripla di Hoare} la seguente clausola: $$\hoare{A}{p}{B}$$ dove $A$ --- che prende il nome di \tbf{precondizione} --- e $B$ --- che prende il nome di \tbf{postcondizione} --- sono espressioni booleane, e $p$ è un programma. La sua \tit{interpretazione di correttezza parziale} è la seguente: \curlyquotes{stando in uno stato che soddisfa $A$, ed eseguendo $p$ a partire da quest'ultimo, se $p$ termina, allora esso terminerà in uno stato che soddisfa $B$}.
     \end{frameddefn}
 
     \begin{frameddefn}[label={formula}]{Formula}
-        Si definisce \tbf{formula} una proposizione appartenente alla seguente grammatica: $$\varphi ::= A \ | \ \hoare{A}{p}{Q}$$ dove $A$ e $B$ sono espressioni booleane, e $p$ è un programma.
+        Si definisce \tbf{formula} una proposizione appartenente alla seguente grammatica: $$\varphi ::= A \ | \ \hoare{B}{p}{C}$$ dove $A$, $B$ e $C$ sono espressioni booleane, e $p$ è un programma.
     \end{frameddefn}
 
-    \begin{framedprop}{Regole di inferenza}
+    \begin{framedprop}{Inferenza delle triple di Hoare}
         Si considerino le formule descritte all'interno della \cref{formula}; allora, si definiscono le seguenti regole di inferenza:
 
         \begin{itemize}
             \item \tbf{true}: $$\hoare{A}{p}{true}$$ poiché, per qualsiasi programma $p$, indipendentemente dalla precondizione $A$, ogni espressione booleana di postcondizione soddisferà $true$;
             \item \tbf{false}: $$\hoare{false}{p}{B}$$ poiché la tripla di Hoare è vera a vuoto, in quando la precondizione non può essere soddisfatta poiché è $false$;
-            \item \tbf{strengthening}: $$\dfrac{A \supset B \quad \hoare{B}{p}{C}}{\hoare{A}{p}{C}}$$ poiché TODO;
-            \item \tbf{weakening}: $$\dfrac{B \supset A \quad \hoare{C}{p}{A}}{\hoare{C}{p}{A}}$$ poiché TODO; si noti che le regole di \tit{strengthening} e di \tit{weakening} sono l'una il duale dell'altra;
-            \item \tbf{and}: $$\dfrac{\hoare{A}{p}{B_0} \quad \hoare{A}{p}{B_1} \quad \ldots \quad \hoare{A}{p}{B_n}}{\hoare{A}{p}{B_0 \land B_1 \land \ldots \land B_n}}$$ poiché TODO;
-            \item \tbf{or}: $$\dfrac{\hoare{B_0}{p}{A} \quad \hoare{B_1}{p}{A} \quad \ldots \quad \hoare{B_n}{p}{A}}{\hoare{B_0 \lor B_1 \lor \ldots \lor B_n}{p}{A}}$$ poiché TODO; si noti che le regole \tit{and} ed \tit{or} sono l'una il duale dell'altra;
+            \item \tbf{strengthening}: $$\dfrac{A \supset B \quad \hoare{B}{p}{C}}{\hoare{A}{p}{C}}$$ poiché se da $A$ implica $B$, e si raggiunge uno stato che soddisfa $C$ quando $p$ termina partendo da uno stato che soddisfa $B$, allora sicuramente partendo da uno stato che soddisfa $A$, quando $p$ termina, $C$ sarà soddisfatta dallo stato terminale;
+            \item \tbf{weakening}: $$\dfrac{B \supset A \quad \hoare{C}{p}{B}}{\hoare{C}{p}{A}}$$ poiché se da $B$ implica $A$, e si raggiunge uno stato che soddisfa $B$ quando $p$ termina partendo da uno stato che soddifa $C$, allora sicuramente partendo da uno stato che soddisfa $C$, quando $p$ termina, $A$ sarà soddisfatta dallo stato terminale; si noti che le regole di \tit{strengthening} e di \tit{weakening} sono l'una il duale dell'altra;
+            \item \tbf{and}: $$\dfrac{\hoare{A}{p}{B_0} \quad \hoare{A}{p}{B_1} \quad \ldots \quad \hoare{A}{p}{B_n}}{\hoare{A}{p}{B_0 \land B_1 \land \ldots \land B_n}}$$ poiché, se partendo da uno stato che soddisfa $A$, una volta terminata l'esecuzione, $p$ raggiunge uno stato che soddisfa $B_0$ e $B_1, \ldots, B_n$, allora soddisferà sicuramente anche $B_0 \land B_1 \land \ldots \land B_n$;
+            \item \tbf{or}: $$\dfrac{\hoare{B_0}{p}{A} \quad \hoare{B_1}{p}{A} \quad \ldots \quad \hoare{B_n}{p}{A}}{\hoare{B_0 \lor B_1 \lor \ldots \lor B_n}{p}{A}}$$ poiché, se partendo da un qualsiasi stato tra $B_0$ e $B_1, \ldots, B_n$, una volta terminata l'esecuzione, $p$ raggiunge uno stato che soddisfa $A$, allora lo stato iniziale soddisferà anche $B_0 \lor B_1 \lor \ldots \lor B_n$; si noti che le regole \tit{and} ed \tit{or} sono l'una il duale dell'altra;
         \end{itemize}
     \end{framedprop}
 
