@@ -1077,34 +1077,41 @@
     \subsection{Semantiche delle chiamate}
 
     \begin{frameddefn}{Semantiche di $call$}
-        TODO
+        È possibile effettuare le chiamate alle procedure attraverso le seguenti semantiche operazionali:
+
+        \begin{itemize}
+            \item \tbf{call-by-value}, la quale corrisponde ad una semantica \tit{eager statica}, e gli argomenti alle procedure vengono passati attraverso termini di $Exp$, e vengono valutati;
+            \item \tbf{call-by-reference}, la quale corrisponde ad una semantica \tit{eager statica}, e gli argomenti alle procedure vengono passati attraverso termini di $LExp$, e vengono valutati;
+            \item \tbf{call-by-name}, la quale corrisponde ad una semantica \tit{lazy statica}, e gli argomenti vengono passati attraverso termini di $LExp$, ma non vengono valutati.
+        \end{itemize}
     \end{frameddefn}
 
     \begin{framedprop}[label={all v}]{$All_\mathrm{V}$}
-        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-value}, è necessario definire la seguente regola di inferenza: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies [call]_{value} \ \dfrac{\opjudstore[M]{E}{M}{S}{v} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore[p]{E}{\call{y}{M}}{S}{S'}}$$ per certi $E, E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$, poiché:
+        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-value}, è necessario definire la seguente regola di inferenza:
 
         \begin{itemize}
-            \item l'espressione $M$ viene valutata attraverso la semantica $\stackrel{M}{\leadsto}$, la quale restituisce un valore $v$;
-            \item viene effettuato il calcolo di $p$, con l'ambiente salvato precedentemente concatenato $(x,l)$, e con lo store corrente concatenato a $(l,v)$, per una qualche nuova locazione di memoria $l$.
+            \item \tbf{call-by-value}: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies [call]_{value} \ \dfrac{\opjudstore[M]{E}{M}{S}{v} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore[p]{E}{\call{y}{M}}{S}{S'}}$$
         \end{itemize}
+
+        per certi $E, E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$.
     \end{framedprop}
 
     \begin{framedprop}[label={all r}]{$All_\mathrm{R}$}
-        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-reference}, è necessario definire la seguente regola di inferenza: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies [call]_{ref} \ \dfrac{\opjudstore[V]{E}{V}{S}{l} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$ per certi $E,E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$, poiché
+        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-reference}, è necessario definire la seguente regola di inferenza: 
 
         \begin{itemize}
-            \item l'espressione $M$ viene valutata attraverso la semantica $\stackrel{V}{\leadsto}$, la quale restituisce una locazione $l$;
-            \item TODO
+            \item \tbf{call-by-reference}: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies [call]_{ref} \ \dfrac{\opjudstore[V]{E}{V}{S}{l} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$
         \end{itemize}
+
+        per certi $E,E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$.
     \end{framedprop}
 
     \begin{framedprop}[label={all n}]{$All_\mathrm{N}$}
-        TODO RILEGGI QUESTO PERCHE L'HAI SCRITTO SENZA CAPIRLO
         Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-name}, è necessario ridefinire l'insieme degli ambienti, come segue $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc}^+ \cup (\mathrm{Var} \times All \times \mathrm{Env}) \cup (LExp \times \mathrm{Env})\}$$ ed inoltre vengono aggiunte le due regole di inferenza che seguono:
 
         \begin{itemize}
-            \item \tbf{TODO CHE VOR DI}: $$TODO$$ $$E(x) = (V, E') \implies \dfrac{\opjudstore[V]{E'}{V}{S}{l}}{\opjudstore[V]{E}{x}{S}{l}}$$
-            \item \tbf{call-by-name}: $$TODO$$ $$E(y) = (x, p, E') \implies [call]_{name} \ \dfrac{\opjudstore[p]{E'\{(x,(V,E))\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$
+            \item \tbf{locazioni}: $$\forall x \in \mathrm{Var}, l \in \mathrm{Loc}, V \in LExp \quad E(x) = (V, E') \implies [loc_3] \ \dfrac{\opjudstore[V]{E'}{V}{S}{l}}{\opjudstore[V]{E}{x}{S}{l}}$$
+            \item \tbf{call-by-name}: $$\forall x,y \in \mathrm{Var}, V \in LExp, p \in Imp$$ $$E(y) = (x, p, E') \implies [call]_{name} \ \dfrac{\opjudstore[p]{E'\{(x,(V,E))\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$
         \end{itemize}
 
         per certi $E, E' \in \mathrm{Env}, S, S' \in \mathrm{Store}$.
