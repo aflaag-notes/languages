@@ -1004,7 +1004,7 @@
             \item \tbf{prodotti}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 \cdot v_2 \implies [times] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt * \ N}{S}{v}}$}
             \item \tbf{minorazioni}: $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{true}}$$ $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{false}}$$
             \item \tbf{skip}: $$[skip] \ \opjudstore{E}{skip}{S}{S}$$
-            \item \tbf{esecuzioni sequenziali}: $$\forall p, q \in Imp, S', S'' \in \mathrm{Store} \quad [seq] \ \dfrac{\opjudstore{E}{p}{ S}{S'} \quad \opjudstore{E}{q}{ S'}{S''}}{\opjudstore{E}{p;q}{S}{S''}}$$
+            \item \tbf{composizioni sequenziali}: $$\forall p, q \in Imp, S', S'' \in \mathrm{Store} \quad [seq] \ \dfrac{\opjudstore{E}{p}{ S}{S'} \quad \opjudstore{E}{q}{ S'}{S''}}{\opjudstore{E}{p;q}{S}{S''}}$$
             \item \tbf{if-then-else}: $$\forall p, q \in Imp, S' \in \mathrm{Store} \quad [ite_1] \ \dfrac{\opjudstore{E}{M}{ S}{true} \quad \opjudstore{E}{p}{S}{S'}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S'}}$$ $$\forall p, q \in Imp, S'' \in \mathrm{Store} \quad [ite_2] \ \dfrac{\opjudstore{E}{M}{S}{false} \quad \opjudstore{E}{p}{S}{S''}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S''}}$$
             \item \tbf{while}: \centeredeq{0.9}{$\forall M \in Exp, S', S'' \in \mathrm{Store} \quad [while_1] \ \dfrac{\opjudstore{E}{M}{S}{true} \quad \opjudstore{E}{p}{S}{S'} \quad \opjudstore{E}{\while{M}{p}}{ S'}{S''}}{\opjudstore{E}{\while{M}{p}}{ S}{S''}}$} $$\forall M \in Exp \quad [while_2] \ \dfrac{\opjudstore{E}{M}{S}{false}}{\opjudstore{E}{\while{M}{p}}{S}{S}}$$
             \item \tbf{dichiarazioni ed assegnazioni}: $$\forall x \in \mathrm{Var}, M \in Exp, p \in Imp, S' \in \mathrm{Store}, v \in \mathrm{Val} \quad \exists l \in \mathrm{Loc} \mid l \notin \dom(S) \implies$$ $$\implies [var] \ \dfrac{\opjudstore{E}{M}{S}{v} \quad \opjudstore{E\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore{E}{\varin{x}{M}{p}}{S}{S'}}$$
@@ -1162,10 +1162,21 @@
 
         \begin{itemize}
             \item \tbf{skip}: $$\hoare{A}{skip}{A}$$ poichè la clausola $skip$ non effettua nulla;
-            \item \tbf{esecuzione sequenziale}: $$\dfrac{\hoare{A}{p}{B} \quad \hoare{B}{q}{C}}{\hoare{A}{p;q}{B}}$$ poiché al fine di effettuare $p$ e $q$ in sequenza è necessaria una condizione intermedia (nell'esempio $B$);
+            \item \tbf{composizioni sequenziali}: $$\dfrac{\hoare{A}{p}{B} \quad \hoare{B}{q}{C}}{\hoare{A}{p;q}{B}}$$ poiché al fine di effettuare $p$ e $q$ in sequenza è necessaria una condizione intermedia (nell'esempio $B$);
             \item \tbf{if-then-else}: $$\dfrac{\hoare{A \land C}{p}{B} \quad \hoare{A \land \lnot C}{q}{B}}{\hoare{A}{\ite{C}{p}{q}}{B}}$$ poiché entrambe le triple di Hoare devono avere $B$ come postcondizione, ma TODO; si noti che anche la seguente regola di inferenza è una valida alternativa $$\dfrac{\hoare{A}{p}{B} \quad \hoare{A}{q}{B}}{\hoare{A}{\ite{C}{p}{q}}{B}}$$ ma questa risulta essere una regola \tit{più debole} della precedente, poiché le triple $\hoare{A}{p}{B}$ e $\hoare{A}{q}{B}$ sono \tit{più forti}, in quanto hanno meno precondizioni da verificare, ma questo le rende anche più difficili da dimostrare;
             \item TODO
         \end{itemize}
+    \end{example}
+
+    \begin{example}[Correttezza di programmi] Si consideri il seguente programma, in grado di calcolare quoziente e resto dati dal rapporto di due numeri in input (nel programma, $x$ ed $y$): $$b :=x; \ a := 0; \ \while{b \ge y}{(b := b - y ; \ a := a + 1)}$$ È possibile dimostrarne la correttezza attraverso il seguente albero di valutazione:
+
+        \centeredeq{0.9}{$(*) \ \dfrac{x \ge 0 \supset (x = 0 \cdot y + x \land x \ge 0 ) \quad \dfrac{\hoare{x = 0 \cdot y + x \land x \ge 0}{b := x}{A_1}}{\hoare{A_1[x/b]}{b := x}{A_1}}}{\hoare{x \ge 0}{b := x}{x = 0 \cdot y + b \land b \ge 0}}$}
+        \centeredeq{0.9}{$(**) \ \dfrac{A \land b \ge y \supset (x = (a + 1) \cdot y + (b - y) \land b-y \ge 0) \quad \dfrac{\hoare{x = (a + 1) \cdot y + (b - y) \land b - y \ge 0}{b:= b - y}{A_2}}{\hoare{A_2[(b - y)/b]}{b: = b - y}{A_2}}}{\hoare{A \land b \ge y}{b := b - y}{x = (a + 1) \cdot y + b \land b \ge 0}}$}
+        \centeredeq{0.9}{$\dfrac{\dfrac{(*) \quad \dfrac{\hoare{x = 0 \cdot y + b \land b \ge 0}{a := 0}{A}}{\hoare{A[0/a]}{a := 0}{A}}}{\hoare{x \ge 0}{b := x; \ a := 0}{A}} \quad \dfrac{\dfrac{(**) \quad \dfrac{\hoare{x = (a + 1) \cdot y + b \land b \ge 0}{a:=a+1}{A}}{\hoare{A[(a+1)/a]}{a:= a +1}{A}}}{\hoare{A \land b \ge y}{b := b - y; \ a := a + 1}{A}}}{\hoare{A}{\while{b \ge y}{(b := b - y; \ a := a + 1)}}{A \land b < y}}}{\hoare{x \ge 0}{b :=x; \ a := 0; \ \while{b \ge y}{(b := b - y ; \ a := a + 1)}}{x = a \cdot y + b \land 0 \le b < y}}$}
+
+        dove $$\centeredsoe{A := x = a \cdot y + b \land b \ge 0 \\ A_1 := A[0/a] \longrightarrow x = 0 \cdot y + b \land b \ge 0 \\ A_2 := A[(a + 1)/a] \longrightarrow x = (a + 1) \cdot y + b \land b \ge 0}$$
+
+        Si noti che la postcondizione scelta per dimostrare la correttezza del programma, ovvero $$x = a \cdot y + b \land 0 \le b < y$$ è valida poiché TODO. Inoltre, la tripla di Hoare è soddisfatta poiché TODO.
     \end{example}
 
 \end{document}

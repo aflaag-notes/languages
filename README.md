@@ -7,9 +7,11 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 - generali
     - finire i TODOs
     - definizione di chiusura
-- appunti del 3/10
+- appunti 3/10
     - equivalenza di segnature
     - lemma di lambek
+- appunti 06/11
+    - finire
 - rileggere
     - da esempio 2.5.3.3 pag 34
 
