@@ -739,7 +739,7 @@
         Omessa.
     \end{proof}
 
-    \begin{frameddefn}{Espressione $\omega$}
+    \begin{frameddefn}[label={omega}]{Espressione $\omega$}
         Data una grammatica, l'\tbf{espressione $\omega$} è un'espressione composta dalla più piccola funzione che entra in ricorsione infinita senza chiamare sé stessa.
     \end{frameddefn}
 
@@ -925,12 +925,20 @@
     \end{example}
 
     \begin{frameddefn}{Beta conversione}
-        Data una lambda espressione $(\lambda x.M)$, si definisce \tbf{beta conversione} la regola secondo la quale ogni occorrenza di $x$ all'interno di $M$ viene rimpiazzata dal termine $N$. In simboli $$(\lambda x.M)N \betaconv M[N/x]$$ Di fatto, la beta conversione corrisponde ad un passo computazionale.
+        Data una lambda espressione $(\lambda x.M)$, si definisce \tbf{beta conversione} la regola secondo la quale ogni occorrenza di $x$ all'interno di $M$ viene rimpiazzata dal termine $N$. In simboli $$(\lambda x.M)N \betaconv M[N/x]$$
     \end{frameddefn}
 
     \begin{example}[Beta conversioni]
         Si consideri la seguente lambda espressione $$(\lambda x.xy)(\lambda z.z)$$ applicando la beta conversione, si ottiene $$(\lambda x.xy)(\lambda z.z) \betaconv (\lambda z.z)y \betaconv y$$
     \end{example}
+
+    \begin{framedobs}{Beta conversioni}
+        Di fatto, la beta conversione corrisponde ad un passo computazionale.
+    \end{framedobs}
+
+    \begin{framedobs}{Semantica delle beta conversioni}
+        Si noti che la beta conversione ha significato solamente in un contesto lazy, poiché considerando ad esempio la lambda espressione $$(\lambda x.7) \omega$$ (dove $\omega$ è rappresenta l'espressione $\omega$ della \cref{omega}) essa è beta equivalente alla lambda espressione $(\lambda x.7)[\omega/x] \betaconv 7$ soltanto se l'espressione $\omega$ non viene valutata.
+    \end{framedobs}
 
     \begin{frameddefn}[label={eta conv}]{Eta conversione}
         Si definisce \tbf{eta conversione} la regola secondo la quale una lambda espressione $(\lambda x.Mx)$ può essere rimpiazzata con $M$, solo se $x$ non è libera. In simboli $$x \notin \mathrm{free}(M) \implies \lambda x.Mx \etaconv M$$
@@ -942,6 +950,44 @@
 
     \begin{framedobs}{Cattura nelle eta conversioni}
         Si noti che, all'interno della \cref{eta conv}, la condizione per cui $x$ non sia libera garantisce che la conversione produca espressioni equivalenti; infatti, se $x$ fosse libera in $M$, poiché non lo sarebbe comunque in $(\lambda x.Mx)$, l'eta conversione non avrebbe mantenuto l'equivalenza.
+    \end{framedobs}
+
+    \section{Ricorsione}
+    
+    \subsection{Punto fisso}
+
+    \begin{frameddefn}{Punto fisso}
+        Data una funzione $f$, un elemento $x$ è detto \tbf{punto fisso di $f$} se e solo se $f(x) = x$.
+    \end{frameddefn}
+
+    \begin{example}[Punti fissi]
+        Sia $f(x) = x^2 -3x +4$; allora, poiché $f(2) = 2^2 - 3 \cdot 2 + 4 = 4 - 6 + 4 = 2$, 2 è un punto fisso di $f$.
+    \end{example}
+
+    \begin{example}[Funzioni come punti fissi]
+        Si consideri la funzione $$F(g) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot g(x - 1) & x > 0}$$ che prende in input una funzione; per vedere come opera, calcolando ad esempio $F(\mathrm{succ})$, si ottiene la funzione $$F(\mathrm{succ}) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{succ}(x - 1) = x \cdot x = x^2 & x > 0}$$ che restituisce 1 se $x$ è 0, altrimenti restituisce $x^2$.
+
+        Allora, il punto fisso di $F$ è la funzione seguente $$\mathrm{fact}(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{fact}(x - 1) & x > 0}$$ che computa il fattoriale di un numero; infatti, si ha che $$F(\mathrm{fact}) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{fact}(x - 1) & x > 0} =: \mathrm{fact}$$
+    \end{example}
+
+    \subsection{Combinatore di Kleene}
+
+    \begin{frameddefn}{Combinatore di Kleene}
+        Si definisce \tbf{combinatore di Kleene}, o \tbf{operatore di punto fisso}, la seguente espressione esprimibile attraverso la grammatica $Fun$ dell'\cref{fun}: $$\mathrm Y := \fn{f}{((\fn{x}{f(xx)})(\fn{x}{f(xx)}))}$$
+    \end{frameddefn}
+
+    \begin{framedprop}{Operatore di punto fisso}
+        Data una funzione, il ricorsore di Kleene ne restituisce il punto fisso.
+    \end{framedprop}
+
+    \begin{proof}
+        Se il ricorsore di Kleene è in grado di restituire il punto fisso di una funzione, allora data una funzione $h$, si ha che $\mathrm Yh$ è il suo punto fisso, e dunque per definizione $$h(\mathrm Yh) = \mathrm Yh$$ Allora, svolgendo i calcoli, si ottiene che \centeredeq{0.9}{$\mathrm Yh \betaconv (\fn{x}{h(xx)})(\fn{x}{h(xx)}) \longrightarrow  h((\fn{x}{h(xx)})(\fn{x}{h(xx)})) \betaconv h (\mathrm Y h)$}
+    \end{proof}
+
+    \begin{framedobs}{Ricorsione attraverso $\mathrm Y$}
+        Si noti che, poiché per una funzione $h$ è vero che $h(\mathrm Yh) = \mathrm Y h$, si ha che $$\centeredsoe{h(\mathrm Y h) = \mathrm Y h \\ h (h(\mathrm Y h)) = \mathrm Y h \\ \vdots \\ h( \ldots (h(\mathrm Yh))) = \mathrm Y h}$$
+
+        TODO DA FINIRE
     \end{framedobs}
 
     \chapter{Paradigma imperativo}

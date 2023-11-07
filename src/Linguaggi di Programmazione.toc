@@ -28,13 +28,16 @@
 \contentsline {subsection}{\numberline {2.5.1}Numeri di Church}{29}{subsection.2.5.1}%
 \contentsline {subsection}{\numberline {2.5.2}Logica booleana di Church}{32}{subsection.2.5.2}%
 \contentsline {subsection}{\numberline {2.5.3}Lambda calcolo}{34}{subsection.2.5.3}%
-\contentsline {chapter}{\numberline {3}Paradigma imperativo}{37}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Programmi}{37}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Memoria}{37}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Clausole imperative}{38}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Memoria contigua}{41}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Clausole imperative a memoria contigua}{42}{subsection.3.1.4}%
-\contentsline {subsection}{\numberline {3.1.5}Semantiche delle chiamate}{45}{subsection.3.1.5}%
-\contentsline {chapter}{\numberline {4}TODO}{47}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Logica di Hoare}{47}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Definizioni}{47}{subsection.4.1.1}%
+\contentsline {section}{\numberline {2.6}Ricorsione}{37}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Punto fisso}{37}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Combinatore di Kleene}{37}{subsection.2.6.2}%
+\contentsline {chapter}{\numberline {3}Paradigma imperativo}{39}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Programmi}{39}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Memoria}{39}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Clausole imperative}{40}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Memoria contigua}{43}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}Clausole imperative a memoria contigua}{44}{subsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.1.5}Semantiche delle chiamate}{47}{subsection.3.1.5}%
+\contentsline {chapter}{\numberline {4}TODO}{49}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Logica di Hoare}{49}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Definizioni}{49}{subsection.4.1.1}%

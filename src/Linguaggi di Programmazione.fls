@@ -1,4 +1,4 @@
-PWD /home/aless/Desktop/notes/languages/src
+PWD /home/phantasm/Scrivania/notes/languages/src
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
 INPUT Linguaggi di Programmazione.tex
@@ -1856,7 +1856,7 @@ INPUT ./Linguaggi di Programmazione.out
 INPUT ./Linguaggi di Programmazione.out
 INPUT Linguaggi di Programmazione.run.xml
 OUTPUT Linguaggi di Programmazione.run.xml
-INPUT /home/aless/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk
+INPUT /home/phantasm/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
