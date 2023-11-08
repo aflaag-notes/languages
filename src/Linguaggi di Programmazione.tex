@@ -207,7 +207,9 @@
     \end{example}
 
     \begin{example}[Algebra di Boole]
-        Dato l'insieme $B = \{ \mathrm{true}, \mathrm{false}\}$, e la funzione $\lnot$ definita come segue $$\funcmap{\lnot}{B}{B}{x}{\left \{ \begin{array}{ll} \mathrm{false} & x = \mathrm{true} \\ \mathrm{true} & x = \mathrm{false} \end{array} \right.}$$ è possibile dimostrare che l'algebra $(B, \lnot)$ non è induttiva; infatti, nonostante $\lnot$ sia iniettiva, e la seconda proprietà della \cref{inductive algebra} sia vera a vuoto, $(B, \lnot)$ non presenta costruttore nullario, e dunque non può costituire un'algebra induttiva (si noti l'\cref{third inductive algebra}).
+        Dato l'insieme $B = \{ \mathrm{true}, \mathrm{false}\}$, e la funzione $\lnot$ definita come segue: $$\funcmap{\lnot}{B}{B}{x}{\left \{ \begin{array}{ll} \mathrm{false} & x = \mathrm{true} \\ \mathrm{true} & x = \mathrm{false} \end{array} \right.}$$ è possibile dimostrare che l'algebra $(B, \lnot)$ non è induttiva; infatti, nonostante $\lnot$ sia iniettiva, e la seconda proprietà della \cref{inductive algebra} sia vera a vuoto, $(B, \lnot)$ non presenta costruttore nullario, e dunque non può costituire un'algebra induttiva (si noti l'\cref{third inductive algebra}).
+
+        Inoltre, si noti che anche l'algebra $(B, \lnot, \mathrm{true}_f)$, dove $\mathrm{true}_f$ è la funzione nullaria definita come segue: $$\funcmap{\mathrm{true}_f}{\1}{B}{x}{\mathrm{true}}$$ non è induttiva, poiché $$\mathrm{true} \in \im(\lnot) \implies \im(\mathrm{true}_f) \cap \im(\lnot) \neq \varnothing$$
     \end{example}
 
     \begin{example}[Algebre induttive]
@@ -779,7 +781,7 @@
     \subsection{Numeri di Church}
 
     \begin{frameddefn}{Numeri di Church}
-        La \tbf{rappresentazione di Church} dei numeri naturali, denotata con $\N_\lambda$, è la seguente:
+        La \tbf{rappresentazione di Church dei numeri naturali}, denotata con $\N_\lambda$, è la seguente:
         \begin{itemize}
             \item $0_\lambda := \fn{x}{\fn{y}{y}} \iff \fn{xy}{y}$
             \item $\mathrm{succ}_\lambda := \fn{z}{(\fn{x}{\fn{y}{z x (x y)})}} \iff \fn{zxy}{zx(xy)}$
@@ -796,9 +798,9 @@
         Per calcolare il $2_\lambda \in \N_\lambda$ di Church, è sufficiente valutare $\mathrm{succ}_\lambda(1_\lambda)$, e dunque $$\centeredsoe{(\fn{zxy}{zx(xy)})(\fn{xy}{xy}) \longrightarrow \fn{xy}{(\fn{xy}{xy})x(xy)} \longrightarrow \\ \longrightarrow \fn{xy}{(\fn{y}{xy})(xy)} \longrightarrow \fn{xy}{xxy} =: 2_\lambda}$$
     \end{example}
 
-    \begin{framedprop}{Algebra dei numeri di Church}
+    \begin{framedlem}{Algebra dei numeri di Church}
         Si consideri l'algebra dei numeri di Church, definita come $(\N_\lambda, \mathrm{zero}_\lambda, \mathrm{succ}_\lambda)$, dove $$\funcmap{\mathrm{zero}_\lambda}{\1}{\N_\lambda}{x}{0_\lambda}$$ Essa è un'algebra induttiva.
-    \end{framedprop}
+    \end{framedlem}
 
     \begin{proof}
         Omessa.
@@ -835,7 +837,7 @@
     \subsection{Logica booleana di Church}
 
     \begin{frameddefn}{Logica booleana di Church}
-        La \tbf{rappresentazione di Church} della logica booleana, denotata con $B_\lambda$, è la seguente
+        La \tbf{rappresentazione di Church della logica booleana}, denotata con $B_\lambda$, è la seguente
 
         \begin{itemize}
             \item $\mathrm{true}_\lambda := \fn{x}{\fn{y}{x}} \iff \fn{xy}{x}$
@@ -950,44 +952,6 @@
 
     \begin{framedobs}{Cattura nelle eta conversioni}
         Si noti che, all'interno della \cref{eta conv}, la condizione per cui $x$ non sia libera garantisce che la conversione produca espressioni equivalenti; infatti, se $x$ fosse libera in $M$, poiché non lo sarebbe comunque in $(\lambda x.Mx)$, l'eta conversione non avrebbe mantenuto l'equivalenza.
-    \end{framedobs}
-
-    \section{Ricorsione}
-    
-    \subsection{Punto fisso}
-
-    \begin{frameddefn}{Punto fisso}
-        Data una funzione $f$, un elemento $x$ è detto \tbf{punto fisso di $f$} se e solo se $f(x) = x$.
-    \end{frameddefn}
-
-    \begin{example}[Punti fissi]
-        Sia $f(x) = x^2 -3x +4$; allora, poiché $f(2) = 2^2 - 3 \cdot 2 + 4 = 4 - 6 + 4 = 2$, 2 è un punto fisso di $f$.
-    \end{example}
-
-    \begin{example}[Funzioni come punti fissi]
-        Si consideri la funzione $$F(g) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot g(x - 1) & x > 0}$$ che prende in input una funzione; per vedere come opera, calcolando ad esempio $F(\mathrm{succ})$, si ottiene la funzione $$F(\mathrm{succ}) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{succ}(x - 1) = x \cdot x = x^2 & x > 0}$$ che restituisce 1 se $x$ è 0, altrimenti restituisce $x^2$.
-
-        Allora, il punto fisso di $F$ è la funzione seguente $$\mathrm{fact}(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{fact}(x - 1) & x > 0}$$ che computa il fattoriale di un numero; infatti, si ha che $$F(\mathrm{fact}) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{fact}(x - 1) & x > 0} =: \mathrm{fact}$$
-    \end{example}
-
-    \subsection{Combinatore di Kleene}
-
-    \begin{frameddefn}{Combinatore di Kleene}
-        Si definisce \tbf{combinatore di Kleene}, o \tbf{operatore di punto fisso}, la seguente espressione esprimibile attraverso la grammatica $Fun$ dell'\cref{fun}: $$\mathrm Y := \fn{f}{((\fn{x}{f(xx)})(\fn{x}{f(xx)}))}$$
-    \end{frameddefn}
-
-    \begin{framedprop}{Operatore di punto fisso}
-        Data una funzione, il ricorsore di Kleene ne restituisce il punto fisso.
-    \end{framedprop}
-
-    \begin{proof}
-        Se il ricorsore di Kleene è in grado di restituire il punto fisso di una funzione, allora data una funzione $h$, si ha che $\mathrm Yh$ è il suo punto fisso, e dunque per definizione $$h(\mathrm Yh) = \mathrm Yh$$ Allora, svolgendo i calcoli, si ottiene che \centeredeq{0.9}{$\mathrm Yh \betaconv (\fn{x}{h(xx)})(\fn{x}{h(xx)}) \longrightarrow  h((\fn{x}{h(xx)})(\fn{x}{h(xx)})) \betaconv h (\mathrm Y h)$}
-    \end{proof}
-
-    \begin{framedobs}{Ricorsione attraverso $\mathrm Y$}
-        Si noti che, poiché per una funzione $h$ è vero che $h(\mathrm Yh) = \mathrm Y h$, si ha che $$\centeredsoe{h(\mathrm Y h) = \mathrm Y h \\ h (h(\mathrm Y h)) = \mathrm Y h \\ \vdots \\ h( \ldots (h(\mathrm Yh))) = \mathrm Y h}$$
-
-        TODO DA FINIRE
     \end{framedobs}
 
     \chapter{Paradigma imperativo}
@@ -1171,11 +1135,11 @@
         Omessa.
     \end{proof}
 
-    \chapter{TODO}
+    \chapter{Correttezza dei programmi}
     
-    \section{Logica di Hoare}
+    \section{Correttezza nel paradigma imperativo}
 
-    \subsection{Definizioni}
+    \subsection{Logica di Hoare}
 
     \begin{frameddefn}{Tripla di Hoare}
         Si definisce \tbf{tripla di Hoare} la seguente clausola: $$\hoare{A}{p}{B}$$ dove $A$ --- che prende il nome di \tbf{precondizione} --- e $B$ --- che prende il nome di \tbf{postcondizione} --- sono espressioni booleane, e $p$ è un programma. La sua \tit{interpretazione di correttezza parziale} è la seguente: \curlyquotes{stando in uno stato che soddisfa $A$, ed eseguendo $p$ a partire da quest'ultimo, se $p$ termina, allora esso terminerà in uno stato che soddisfa $B$}.
@@ -1198,21 +1162,25 @@
         \end{itemize}
     \end{framedprop}
 
-    \begin{example}[Semantica assiomatica di $Imp$]
-        \label{imp bool}
-        TODO $$\leftsoe{M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \\ A,B ::= true \ | \ false \ | \ A \supset B \ | \ M <  N \ | \ M = N \\ p,q ::= skip \ | \ p;q \ | \ x:=M \ | \ \ite{B}{p}{q} \ | \ \while{B}{p}}$$
-    \end{example}
+    \begin{frameddefn}{Logica di Hoare}
+        Si definisce \tbf{logica di Hoare} la seguente grammatica: $$\leftsoe{M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \\ A,B ::= true \ | \ false \ | \ A \supset B \ | \ M <  N \ | \ M = N \\ p,q ::= skip \ | \ p;q \ | \ x:=M \ | \ \ite{B}{p}{q} \ | \ \while{B}{p}}$$ dove la prima grammatica comprende le espressioni, la seconda le espressioni booleane, e la terza i programmi.
+    \end{frameddefn}
 
-    \begin{example}[Significati assiomatici di $Imp$]
-        Si consideri la grammatica definita all'interno dell'\cref{imp bool}; su di essa, si definiscono i seguenti \tit{significati assiomatici}, anche dette \tit{regole di inferenza speciali}:
+    \begin{framedprop}[breakable]{Regole della logica di Hoare}
+        I seguenti sono i \tit{significati assiomatici} (o \tit{regole di inferenza speciali}), della logica di Hoare:
 
         \begin{itemize}
             \item \tbf{skip}: $$\hoare{A}{skip}{A}$$ poichè la clausola $skip$ non effettua nulla;
             \item \tbf{composizioni sequenziali}: $$\dfrac{\hoare{A}{p}{B} \quad \hoare{B}{q}{C}}{\hoare{A}{p;q}{B}}$$ poiché al fine di effettuare $p$ e $q$ in sequenza è necessaria una condizione intermedia (nell'esempio $B$);
-            \item \tbf{if-then-else}: $$\dfrac{\hoare{A \land C}{p}{B} \quad \hoare{A \land \lnot C}{q}{B}}{\hoare{A}{\ite{C}{p}{q}}{B}}$$ poiché entrambe le triple di Hoare devono avere $B$ come postcondizione, ma TODO; si noti che anche la seguente regola di inferenza è una valida alternativa $$\dfrac{\hoare{A}{p}{B} \quad \hoare{A}{q}{B}}{\hoare{A}{\ite{C}{p}{q}}{B}}$$ ma questa risulta essere una regola \tit{più debole} della precedente, poiché le triple $\hoare{A}{p}{B}$ e $\hoare{A}{q}{B}$ sono \tit{più forti}, in quanto hanno meno precondizioni da verificare, ma questo le rende anche più difficili da dimostrare;
-            \item TODO
+            \item \tbf{if-then-else}: $$\dfrac{\hoare{A \land C}{p}{B} \quad \hoare{A \land \lnot C}{q}{B}}{\hoare{A}{\ite{C}{p}{q}}{B}}$$ poiché entrambe le triple di Hoare devono avere $B$ come postcondizione, ma deve essere eseguito $p$ se si verifica $C$, altrimenti $q$, e dunque seguono le precondizioni descritte; si noti che anche la seguente regola di inferenza è una valida alternativa $$\dfrac{\hoare{A}{p}{B} \quad \hoare{A}{q}{B}}{\hoare{A}{\ite{C}{p}{q}}{B}}$$ ma questa risulta essere una regola \tit{più debole} della precedente, poiché le triple $\hoare{A}{p}{B}$ e $\hoare{A}{q}{B}$ sono \tit{più forti}, in quanto hanno meno precondizioni da verificare, ma questo le rende anche più difficili da dimostrare;
+            \item \tbf{while}: TODO
+            \item \tbf{assegnazioni}: TOD
         \end{itemize}
-    \end{example}
+    \end{framedprop}
+
+    \begin{frameddefn}{Invarianti}
+        Sia $A$ un'espressione booleana della logica di Hoare; essa è detta \tbf{invariante} se e solo se, per qualche espressione booleana $B$ e programma $p$, si ha che $$\hoare{A}{\while{B}{p}}{A \land \lnot B}$$ ovvero, la condizione $A$ è verificata \tit{prima e dopo} l'esecuzione di $p$.
+    \end{frameddefn}
 
     \begin{example}[Correttezza di programmi] Si consideri il seguente programma, in grado di calcolare quoziente e resto dati dal rapporto di due numeri in input (nel programma, $x$ ed $y$): $$b :=x; \ a := 0; \ \while{b \ge y}{(b := b - y ; \ a := a + 1)}$$ È possibile dimostrarne la correttezza attraverso il seguente albero di valutazione:
 
@@ -1223,6 +1191,60 @@
         dove $$\centeredsoe{A := x = a \cdot y + b \land b \ge 0 \\ A_1 := A[0/a] \longrightarrow x = 0 \cdot y + b \land b \ge 0 \\ A_2 := A[(a + 1)/a] \longrightarrow x = (a + 1) \cdot y + b \land b \ge 0}$$
 
         Si noti che la postcondizione scelta per dimostrare la correttezza del programma, ovvero $$x = a \cdot y + b \land 0 \le b < y$$ è valida poiché TODO. Inoltre, la tripla di Hoare è soddisfatta poiché TODO.
+    \end{example}
+
+    \section{Correttezza nel paradigma funzionale}
+
+    \subsection{Punto fisso}
+
+    \begin{frameddefn}{Punto fisso}
+        Data una funzione $f: X \to X$, un elemento $x \in X$ è detto \tbf{punto fisso di $f$} se e solo se $f(x) = x$.
+    \end{frameddefn}
+
+    \begin{example}[Punti fissi]
+        Sia $f(x) = x^2 -3x +4$; allora, poiché $f(2) = 2^2 - 3 \cdot 2 + 4 = 4 - 6 + 4 = 2$, 2 è un punto fisso di $f$.
+    \end{example}
+
+    \begin{example}[Funzioni come punti fissi]
+        Si consideri la funzione $$F(g) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot g(x - 1) & x > 0}$$ che prende in input una funzione; per vedere come opera, calcolando ad esempio $F(\mathrm{succ})$, si ottiene la funzione $$F(\mathrm{succ}) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{succ}(x - 1) = x \cdot x = x^2 & x > 0}$$ che restituisce 1 se $x$ è 0, altrimenti restituisce $x^2$.
+
+        Allora, il punto fisso di $F$ è la funzione seguente $$\mathrm{fact}(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{fact}(x - 1) & x > 0}$$ che computa il fattoriale di un numero; infatti, si ha che $$F(\mathrm{fact}) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{fact}(x - 1) & x > 0} =: \mathrm{fact}$$
+    \end{example}
+
+    \subsection{Ricorsione}
+
+    \begin{frameddefn}{Combinatore di Kleene}
+        Si definisce \tbf{combinatore di Kleene}, o \tbf{operatore di punto fisso}, la seguente espressione esprimibile attraverso la grammatica $Fun$ dell'\cref{fun}: $$\mathrm Y := \fn{f}{((\fn{x}{f(xx)})(\fn{x}{f(xx)}))}$$
+    \end{frameddefn}
+
+    \begin{framedprop}{Punto fisso di una funzione}
+        Data una funzione, il combinatore di Kleene ne restituisce il punto fisso.
+    \end{framedprop}
+
+    \begin{proof}
+        Se il combinatore di Kleene è in grado di restituire il punto fisso di una funzione, allora data una funzione $h$, si ha che $\mathrm Yh$ è il suo punto fisso, e dunque per definizione $$h(\mathrm Yh) = \mathrm Yh$$ Allora, svolgendo i calcoli, si ottiene che \centeredeq{0.9}{$\mathrm Yh \betaconv (\fn{x}{h(xx)})(\fn{x}{h(xx)}) \longrightarrow  h((\fn{x}{h(xx)})(\fn{x}{h(xx)})) \betaconv h (\mathrm Y h)$}
+    \end{proof}
+
+    \begin{framedobs}{Ricorsione attraverso $\mathrm Y$}
+        Si noti che, poiché per una funzione $h$ è vero che $h(\mathrm Yh) = \mathrm Y h$, si ha che $$\centeredsoe{h(\mathrm Y h) = \mathrm Y h \\ h (h(\mathrm Y h)) = \mathrm Y h \\ \vdots \\ h( \ldots (h(\mathrm Yh))) = \mathrm Y h}$$
+
+        TODO DA FINIRE
+    \end{framedobs}
+
+    \begin{framedlem}[label={weak term ric}]{Ricorsione debole terminante}
+        Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A}{A}$, si ha che: $$\exists ! f: \N \to A \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n))= h(f(n))}$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$, per qualche funzione nullaria $\mathrm{zero}_A$.
+    \end{framedlem}
+
+    \begin{proof}
+        TODO
+    \end{proof}
+
+    \begin{frameddefn}{Operatore $\rho$}
+        Si definisce \tbf{operatore $\rho$} l'operatore che, attraverso la sintassi $$\rhofun{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ restituisce l'omomorfismo descritto all'interno del \cref{weak term ric}, dove $\ttt{\_expression\_}_1$ rappresenta il costruttore nullario dell'algebra, e $\ttt{\_expression\_}_2$ costituisce la funzione $h: A \to A$.
+    \end{frameddefn}
+
+    \begin{example}[Operatore $\rho$]
+        Si considerino le algebre dei numeri naturali $(\N, \mathrm{succ}, \mathrm{zero})$, e dei booleani di Church $(B_\lambda, \mathrm{not}_\lambda, \mathrm{True}_\lambda)$, dove $$\funcmap{\mathrm{True}_\lambda}{\1}{B_\lambda}{x}{\mathrm{true}_\lambda}$$ Allora, si ha che $(\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda})$ è una funzione tale che $$\soe{l}{(\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda}) 0 = \mathrm{true}_\lambda \\ (\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda})(\mathrm{succ} \ n) = \mathrm{not}_\lambda((\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda})n)}$$ TODO DA FINIRE
     \end{example}
 
 \end{document}
