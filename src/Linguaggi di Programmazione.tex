@@ -1171,7 +1171,7 @@
 
         \begin{itemize}
             \item \tbf{skip}: $$\hoare{A}{skip}{A}$$ poichè la clausola $skip$ non effettua nulla;
-            \item \tbf{composizioni sequenziali}: $$\dfrac{\hoare{A}{p}{B} \quad \hoare{B}{q}{C}}{\hoare{A}{p;q}{B}}$$ poiché al fine di effettuare $p$ e $q$ in sequenza è necessaria una condizione intermedia (nell'esempio $B$);
+            \item \tbf{composizioni sequenziali}: $$\dfrac{\hoare{A}{p}{B} \quad \hoare{B}{q}{C}}{\hoare{A}{p;q}{C}}$$ poiché al fine di effettuare $p$ e $q$ in sequenza è necessaria una condizione intermedia (nell'esempio $B$);
             \item \tbf{if-then-else}: $$\dfrac{\hoare{A \land C}{p}{B} \quad \hoare{A \land \lnot C}{q}{B}}{\hoare{A}{\ite{C}{p}{q}}{B}}$$ poiché entrambe le triple di Hoare devono avere $B$ come postcondizione, ma deve essere eseguito $p$ se si verifica $C$, altrimenti $q$, e dunque seguono le precondizioni descritte; si noti che anche la seguente regola di inferenza è una valida alternativa $$\dfrac{\hoare{A}{p}{B} \quad \hoare{A}{q}{B}}{\hoare{A}{\ite{C}{p}{q}}{B}}$$ ma questa risulta essere una regola \tit{più debole} della precedente, poiché le triple $\hoare{A}{p}{B}$ e $\hoare{A}{q}{B}$ sono \tit{più forti}, in quanto hanno meno precondizioni da verificare, ma questo le rende anche più difficili da dimostrare;
             \item \tbf{while}: TODO
             \item \tbf{assegnazioni}: TOD
