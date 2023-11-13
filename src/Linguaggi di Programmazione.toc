@@ -38,6 +38,6 @@
 \contentsline {chapter}{\numberline {4}Correttezza dei programmi}{47}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Correttezza nel paradigma imperativo}{47}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Logica di Hoare}{47}{subsection.4.1.1}%
-\contentsline {section}{\numberline {4.2}Correttezza nel paradigma funzionale}{50}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Punto fisso}{50}{subsection.4.2.1}%
+\contentsline {section}{\numberline {4.2}Correttezza nel paradigma funzionale}{51}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Punto fisso}{51}{subsection.4.2.1}%
 \contentsline {subsection}{\numberline {4.2.2}Ricorsione}{51}{subsection.4.2.2}%

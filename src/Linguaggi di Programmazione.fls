@@ -1378,6 +1378,18 @@ INPUT /usr/share/texmf-dist/tex/generic/circuitikz/pgfcircvoltage.tex
 INPUT /usr/share/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex
 INPUT /usr/share/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex
 INPUT /usr/share/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+INPUT /usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+INPUT /usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+INPUT /usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+INPUT /usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+INPUT /usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+INPUT /usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+INPUT /usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+INPUT /usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+INPUT /usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+INPUT /usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+INPUT /usr/share/texmf-dist/fonts/tfm/public/latex-fonts/lasy6.tfm
 INPUT /usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -1718,7 +1730,6 @@ INPUT /usr/share/texmf-dist/tex/latex/base/ulasy.fd
 INPUT /usr/share/texmf-dist/tex/latex/base/ulasy.fd
 INPUT /usr/share/texmf-dist/fonts/tfm/public/latex-fonts/lasy10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/latex-fonts/lasy8.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/latex-fonts/lasy6.tfm
 INPUT /usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 INPUT /usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 INPUT /usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd

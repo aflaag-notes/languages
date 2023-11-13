@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.8.30)  12 NOV 2023 21:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.8.30)  13 NOV 2023 22:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1139,7 +1139,18 @@ File: pgflibrarycurvilinear.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@circ@res@count=\count534
 ) (/usr/share/texmf-dist/tex/generic/circuitikz/pgfcircquadpoles.tex) (/usr/share/texmf-dist/tex/generic/circuitikz/pgfcircmultipoles.tex) (/usr/share/texmf-dist/tex/generic/circuitikz/pgfcirclabel.tex) (/usr/share/texmf-dist/tex/generic/circuitikz/pgfcircvoltage.tex
 \pgfcirc@labelshift=\dimen350
-) (/usr/share/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (/usr/share/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex)) (/usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
+) (/usr/share/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (/usr/share/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex)) (/usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box90
+\UL@hyphenbox=\box91
+\UL@skip=\skip166
+\UL@hook=\toks55
+\UL@height=\dimen351
+\UL@pe=\count535
+\UL@pixel=\dimen352
+\ULC@box=\box92
+Package: ulem 2019/11/18
+\ULdepth=\dimen353
+) (/usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2023-02-07 v7.00v Hypertext links for LaTeX
  (/usr/share/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
@@ -1154,11 +1165,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/share/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count535
+\c@section@level=\count536
 )
-\@linkdim=\dimen351
-\Hy@linkcounter=\count536
-\Hy@pagecounter=\count537
+\@linkdim=\dimen354
+\Hy@linkcounter=\count537
+\Hy@pagecounter=\count538
  (/usr/share/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2023-02-07 v7.00v Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -1166,7 +1177,7 @@ Now handling font encoding PD1 ...
 ) (/usr/share/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count538
+\Hy@SavedSpaceFactor=\count539
  (/usr/share/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2023-02-07 v7.00v Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -1181,17 +1192,17 @@ Package hyperref Info: Plain pages OFF on input line 4192.
 Package hyperref Info: Backreferencing OFF on input line 4197.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4425.
-\c@Hy@tempcnt=\count539
+\c@Hy@tempcnt=\count540
 LaTeX Info: Redefining \url on input line 4763.
-\XeTeXLinkMargin=\dimen352
+\XeTeXLinkMargin=\dimen355
  (/usr/share/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (/usr/share/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count540
-\Field@Width=\dimen353
-\Fld@charsize=\dimen354
+\Fld@menulength=\count541
+\Field@Width=\dimen356
+\Fld@charsize=\dimen357
 Package hyperref Info: Hyper figures OFF on input line 6042.
 Package hyperref Info: Link nesting OFF on input line 6047.
 Package hyperref Info: Hyper index ON on input line 6050.
@@ -1199,9 +1210,9 @@ Package hyperref Info: backreferencing OFF on input line 6057.
 Package hyperref Info: Link coloring ON on input line 6060.
 Package hyperref Info: Link coloring with OCG OFF on input line 6067.
 Package hyperref Info: PDF/A mode OFF on input line 6072.
-\Hy@abspage=\count541
-\c@Item=\count542
-\c@Hfootnote=\count543
+\Hy@abspage=\count542
+\c@Item=\count543
+\c@Hfootnote=\count544
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (/usr/share/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -1210,9 +1221,9 @@ File: hpdftex.def 2023-02-07 v7.00v Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\HyAnn@Count=\count544
-\Fld@listcount=\count545
-\c@bookmark@seq@number=\count546
+\HyAnn@Count=\count545
+\Fld@listcount=\count546
+\c@bookmark@seq@number=\count547
  (/usr/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
  (/usr/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -1220,7 +1231,7 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
-\Hy@SectionHShift=\skip166
+\Hy@SectionHShift=\skip167
 ) (/usr/share/texmf-dist/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
 Package cleveref Info: `hyperref' support loaded on input line 2370.
@@ -1243,12 +1254,12 @@ Package cleveref Info: always capitalise cross-reference names on input line 785
 Package cleveref Info: include cross-reference names in hyperlinks on input line 7852.
 ) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/graphs/tikzlibrarygraphs.code.tex
 File: tikzlibrarygraphs.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\tikz@lib@auto@number=\count547
-\tikz@qnode@count=\count548
-) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytrees.code.tex
-File: tikzlibrarytrees.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\tikz@lib@auto@number=\count548
+\tikz@qnode@count=\count549
 )
-(/usr/share/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytrees.code.tex
+File: tikzlibrarytrees.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/share/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '6.0.1'
 (/usr/share/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
 Package: tikzfill.image 2022/07/20 v1.0.0 Image filling library for TikZ
@@ -1256,7 +1267,7 @@ Package: tikzfill.image 2022/07/20 v1.0.0 Image filling library for TikZ
 Package: tikzfill-common 2022/07/20 v1.0.0 Auxiliary code for tikzfill
 ) (/usr/share/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.code.tex
 File: tikzlibraryfill.image.code.tex 2022/07/20 v1.0.0 Image filling library
-\l__tikzfill_img_box=\box90
+\l__tikzfill_img_box=\box93
 )) (/usr/share/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.0.1'
 )) (/usr/share/texmf-dist/tex/latex/tcolorbox/tcbxparse.code.tex
@@ -1267,9 +1278,9 @@ Library (tcolorbox): 'tcbbreakable.code.tex' version '6.0.1'
 Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
 )
 Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
-\tcb@testbox=\box91
-\tcb@totalupperbox=\box92
-\tcb@totallowerbox=\box93
+\tcb@testbox=\box94
+\tcb@totalupperbox=\box95
+\tcb@totallowerbox=\box96
 )) (../Nyx/nyx-styles.sty
 
 LaTeX Warning: You have requested package `../Nyx/nyx-styles',
@@ -1282,48 +1293,48 @@ File: tikzlibraryautomata.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: tikzlibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodepartlowerbox=\box94
-\pgfnodeparttwobox=\box95
-\pgfnodepartthreebox=\box96
-\pgfnodepartfourbox=\box97
-\pgfnodeparttwentybox=\box98
-\pgfnodepartnineteenbox=\box99
-\pgfnodeparteighteenbox=\box100
-\pgfnodepartseventeenbox=\box101
-\pgfnodepartsixteenbox=\box102
-\pgfnodepartfifteenbox=\box103
-\pgfnodepartfourteenbox=\box104
-\pgfnodepartthirteenbox=\box105
-\pgfnodeparttwelvebox=\box106
-\pgfnodepartelevenbox=\box107
-\pgfnodeparttenbox=\box108
-\pgfnodepartninebox=\box109
-\pgfnodeparteightbox=\box110
-\pgfnodepartsevenbox=\box111
-\pgfnodepartsixbox=\box112
-\pgfnodepartfivebox=\box113
+\pgfnodepartlowerbox=\box97
+\pgfnodeparttwobox=\box98
+\pgfnodepartthreebox=\box99
+\pgfnodepartfourbox=\box100
+\pgfnodeparttwentybox=\box101
+\pgfnodepartnineteenbox=\box102
+\pgfnodeparteighteenbox=\box103
+\pgfnodepartseventeenbox=\box104
+\pgfnodepartsixteenbox=\box105
+\pgfnodepartfifteenbox=\box106
+\pgfnodepartfourteenbox=\box107
+\pgfnodepartthirteenbox=\box108
+\pgfnodeparttwelvebox=\box109
+\pgfnodepartelevenbox=\box110
+\pgfnodeparttenbox=\box111
+\pgfnodepartninebox=\box112
+\pgfnodeparteightbox=\box113
+\pgfnodepartsevenbox=\box114
+\pgfnodepartsixbox=\box115
+\pgfnodepartfivebox=\box116
 ))) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
 File: tikzlibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 File: pgflibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\arrowsize=\dimen355
+\arrowsize=\dimen358
 ))) (../Nyx/nyx-frames.sty
 
 LaTeX Warning: You have requested package `../Nyx/nyx-frames',
                but the package provides `nyx-frames'.
 
 Package: nyx-frames Nyx Frames
-\c@tcb@cnt@frameddefn=\count549
-\c@tcb@cnt@framedprinc=\count550
-\c@tcb@cnt@framedthm=\count551
-\c@tcb@cnt@framedprop=\count552
-\c@tcb@cnt@framedlem=\count553
-\c@tcb@cnt@framedcor=\count554
-\c@tcb@cnt@framedobs=\count555
-\c@tcb@cnt@framedprob=\count556
-\c@tcb@cnt@framedmeth=\count557
-\c@tcb@cnt@framedalgo=\count558
-\c@example=\count559
+\c@tcb@cnt@frameddefn=\count550
+\c@tcb@cnt@framedprinc=\count551
+\c@tcb@cnt@framedthm=\count552
+\c@tcb@cnt@framedprop=\count553
+\c@tcb@cnt@framedlem=\count554
+\c@tcb@cnt@framedcor=\count555
+\c@tcb@cnt@framedobs=\count556
+\c@tcb@cnt@framedprob=\count557
+\c@tcb@cnt@framedmeth=\count558
+\c@tcb@cnt@framedalgo=\count559
+\c@example=\count560
 ) (../Nyx/nyx-title.sty
 
 LaTeX Warning: You have requested package `../Nyx/nyx-title',
@@ -1362,7 +1373,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
-\c@lstlisting=\count560
+\c@lstlisting=\count561
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1400,17 +1411,17 @@ LaTeX Font Info:    ... okay on input line 38.
 
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count561
-\scratchdimen=\dimen356
-\scratchbox=\box114
-\nofMPsegments=\count562
-\nofMParguments=\count563
-\everyMPshowfont=\toks55
-\MPscratchCnt=\count564
-\MPscratchDim=\dimen357
-\MPnumerator=\count565
-\makeMPintoPDFobject=\count566
-\everyMPtoPDFconversion=\toks56
+\scratchcounter=\count562
+\scratchdimen=\dimen359
+\scratchbox=\box117
+\nofMPsegments=\count563
+\nofMParguments=\count564
+\everyMPshowfont=\toks56
+\MPscratchCnt=\count565
+\MPscratchDim=\dimen360
+\MPnumerator=\count566
+\makeMPintoPDFobject=\count567
+\everyMPtoPDFconversion=\toks57
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1455,10 +1466,10 @@ File: uesint.fd
 )
 LaTeX Font Info:    Trying to load font information for U+stmry on input line 38.
  (/usr/share/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-\c@tabularnotesi=\count567
-\enitdp@tabularnotes=\count568
-\c@tabularnotes*i=\count569
-\enitdp@tabularnotes*=\count570
+\c@tabularnotesi=\count568
+\enitdp@tabularnotes=\count569
+\c@tabularnotes*i=\count570
+\enitdp@tabularnotes*=\count571
 LaTeX Info: Redefining \it@ocap on input line 38.
 LaTeX Info: Redefining \it@ccap on input line 38.
 Package hyperref Info: Link coloring ON on input line 38.
@@ -2095,7 +2106,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 Package cleveref Info: loaded `italian' language definitions on input line 1184.
 [49]
-Package cleveref Info: loaded `italian' language definitions on input line 1206.
+Package cleveref Info: loaded `italian' language definitions on input line 1205.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2104,9 +2115,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 1206.
+Package cleveref Info: loaded `italian' language definitions on input line 1205.
 [50]
-Package cleveref Info: loaded `italian' language definitions on input line 1233.
+Package cleveref Info: loaded `italian' language definitions on input line 1227.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2115,18 +2126,18 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 1233.
+Package cleveref Info: loaded `italian' language definitions on input line 1227.
 [51]
-Overfull \hbox (1.8094pt too wide) in paragraph at lines 1235--1236
+Overfull \hbox (1.8094pt too wide) in paragraph at lines 1237--1238
 \T1/cmr/m/n/12 Dunque $\OML/cmm/m/it/12 f$ \T1/cmr/m/n/12 ri-sul-ta es-se-re l'u-ni-co omo-mor-fi-smo tra le al-ge-bre $\OT1/cmr/m/n/12 (\U/msb/m/n/12 N\OML/cmm/m/it/12 ; []; []\OT1/cmr/m/n/12 )$ \T1/cmr/m/n/12 e $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A; h; [][]\OT1/cmr/m/n/12 )$\T1/cmr/m/n/12 ,
  []
 
 
-Overfull \hbox (11.7394pt too wide) in paragraph at lines 1247--1247
+Overfull \hbox (11.7394pt too wide) in paragraph at lines 1249--1249
 []\T1/cmr/bx/n/12 Esempio 4.2.2.1 \T1/cmr/m/n/12 (Ope-ra-to-re $\OML/cmm/m/it/12 ^^Z$\T1/cmr/m/n/12 )\T1/cmr/bx/n/12 . []\T1/cmr/m/n/12 Si con-si-de-ri-no le al-ge-bre dei nu-me-ri na-tu-ra-li $\OT1/cmr/m/n/12 (\U/msb/m/n/12 N\OML/cmm/m/it/12 ; []; []\OT1/cmr/m/n/12 )$\T1/cmr/m/n/12 ,
  []
 
-Package cleveref Info: loaded `italian' language definitions on input line 1250.
+Package cleveref Info: loaded `italian' language definitions on input line 1249.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2134,8 +2145,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 1250.
-[52] (./Linguaggi di Programmazione.aux
+Package cleveref Info: loaded `italian' language definitions on input line 1249.
+[52]
+Package cleveref Info: loaded `italian' language definitions on input line 1252.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+Package cleveref Info: loaded `italian' language definitions on input line 1252.
+[53] (./Linguaggi di Programmazione.aux
 Package cleveref Info: loaded `italian' language definitions on input line 20.
 Package cleveref Info: loaded `italian' language definitions on input line 21.
 )
@@ -2149,18 +2171,18 @@ Package logreq Info: Writing requests to '"Linguaggi di Programmazione".run.xml'
 
  ) 
 Here is how much of TeX's memory you used:
- 63365 strings out of 477974
- 1459081 string characters out of 5839630
- 2536537 words of memory out of 5000000
- 82450 multiletter control sequences out of 15000+600000
+ 63458 strings out of 477974
+ 1460275 string characters out of 5839630
+ 2537640 words of memory out of 5000000
+ 82538 multiletter control sequences out of 15000+600000
  546937 words of font info for 125 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  119i,23n,125p,1218b,2112s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/aless/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/latxfont/lasy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb>
-Output written on "Linguaggi di Programmazione.pdf" (55 pages, 647409 bytes).
+Output written on "Linguaggi di Programmazione.pdf" (56 pages, 649344 bytes).
 PDF statistics:
- 970 PDF objects out of 1000 (max. 8388607)
- 843 compressed objects within 9 object streams
- 284 named destinations out of 1000 (max. 500000)
+ 974 PDF objects out of 1000 (max. 8388607)
+ 846 compressed objects within 9 object streams
+ 285 named destinations out of 1000 (max. 500000)
  320 words of extra memory for PDF output out of 10000 (max. 10000000)
 
