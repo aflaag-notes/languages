@@ -644,7 +644,7 @@
         Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno dell'\cref{exp2}: $$M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N} \ | \ \fn{x}{M} \ | \ MN$$
     \end{example}
 
-    \begin{example}[Espressioni su $Fun$]
+    \begin{example}[Funzioni come argomenti]
         Sia $Fun$ la grammatica definita all'interno dell'\cref{fun}, e sia $$(\fn{x}{x +1})7$$ una sua espressione; essa, poiché applica la funzione $\fn{x}{x+1}$ all'espressione 7, viene valutata a $$x = 7 \implies x + 1= 7 + 1 = 8$$
     \end{example}
 
@@ -661,9 +661,9 @@
         Sia $Fun$ la grammatica dell'\cref{fun}, e sia $$(\fn{xy}{yx})7(\fn{x}{x+1})$$ una sua espressione; una volta effettuata l'uncurryficazione, si ottiene la seguente espressione: $$(\fn{x}{\fn{y}{yx}})7(\fn{x}{x+1})$$ che, una volta valutata, diventa $$(\fn{y}{y7})(\fn{x}{x+1})$$ e dunque, analogamente all'\cref{expr fun}, il risultato è $$x= 7 \implies x+1 = 7 + 1= 8$$
     \end{example}
 
-    \begin{example}[Curryficazioni]
-        Sia $Fun$ la grammatica dell'\cref{fun}, e sia $$(\fn{x}{xx})(\fn{x}{xx})$$ una sua espressione; essa, durante la valutazione, va in loop infinito, poiché ad ogni valutazione viene restituita l'espressione di partenza.
-    \end{example}
+    \begin{framedobs}{Significato della curryficazione}
+        Si noti che la curryficazione \tit{ha significato}, poiché considerando ad esempio la seguente funzione, la quale restituisce la somma di due costanti $$\fn{x}{\fn{y}{x + y}}$$ è possibile considerarla come se fosse una \tit{funzione a due argomenti}, poiché per utilizzarla sarà necessario fornire 2 interi, come nel seguente esempio: $$(\fn{x}{\fn{y}{x + y}})5 \ 7 \longrightarrow (\fn{y}{5 + y})7 \longrightarrow 5 + 7 \longrightarrow 12$$ Di conseguenza, la versione curryficata della funzione presentata, ovvero $$\fn{x}{\fn{y}{x + y}} \iff \fn{xy}{x + y}$$ può essere interpretata come una funzione a 2 argomenti.
+    \end{framedobs}
 
     \subsection{Semantiche operazionali}
 
