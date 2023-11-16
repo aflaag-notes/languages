@@ -1128,7 +1128,7 @@
             \item \tbf{procedure}: $$\forall y,x \in \mathrm{Var}, p, q \in Imp, S' \in \mathrm{Store} \quad [proc] \ \dfrac{\opjudstore[p]{E\{(y,(x,p, E))\}}{q}{S}{S'}}{\opjudstore[p]{E}{\procin{y}{x}{p}{q}}{S}{S'}}$$
         \end{itemize}
 
-        Per quanto concerne le regole della clausola $call$, si consultino l'\cref{all v}, l'\cref{all r} e l'\cref{all n}.
+        Per quanto concerne le regole della clausola $call$, si consultino la \cref{all v}, la \cref{all r} e la \cref{all n}.
     \end{example}
 
     \begin{framedobs}{Variabili in $All$}
@@ -1141,9 +1141,9 @@
         È possibile effettuare le chiamate alle procedure attraverso le seguenti semantiche operazionali:
 
         \begin{itemize}
-            \item \tbf{call-by-value}, la quale corrisponde ad una semantica \tit{eager statica}, e gli argomenti alle procedure vengono passati attraverso termini di $Exp$, e vengono valutati;
-            \item \tbf{call-by-reference}, la quale corrisponde ad una semantica \tit{eager statica}, e gli argomenti alle procedure vengono passati attraverso termini di $LExp$, e vengono valutati;
-            \item \tbf{call-by-name}, la quale corrisponde ad una semantica \tit{lazy statica}, e gli argomenti vengono passati attraverso termini di $LExp$, ma non vengono valutati.
+            \item \tbf{call-by-value}, la quale corrisponde ad una semantica \tit{eager statica}, e gli argomenti alle procedure sono espressioni non assegnabili, e vengono valutate;
+            \item \tbf{call-by-reference}, la quale corrisponde ad una semantica \tit{eager statica}, e gli argomenti alle procedure sono espressioni assegnabili, e vengono valutate;
+            \item \tbf{call-by-name}, la quale corrisponde ad una semantica \tit{lazy statica}, e gli argomenti alle procedure sono espressioni assegnabili, ma non vengono valutate.
         \end{itemize}
     \end{frameddefn}
 
