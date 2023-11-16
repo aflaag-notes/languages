@@ -213,6 +213,7 @@
     \end{example}
 
     \begin{example}[Algebre induttive]
+        \label{N inductive}
         Sia $\mathrm{zero}$ la funzione definita come segue $$\funcmap{\mathrm{zero}}{\1}{\N}{x}{0}$$ e si prenda in esame l'algebra $(\N, \mathrm{succ}, \mathrm{zero})$; allora si ha che
 
         \begin{enumerate}[label=\roman*), font=\itshape]
@@ -1284,11 +1285,11 @@
     \end{framedobs}
 
     \begin{framedlem}[label={weak term ric}]{Ricorsione debole terminante}
-        Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A}{A}$, si ha che: $$\exists ! f: \N \to A \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n))= h(f(n))}$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$, per qualche funzione nullaria $\mathrm{zero}_A$.
+        Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A}{A}$, si ha che: $$\exists ! f: \N \to A \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n))= h(f(n))}$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$, per qualche funzione nullaria $\funcmap{\mathrm{zero}_A}{\1}{A}{x}{a}$.
     \end{framedlem}
 
     \begin{proof}
-        TODO
+        Poiché le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$ hanno la stessa segnatura, e l'algebra dei numeri naturali è induttiva --- come mostrato nell'\cref{N inductive} --- per la \cref{alg same sign} esiste unico un omomorfismo $\func{f}{\N}{A}$, dunque per definizione stessa di omomorfismo, si verifica che $$f:\N \to A :\soe{l}{f(0) = f(\mathrm{zero}(x)) = \mathrm{zero}_A(f(x)) = a \\ f(\mathrm{succ}(n)) = h(f(n))}$$ poichè $\forall x \in \1 \quad \mathrm{zero}(x) = 0$ ed inoltre $\forall x \in \1 \quad \mathrm{zero}_A(x) = a$.
     \end{proof}
 
     \begin{frameddefn}{Operatore $\rho$}
