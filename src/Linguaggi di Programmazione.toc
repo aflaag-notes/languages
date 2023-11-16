@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {1.1}Algebre induttive}{2}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Assiomi di Peano}{2}{subsection.1.1.1}%
 \contentsline {subsection}{\numberline {1.1.2}Algebre induttive}{4}{subsection.1.1.2}%
-\contentsline {subsection}{\numberline {1.1.3}Lemma di Lambek}{7}{subsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.1.3}Lemma di Lambek}{8}{subsection.1.1.3}%
 \contentsline {section}{\numberline {1.2}Strutture dati induttive}{9}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}Liste}{9}{subsection.1.2.1}%
 \contentsline {subsection}{\numberline {1.2.2}Alberi binari}{10}{subsection.1.2.2}%
