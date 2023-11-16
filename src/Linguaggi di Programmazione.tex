@@ -227,9 +227,11 @@
     \end{example}
 
     \begin{frameddefn}{Omomorfismo}
-        Un \tbf{omomorfismo} è una funzione, tra due algebre dello stesso tipo, tale da preservarne le strutture.
+        Un \tbf{omomorfismo} è una funzione, tra due algebre con stessa segnatura, tale da preservarne le strutture.
 
-        Formalmente, siano $(A, \mu_1, \ldots, \mu_n)$ e $(B, \delta_1, \ldots, \delta_n)$ due algebre tali che ogni funzione $\mu_i$ abbia la stessa arietà e lo stesso numero di parametri esterni (denotati con $k$) di $\delta_i$, pari rispettivamente ad $\eta_i$ ed a $\nu_i$, per qualche $i \in [1, n]$; allora, una funzione $\func{f}{A}{B}$ è detta essere un \tbf{omomorfismo} tra le due algebre, se e solo se $$\begin{array}{c} \forall a_1, \ldots, a_{\eta_1} \quad f(\mu_1(a_1, \ldots, a_{\eta_n}), k_1, \ldots, k_{\nu_1}) = \delta_1(f(a_1), \ldots, f(a_{\eta_1}), k_1, \ldots, k_{\nu_1}) \\ \vdots \\ \forall a_1, \ldots, a_{\eta_n} \quad f(\mu_n(a_1, \ldots, a_{\eta_n}), k_1, \ldots, k_{\nu_n}) = \delta_n(f(a_1), \ldots, f(a_{\eta_n}), k_1, \ldots, k_{\nu_n}) \end{array}$$
+        Formalmente, siano $(A, \mu_1, \ldots, \mu_n)$ e $(B, \delta_1, \ldots, \delta_n)$ due algebre tali che ogni funzione $\mu_i$ abbia la stessa arietà e lo stesso numero di parametri esterni (denotati con $k$) di $\delta_i$, per ogni $i \in [1, n]$; allora, una funzione $\func{f}{A}{B}$ è detta essere un \tbf{omomorfismo} tra le due algebre, se e solo se $$\centeredsoe{f(\mu_1(a_\alpha, \ldots, a_\beta, k_\alpha, \ldots, k_\gamma)) = \delta_1(f(a_\alpha), \ldots, f(a_\beta), k_\alpha, \ldots, k_\gamma) \\ \vdots \\ f(\mu_n(a_\eta, \ldots, a_\omega, k_\eta, \ldots k_\nu)) = \delta_n(f(a_\eta), \ldots, f(a_\omega), k_\eta, \ldots, k_\nu)}$$
+
+        Se l'omomorfismo è da un'algebra in sé stessa, esso prende il nome di \tbf{endomorfismo}.
     \end{frameddefn}
 
     \begin{example}[Omomorfismi]
@@ -239,11 +241,53 @@
 
     \begin{frameddefn}{Isomorfismo}
         Un \tbf{isomorfismo} è un omomorfismo biettivo.
+
+        Se tra due strutture algebriche $A$ e $B$ esiste un isomorfismo, tali strutture sono dette \tbf{isomorfe}, ed è indicato col seguente simbolismo $$A \cong B$$.
+
+        Se l'isomorfismo è da un'algebra in sé stessa, esso prende il nome di \tbf{automorfismo}.
     \end{frameddefn}
 
     \begin{example}[Isomorfismi]
         Si consideri l'omomorfismo dell'\cref{homo}; si noti che $$\forall x, y \in \R \mid x \neq \R \quad e^x \neq e^y \implies f(x) \neq f(y)$$ e dunque $f$ è iniettiva; inoltre $$\forall y \in \R_{> 0} \quad \exists x \in \R \mid f(x) = e^x = y \iff y = \ln(x)$$ e dunque $f$ è suriettiva. Allora, $f$ è biettiva, e poiché è un omomorfismo, risulta essere un isomorfismo.
     \end{example}
+
+    \begin{framedobs}[label={iden auto}]{L'automorfismo dell'identità}
+        Sia $(A, \gamma_1, \ldots, \gamma_n)$ un'algebra, e si consideri la funzione identità $$\funcmap{\id}{A}{A}{x}{x}$$ Si noti che $$\forall i \in [1, n] \quad \id(\gamma_i(a_{\alpha_i}, \ldots, a_{\beta_i})) = \gamma_i(a_{\alpha_i}, \ldots, a_{\beta_i}) = \gamma_i(\id(a_{\alpha_i}), \ldots, \id(a_{\beta_i}))$$ e poiché la funzione identità è sia iniettiva che suriettiva, $\id$ è sempre un automorfismo per qualsiasi algebra $A$.
+    \end{framedobs}
+
+    \subsection{Lemma di Lambek}
+
+    \begin{framedprop}[label={bij}]{Biettività}
+        Sia $f$ una funzione, allora $f$ è biettiva se e solo se esiste la sua inversa.
+    \end{framedprop}
+
+    \begin{proof}
+        Omessa.
+    \end{proof}
+
+    \begin{framedprop}[label={alg same sign}]{Algebre con stessa segnatura}
+        Data un'algebra induttiva $(A, \gamma_1, \ldots, \gamma_n)$, per ogni algebra --- \tit{non necessariamente induttiva} --- $(B, \delta_1, \ldots, \delta_n)$, dunque avente la stessa segnatura di $A$, esiste unico un omomorfismo $\func{f}{A}{B}$.
+    \end{framedprop}
+
+    \begin{proof}
+        Omessa.
+    \end{proof}
+
+    \begin{framedcor}[label={iden inductive alg}]{Identità nelle algebre induttive}
+        Sia $A$ un'algebra induttiva, e sia $\func{f}{A}{A}$ un suo endomorfismo; allora $f = \id$.
+    \end{framedcor}
+
+    \begin{proof}
+        Si noti che, per l'\cref{iden auto}, esiste l'automorfismo $\id$ su $A$, ma per la \cref{alg same sign}, poiché $A$ è un'algebra induttiva, esiste un unico omomorfismo $\func{f}{A}{A}$, e poiché è unico, deve necessariamente coincidere con $\id$.
+    \end{proof}
+
+    \begin{framedlem}{Lemma di Lambek (versione ridotta)}
+        Siano $(A, \gamma_1, \ldots, \gamma_n)$ e $(B, \delta_1, \ldots, \delta_n)$ due algebre induttive aventi stessa segnatura; allora $A \cong B$.
+    \end{framedlem}
+
+    \begin{proof}
+        Per la \cref{alg same sign}, poiché $A$ è un'algebra induttiva, e $B$ ha la stessa segnatura di $A$, esiste unico un omomorfismo $\func{f}{A}{B}$; si noti però che è vero anche il viceversa, infatti poiché $B$ è un'algebra induttiva, e $A$ ha la stessa segnatura di $B$, esiste unico un omomorfismo $\func{g}{B}{A}$. Si consideri la funzione $$\funcmap{g \circ f}{A}{A}{x}{g(f(x))}$$ e si noti che, per ogni $i \in [1, n]$, si ha che $$g(f(\gamma_i(a_{\alpha_i}, \ldots, a_{\beta_i}))) = g(\delta_i(f(a_{\alpha_i}), \ldots, f(a_{\beta_i}))) = \gamma_i(g(f(a_{\alpha_i})), \ldots, g(f(a_{\beta_i})))$$ ed in particolare, questo dimostra che $$\forall i \in [1, k] \quad (g \circ f)(\gamma_i(a_{\alpha_i}, \ldots, a_{\beta_i})) = \gamma_i((g \circ f)(a_{\alpha_i}), \ldots (g \circ f)(a_{\beta_i}))$$ e dunque $g \circ f$ risulta essere un omomorfismo. Allora, per il \cref{iden inductive alg}, necessariamente $$g \circ f = \id \iff f^{-1} = g \iff f \ \mathrm{biettiva}$$ (si veda la \cref{bij}) e poiché $f$ è un omomorfismo, segue che $A \cong B$.
+    \end{proof}
 
     \section{Strutture dati induttive}
 

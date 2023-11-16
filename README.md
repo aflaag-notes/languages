@@ -13,5 +13,6 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 - appunti 06/11
     - finire
 - rileggere
+    - subsection 1.1.3 + obs 1.1.2.3
     - da esempio 2.5.3.3 pag 34
 
