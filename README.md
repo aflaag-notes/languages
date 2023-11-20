@@ -4,6 +4,8 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 
 ## TODO list
 
+- RICORSIONE DEBOLE TERMINANTE SE CHIAMA ANCORA COSI?
+
 - generali
     - finire i TODOs
     - definizione di chiusura
