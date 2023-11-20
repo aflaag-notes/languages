@@ -445,6 +445,14 @@
         Una \tbf{grammatica} è un insieme di regole che definiscono come manipolare un insieme di stringhe, agendo su elementi sintattici detti \tbf{termini}.
     \end{frameddefn}
 
+    \begin{frameddefn}{Variabili}
+        Data una grammatica di $G$, con $\mathrm{Var}$ si indica l'\tbf{insieme delle variabili} di $G$.
+    \end{frameddefn}
+
+    \begin{frameddefn}{Valori}
+        Data una grammatica, con $\mathrm{Val}$ si indica l'\tbf{insieme dei valori} che ogni termine della grammatica può assumere.
+    \end{frameddefn}
+
     \begin{frameddefn}{Forma di Backus-Naur (BNF)}
         La \tbf{forma di Backus-Naur} (\tit{Backus-Naur Form}) è una notazione utilizzata per descrivere la sintassi di grammatiche, ed è definita come segue: $$\ttt{<symbol>}, \ldots, \ttt{<symbol>} ::= \ttt{\_expression\_} \ | \ \ldots \ | \ \ttt{\_expression\_}$$ dove
         \begin{itemize}
@@ -454,54 +462,48 @@
         \end{itemize}
     \end{frameddefn}
 
-    \begin{example}[Grammatica $Exp$]
-        \label{exp}
-        Sia $Exp$ la seguente grammatica: $$M, N ::= \ttt 0 \ | \ \ttt 1 \ | \ldots \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N$$ essa definisce le regole per utilizzare i numeri in $\N$, ammettendo inoltre le operazioni \und{sintattiche} di $\ttt +$ e $\ttt *$.
+    \section{$Exp$}
 
-        All'interno di questa grammatica dunque, le metavariabili utilizzate sono le seguenti:
+    \subsection{Definizioni}
+
+    \begin{frameddefn}[label={exp}]{Grammatica $Exp$}
+        Sia $Exp$ la seguente grammatica: $$M, N ::= \ttt 0 \ | \ \ttt 1 \ | \ \ldots \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N$$ essa definisce le regole per utilizzare i numeri in $\N$, ammettendo inoltre le operazioni \und{sintattiche} di $\ttt +$ e $\ttt *$.
+    \end{frameddefn}
+
+    \begin{framedobs}{Metavariabili di $Exp$}
+        Sia $Exp$ la grammatica della \cref{exp}; allora, le sue metavariabili sono le seguenti:
+
         \begin{itemize}
             \item \tit{costanti}: $\ttt 0, \ttt 1,  \ldots$
             \item \tit{variabili}: $x$
             \item \tit{termini}: $M$ ed $N$
-            \item \tit{espressioni}: $M \ \ttt + \ N$ e $M \ \ttt * \ N$ (tecnicamente anche le precedenti sono espressioni, ma queste in particolare comprendono anche operazioni sintattiche)
+            \item \tit{espressioni}: $M \ \ttt + \ N$ e $M \ \ttt * \ N$ (si noti che tecnicamente anche le precedenti sono espressioni)
         \end{itemize}
-    \end{example}
 
-    \begin{frameddefn}{Variabili}
-        Data una grammatica di $G$, con $\mathrm{Var}$ si indica l'\tbf{insieme delle variabili} di $G$.
-    \end{frameddefn}
-
-    \begin{frameddefn}{Valori}
-        Data una grammatica, con $\mathrm{Val}$ si indica l'\tbf{insieme dei valori} che ogni termine della grammatica può assumere.
-    \end{frameddefn}
-
-    \begin{example}[Variabili e valori di $Exp$]
-        Si prenda in considerazione la grammatica $Exp$ dell'\cref{exp2}; in essa, si ha che $$\centeredsoe{\mathrm{Var} = \{ x \} \\ \mathrm{Val} = \{ \ttt 0, \ttt 1, \ldots \}}$$
-    \end{example}
+        Dunque, segue che $$\centeredsoe{\mathrm{Var} = \{ x \} \\ \mathrm{Val} = \{ \ttt 0, \ttt 1, \ldots \}}$$
+    \end{framedobs}
 
     \begin{frameddefn}{Linguaggio di una grammatica}
-        Sia $G$ una grammatica; allora, il suo \tbf{linguaggio} è l'insieme delle stringhe che è possibile costruire attraverso le regole dettate da $G$.
+        Sia $G$ una grammatica; allora, il suo \tbf{linguaggio} è l'insieme delle stringhe che è possibile costruire attraverso le regole di $G$.
     \end{frameddefn}
 
     \begin{example}[Linguaggio di $Exp$]
-        Sia $Exp$ la grammatica dell'\cref{exp}; in essa, considerando ad esempio le stringhe $\ttt{"4"}$ e $\ttt{"23"}$, si può ottenere la stringa $$\ttt{+}(\ttt{"4"}, \ttt{"23"}) = \ttt{"4 + 23"}$$ dove la \tit{polish notation} --- alla sinistra dell'uguale --- e la forma sintattica canonica --- alla sua destra --- verranno utilizzate intercambiabilmente, poiché puro \tit{syntactic sugar}.
+        Sia $Exp$ la grammatica della \cref{exp}; in essa, considerando ad esempio le stringhe $\ttt{"4"}$ e $\ttt{"23"}$, si può ottenere la stringa $$\ttt{+}(\ttt{"4"}, \ttt{"23"}) = \ttt{"4 + 23"}$$ dove la \tit{polish notation} --- alla sinistra dell'uguale --- e la forma sintattica canonica --- alla sua destra --- verranno utilizzate intercambiabilmente, poiché puro \tit{syntactic sugar}.
     \end{example}
 
     \begin{framedobs}[label={eval}]{Valutazione di $Exp$}
-        Si prenda in considerazione la grammatica $Exp$ dell'\cref{exp}; su di essa, è possibile definire ricorsivamente una funzione $\mathrm{eval}$, in grado di valutare le stringhe che tale grammatica può produrre, come segue: $$\centeredsoe{\mathrm{eval}(\ttt 0) = \ttt 0 \\ \mathrm{eval}(\ttt 1) = \ttt 1 \\ \vdots \\ \mathrm{eval}(M \ \ttt + \ N) = \mathrm{eval}(M) \ \ttt + \ \mathrm{eval}(N) \\ \mathrm{eval}(M \ \ttt * \ N) = \mathrm{eval}(M) \ \ttt * \ \mathrm{eval}(N)}$$
+        Si prenda in considerazione la grammatica $Exp$ della \cref{exp}; su di essa, è possibile definire ricorsivamente una funzione $\mathrm{eval}$, in grado di valutare le stringhe che tale grammatica può produrre, come segue: $$\centeredsoe{\mathrm{eval}(\ttt 0) = \ttt 0 \\ \mathrm{eval}(\ttt 1) = \ttt 1 \\ \vdots \\ \mathrm{eval}(M \ \ttt + \ N) = \mathrm{eval}(M) \ \ttt + \ \mathrm{eval}(N) \\ \mathrm{eval}(M \ \ttt * \ N) = \mathrm{eval}(M) \ \ttt * \ \mathrm{eval}(N)}$$
     \end{framedobs}
 
     \begin{framedobs}[label={ambiguity}]{Ambiguità di $Exp$}
-        Si prenda in considerazione la grammatica $Exp$ dell'\cref{exp}; si noti che tale grammatica è ambigua, poichè ad esempio $$\ttt{+}(\ttt{"5"}, \ttt{*}(\ttt{"6"}, \ttt{"7"})) = \ttt{"5 + 6 * 7"} = \ttt{*}(\ttt{+}(\ttt{"5"}, \ttt{"6"}), \ttt{"7"})$$ e da ciò segue anche che $\im{(\ttt+)} \cap \im{(\ttt *)} \neq \varnothing$.
+        Si prenda in considerazione la grammatica $Exp$ della \cref{exp}; si noti che tale grammatica è ambigua, poichè ad esempio $$\ttt{+}(\ttt{"5"}, \ttt{*}(\ttt{"6"}, \ttt{"7"})) = \ttt{"5 + 6 * 7"} = \ttt{*}(\ttt{+}(\ttt{"5"}, \ttt{"6"}), \ttt{"7"})$$ e da ciò segue anche che $\im{(\ttt+)} \cap \im{(\ttt *)} \neq \varnothing$.
     \end{framedobs}
 
     \begin{framedobs}{Disambiguazione di $Exp$}
         Si noti che l'ambiguità trattata nell'\cref{ambiguity} non permetterebbe di poter definire la funzione $\mathrm{eval}$, descritta nell'\cref{eval}. Dunque, per risolvere tale ambiguità, a meno di parentesi (che \tit{non} sono definite all'interno della grammatica) o dell'esplicitazione della composizione di funzioni utilizzata, verrà sottintesa la normale precedenza degli operatori aritmetica durante la valutazione delle stringhe.
     \end{framedobs}
 
-    \section{Assegnazioni}
-
-    \subsection{Definizioni}
+    \subsection{Assegnazioni}
 
     \begin{frameddefn}[label={let}]{Clausola $let$}
         Sia $G$ una grammatica; allora, è possibile definire su $G$ una funzione \tbf{$let$}, come segue: $$\func{let}{\mathrm{Var} \times G \times G}{G}$$ e verrà utilizzata attraverso la sintassi $$\letin{\ttt{*variable*}}{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ dove alla variabile $\ttt{*variable*}$ verrà assegnata l'espressione $\ttt{\_expression\_}_1$ \tit{durante la valutazione} di $\ttt{\_expression\_}_2$; la variabile $\ttt{*variable*}$, all'interno di $\ttt{\_expression\_}_2$, prende il nome di \tbf{variabile locale}.
@@ -509,9 +511,8 @@
         Una variabile alla quale non è stata assegnata nessuna espressione prende il nome di \tbf{variable libera} (\tit{free variable} in inglese); una variabile non libera è detta \tbf{variabile legata} (\tit{bound variable}). L'azione di legare o liberare una variabile è detta \tbf{variable binding}.
     \end{frameddefn}
     
-    \begin{example}[Estensione di $Exp$]
-        \label{exp2}
-        Sia $Exp$ la seguente estensione della grammatica presente all'interno dell'\cref{exp}: $$M, N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N}$$
+    \begin{frameddefn}[label={exp2}]{Estensione di $Exp$}
+        Sia $Exp$ la seguente estensione della grammatica presente all'interno della \cref{exp}: $$M, N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N}$$
 
         In essa, sono presenti:
 
@@ -521,22 +522,26 @@
             \item \tit{termini}: $M$ ed $N$
             \item \tit{espressioni}: $M \ \ttt + \ N$, $M \ \ttt * \ N$ e $\letin{x}{M}{N}$
         \end{itemize}
-    \end{example}
+    \end{frameddefn}
+
+    \begin{framedobs}{Convenzione per le espressioni di grammatiche}
+        Si noti che, d'ora in avanti, le espressioni delle grammatiche presentate non verranno indicate con il \ttt{"virgolettato"}, poiché verrà sottointesa la trasformazione tra i simboli, sintattici, delle grammatiche, e le vere operazioni e/o costanti che rappresentano, semanticamente.
+    \end{framedobs}
 
     \begin{example}[Clausole $let$]
-        Sia $Exp$ la grammatica dell'\cref{exp2}; un esempio di espressione su $Exp$, che utilizza la clausola $let$ della \cref{let}, è la seguente: $$\letin{x}{3}{(x + 1)}$$ e nel momento in cui viene valutata tale espressione, si ha che $$x = 3 \implies x + 1 = 3 + 1 = 4$$ e dunque il valore dell'espressione è 4.
+        Sia $Exp$ la grammatica della \cref{exp2}; un esempio di espressione su $Exp$, che utilizza la clausola $let$ della \cref{let}, è la seguente: $$\letin{x}{3}{(x + 1)}$$ e nel momento in cui viene valutata tale espressione, si ha che $$x = 3 \implies x + 1 = 3 + 1 = 4$$ e dunque il valore dell'espressione è 4.
     \end{example}
 
     \begin{example}[Variabili libere]
-        Sia $Exp$ la grammatica dell'\cref{exp2}, ed ammettendo la variabile $y$ in essa, si consideri la seguente espressione: $$\letin{x}{3}{(x + y)}$$ in essa, la variabile $x$ è posta pari a 3, ma ad $y$ non è stato assegnato alcuna espressione, e dunque risulta essere una variabile libera.
+        Sia $Exp$ la grammatica della \cref{exp2}, ed ammettendo la variabile $y$ in essa, si consideri la seguente espressione: $$\letin{x}{3}{(x + y)}$$ in essa, la variabile $x$ è posta pari a 3, ma ad $y$ non è stato assegnato alcuna espressione, e dunque risulta essere una variabile libera.
     \end{example}
 
     \begin{framedobs}{Ambiguità di $let$}
-        Sia $Exp$ la grammatica dell'\cref{exp2}, e si consideri la sua seguente espressione $$\letin{x}{M}{x + y}$$ per qualche espressione $M \in Exp$, e due variabili $x, y \in \mathrm{Var}$, ammettendo dunque $y$ tra le variabili di $Exp$; si noti che tale espressione è ambigua, poiché potrebbe equivalere a $$(\letin{x}{M}{x}) + y$$ oppure a $$\letin{x}{M}{(x + y)}$$ Per convenzione, all'interno di questi appunti, in assenza di parentesi che descrivano la precedenza degli operatori, si assume la precedenza della seconda espressione mostrata.
+        Sia $Exp$ la grammatica della \cref{exp2}, e si consideri la sua seguente espressione $$\letin{x}{M}{x + y}$$ per qualche espressione $M \in Exp$, e due variabili $x, y \in \mathrm{Var}$, ammettendo dunque $y$ tra le variabili di $Exp$; si noti che tale espressione è ambigua, poiché potrebbe equivalere a $$(\letin{x}{M}{x}) + y$$ oppure a $$\letin{x}{M}{(x + y)}$$ Per convenzione, all'interno di questi appunti, in assenza di parentesi che descrivano la precedenza degli operatori, si assume la precedenza della seconda espressione mostrata.
     \end{framedobs}
 
     \begin{framedobs}{Variabili libere di $Exp$}
-        Sia $Exp$ la grammatica dell'\cref{exp2}; su di essa, è possibile definire, ricorsivamente, una funzione in grado di restituire le variabili free di una data espressione, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{free}}{Exp}{\powerset{\left(\mathrm{Var}\right)}}{e}{\soe{ll}{
+        Sia $Exp$ la grammatica della \cref{exp2}; su di essa, è possibile definire, ricorsivamente, una funzione in grado di restituire le variabili free di una data espressione, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{free}}{Exp}{\powerset{\left(\mathrm{Var}\right)}}{e}{\soe{ll}{
             \varnothing & \exists \eta \in \N \mid e = k(\eta) \\ 
             \{x\} & \exists x \in \mathrm{Var} \mid e = x \\ 
             \mathrm{free}(M) \cup \mathrm{free}(N) & \exists M, N \in Exp \mid e = M \ \ttt + \ N \lor e = M \ \ttt * \ N \\
@@ -553,7 +558,7 @@
     \end{frameddefn}
 
     \begin{example}[Ambienti di $Exp$]
-        Sia $Exp$ la grammatica dell'\cref{exp2}; allora, un possibile ambiente di $Exp$, denotato con $E \in \mathrm{Env}$, è il seguente: $$E := \{(z,3), (y, 9) \}$$ ed esso esprime la possibilità che in $Exp$ $z$ possa essere valutato pari a 3, mentre $y$ pari a 9 (tecnicamente, le variabili $z$ ed $y$ andrebbero ammesse all'interno della grammatica, ma d'ora in avanti tale precisazione verrà sottintesa).
+        Sia $Exp$ la grammatica della \cref{exp2}; allora, un possibile ambiente di $Exp$, denotato con $E \in \mathrm{Env}$, è il seguente: $$E := \{(z,3), (y, 9) \}$$ ed esso esprime la possibilità che in $Exp$ $z$ possa essere valutato pari a 3, mentre $y$ pari a 9 (tecnicamente, le variabili $z$ ed $y$ andrebbero ammesse all'interno della grammatica, ma d'ora in avanti tale precisazione verrà sottintesa).
     \end{example}
 
     \begin{frameddefn}{Concatenazione di ambienti}
@@ -561,10 +566,10 @@
     \end{frameddefn}
 
     \begin{example}[Concatenazioni di ambienti]
-        Sia $Exp$ la grammatica descritta all'interno del \cref{exp2}, e siano $$\centeredsoe{E_1 := \{(z, 3), (y, 9)\} \\ E_2 := \{(z, 4)\}}$$ due suoi ambienti; allora si ha che $$E_1E_2 := \{(z, 4), (y, 9)\}$$
+        Sia $Exp$ la grammatica descritta all'interno della \cref{exp2}, e siano $$\centeredsoe{E_1 := \{(z, 3), (y, 9)\} \\ E_2 := \{(z, 4)\}}$$ due suoi ambienti; allora si ha che $$E_1E_2 := \{(z, 4), (y, 9)\}$$
     \end{example}
 
-    \subsection{Semantica operazionale}
+    \subsection{Semantica operazionale di $Exp$}
 
     \begin{frameddefn}[label={sem opexp}]{Semantica operazionale di una grammatica}
         Data una grammatica $G$, si definisce \tbf{semantica operazionale} della grammatica una relazione, indicata col simbolo $\leadsto$, definita come segue: $$\leadsto \ \subseteq \mathrm{Env} \times G \times \mathrm{Val}$$
@@ -572,9 +577,8 @@
         Un elemento $(E, M, v) \in \ \leadsto$ è detto \tbf{giudizio operazionale}, e viene scritto attraverso il seguente simbolismo: $$\opjud{E}{M}{v}$$ e si legge \curlyquotes{valutando $M$, nell'ambiente $E$, si ottiene $v$}.
     \end{frameddefn}
 
-    \begin{example}[Semantica operazionale di $Exp$]
-        \label{exp2 clauses}
-        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}, e sia $E$ un suo ambiente; allora, si definiscono le seguenti regole operazionali:
+    \begin{framedprop}[label={exp2 clauses}]{Semantica operazionale di $Exp$}
+        Sia $Exp$ la grammatica definita all'interno della \cref{exp2}, e sia $E$ un suo ambiente; allora, si definiscono le seguenti regole operazionali:
         
         \begin{itemize}
             \item \tbf{costanti}: $$[const] \ \opjud{E}{k}{k}$$
@@ -583,7 +587,7 @@
             \item \tbf{prodotti}: \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' \cdot v'' \implies [times] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M \ \ttt * \ N}{v}}$}
             \item \tbf{dichiarazioni ed assegnazioni}: $$\forall v, v' \in \mathrm{Val}, x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E\{(x, v')\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$$
         \end{itemize}
-    \end{example}
+    \end{framedprop}
 
     \begin{frameddefn}{Equivalenza operazionale}
         Sia $G$ una grammatica, e siano $M$ ed $N$ due sue espressioni; queste sono dette \tbf{operazionalmente equivalenti}, se è vera la seguente proposizione: $$\forall E \in \mathrm{Env}, v \in \mathrm{Val} \quad \opjud{E}{M}{v} \iff \opjud{E}{N}{v}$$ e viene indicato con $M \sim N$.
@@ -598,12 +602,10 @@
     \end{framedobs}
 
     \begin{example}[Alberi di valutazione su $Exp$]
-        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}; allora, l'albero di valutazione dell'espressione $$\letin{x}{3}{x + 4}$$ è il seguente $$\dfrac{\opjud{\varnothing}{3}{3} \quad \dfrac{\opjud{\{(x, 3)\}}{x}{3} \quad \opjud{\{(x,3)\}}{4}{4}}{\opjud{\{(x, 3)\}}{x +4}{7}}}{\opjud{\varnothing}{\letin{x}{3}{x +4}}{7}}$$ e l'espressione è valutabile poiché $x \in \dom(\{(x,1)\}) = \{x\}$.
+        Sia $Exp$ la grammatica definita all'interno della \cref{exp2}; allora, l'albero di valutazione dell'espressione $$\letin{x}{3}{x + 4}$$ è il seguente $$\dfrac{\opjud{\varnothing}{3}{3} \quad \dfrac{\opjud{\{(x, 3)\}}{x}{3} \quad \opjud{\{(x,3)\}}{4}{4}}{\opjud{\{(x, 3)\}}{x +4}{7}}}{\opjud{\varnothing}{\letin{x}{3}{x +4}}{7}}$$ e l'espressione è valutabile poiché $x \in \dom(\{(x,1)\}) = \{x\}$.
     \end{example}
 
-    \section{Valutazioni e scoping}
-
-    \subsection{Definizioni}
+    \subsection{Valutazioni e scoping}
 
     \begin{frameddefn}{Valutazione eager}
         Data una grammatica, la \tbf{valutazione eager} valuta una data espressione della grammatica non appena questa viene legata ad una variabile. In simboli, la valutazione eager verrà indicata con il pedice $\mathrm{E}$.
@@ -624,11 +626,11 @@
     \begin{frameddefn}[label={equiv lang}]{Equivalenza di semantiche operazionali}
         Data una grammatica, due sue semantiche operazionali sono dette \tbf{equivalenti} se, presa una qualunque espressione di $G$, quando questa viene valutata attraverso le due semantiche, produce lo stesso risultato.
 
-        In simboli, data una grammatica $G$, e due sue semantiche operazionali $\mathrm{A}$ e $\mathbb{B}$, se queste sono equivalenti, la loro equivalenza viene denotata con il seguente simbolismo: $$G_\mathrm{A} \equiv G_\mathbb{B}$$
+        In simboli, data una grammatica $G$, e due sue semantiche operazionali $\mathrm{A}$ e $\mathbb{B}$, se queste sono equivalenti, la loro equivalenza viene denotata con il seguente simbolismo: $$G_\mathrm{A} \equiv G_\mathrm{B}$$
     \end{frameddefn}
 
     \begin{framedlem}{$Exp_\mathrm{ES}$ e $Exp_\mathrm{ED}$}
-        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}, avente le clausole definite nell'\cref{exp2 clauses}; allora, si ha che $$Exp_\mathrm{ES} \equiv Exp_\mathrm{ED}$$
+        Sia $Exp$ la grammatica definita all'interno della \cref{exp2}, avente le clausole definite nell'\cref{exp2 clauses}; allora, si ha che $$Exp_\mathrm{ES} \equiv Exp_\mathrm{ED}$$
     \end{framedlem}
 
     \begin{proof}
@@ -637,11 +639,11 @@
 
     \begin{example}[$Exp_\mathrm{E}$]
         \label{eager2}
-        Sia $Exp$ la grammatica definita nell'\cref{exp2}, e si consideri la seguente espressione: $$\letin{x}{3}{(\letin{y}{x}{(\letin{x}{7}{y + x})})}$$ essa, valutata attraverso valutazione eager, produce il seguente albero di derivazione: \centeredeq{0.99}{$\dfrac{\opjud{\varnothing}{3}{3} \quad \dfrac{\opjud{\{(x, 3)\}}{x}{3} \quad \dfrac{\opjud{\{(x,3),(y,3)\}}{7}{7} \quad \dfrac{\opjud{\{(x,3),(y,3)\}\{(x,7)\}}{y}{3} \quad \opjud{\{(x,3),(y,3)\}\{(x,7)\}}{x}{7}}{\opjud{\{(x,3),(y,3)\}\{(x,7)\}}{y+x}{10}}}{\opjud{\{(x, 3),(y, 3)\}}{\letin{x}{7}{y + x}}{10}}}{\opjud{\{(x, 3)\}}{\letin{y}{x}{(\letin{x}{7}{y + x})}}{10}}}{\opjud{\varnothing}{\letin{x}{3}{(\letin{y}{x}{(\letin{x}{7}{y + x})})}}{10}}$}
+        Sia $Exp$ la grammatica definita nella \cref{exp2}, e si consideri la seguente espressione: $$\letin{x}{3}{(\letin{y}{x}{(\letin{x}{7}{y + x})})}$$ essa, valutata attraverso valutazione eager, produce il seguente albero di derivazione: \centeredeq{0.99}{$\dfrac{\opjud{\varnothing}{3}{3} \quad \dfrac{\opjud{\{(x, 3)\}}{x}{3} \quad \dfrac{\opjud{\{(x,3),(y,3)\}}{7}{7} \quad \dfrac{\opjud{\{(x,3),(y,3)\}\{(x,7)\}}{y}{3} \quad \opjud{\{(x,3),(y,3)\}\{(x,7)\}}{x}{7}}{\opjud{\{(x,3),(y,3)\}\{(x,7)\}}{y+x}{10}}}{\opjud{\{(x, 3),(y, 3)\}}{\letin{x}{7}{y + x}}{10}}}{\opjud{\{(x, 3)\}}{\letin{y}{x}{(\letin{x}{7}{y + x})}}{10}}}{\opjud{\varnothing}{\letin{x}{3}{(\letin{y}{x}{(\letin{x}{7}{y + x})})}}{10}}$}
     \end{example}
 
     \begin{framedprop}{$Exp_\mathrm{LD}$}
-        Sia $Exp$ la grammatica definita nell'\cref{exp2}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{exp2 clauses}:
+        Sia $Exp$ la grammatica definita nella \cref{exp2}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{exp2 clauses}:
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup Exp\}$$ dunque gli ambienti possono associare delle variabili anche a delle espressioni, in modo da poter ritardare la valutazione di quest'ultime fin quando non diventa strettamente necessario conoscerne il valore;
@@ -653,7 +655,7 @@
     \end{framedprop}
 
     \begin{framedprop}{$Exp_\mathrm{LS}$}
-        Sia $Exp$ la grammatica definita all'interno dell'\cref{exp2}; per poter valutare le sue espressioni in maniera lazy statica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{exp2 clauses}:
+        Sia $Exp$ la grammatica definita all'interno della \cref{exp2}; per poter valutare le sue espressioni in maniera lazy statica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{exp2 clauses}:
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid \mathrm{Var} \xrightarrow{fin} Exp \times \mathrm{Env} \}$$ dunque gli ambienti possono associare delle variabili anche a delle tuple contenenti espressioni ed ambienti; in particolare, per una tupla $(x, (M, E))$, si ha che $x$ vale $M$ valutata nell'ambiente $E$; questa correzione nella definizione di $\mathrm{Env}$ permette di tenere traccia degli ambienti in cui sono state fatte le assegnazioni;
@@ -665,7 +667,7 @@
     \end{framedprop}
 
     \begin{framedlem}{$Exp_\mathrm{LS}$ e $Exp_\mathrm{LD}$}
-        Sia $Exp$ la grammatica definita nell'\cref{exp2}; allora, si ha che $$Exp_\mathrm{LS} \not\equiv Exp_\mathrm{LD}$$
+        Sia $Exp$ la grammatica definita nella \cref{exp2}; allora, si ha che $$Exp_\mathrm{LS} \not\equiv Exp_\mathrm{LD}$$
     \end{framedlem}
 
     \begin{proof}
@@ -676,7 +678,7 @@
         Allora, poiché le due valutazioni producono risultati differenti, per la \cref{equiv lang}, segue la tesi.
     \end{proof}
 
-    \section{Funzioni}
+    \section{$Fun$}
 
     \subsection{Definizioni}
 
@@ -690,18 +692,17 @@
         Si noti che un'espressione $MNL$ applica prima $M$ ad $N$, e poi $MN$ ad $L$, dunque la precedenza è da sinistra verso destra, ovvero $(MN)L$.
     \end{frameddefn}
 
-    \begin{example}[Grammatica $Fun$]
-        \label{fun}
-        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno dell'\cref{exp2}: $$M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N} \ | \ \fn{x}{M} \ | \ MN$$
-    \end{example}
+    \begin{frameddefn}[label={fun}]{Grammatica $Fun$}
+        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno della \cref{exp2}: $$M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N} \ | \ \fn{x}{M} \ | \ MN$$
+    \end{frameddefn}
 
     \begin{example}[Funzioni come argomenti]
-        Sia $Fun$ la grammatica definita all'interno dell'\cref{fun}, e sia $$(\fn{x}{x +1})7$$ una sua espressione; essa, poiché applica la funzione $\fn{x}{x+1}$ all'espressione 7, viene valutata a $$x = 7 \implies x + 1= 7 + 1 = 8$$
+        Sia $Fun$ la grammatica definita all'interno della \cref{fun}, e sia $$(\fn{x}{x +1})7$$ una sua espressione; essa, poiché applica la funzione $\fn{x}{x+1}$ all'espressione 7, viene valutata a $$x = 7 \implies x + 1= 7 + 1 = 8$$
     \end{example}
 
     \begin{example}[Espressioni su $Fun$]
         \label{expr fun}
-        Sia $Fun$ la grammatica definita all'interno dell'\cref{fun}, e sia $$(\fn{x}{x3})(\fn{x}{x+1})$$ una sua espressione; essa, una volta valutata, applica la funzione $\fn{x}{x+1}$ all'espressione 3, e dunque il suo valore è pari a $$x = 3 \implies x + 1 = 3 + 1 = 4$$
+        Sia $Fun$ la grammatica definita all'interno della \cref{fun}, e sia $$(\fn{x}{x3})(\fn{x}{x+1})$$ una sua espressione; essa, una volta valutata, applica la funzione $\fn{x}{x+1}$ all'espressione 3, e dunque il suo valore è pari a $$x = 3 \implies x + 1 = 3 + 1 = 4$$
     \end{example}
 
     \begin{frameddefn}{Curryficazione}
@@ -709,17 +710,17 @@
     \end{frameddefn}
 
     \begin{example}[Curryficazioni]
-        Sia $Fun$ la grammatica dell'\cref{fun}, e sia $$(\fn{xy}{yx})7(\fn{x}{x+1})$$ una sua espressione; una volta effettuata l'uncurryficazione, si ottiene la seguente espressione: $$(\fn{x}{\fn{y}{yx}})7(\fn{x}{x+1})$$ che, una volta valutata, diventa $$(\fn{y}{y7})(\fn{x}{x+1})$$ e dunque, analogamente all'\cref{expr fun}, il risultato è $$x= 7 \implies x+1 = 7 + 1= 8$$
+        Sia $Fun$ la grammatica della \cref{fun}, e sia $$(\fn{xy}{yx})7(\fn{x}{x+1})$$ una sua espressione; una volta effettuata l'uncurryficazione, si ottiene la seguente espressione: $$(\fn{x}{\fn{y}{yx}})7(\fn{x}{x+1})$$ che, una volta valutata, diventa $$(\fn{y}{y7})(\fn{x}{x+1})$$ e dunque, analogamente all'\cref{expr fun}, il risultato è $$x= 7 \implies x+1 = 7 + 1= 8$$
     \end{example}
 
     \begin{framedobs}{Significato della curryficazione}
-        Si noti che la curryficazione \tit{ha significato}, in quanto è possibile considerare la seguente funzione, la quale restituisce la somma di due costanti $$\fn{x}{\fn{y}{x + y}}$$ come se fosse una \tit{funzione a due argomenti}, poiché per utilizzarla sarà necessario fornire 2 interi, come nel seguente esempio: $$(\fn{x}{\fn{y}{x + y}})5 \ 7 \longrightarrow (\fn{y}{5 + y})7 \longrightarrow 5 + 7 \longrightarrow 12$$ Di conseguenza, la versione curryficata della funzione presentata, ovvero $$\fn{x}{\fn{y}{x + y}} \iff \fn{xy}{x + y}$$ può essere interpretata come una funzione che si lavora con 2 argomenti.
+        Si noti che la curryficazione \tit{ha significato}, in quanto è possibile considerare la seguente funzione, la quale restituisce la somma di due costanti $$\fn{x}{\fn{y}{x + y}}$$ come se fosse una \tit{funzione a due argomenti}, poiché per utilizzarla sarà necessario fornire 2 interi, come nel seguente esempio: $$(\fn{x}{\fn{y}{x + y}})5 \ 7 \longrightarrow (\fn{y}{5 + y})7 \longrightarrow 5 + 7 \longrightarrow 12$$ Di conseguenza, la versione curryficata della funzione presentata, ovvero $$\fn{x}{\fn{y}{x + y}} \iff \fn{xy}{x + y}$$ può essere interpretata come una funzione che lavora con 2 argomenti.
     \end{framedobs}
 
-    \subsection{Semantiche operazionali}
+    \subsection{Semantica operazionale di $Fun$}
 
     \begin{framedprop}{$Fun_\mathrm{ED}$}
-        Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera eager dinamica, è necessario ridefinire alcune regole di inferenza:
+        Sia $Fun$ la grammatica definita nella \cref{fun}; per poter valutare le sue espressioni in maniera eager dinamica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$
@@ -732,7 +733,7 @@
     \end{framedprop}
 
     \begin{framedprop}{$Fun_\mathrm{ES}$}
-        Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera eager statica, è necessario ridefinire alcune regole di inferenza:
+        Sia $Fun$ la grammatica definita nella \cref{fun}; per poter valutare le sue espressioni in maniera eager statica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$
@@ -745,7 +746,7 @@
     \end{framedprop}
 
     \begin{framedlem}[label={fun lemma pt1}]{$Fun_\mathrm{ES}$ e $Fun_\mathrm{ED}$}
-        Sia $Fun$ la grammatica definita nell'\cref{fun}; allora, si ha che $$Fun_\mathrm{ES} \not\equiv Fun_\mathrm{ED}$$
+        Sia $Fun$ la grammatica definita nella \cref{fun}; allora, si ha che $$Fun_\mathrm{ES} \not\equiv Fun_\mathrm{ED}$$
     \end{framedlem}
 
     \begin{proof}
@@ -758,8 +759,8 @@
         Allora, poiché le due valutazioni producono risultati differenti, per la \cref{equiv lang}, segue la tesi.
     \end{proof}
 
-    \begin{framedprop}{$Fun_\mathrm{LD}$}
-        Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza:
+    \begin{framedprop}[breakable]{$Fun_\mathrm{LD}$}
+        Sia $Fun$ la grammatica definita nella \cref{fun}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{ f \mid f: \mathrm{Var} \xrightarrow{fin} Fun \}$$
@@ -772,7 +773,7 @@
     \end{framedprop}
 
     \begin{framedprop}{$Fun_\mathrm{LS}$}
-        Sia $Fun$ la grammatica definita nell'\cref{fun}; per poter valutare le sue espressioni in maniera lazy statica, è necessario ridefinire alcune regole di inferenza:
+        Sia $Fun$ la grammatica definita nella \cref{fun}; per poter valutare le sue espressioni in maniera lazy statica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid f :\mathrm{Var} \xrightarrow{fin} Fun \times \mathrm{Env}\}$$ dunque, la sua definizione è ricorsiva
@@ -785,7 +786,7 @@
     \end{framedprop}
 
     \begin{framedlem}[label={fun lemma pt2}]{$Fun_\mathrm{LS}$ e $Fun_\mathrm{LD}$}
-        Sia $Fun$ la grammatica definita nell'\cref{fun}; allora, si ha che $$Fun_\mathrm{LS} \not\equiv Fun_\mathrm{LD}$$
+        Sia $Fun$ la grammatica definita nella \cref{fun}; allora, si ha che $$Fun_\mathrm{LS} \not\equiv Fun_\mathrm{LD}$$
     \end{framedlem}
 
     \begin{proof}
@@ -798,11 +799,11 @@
 
     \begin{example}[Espressione $\omega$ di $Fun$]
         \label{omega fun}
-        Sia $Fun$ la grammatica definita all'interno dell'\cref{fun}; allora, una sua espressione $\omega$ è la seguente: $$\omega := (\fn{x}{xx})(\fn{x}{xx})$$ Essa risulta essere un'espressione $\omega$ per $Fun$, poiché la sua valutazione entra in ricorsione infinita indipendentemente dalla semantica scelta.
+        Sia $Fun$ la grammatica definita all'interno della \cref{fun}; allora, una sua espressione $\omega$ è la seguente: $$\omega := (\fn{x}{xx})(\fn{x}{xx})$$ Essa risulta essere un'espressione $\omega$ per $Fun$, poiché la sua valutazione entra in ricorsione infinita indipendentemente dalla semantica scelta.
     \end{example}
 
     \begin{framedlem}{Semantiche di $Fun$}
-        Sia $Fun$ la grammatica definita nell'\cref{fun}; allora, si ha che $$Fun_\mathrm{LD} \not\equiv Fun_\mathrm{ED} \not\equiv Fun_\mathrm{ES} \not\equiv Fun_\mathrm{LS}$$
+        Sia $Fun$ la grammatica definita nella \cref{fun}; allora, si ha che $$Fun_\mathrm{LD} \not\equiv Fun_\mathrm{ED} \not\equiv Fun_\mathrm{ES} \not\equiv Fun_\mathrm{LS}$$
     \end{framedlem}
     
     \begin{proof}
@@ -817,7 +818,7 @@
     \end{proof}
 
     \begin{framedobs}{Variabili libere di $Fun$}
-        Sia $Fun$ la grammatica dell'\cref{fun}; su di essa, è possibile definire, ricorsivamente, una funzione in grado di restituire le variabili free di una data espressione, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{free}}{Fun}{\powerset{\left(\mathrm{Var}\right)}}{e}{\soe{ll}{
+        Sia $Fun$ la grammatica della \cref{fun}; su di essa, è possibile definire, ricorsivamente, una funzione in grado di restituire le variabili free di una data espressione, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{free}}{Fun}{\powerset{\left(\mathrm{Var}\right)}}{e}{\soe{ll}{
             \varnothing & \exists \eta \in \N \mid e = k(\eta) \\ 
             \{x\} & \exists x \in \mathrm{Var} \mid e = x \\ 
             \mathrm{free}(M) \cup \mathrm{free}(N) & \exists M, N \in Fun \mid e = M \ \ttt + \ N \lor e = M \ \ttt * \ N \\
@@ -897,7 +898,7 @@
     \end{frameddefn}
 
     \begin{framedprop}{Funzione $\mathrm{evalBool}_\lambda$}
-        Si consideri la grammatica definita all'interno dell'\cref{fun}; è possibile estenderla affinché includa anche i valori booleani $true$ e $false$. Dunque, è possibile definire una funzione che, dato un booleano di Church, restituisce il corrispondente valore booleano, come segue: $$\mathrm{evalBool}_\lambda := \fn{z}{z \ true \ false}$$
+        Si consideri la grammatica definita all'interno della \cref{fun}; è possibile estenderla affinché includa anche i valori booleani $true$ e $false$. Dunque, è possibile definire una funzione che, dato un booleano di Church, restituisce il corrispondente valore booleano, come segue: $$\mathrm{evalBool}_\lambda := \fn{z}{z \ true \ false}$$
     \end{framedprop}
 
     \begin{example}[Valutazione di $\mathrm{true}_\lambda$]
@@ -1045,18 +1046,22 @@
         Sia $G$ una grammatica composta da programmi, e sia $G_M$ l'insieme delle sue espressioni; allora, è possibile deifnire su $G$ una funzione $assign$, come segue: $$\func{assign}{\mathrm{Var} \times G_M}{G}$$ e verrà utilizzata attraverso la sintassi $$\ttt{*variable*}  := \ttt{\_expression\_}$$ all'interno della quale, a \ttt{*variable*}, verrà assegnato il valore di \ttt{\_expression\_}.
     \end{frameddefn}
 
-    \begin{example}[Grammatica $Imp$]
-        \label{imp}
-        Si consideri la grammatica $Exp$ definita all'interno dell'\cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estenderla come segue: $$M,N ::= k \ | \ true \ | \ false \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S}}$$
-    \end{example}
+    \section{$Imp$}
+
+    \subsection{Definizioni}
+
+    \begin{frameddefn}[label={imp}]{Grammatica $Imp$}
+        Si consideri la grammatica $Exp$ definita all'interno della \cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estendere essa come segue: $$M,N ::= k \ | \ true \ | \ false \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S}}$$
+    \end{frameddefn}
 
     \begin{framedobs}{Semantiche di $Imp$}
-        Sia $Imp$ la grammatica dell'\cref{imp}, e si considerino le sue semantiche operazionali; esse sono definite tali che la semantica $\stackrel{M}{\leadsto}$ delle espressioni sia in grado di restituire valori, ma non di cambiare la memoria, mentre la semantica $\stackrel{p}{\leadsto}$ dei programmi non restituisca valori, ma alteri lo stato della memoria. 
+        Sia $Imp$ la grammatica della \cref{imp}, e si considerino le sue semantiche operazionali; esse sono definite tali che la semantica $\stackrel{M}{\leadsto}$ delle espressioni sia in grado di restituire valori, ma non di cambiare la memoria, mentre la semantica $\stackrel{p}{\leadsto}$ dei programmi non restituisca valori, ma alteri lo stato della memoria. 
     \end{framedobs}
 
-    \begin{example}[Semantica operazionale di $Imp$]
-        \label{imp sem}
-        Sia $Imp$ la grammatica definita all'interno dell'\cref{imp}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, si definiscono le seguenti regole operazionali (si noti che, per brevità, verrà utilizzato il simbolo $\leadsto$ all'interno dei giudizi di entrambe le semantiche di $Imp$):
+    \subsection{Semantica operazionale di $Imp$}
+
+    \begin{framedprop}[label={imp sem},breakable]{Semantica operazionale di $Imp$}
+        Sia $Imp$ la grammatica definita all'interno della \cref{imp}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, si definiscono le seguenti regole operazionali (si noti che, per brevità, verrà utilizzato il simbolo $\leadsto$ all'interno dei giudizi di entrambe le semantiche di $Imp$):
 
         \begin{itemize}
             \item \tbf{costanti}: $$[const] \ \opjudstore{E}{k}{S}{S}$$
@@ -1071,15 +1076,15 @@
             \item \tbf{dichiarazioni ed assegnazioni}: $$\forall x \in \mathrm{Var}, M \in Exp, p \in Imp, S' \in \mathrm{Store}, v \in \mathrm{Val} \quad \exists l \in \mathrm{Loc} \mid l \notin \dom(S) \implies$$ $$\implies [var] \ \dfrac{\opjudstore{E}{M}{S}{v} \quad \opjudstore{E\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore{E}{\varin{x}{M}{p}}{S}{S'}}$$
             \item \tbf{assegnazioni}: \centeredeq{0.9}{$\forall x \in \mathrm{Var}, M \in Exp \quad \exists l \in \mathrm{Loc} \mid E(x) = l \implies [assign] \ \dfrac{\opjudstore{E}{M}{S}{v}}{\opjudstore{E}{x := M}{ S}{S\{(l, v)\}}}$}
         \end{itemize}
-    \end{example}
+    \end{framedprop}
 
-    \subsection{Memoria contigua}
+    \section{Memoria contigua}
+
+    \subsection{Definizioni}
 
     \begin{frameddefn}{Memoria contigua}
         Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; al fine di implementare gli \tit{array} all'interno del paradigma imperativo, è necessario definire la \tbf{memoria contigua}, dunque si definisce il seguente insieme di locazioni $$\displaystyle \mathrm{Loc}^+ := \bigcup_{n \in \N}{\mathrm{Loc}^n}$$ poiché è in grado di supportare infinite sequenze di elementi, e si assume che queste siano contigue in memoria.
     \end{frameddefn}
-
-    \subsection{Clausole imperative a memoria contigua}
 
     \begin{frameddefn}{Clausola $arr$}
         Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $arr$, come segue: $$\func{arr}{\mathrm{Var} \times G_M^+ \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\arrin{\ttt{*variable*}}{[\ttt{\_expression\_}_1, \ldots, \ttt{\_expression\_}_n]}{\ttt{<program>}}$$ la quale pone $\ttt{*variable*}$ pari all'array $[\ttt{\_expression\_}_1, \ldots, \ttt{\_expression\_}_n]$, all'interno di $\ttt{<program>}$.
@@ -1097,27 +1102,31 @@
         Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $call$, come segue: $$\func{call}{\mathrm{Var} \times G_M}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\call{\ttt{*variable*}}{\ttt{\_expression\_}}$$ la quale effettua una chiamata alla procedura $\ttt{*variable*}$, fornendole come parametro $\ttt{\_expression\_}$.
     \end{frameddefn}
 
-    \begin{example}[Grammatica $All$]
-        \label{all}
-        Sia $All$ la grammatica, estensione di $Imp$ definita nell'\cref{imp}, composta dalle seguenti grammatiche:
+    \section{$All$}
 
-        $$\leftsoe{k ::= \ttt 0 \ | \ \ttt 1 \ | \ \ldots \ | \ true \ | \ false \\ V ::= x \ | \ x[M] \\ M, N ::= k \ | \ V \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ \ttt < \ N \\ p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \\ \quad \quad \quad \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ \arrin{x}{[M_0, \ldots, M_n]}{p} \ | \\ \quad \quad \quad \ | \ V := M \ | \ \procin{y}{x}{p}{x} \ | \ \call{y}{M}}$$
+    \subsection{Definizioni}
+
+    \begin{frameddefn}[label={all}]{Grammatica $All$}
+        Sia $All$ la grammatica, estensione di $Imp$ definita nella \cref{imp}, composta dalle seguenti grammatiche:
+
+        $$\leftsoe{k ::= \ttt 0 \ | \ \ttt 1 \ | \ \ldots \ | \ true \ | \ false \\ V ::= x \ | \ x[M] \\ M, N ::= k \ | \ V \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ \ttt < \ N \\ p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \\ \quad \quad \quad \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ \arrin{x}{[M_0, \ldots, M_n]}{p} \\ \quad \quad \quad \ V := M \ | \ \procin{y}{x}{p}{x} \ | \ \call{y}{M}}$$
 
         Dunque, essa è composta da:
 
         \begin{enumerate}[label=\roman*), font=\itshape]
             \item una grammatica per le \tit{costanti};
             \item una grammatica per le \tit{espressioni assegnabili}, che prende il nome di $LExp$ (\tit{left expressions}); per valutare le sue espressioni, si introduce la seguente semantica: $$\stackrel{V}{\leadsto} \ \subseteq \mathrm{Env} \times LExp \times \mathrm{Store} \times \mathrm{Loc}$$
-            \item una grammatica per le \tit{espressioni valutabili}, la quale consiste in un'estensione di $Exp$ definita nell'\cref{exp};
-            \item una grammatica per i \tit{programmi}, la quale consiste in un'estensione di $Imp$ definita nell'\cref{imp}.
+            \item una grammatica per le \tit{espressioni valutabili}, la quale consiste in un'estensione di $Exp$ definita nella \cref{exp};
+            \item una grammatica per i \tit{programmi}, la quale consiste in un'estensione di $Imp$ definita nella \cref{imp}.
         \end{enumerate}
 
         Si noti che, poiché tale grammatica supporta gli array, è necessario fornire ad $All$ locazioni di memoria contigue. Inoltre, l'insieme degli ambienti di $All$ è definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc}^+ \cup (\mathrm{Var} \times All \times \mathrm{Env})\}$$
-    \end{example}
+    \end{frameddefn}
 
-    \begin{example}
-        \label{all sem}
-        Sia $All$ la grammatica definita all'interno dell'\cref{all}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, in aggiunta alle regole $$[const], \ [plus], \ [times], \ [lt_1], \ [lt_2], \ [skip], \ [seq], \ [ite_1], \ [ite_2], \ [while_1], \ [while_2]$$ descritte nell'\cref{imp sem}, si definiscono le seguenti:
+    \subsection{Semantica operazionale di $All$}
+
+    \begin{framedprop}[label={all sem}, breakable]{Semantica operazionale di $All$}
+        Sia $All$ la grammatica definita all'interno della \cref{all}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, in aggiunta alle regole $$[const], \ [plus], \ [times], \ [lt_1], \ [lt_2], \ [skip], \ [seq], \ [ite_1], \ [ite_2], \ [while_1], \ [while_2]$$ descritte nell'\cref{imp sem}, si definiscono le seguenti:
 
         \begin{itemize}
             \item \tbf{locazioni}: $$\forall x \in \mathrm{Var} \quad \exists l \in \mathrm{Loc}^+ \mid E(x) = l \implies [loc_1] \ \opjudstore[V]{E}{x}{S}{l}$$
@@ -1129,13 +1138,11 @@
         \end{itemize}
 
         Per quanto concerne le regole della clausola $call$, si consultino la \cref{all v}, la \cref{all r} e la \cref{all n}.
-    \end{example}
+    \end{framedprop}
 
     \begin{framedobs}{Variabili in $All$}
         Si considerino le regole della grammatica $All$, definite all'interno dell'\cref{all sem}, e si noti che in essa non è presente la regola di inferenza $[vars]$; infatti, all'interno di $All$, l'unico modo per accedere al valore di una variabile è tramite \tit{reference}, dunque utilizzando $[loc_1]$ assieme a $[ref]$. Questo è necessario poiché $All$ supporta gli array, e dunque TODO.
     \end{framedobs}
-
-    \subsection{Semantiche delle chiamate}
 
     \begin{frameddefn}{Semantiche di $call$}
         È possibile effettuare le chiamate alle procedure attraverso le seguenti semantiche operazionali:
@@ -1148,7 +1155,7 @@
     \end{frameddefn}
 
     \begin{framedprop}[label={all v}]{$All_\mathrm{V}$}
-        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-value}, è necessario definire la seguente regola di inferenza:
+        Sia $All$ la grammatica definita nella \cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-value}, è necessario definire la seguente regola di inferenza:
 
         \begin{itemize}
             \item \tbf{call-by-value}: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies [call]_{value} \ \dfrac{\opjudstore[M]{E}{M}{S}{v} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore[p]{E}{\call{y}{M}}{S}{S'}}$$
@@ -1158,7 +1165,7 @@
     \end{framedprop}
 
     \begin{framedprop}[label={all r}]{$All_\mathrm{R}$}
-        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-reference}, è necessario definire la seguente regola di inferenza: 
+        Sia $All$ la grammatica definita nella \cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-reference}, è necessario definire la seguente regola di inferenza: 
 
         \begin{itemize}
             \item \tbf{call-by-reference}: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies [call]_{ref} \ \dfrac{\opjudstore[V]{E}{V}{S}{l} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$
@@ -1168,7 +1175,7 @@
     \end{framedprop}
 
     \begin{framedprop}[label={all n}]{$All_\mathrm{N}$}
-        Sia $All$ la grammatica definita nell'\cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-name}, è necessario ridefinire l'insieme degli ambienti, come segue $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc}^+ \cup (\mathrm{Var} \times All \times \mathrm{Env}) \cup (LExp \times \mathrm{Env})\}$$ ed inoltre vengono aggiunte le due regole di inferenza che seguono:
+        Sia $All$ la grammatica definita nella \cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-name}, è necessario ridefinire l'insieme degli ambienti, come segue $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc}^+ \cup (\mathrm{Var} \times All \times \mathrm{Env}) \cup (LExp \times \mathrm{Env})\}$$ ed inoltre vengono aggiunte le due regole di inferenza che seguono:
 
         \begin{itemize}
             \item \tbf{locazioni}: $$\forall x \in \mathrm{Var}, l \in \mathrm{Loc}, V \in LExp \quad E(x) = (V, E') \implies [loc_3] \ \dfrac{\opjudstore[V]{E'}{V}{S}{l}}{\opjudstore[V]{E}{x}{S}{l}}$$
@@ -1179,11 +1186,11 @@
     \end{framedprop}
 
     \begin{framedlem}{Semantiche di $All$}
-        Sia $All$ la grammatica definita nell'\cref{all}; allora, si ha che $$All_\mathrm{V} \not\equiv All_\mathrm{R} \not\equiv All_\mathrm{N}$$
+        Sia $All$ la grammatica definita nella \cref{all}; allora, si ha che $$All_\mathrm{V} \not\equiv All_\mathrm{R} \not\equiv All_\mathrm{N}$$
     \end{framedlem}
     
     \begin{proof}
-        Omessa.
+        TODO.
     \end{proof}
 
     \chapter{Correttezza dei programmi}
@@ -1213,7 +1220,7 @@
         \end{itemize}
     \end{framedprop}
 
-    \begin{frameddefn}{Logica di Hoare}
+    \begin{frameddefn}[label={hoare logic}]{Logica di Hoare}
         Si definisce \tbf{logica di Hoare} la seguente grammatica: $$\leftsoe{M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \\ A,B ::= true \ | \ false \ | \ A \supset B \ | \ M <  N \ | \ M = N \\ p,q ::= skip \ | \ p;q \ | \ x:=M \ | \ \ite{B}{p}{q} \ | \ \while{B}{p}}$$ dove la prima grammatica comprende le espressioni, la seconda le espressioni booleane, e la terza i programmi.
     \end{frameddefn}
 
@@ -1233,7 +1240,8 @@
         Sia $A$ un'espressione booleana della logica di Hoare; essa è detta \tbf{invariante} se e solo se, per qualche espressione booleana $B$ e programma $p$, si ha che $$\hoare{A}{\while{B}{p}}{A \land \lnot B}$$ ovvero, la condizione $A$ è verificata \tit{prima e dopo} l'esecuzione di $p$.
     \end{frameddefn}
 
-    \begin{example}[Correttezza di programmi] Si consideri il seguente programma, in grado di calcolare quoziente e resto dati dal rapporto di due numeri in input (nel programma, $x$ ed $y$): $$b :=x; \ a := 0; \ \while{b \ge y}{(b := b - y ; \ a := a + 1)}$$ È possibile dimostrarne la correttezza attraverso il seguente albero di valutazione:
+    \begin{example}[Correttezza di programmi]
+        Si consideri il seguente programma --- espresso in termini della logica di Hoare, definita nella \cref{hoare logic} --- in grado di calcolare quoziente e resto dati dal rapporto di due numeri in input (nel programma, $x$ ed $y$): $$b :=x; \ a := 0; \ \while{b \ge y}{(b := b - y ; \ a := a + 1)}$$ È possibile dimostrarne la correttezza attraverso il seguente albero di valutazione:
 
         \centeredeq{0.9}{$(*) \ \dfrac{x \ge 0 \supset (x = 0 \cdot y + x \land x \ge 0 ) \quad \dfrac{\hoare{x = 0 \cdot y + x \land x \ge 0}{b := x}{A_1}}{\hoare{A_1[x/b]}{b := x}{A_1}}}{\hoare{x \ge 0}{b := x}{x = 0 \cdot y + b \land b \ge 0}}$}
         \centeredeq{0.9}{$(**) \ \dfrac{A \land b \ge y \supset (x = (a + 1) \cdot y + (b - y) \land b-y \ge 0) \quad \dfrac{\hoare{x = (a + 1) \cdot y + (b - y) \land b - y \ge 0}{b:= b - y}{A_2}}{\hoare{A_2[(b - y)/b]}{b: = b - y}{A_2}}}{\hoare{A \land b \ge y}{b := b - y}{x = (a + 1) \cdot y + b \land b \ge 0}}$}
@@ -1261,13 +1269,13 @@
     \begin{example}[Funzioni come punti fissi]
         Si consideri la funzione $$F(g) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot g(x - 1) & x > 0}$$ che prende in input una funzione; per vedere come opera, calcolando ad esempio $F(\mathrm{succ})$, si ottiene la funzione $$F(\mathrm{succ}) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{succ}(x - 1) = x \cdot x = x^2 & x > 0}$$ che restituisce 1 se $x$ è 0, altrimenti restituisce $x^2$.
 
-        Allora, il punto fisso di $F$ è la funzione seguente $$\mathrm{fact}(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{fact}(x - 1) & x > 0}$$ che computa il fattoriale di un numero; infatti, si ha che $$F(\mathrm{fact}) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{fact}(x - 1) & x > 0} =: \mathrm{fact}$$
+        Allora, il punto fisso di $F$ è la funzione seguente $$\mathrm{fact}(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{fact}(x - 1) & x > 0}$$ che computa il fattoriale di un numero; infatti, si ha che $$F(\mathrm{fact}) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{fact}(x - 1) & x > 0} \equiv : \mathrm{fact}$$
     \end{example}
 
     \subsection{Ricorsione}
 
     \begin{frameddefn}{Combinatore di Kleene}
-        Si definisce \tbf{combinatore di Kleene}, o \tbf{operatore di punto fisso}, la seguente espressione esprimibile attraverso la grammatica $Fun$ dell'\cref{fun}: $$\mathrm Y := \fn{f}{((\fn{x}{f(xx)})(\fn{x}{f(xx)}))}$$
+        Si definisce \tbf{combinatore di Kleene}, o \tbf{operatore di punto fisso}, la seguente espressione esprimibile attraverso la grammatica $Fun$ della \cref{fun}: $$\mathrm Y := \fn{f}{((\fn{x}{f(xx)})(\fn{x}{f(xx)}))}$$
     \end{frameddefn}
 
     \begin{framedprop}{Punto fisso di una funzione}
@@ -1275,7 +1283,7 @@
     \end{framedprop}
 
     \begin{proof}
-        Se il combinatore di Kleene è in grado di restituire il punto fisso di una funzione, allora data una funzione $h$, si ha che $\mathrm Yh$ è il suo punto fisso, e dunque per definizione $$h(\mathrm Yh) = \mathrm Yh$$ Allora, svolgendo i calcoli, si ottiene che \centeredeq{0.9}{$\mathrm Yh \betaconv (\fn{x}{h(xx)})(\fn{x}{h(xx)}) \longrightarrow  h((\fn{x}{h(xx)})(\fn{x}{h(xx)})) \betaconv h (\mathrm Y h)$}
+        Se il combinatore di Kleene è in grado di restituire il punto fisso di una funzione, allora data una funzione $h$, si ha che $\mathrm Yh$ è il suo punto fisso, e dunque per definizione $$h(\mathrm Yh) \equiv \mathrm Yh$$ Allora, svolgendo i calcoli, si ottiene che \centeredeq{0.9}{$\mathrm Yh \betaconv (\fn{x}{h(xx)})(\fn{x}{h(xx)}) \longrightarrow  h((\fn{x}{h(xx)})(\fn{x}{h(xx)})) \betaconv h (\mathrm Y h)$}
     \end{proof}
 
     \begin{framedobs}{Ricorsione attraverso $\mathrm Y$}
@@ -1317,12 +1325,12 @@
         È possibile esprimere la funzione $\mathrm{isEven}$ definita nell'\cref{rho ex}, attraverso l'operatore $rec$, come segue: $$\mathrm{isEven} \equiv (\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda}) \equiv (\recfun{\mathrm{True}_\lambda}{(\fn{xn}{\mathrm{not}_\lambda \ x})})$$
     \end{example}
 
-    \begin{example}[Grammatica $Fun_\rho$]
-        Si consideri la grammatica definita all'interno dell'\cref{fun}; la seguente è una sua estensione, che prenderà il nome di $Fun_\rho$, che include al suo interno una clausola con l'operatore $rec$: $$M, N ::= x \smid \fn{x}{M} \smid MN \smid 0 \smid \mathrm{succ} \ M \smid \recfun{M}{N}$$ dove si noti che 0 non sta ad indicare tutte le costanti, ma esclusivamente lo 0, in quanto non è necessario includere le altre poiché la grammatica è fornita della funzione $\mathrm{succ}$.
-    \end{example}
+    \begin{frameddefn}[label={fun rho}]{Grammatica $Fun_\rho$}
+        Si consideri la grammatica definita all'interno della \cref{fun}; la seguente è una sua estensione, che prenderà il nome di $Fun_\rho$, che include al suo interno una clausola con l'operatore $rec$: $$M, N ::= x \smid \fn{x}{M} \smid MN \smid 0 \smid \mathrm{succ} \ M \smid \recfun{M}{N}$$ dove si noti che 0 non sta ad indicare tutte le costanti, ma esclusivamente lo 0, in quanto non è necessario includere le altre poiché la grammatica è fornita della funzione $\mathrm{succ}$.
+    \end{frameddefn}
 
     \begin{example}[Operatore $rec$ in $Fun_\rho$]
-        Si consideri la funzione $\funcmap{p_2}{\N}{\N}{n}{n + 2}$ che somma 2 all'input fornito; è possibile esprimerla attraverso l'operatore $rec$ come segue: $$p_2 : \soe{l}{p_2 \ 0 = 2 \\ p_2 \ (\succfn \ n)}$$
+        Si consideri la grammatica $Fun_\rho$ descritta nella \cref{fun rho}, e sia $\funcmap{p_2}{\N}{\N}{n}{n + 2}$ la funzione che somma 2 all'input fornito; è possibile esprimerla attraverso l'operatore $rec$ come segue: $$p_2 : \soe{l}{p_2 \ 0 = 2 \\ p_2 \ (\succfn \ n)}$$ TODO DA FINIRE
     \end{example}
 
 \end{document}
