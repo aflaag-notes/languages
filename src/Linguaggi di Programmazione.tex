@@ -624,7 +624,7 @@
     \begin{frameddefn}[label={equiv lang}]{Equivalenza di semantiche operazionali}
         Data una grammatica, due sue semantiche operazionali sono dette \tbf{equivalenti} se, presa una qualunque espressione di $G$, quando questa viene valutata attraverso le due semantiche, produce lo stesso risultato.
 
-        In simboli, data una grammatica $G$, e due sue semantiche operazionali $\mathrm{A}$ e $\mathrm{B}$, se queste sono equivalenti, la loro equivalenza viene denotata con il seguente simbolismo: $$G_\mathrm{A} \equiv G_\mathrm{B}$$
+        In simboli, data una grammatica $G$, e due sue semantiche operazionali $\mathrm{A}$ e $\mathbb{B}$, se queste sono equivalenti, la loro equivalenza viene denotata con il seguente simbolismo: $$G_\mathrm{A} \equiv G_\mathbb{B}$$
     \end{frameddefn}
 
     \begin{framedlem}{$Exp_\mathrm{ES}$ e $Exp_\mathrm{ED}$}
@@ -888,7 +888,7 @@
     \subsection{Logica booleana di Church}
 
     \begin{frameddefn}{Logica booleana di Church}
-        La \tbf{rappresentazione di Church della logica booleana}, denotata con $B_\lambda$, è la seguente
+        La \tbf{rappresentazione di Church della logica booleana}, denotata con $\mathbb{B}_\lambda$, è la seguente
 
         \begin{itemize}
             \item $\mathrm{true}_\lambda := \fn{x}{\fn{y}{x}} \iff \fn{xy}{x}$
@@ -905,7 +905,7 @@
     \end{example}
 
     \begin{framedprop}[label={ite}]{Operazione $\mathrm{ite}_\lambda$}
-        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica \tit{if-then-else}, come segue: $$\mathrm{ite}_\lambda := \fn{z}{\fn{u}{\fn{v}{zuv}}} \iff \fn{zuv}{zuv}$$ poiché dato un $z \in B_\lambda$, la funzione restituirà $u$ se $z$ è $\mathrm{true}_\lambda$, altrimenti $v$.
+        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica \tit{if-then-else}, come segue: $$\mathrm{ite}_\lambda := \fn{z}{\fn{u}{\fn{v}{zuv}}} \iff \fn{zuv}{zuv}$$ poiché dato un $z \in \mathbb{B}_\lambda$, la funzione restituirà $u$ se $z$ è $\mathrm{true}_\lambda$, altrimenti $v$.
     \end{framedprop}
 
     \begin{framedprop}{Operazione $\mathrm{if}_\lambda$}
@@ -913,7 +913,7 @@
     \end{framedprop}
 
     \begin{framedprop}{Operazione $\mathrm{not}_\lambda$}
-        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di negazione come segue: $$\mathrm{not}_\lambda := \fn{z}{(\fn{x}\fn{y}{zyx})} \iff \fn{zxy}{zyx}$$ poiché tale funzione passa ad un certo $z \in B_\lambda$ le variabili $x$ ed $y$ scambiate di posto. Si noti che l'operazione è simile all'operazione $\mathrm{ite}_\lambda$ definita nella \cref{ite}, poiché è possibile interpretarla come l'inverso dell'operazione \tit{if-then-else}.
+        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di negazione come segue: $$\mathrm{not}_\lambda := \fn{z}{(\fn{x}\fn{y}{zyx})} \iff \fn{zxy}{zyx}$$ poiché tale funzione passa ad un certo $z \in \mathbb{B}_\lambda$ le variabili $x$ ed $y$ scambiate di posto. Si noti che l'operazione è simile all'operazione $\mathrm{ite}_\lambda$ definita nella \cref{ite}, poiché è possibile interpretarla come l'inverso dell'operazione \tit{if-then-else}.
     \end{framedprop}
 
     \begin{framedprop}{Operazione $\mathrm{or}_\lambda$}
@@ -1285,7 +1285,7 @@
     \end{framedobs}
 
     \begin{framedlem}[label={weak term ric}]{Ricorsione debole terminante}
-        Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A}{A}$, si ha che: $$\exists ! f: \N \to A \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n))= h(f(n))}$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$, per qualche funzione nullaria $\funcmap{\mathrm{zero}_A}{\1}{A}{x}{a}$.
+        Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A}{A}$, si ha che $$\exists ! f: \N \to A \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n))= h(f(n))}$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$, per qualche funzione nullaria $\funcmap{\mathrm{zero}_A}{\1}{A}{x}{a}$.
     \end{framedlem}
 
     \begin{proof}
@@ -1297,7 +1297,32 @@
     \end{frameddefn}
 
     \begin{example}[Operatore $\rho$]
-        Si considerino le algebre dei numeri naturali $(\N, \mathrm{succ}, \mathrm{zero})$, e dei booleani di Church $(B_\lambda, \mathrm{not}_\lambda, \mathrm{True}_\lambda)$, dove $$\funcmap{\mathrm{True}_\lambda}{\1}{B_\lambda}{x}{\mathrm{true}_\lambda}$$ Allora, si ha che $(\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda})$ è una funzione tale che $$\soe{l}{(\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda}) 0 = \mathrm{true}_\lambda \\ (\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda})(\mathrm{succ} \ n) = \mathrm{not}_\lambda((\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda})n)}$$ e, considerando la seguente funzione, scritta in forma ricorsiva $$\func{\mathrm{isEven}}{\N}{B_\lambda}: \soe{l}{\mathrm{isEven}(0) = \mathrm{true}_\lambda \\ \mathrm{isEven}(\mathrm{succ}(n)) = \mathrm{not}_\lambda(\mathrm{isEven}(n))}$$ che è in grado di restituire la parità di un numero naturale, è facilmente verificabile che $$\centeredsoe{(\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda}) = \mathrm{isEven} \\ (\rhofun{\mathrm{False}_\lambda}{\mathrm{not}_\lambda}) = \mathrm{isFalse}}$$
+        \label{rho ex}
+        Si considerino le algebre dei numeri naturali $(\N, \mathrm{succ}, \mathrm{zero})$, e dei booleani di Church $(\mathbb{B}_\lambda, \mathrm{not}_\lambda, \mathrm{True}_\lambda)$, dove $$\funcmap{\mathrm{True}_\lambda}{\1}{\mathbb{B}_\lambda}{x}{\mathrm{true}_\lambda}$$ Allora, si ha che $(\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda})$ è una funzione tale che $$\soe{l}{(\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda}) 0 = \mathrm{true}_\lambda \\ (\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda})(\mathrm{succ} \ n) = \mathrm{not}_\lambda((\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda})n)}$$ e, considerando la seguente funzione, scritta in forma ricorsiva $$\func{\mathrm{isEven}}{\N}{\mathbb{B}_\lambda}: \soe{l}{\mathrm{isEven}(0) = \mathrm{true}_\lambda \\ \mathrm{isEven}(\mathrm{succ}(n)) = \mathrm{not}_\lambda(\mathrm{isEven}(n))}$$ che è in grado di restituire la parità di un numero naturale, è facilmente verificabile che $$\centeredsoe{(\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda}) \equiv \mathrm{isEven} \\ (\rhofun{\mathrm{False}_\lambda}{\mathrm{not}_\lambda}) \equiv \mathrm{isFalse}}$$
+    \end{example}
+
+    \begin{framedlem}[label={func ric prim}]{Funzione ricorsiva primitiva}
+        Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A \times \N}{A}$, si ha che $$\exists ! \func{f}{\N}{A} \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n))} = h(f(n), n)$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$, per qualche funzione nullaria $\funcmap{\mathrm{zero}_A}{\1}{A}{x}{a}$.
+    \end{framedlem}
+
+    \begin{proof}
+        TODO
+    \end{proof}
+
+    \begin{frameddefn}{Operatore $rec$}
+        Si definisce \tbf{operatore $rec$} l'operatore che, attraverso la sintassi $$\recfun{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ restituisce l'omomorfismo descritto all'interno del \cref{func ric prim}, dove $\ttt{\_expression\_}_1$ rappresenta il costruttore nullario dell'algebra, e $\ttt{\_expression\_}_2$ costituisce la funzione $\func{h}{A \times \N}{A}$.
+    \end{frameddefn}
+
+    \begin{example}[Operatore $rec$]
+        È possibile esprimere la funzione $\mathrm{isEven}$ definita nell'\cref{rho ex}, attraverso l'operatore $rec$, come segue: $$\mathrm{isEven} \equiv (\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda}) \equiv (\recfun{\mathrm{True}_\lambda}{(\fn{xn}{\mathrm{not}_\lambda \ x})})$$
+    \end{example}
+
+    \begin{example}[Grammatica $Fun_\rho$]
+        Si consideri la grammatica definita all'interno dell'\cref{fun}; la seguente è una sua estensione, che prenderà il nome di $Fun_\rho$, che include al suo interno una clausola con l'operatore $rec$: $$M, N ::= x \smid \fn{x}{M} \smid MN \smid 0 \smid \mathrm{succ} \ M \smid \recfun{M}{N}$$ dove si noti che 0 non sta ad indicare tutte le costanti, ma esclusivamente lo 0, in quanto non è necessario includere le altre poiché la grammatica è fornita della funzione $\mathrm{succ}$.
+    \end{example}
+
+    \begin{example}[Operatore $rec$ in $Fun_\rho$]
+        Si consideri la funzione $\funcmap{p_2}{\N}{\N}{n}{n + 2}$ che somma 2 all'input fornito; è possibile esprimerla attraverso l'operatore $rec$ come segue: $$p_2 : \soe{l}{p_2 \ 0 = 2 \\ p_2 \ (\succfn \ n)}$$
     \end{example}
 
 \end{document}

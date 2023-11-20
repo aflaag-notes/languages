@@ -4,6 +4,9 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 
 ## TODO list
 
+- CAMBIA TUTTE LE GRAMMATICHE IN LINGUAGGI
+- CAMBIA TUTTE LE GRAMMATICHE DA ESEMPI A DEFINIZIONI
+
 - generali
     - finire i TODOs
     - definizione di chiusura
