@@ -16,13 +16,13 @@
 \contentsline {chapter}{\numberline {2}Paradigma funzionale}{13}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Grammatiche}{13}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}Definizioni}{13}{subsection.2.1.1}%
-\contentsline {section}{\numberline {2.2}$Exp$}{14}{section.2.2}%
+\contentsline {section}{\numberline {2.2}$Exp$: un primo linguaggio}{14}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Definizioni}{14}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}Assegnazioni}{16}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Ambienti}{18}{subsection.2.2.3}%
 \contentsline {subsection}{\numberline {2.2.4}Semantica operazionale di $Exp$}{19}{subsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.2.5}Valutazioni e scoping}{21}{subsection.2.2.5}%
-\contentsline {section}{\numberline {2.3}$Fun$}{24}{section.2.3}%
+\contentsline {section}{\numberline {2.3}$Fun$: un linguaggio funzionale}{24}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Definizioni}{24}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Semantica operazionale di $Fun$}{26}{subsection.2.3.2}%
 \contentsline {section}{\numberline {2.4}Lambda calcolo}{31}{section.2.4}%
@@ -33,12 +33,12 @@
 \contentsline {section}{\numberline {3.1}Programmi}{39}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Memoria}{39}{subsection.3.1.1}%
 \contentsline {subsection}{\numberline {3.1.2}Clausole imperative}{40}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}$Imp$}{42}{section.3.2}%
+\contentsline {section}{\numberline {3.2}$Imp$: un linguaggio imperativo}{42}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Definizioni}{42}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Semantica operazionale di $Imp$}{42}{subsection.3.2.2}%
 \contentsline {section}{\numberline {3.3}Memoria contigua}{44}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Definizioni}{44}{subsection.3.3.1}%
-\contentsline {section}{\numberline {3.4}$All$}{46}{section.3.4}%
+\contentsline {section}{\numberline {3.4}$All$: un linguaggio imperativo completo}{46}{section.3.4}%
 \contentsline {subsection}{\numberline {3.4.1}Definizioni}{46}{subsection.3.4.1}%
 \contentsline {subsection}{\numberline {3.4.2}Semantica operazionale di $All$}{46}{subsection.3.4.2}%
 \contentsline {chapter}{\numberline {4}Correttezza dei programmi}{50}{chapter.4}%

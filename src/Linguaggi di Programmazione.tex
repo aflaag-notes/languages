@@ -1304,13 +1304,17 @@
         Si definisce \tbf{operatore $\rho$} l'operatore che, attraverso la sintassi $$\rhofun{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ restituisce l'omomorfismo descritto all'interno del \cref{weak term ric}, dove $\ttt{\_expression\_}_1$ rappresenta il costruttore nullario dell'algebra, e $\ttt{\_expression\_}_2$ costituisce la funzione $h: A \to A$.
     \end{frameddefn}
 
+    \begin{framedobs}{Operatore $\rho$}
+        Si noti che, per definizione dell'operatore $\rho$, si verifica che $$\rho : \soe{l}{(\rhofun{\mathrm{zero}}{h}) \ 0 = a \\ (\rhofun{\mathrm{zero}}{h}) \ (\succfn \ n) = h \ ((\rhofun{\mathrm{zero}}{h}) \ n)}$$ espresso attravreso i termini delle funzioni definite all'interno del \cref{weak term ric}.
+    \end{framedobs}
+
     \begin{example}[Operatore $\rho$]
         \label{rho ex}
         Si considerino le algebre dei numeri naturali $(\N, \mathrm{succ}, \mathrm{zero})$, e dei booleani di Church $(\mathbb{B}_\lambda, \mathrm{not}_\lambda, \mathrm{True}_\lambda)$, dove $$\funcmap{\mathrm{True}_\lambda}{\1}{\mathbb{B}_\lambda}{x}{\mathrm{true}_\lambda}$$ Allora, si ha che $(\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda})$ è una funzione tale che $$\soe{l}{(\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda}) 0 = \mathrm{true}_\lambda \\ (\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda})(\mathrm{succ} \ n) = \mathrm{not}_\lambda((\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda})n)}$$ e, considerando la seguente funzione, scritta in forma ricorsiva $$\func{\mathrm{isEven}}{\N}{\mathbb{B}_\lambda}: \soe{l}{\mathrm{isEven}(0) = \mathrm{true}_\lambda \\ \mathrm{isEven}(\mathrm{succ}(n)) = \mathrm{not}_\lambda(\mathrm{isEven}(n))}$$ che è in grado di restituire la parità di un numero naturale, è facilmente verificabile che $$\centeredsoe{(\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda}) \equiv \mathrm{isEven} \\ (\rhofun{\mathrm{False}_\lambda}{\mathrm{not}_\lambda}) \equiv \mathrm{isFalse}}$$
     \end{example}
 
     \begin{framedlem}[label={func ric prim}]{Funzione ricorsiva primitiva}
-        Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A \times \N}{A}$, si ha che $$\exists ! \func{f}{\N}{A} \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n))} = h(f(n), n)$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$, per qualche funzione nullaria $\funcmap{\mathrm{zero}_A}{\1}{A}{x}{a}$.
+        Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A \times \N}{A}$, si ha che $$\exists ! \func{f}{\N}{A} \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n)) = h(f(n), n)}$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$, per qualche funzione nullaria $\funcmap{\mathrm{zero}_A}{\1}{A}{x}{a}$.
     \end{framedlem}
 
     \begin{proof}
@@ -1321,6 +1325,10 @@
         Si definisce \tbf{operatore $rec$} l'operatore che, attraverso la sintassi $$\recfun{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ restituisce l'omomorfismo descritto all'interno del \cref{func ric prim}, dove $\ttt{\_expression\_}_1$ rappresenta il costruttore nullario dell'algebra, e $\ttt{\_expression\_}_2$ costituisce la funzione $\func{h}{A \times \N}{A}$.
     \end{frameddefn}
 
+    \begin{framedobs}[label={rec obs}]{Operatore $rec$}
+        Si noti che, per definizione dell'operatore $rec$, si verifica che $$rec: \soe{l}{(\recfun{\mathrm{zero}}{h}) \ 0 = a \\ (\recfun{\mathrm{zero}}{h}) \ (\succfn \ n) = h \ ((\recfun{\mathrm{zero}}{h}) \ n) \ n}$$ espresso attraverso i termini delle funzioni definite all'interno del \cref{func ric prim}.
+    \end{framedobs}
+
     \begin{example}[Operatore $rec$]
         È possibile esprimere la funzione $\mathrm{isEven}$ definita nell'\cref{rho ex}, attraverso l'operatore $rec$, come segue: $$\mathrm{isEven} \equiv (\rhofun{\mathrm{True}_\lambda}{\mathrm{not}_\lambda}) \equiv (\recfun{\mathrm{True}_\lambda}{(\fn{xn}{\mathrm{not}_\lambda \ x})})$$
     \end{example}
@@ -1330,7 +1338,7 @@
     \end{frameddefn}
 
     \begin{example}[Operatore $rec$ in $Fun_\rho$]
-        Si consideri la grammatica $Fun_\rho$ descritta nella \cref{fun rho}, e sia $\funcmap{p_2}{\N}{\N}{n}{n + 2}$ la funzione che somma 2 all'input fornito; è possibile esprimerla attraverso l'operatore $rec$ come segue: $$p_2 : \soe{l}{p_2 \ 0 = 2 \\ p_2 \ (\succfn \ n)}$$ TODO DA FINIRE
+        Sia $\funcmap{p_2}{\N}{\N}{n}{n + 2}$ la funzione che somma 2 all'input fornito, definita ricorsivamente --- attraverso la grammatica $Fun_\rho$ definita nella \cref{fun rho} --- come segue: $$p_2 : \soe{l}{p_2 \ 0 = 2 \\ p_2 \ (\succfn \ n) = \succfn \  (p_2 \ n)}$$ si noti dunque che è possibile esprimerla attraverso l'operatore $rec$, considerando la funzione $\funcmap{\mathrm{due}}{\1}{\N}{x}{2}$ --- come segue: $$p_2 \equiv \recfun{\mathrm{due}}{(\fn{xy}{\succfn \ (\succfn \ x))}}$$ poiché $$p_2 \ 0 \equiv \recfun{\mathrm{due}}{(\fn{xy}{\succfn \ (\succfn \ x))}}\ 0 = 2$$ (si noti l'\cref{rec obs}), ed inoltre $$\centeredsoe{p_2 \ (\succfn \ n) \equiv \recfun{\mathrm{due}}{(\fn{xy}{\succfn \ (\succfn \ x))}}\ (\succfn \ n) \equiv \\ \equiv (\fn{xy}{\succfn \ (\succfn \ x))} \ ((\recfun{\mathrm{due}}{(\fn{xy}{\succfn \ (\succfn \ x))}}) \ n) \ n \equiv \\ \equiv (\fn{xy}{\succfn \ (\succfn \ x))} \ (p_2 \ (\succfn \ n)) \ n \longrightarrow (\fn{y}{\succfn \ (\succfn \ (p_2 \ (\succfn \ n)))}) \ n}$$
     \end{example}
 
 \end{document}
