@@ -9,4 +9,5 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 - generali
     - finire i TODOs
     - definizione di chiusura
-
+- appunti 21/11
+    - finire
