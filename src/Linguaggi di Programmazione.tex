@@ -562,18 +562,17 @@
     \end{example}
 
     \begin{frameddefn}{Concatenazione di ambienti}
-        Siano $E_1$ ed $E_2$ due ambienti di una grammatica; allora, si definisce \tbf{concatenazione} di $E_1$ ed $E_2$ la seguente funzione $$E_1E_2: \mathrm{Env} \times \mathrm{Env} \to \mathrm{Env} : x \mapsto \soe{ll}{E_2 & x \in \dom{(E_2)} \lor x \in \dom{(E_1)} \cap \dom{(E_2)} \\ E_1(x) & x \in \dom{(E_1)}}$$ dunque, nella concatenazione $E_2$ sovrascrive le tuple che sono presenti anche in $E_1$.
+        Siano $E_1$ ed $E_2$ due ambienti di una grammatica; allora, si definisce \tbf{concatenazione} di $E_1$ ed $E_2$ la seguente funzione $$E_1E_2: \mathrm{Env} \times \mathrm{Env} \to \mathrm{Env} : x \mapsto \soe{ll}{E_2(x) & x \in \dom(E_2) \lor x \in \dom(E_1) \cap \dom(E_2) \\ E_1(x) & x \in \dom(E_1)}$$ dunque, nella concatenazione $E_2$ sovrascrive le tuple che sono presenti anche in $E_1$.
     \end{frameddefn}
 
     \begin{example}[Concatenazioni di ambienti]
-        Sia $Exp$ la grammatica descritta all'interno della \cref{exp2}, e siano $$\centeredsoe{E_1 := \{(z, 3), (y, 9)\} \\ E_2 := \{(z, 4)\}}$$ due suoi ambienti; allora si ha che $$E_1E_2 := \{(z, 4), (y, 9)\}$$
+        Sia $Exp$ la grammatica descritta all'interno della \cref{exp2}, e siano $$\centeredsoe{E_1 := \{(z, 3), (y, 9)\} \\ E_2 := \{(z, 4)\}}$$ due suoi ambienti; allora si ha che $$E_1E_2 := \{(z, 3), (y, 9)\}\{(z, 4)\} = \{(z, 4), (y, 9)\}$$
     \end{example}
 
     \subsection{Semantica operazionale di $Exp$}
 
     \begin{frameddefn}[label={sem opexp}]{Semantica operazionale di una grammatica}
         Data una grammatica $G$, si definisce \tbf{semantica operazionale} della grammatica una relazione, indicata col simbolo $\leadsto$, definita come segue: $$\leadsto \ \subseteq \mathrm{Env} \times G \times \mathrm{Val}$$
-
         Un elemento $(E, M, v) \in \ \leadsto$ è detto \tbf{giudizio operazionale}, e viene scritto attraverso il seguente simbolismo: $$\opjud{E}{M}{v}$$ e si legge \curlyquotes{valutando $M$, nell'ambiente $E$, si ottiene $v$}.
     \end{frameddefn}
 
@@ -1402,4 +1401,93 @@
         TODO
     \end{proof}
 
+    \chapter{Elementi di Teoria dei tipi}
+
+    \section{Lambda calcolo tipato}
+
+    \subsection{Definizioni}
+
+    \begin{frameddefn}{Lambda calcolo tipato}
+        La grammatica del \tbf{lambda calcolo tipato} (noto in letteratura come \tit{System F1}) è costituita dalle seguenti grammatiche:
+
+        $$\leftsoe{A,B ::= K \smid A \to B \\ M,N ::= k \smid x \smid \lambda x:A.M \smid MN}$$
+
+        Dunque, essa è composta da da:
+
+        \begin{itemize}
+            \item una grammatica per i \tit{tipi}, che verrà indicata con $Types$
+            \item una grammatica per i \tit{termini}, che verrà indicata con $Terms$
+        \end{itemize}
+
+        Il $System F1$ è \tbf{monomorfo}, poiché un termine ha \tit{uno ed un solo tipo}.
+    \end{frameddefn}
+
+    \begin{frameddefn}{Contesto dei tipi di una grammatica}
+        Data una grammatica tipata $G$, le cui grammatiche delle espressioni e dei tipi sono indicate rispettivamente con $Terms$ e $Types$, un \tbf{contesto dei tipi} della grammatica  è una funzione della forma $$\Gamma : \mathrm{Var} \stackrel{fin}{\to} Types$$ che associa dunque una variabile ad un possibile tipo. L'insieme di tutti i contesti della grammatica è denotato con $$\mathrm{Ctx} := \{f \mid \mathrm{Var} \stackrel{fin}{\to} Types\}$$
+    \end{frameddefn}
+
+    \begin{frameddefn}{Giudizi di tipi}
+        Data una grammatica tipata $G$, si definisce \tbf{semantica di tipi} della grammatica una relazione, indicata col simbolo $:$, definita come segue: $$: \ \subseteq \mathrm{Ctx} \times Terms \times Types$$ dove $Terms$ e $Types$ indicano rispettivamente le grammatiche delle espressioni e dei tipi di $G$.
+        Un elemento $(\Gamma, M, A) \in :$ è detto \tbf{giudizio di tipo}, e viene scritto attraverso il seguente simbolismo: $$\typejud{\Gamma}{M}{A}$$ per qualche espressione $M$ e tipo $A$, e si legge \curlyquotes{$M$ è un termine legale di tipo $A$ nel contesto dei tipi $\Gamma$}.
+    \end{frameddefn}
+
+    \begin{frameddefn}{Concatenazione di contesti}
+        Siano $\Gamma_1$ e $\Gamma_2$ due contesti di una grammatica tipata; allora, si definisce \tbf{concatenazione} di $\Gamma_1$ e $\Gamma_2$ la seguente funzione $$\funcmap{\Gamma_1, \Gamma_2}{\mathrm{Ctx} \times \mathrm{Ctx}}{\mathrm{Ctx}}{x}{\soe{ll}{\Gamma_2(x) & x \in \dom(\Gamma_2) \lor x \in \dom(\Gamma_1) \cap \dom(\Gamma_2) \\ \Gamma_1(x) & x \in \dom(\Gamma_1)}}$$ dunque, nella concatenazione $\Gamma_2$ sovrascrive le tuple che sono presenti anche in $\Gamma_1$
+    \end{frameddefn}
+
+    \begin{framedprop}{Regole di inferenza di \tit{System F1}}
+        Dato un contesto di tipi $\Gamma \in \mathrm{Ctx}$ e regole di inferenza del lambda calcolo tipato sono le seguenti (con il simbolismo $A \to B$ si indica una funzione che prende in ingresso un termine di tipo $A$, e ne restituisce uno di tipo $B$):
+
+        \begin{itemize}
+            \item \tbf{costanti}: $$[const] \ \typejud{\Gamma}{k}{K}$$ dove $K := \{\ttt{int}, \ttt{string}, \ttt{bool}\}$
+            \item \tbf{variabili}: $$\forall x \in \mathrm{Var} \quad \exists v \in Types \mid \Gamma(x) = A \implies [vars] \ \typejud{\Gamma}{x}{A}$$
+            \item \tbf{applicazioni}: $$\forall M,N \in Terms, A,B \in Types \quad [appl] \ \dfrac{\typejud{\Gamma}{M}{A \to B} \quad \typejud{\Gamma}{N}{A}}{\typejud{\Gamma}{MN}{B}}$$
+            \item \tbf{funzioni}: $$\forall x \in \mathrm{Var}, M \in Terms, A,B \in Types \quad [fn] \ \dfrac{\typejud{\Gamma,x:A}{M}{B}}{\typejud{\Gamma}{\lambda x: A.M}{A \to B}}$$
+        \end{itemize}
+    \end{framedprop}
+
+    \begin{example}[Derivazione di tipi]
+        Si consideri la seguente espressione, descritta attraverso le espressioni del lambda calcolo tipato: $$(\lambda x:\ttt{int}\to \ttt{bool}.x((\lambda y:\ttt{string}.7)\ttt{"ciao"}))(\lambda z: \ttt{int}.true)$$ dunque, per derivare il tuo tipo, è necessario sviluppare il seguente albero di derivazione: 
+        \centeredeq{0.9}{$
+            \dfrac{
+                \dfrac{
+                    \typejud{\Gamma}{x : \ttt {int}}{\ttt{int} \to \ttt{bool}}
+                    \quad
+                    \dfrac{
+                        \dfrac{
+                            \dfrac{
+                                \typejud{\Gamma,y:\ttt{string}}{7}{\ttt{int}}
+                            }{
+                                \typejud{\Gamma}{\lambda y: \ttt{string}.7}{ \ttt{string} \to \ttt{int}}
+                            }
+                            \quad
+                            \typejud{\Gamma}{\ttt{"ciao"}}{\ttt{string}}
+                        }{
+                            \typejud{\Gamma}{(\lambda y:\ttt{string}.7)\ttt{"ciao"}}{\ttt{int}}
+                        }
+                    }{
+                        \typejud{x:\ttt{int} \to \ttt{bool}}{x((\lambda y:\ttt{string}.7)\ttt{"ciao"})}{\ttt{bool}}
+                    }
+                }{
+                    \typejud{\varnothing}{\lambda x:\ttt{int}\to \ttt{bool}.x((\lambda y:\ttt{string}.7)\ttt{"ciao"}}{(\ttt{int}\to\ttt{bool})\to\ttt{bool}}
+                    \quad
+                    \dfrac{
+                        \typejud{z:\ttt{int}}{true}{\ttt{bool}}
+                    }{
+                        \typejud{\varnothing}{\lambda z:\ttt{int}.true}{\ttt{int} \to \ttt{bool}}
+                    }
+                }
+            }{
+                \typejud{\varnothing}{(\lambda x:\ttt{int}\to \ttt{bool}.x((\lambda y:\ttt{string}.7)\ttt{"ciao"}))(\lambda z: \ttt{int}.true)}{\ttt{bool}}
+            }
+        $}
+    \end{example}
+
+    \begin{framedlem}{Espressioni non tipabili}
+        Non tutte le espressioni del lambda calcolo tipato sono tipabili.
+    \end{framedlem}
+
+    \begin{proof}
+        Si consideri la seguente espressione: $$\lambda x. xx$$ espressa in termini del lambda calcolo non tipato; provando a tipare tale espressione, si ottiene il seguente albero di derivazione: $$\dfrac{\dfrac{\typejud{x:A}{x}{A \to B} \quad \typejud{x:A}{x}{B}}{\typejud{x:A}{xx}{B}}}{\typejud{\varnothing}{\lambda x: A .xx}{A \to B}}$$ per certi tipi $A$ e $B$, ma poiché in tale albero compare il giudizio $$\typejud{x:A}{x}{A \to B}$$ segue necessariamente che $A \to B$ deve coincidere con $A$, ma questo non è possibile poiché $A \to B$ avrà sempre una $\to$ in più di $A$, indipendentemente dal tipo di quest'ultimo; dunque, segue la tesi.
+    \end{proof}
 \end{document}
