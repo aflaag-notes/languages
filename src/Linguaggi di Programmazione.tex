@@ -1403,11 +1403,11 @@
 
     \chapter{Elementi di Teoria dei Tipi}
 
-    \section{Lambda calcolo tipato}
+    \section{Lambda calcolo tipato semplice}
 
     \subsection{Definizioni}
 
-    \begin{frameddefn}{Lambda calcolo tipato}
+    \begin{frameddefn}{Lambda calcolo tipato semplice}
         La grammatica del \tbf{lambda calcolo tipato} (noto in letteratura come \tit{System F1}) è costituita dalle seguenti grammatiche:
 
         $$\leftsoe{A,B ::= K \smid A \to B \\ M,N ::= k \smid x \smid \lambda x:A.M \smid MN}$$
@@ -1415,8 +1415,8 @@
         Dunque, essa è composta da da:
 
         \begin{itemize}
-            \item una grammatica per i \tit{tipi}, che verrà indicata con $Types$
-            \item una grammatica per i \tit{termini}, che verrà indicata con $Terms$
+            \item una grammatica per i \tit{tipi}, che verrà indicata con $Types$; si noti che il simbolismo $A \to B$ indica il tipo di una funzione che prende in ingresso un termine di tipo $A$, e ne restituisce uno di tipo $B$;
+            \item una grammatica per i \tit{termini}, che verrà indicata con $Terms$; si noti che il simbolismo $\lambda x: A.M$ indica una funzione che prende in ingresso un termine di tipo $A$, ed ha l'espressione $M$ come suo corpo.
         \end{itemize}
 
         Il $System F1$ è \tbf{monomorfo}, poiché un termine ha \tit{uno ed un solo tipo}.
@@ -1443,8 +1443,8 @@
         Un elemento $(\Gamma, M, A) \in \ :$ è detto \tbf{giudizio di tipo}, e viene scritto attraverso il seguente simbolismo: $$\typejud{\Gamma}{M}{A}$$ per qualche espressione $M$ e tipo $A$, e si legge \curlyquotes{$M$ è un termine legale di tipo $A$ nel contesto dei tipi $\Gamma$}.
     \end{frameddefn}
 
-    \begin{framedprop}{Regole di inferenza di \tit{System F1}}
-        Dato un contesto di tipi $\Gamma \in \mathrm{Ctx}$ e regole di inferenza del lambda calcolo tipato sono le seguenti (con il simbolismo $A \to B$ si indica una funzione che prende in ingresso un termine di tipo $A$, e ne restituisce uno di tipo $B$):
+    \begin{framedprop}[label={sys f1 rules}]{Regole di inferenza di \tit{System F1}}
+        Dato un contesto di tipi $\Gamma \in \mathrm{Ctx}$, le regole di inferenza del lambda calcolo tipato sono le seguenti:
 
         \begin{itemize}
             \item \tbf{costanti}: $$[const] \ \typejud{\Gamma}{k}{K}$$ dove $K := \{\ttt{int}, \ttt{string}, \ttt{bool}\}$
@@ -1500,4 +1500,53 @@
     \begin{proof}
         Si consideri la seguente espressione: $$\lambda x. xx$$ espressa in termini del lambda calcolo non tipato; provando a tipare tale espressione, si ottiene il seguente albero di derivazione: $$\dfrac{\dfrac{\typejud{x:A}{x}{A \to B} \quad \typejud{x:A}{x}{B}}{\typejud{x:A}{xx}{B}}}{\typejud{\varnothing}{\lambda x: A .xx}{A \to B}}$$ per certi tipi $A$ e $B$, ma poiché in tale albero compare il giudizio $$\typejud{x:A}{x}{A \to B}$$ segue necessariamente che $A \to B$ deve coincidere con $A$, ma questo non è possibile poiché $A \to B$ avrà sempre una $\to$ in più di $A$, indipendentemente dal tipo di quest'ultimo; dunque, segue la tesi.
     \end{proof}
+
+    \section{Lambda calcolo polimorfo}
+    
+    \subsection{Lambda calcolo polimorfo}
+
+    \begin{frameddefn}{Polimorfismo}
+        Con \tbf{polimorfismo} si definisce la possibilità, per un'espressione, di assumere molteplici tipi, in base al contesto --- inteso \tit{non} nel senso degli elementi in $\mathrm{Ctx}$ --- considerato. Le grammatiche polimorfe sono caratterizzate da \tbf{variabili di tipo}, che permettono di descrivere in maniera \tit{generica} le loro espressioni.
+    \end{frameddefn}
+
+    \begin{frameddefn}{Clausola dei tipi polimorfi}
+        Sia $G$ una grammatica tipata polimorfa, dove $Types$ e $Terms$ costituiscono rispettivamente le grammatiche dei tipi e dei termini di $G$; allora, è possibile definire su $G$ una funzione $poly$, come segue: $$\func{poly}{Types \times Terms}{Terms}$$ e verrà utilizzata attraverso la sintassi $$\forall \ttt{:type:}_1.\ttt{:type:}_2$$ la quale asserisce che, per ogni tipo che la varibile di tipo $\ttt{:type:}_1$ può assumere, il tipo polimorfo definito è $\ttt{:type:}_2$.
+    \end{frameddefn}
+
+    \begin{example}[Tipi polimorfi]
+        Si consideri ad esempio il tipo $$\forall X.X \to X$$ essa, attraverso la variabile di tipo $X$, definisce il tipo polimorfo $X \to X$ (che rappresenta una funzione che prende in ingresso un'espressione di tipo $X$ e restituisce a sua volta un'espressione di tipo $X$).
+    \end{example}
+
+    \begin{frameddefn}{Clausola di astrazione dei tipi}
+        Sia $G$ una grammatica tipata polimorfa, dove $Types$ e $Terms$ costituiscono rispettivamente le grammatiche dei tipi e dei termini di $G$; allora, è possibile definire su $G$ una funzione $abstr$, come segue: $$\func{abstr}{Types \times Terms}{Terms}$$ e verrà utilizzata attraverso la sintassi $$\Lambda \ttt{:type:}.\ttt{\_expression\_}$$ la quale dichiara la variabile di tipo \ttt{:type:} all'interno dell'espressione \ttt{\_expression\_}.
+    \end{frameddefn}
+
+    \begin{frameddefn}{Clausola di istanziazione dei tipi}
+        Sia $G$ una grammatica tipata polimorfa, dove $Types$ e $Terms$ costituiscono rispettivamente le grammatiche dei tipi e dei termini di $G$; allora, è possibile definire su $G$ una funzione $inst$, come segue: $$\func{inst}{Types \times Terms}{Terms}$$ e verrà utilizzata attraverso la sintassi $$\ttt{\_expression\_} \ \ttt{:type:}$$ la quale istanzia il tipo \ttt{:type:} all'interno dell'espressione \ttt{\_expression\_}.
+    \end{frameddefn}
+
+    \begin{framedobs}{Istanziazione dei tipi}
+        Si noti che, per utilizzare un'espressione polimorfa, è necessario prima istanziarne il tipo.
+    \end{framedobs}
+
+    \begin{frameddefn}{Lambda calcolo polimorfo}
+        La grmamatica del \tbf{lambda calcolo polimorfo} (noto in letteratura come \tit{System F}) è costituita dalle seguenti grammatiche $$\leftsoe{A,B ::= K \smid X \smid A \to B \smid \forall X.A \\ M,N ::= k \smid x \smid \lambda x:A.M \smid MN \smid \Lambda X.M \smid M A}$$ Dunque, essa è composta da
+        \begin{itemize}
+            \item una grammatica per i \tit{tipi}, che verrà indicata con $Types$; si noti che il simbolismo $X$ indica che la grammatica include le variabili di tipo;
+            \item una grammatica per i \tit{termini}, che verrà indicata con $Terms$.
+        \end{itemize}
+    \end{frameddefn}
+
+    \begin{framedprop}{Regole di inferenza di \tit{System F}}
+        Dato un contesto di tipi $\Gamma \in \mathrm{Ctx}$, le regole di inferenza del lambda calcolo polimorfo estendono quelle definite all'interno della \cref{sys f1 rules}, attraverso le seguenti:
+
+        \begin{itemize}
+            \item \tbf{astrazioni di tipi}: \centeredeq{0.9}{$\forall M \in Terms, A \in Types \quad \exists X \in Types \mid X \notin \mathrm{free}(\Gamma) \implies [abstr] \ \dfrac{\typejud{\Gamma}{M}{A}}{\typejud{\Gamma}{\Lambda X.M}{\forall X.A}}$}
+            \item \tbf{istanziazioni di tipi}: $$\forall M \in Terms, A, B, X \in Types \quad [inst] \ \dfrac{\typejud{\Gamma}{M}{\forall X.A}}{\typejud{\Gamma}{MB}{A[B/X]}}$$
+        \end{itemize}
+    \end{framedprop}
+
+    \begin{example}[Tipo dell'dentità polimorfa]
+        Si consideri la seguente espressione, che rappresenta l'identità polimorfa: $$\Lambda X.\lambda x:X.x$$ è possibile dedurne il tipo attraverso il seguente albero di derivazione $$\dfrac{\dfrac{\typejud{x :X}{x}{X}}{\typejud{\varnothing}{\lambda x:X.x}{X \to X}}}{\typejud{\varnothing}{\Lambda X.\lambda x:X .x}{\forall X.X \to X}}$$ ed istanziando ad esempio il tipo \ttt{Int} su di essa, si ottiene il seguente albero: $$\dfrac{\dfrac{\dfrac{\typejud{x :X}{x}{X}}{\typejud{\varnothing}{\lambda x:X.x}{X \to X}}}{\typejud{\varnothing}{\Lambda X.\lambda x:X .x}{\forall X.X \to X}}}{\typejud{\varnothing}{(\Lambda X.\lambda x :X.x) \ \ttt{int}}{\ttt{int} \to \ttt{int}}}$$
+    \end{example}
 \end{document}

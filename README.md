@@ -4,10 +4,8 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 
 ## TODO list
 
-- RICORSIONE DEBOLE TERMINANTE SE CHIAMA ANCORA COSI?
-
 - generali
     - finire i TODOs
     - definizione di chiusura
-- appunti 21/11
-    - finire
+    - metti spazi prima e dopo ::=
+    - fai Y comb da wikpedia
