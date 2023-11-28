@@ -48,9 +48,10 @@
 \contentsline {subsection}{\numberline {3.4.2}Semantica operazionale di $All$}{53}{subsection.3.4.2}%
 \contentsline {chapter}{\numberline {4}Correttezza dei programmi}{57}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Correttezza nel paradigma imperativo}{57}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Logica di Hoare}{57}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.1}Formule imperative}{57}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Logica di Hoare}{59}{subsection.4.1.2}%
 \contentsline {section}{\numberline {4.2}Correttezza nel paradigma funzionale}{61}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}TODO}{61}{subsection.4.2.1}%
-\contentsline {chapter}{\numberline {5}Elementi di Teoria dei tipi}{63}{chapter.5}%
+\contentsline {subsection}{\numberline {4.2.1}Formule funzionali}{61}{subsection.4.2.1}%
+\contentsline {chapter}{\numberline {5}Elementi di Teoria dei Tipi}{63}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Lambda calcolo tipato}{63}{section.5.1}%
 \contentsline {subsection}{\numberline {5.1.1}Definizioni}{63}{subsection.5.1.1}%

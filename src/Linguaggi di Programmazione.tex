@@ -552,9 +552,7 @@
     \subsection{Ambienti}
     
     \begin{frameddefn}[label={env}]{Ambiente di una grammatica}
-        Data una grammatica tale che $\mathrm{Val}$ sia un insieme finito, un \tbf{ambiente} della grammatica è una funzione della forma $$E: \mathrm{Var} \xrightarrow{fin} \mathrm{Val}$$ che associa dunque una variabile ad un possibile valore che può assumere (la notazione $fin$ indica che $E$ è una funzione \tit{parziale}, dunque non necessariamente definita su tutto il dominio). L'insieme di tutti gli ambienti della grammatica è denotato con $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \}$$
-
-        In simboli, gli ambienti verranno scritti come insiemi di coppie $(x, k)$ con $x \in \mathrm{Var}, k \in \mathrm{Val}$, che descriveranno la mappa definita dall'ambiente stesso. Si noti che, per un certo ambiente $E \in \mathrm{Env}$, $E(x)$ è indefinito per ogni $x \in \mathrm{Var} - \dom(E)$.
+        Data una grammatica tale che $\mathrm{Val}$ sia un insieme finito, un \tbf{ambiente} della grammatica è una funzione della forma $$E: \mathrm{Var} \xrightarrow{fin} \mathrm{Val}$$ che associa dunque una variabile ad un possibile valore che può assumere (la notazione $fin$ indica che $E$ è una funzione \tit{parziale}, dunque non necessariamente definita su tutto il dominio). L'insieme di tutti gli ambienti della grammatica è denotato con $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \}$$ In simboli, gli ambienti verranno scritti come insiemi di coppie $(x, k)$ con $x \in \mathrm{Var}, k \in \mathrm{Val}$, che descriveranno la mappa definita dall'ambiente stesso. Si noti che, per un certo ambiente $E \in \mathrm{Env}$, $E(x)$ è indefinito per ogni $x \in \mathrm{Var} - \dom(E)$.
     \end{frameddefn}
 
     \begin{example}[Ambienti di $Exp$]
@@ -566,7 +564,7 @@
     \end{frameddefn}
 
     \begin{example}[Concatenazioni di ambienti]
-        Sia $Exp$ la grammatica descritta all'interno della \cref{exp2}, e siano $$\centeredsoe{E_1 := \{(z, 3), (y, 9)\} \\ E_2 := \{(z, 4)\}}$$ due suoi ambienti; allora si ha che $$E_1E_2 := \{(z, 3), (y, 9)\}\{(z, 4)\} = \{(z, 4), (y, 9)\}$$
+        Sia $Exp$ la grammatica descritta all'interno della \cref{exp2}, e siano $$\centeredsoe{E_1 := \{(z, 3), (y, 9)\} \\ E_2 := \{(z, 4)\}}$$ due suoi ambienti; allora si ha che $$E_1E_2 = \{(z, 3), (y, 9)\}\{(z, 4)\} = \{(z, 4), (y, 9)\}$$
     \end{example}
 
     \subsection{Semantica operazionale di $Exp$}
@@ -1313,7 +1311,7 @@
     
     \section{Correttezza nel paradigma imperativo}
 
-    \subsection{Logica di Hoare}
+    \subsection{Formule imperative}
 
     \begin{frameddefn}{Tripla di Hoare}
         Si definisce \tbf{tripla di Hoare} la seguente clausola: $$\hoare{A}{p}{B}$$ dove $A$ --- che prende il nome di \tbf{precondizione} --- e $B$ --- che prende il nome di \tbf{postcondizione} --- sono espressioni booleane, e $p$ è un programma. La sua \tit{interpretazione di correttezza parziale} è la seguente: \curlyquotes{stando in uno stato che soddisfa $A$, ed eseguendo $p$ a partire da quest'ultimo, se $p$ termina, allora esso terminerà in uno stato che soddisfa $B$}.
@@ -1335,6 +1333,8 @@
             \item \tbf{or}: $$\dfrac{\hoare{B_0}{p}{A} \quad \hoare{B_1}{p}{A} \quad \ldots \quad \hoare{B_n}{p}{A}}{\hoare{B_0 \lor B_1 \lor \ldots \lor B_n}{p}{A}}$$ poiché, se partendo da un qualsiasi stato tra $B_0$ e $B_1, \ldots, B_n$, una volta terminata l'esecuzione, $p$ raggiunge uno stato che soddisfa $A$, allora lo stato iniziale soddisferà anche $B_0 \lor B_1 \lor \ldots \lor B_n$; si noti che le regole \tit{and} ed \tit{or} sono l'una il duale dell'altra;
         \end{itemize}
     \end{framedprop}
+
+    \subsection{Logica di Hoare}
 
     \begin{frameddefn}[label={hoare logic}]{Logica di Hoare}
         Si definisce \tbf{logica di Hoare} la seguente grammatica: $$\leftsoe{M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \\ A,B ::= true \ | \ false \ | \ A \supset B \ | \ M <  N \ | \ M = N \\ p,q ::= skip \ | \ p;q \ | \ x:=M \ | \ \ite{B}{p}{q} \ | \ \while{B}{p}}$$ dove la prima grammatica comprende le espressioni, la seconda le espressioni booleane, e la terza i programmi.
@@ -1372,7 +1372,7 @@
 
     \section{Correttezza nel paradigma funzionale}
 
-    \subsection{TODO}
+    \subsection{Formule funzionali}
 
     \begin{frameddefn}[label={fun formula}]{Formula funzionale}
         Si definisce \tbf{formula funzionale} un'espressione appartenente alla seguente grammatica: $$\varphi ::= \forall x.\varphi \smid M = N$$ dunque l'unico predicato presente è l'uguaglianza, denotato con il simbolo $=$.
@@ -1401,7 +1401,7 @@
         TODO
     \end{proof}
 
-    \chapter{Elementi di Teoria dei tipi}
+    \chapter{Elementi di Teoria dei Tipi}
 
     \section{Lambda calcolo tipato}
 
@@ -1423,16 +1423,24 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Contesto dei tipi di una grammatica}
-        Data una grammatica tipata $G$, le cui grammatiche delle espressioni e dei tipi sono indicate rispettivamente con $Terms$ e $Types$, un \tbf{contesto dei tipi} della grammatica  è una funzione della forma $$\Gamma : \mathrm{Var} \stackrel{fin}{\to} Types$$ che associa dunque una variabile ad un possibile tipo. L'insieme di tutti i contesti della grammatica è denotato con $$\mathrm{Ctx} := \{f \mid \mathrm{Var} \stackrel{fin}{\to} Types\}$$
+        Data una grammatica tipata $G$, le cui grammatiche delle espressioni e dei tipi sono indicate rispettivamente con $Terms$ e $Types$, un \tbf{contesto dei tipi} della grammatica  è una funzione della forma $$\Gamma : \mathrm{Var} \stackrel{fin}{\to} Types$$ che associa dunque una variabile ad un possibile tipo. L'insieme di tutti i contesti della grammatica è denotato con $$\mathrm{Ctx} := \{f \mid \mathrm{Var} \stackrel{fin}{\to} Types\}$$ In simboli, i contesti verranno scritti come liste di coppie $M:A$ con $M \in Terms, A \in Types$, che descriveranno la mappa definita dal contesto stesso. Si noti che, per un certo contesto $\Gamma \in \mathrm{Ctx}$, $\Gamma(x)$ è indefinito per ogni $A \in Types - \dom(\Gamma)$.
     \end{frameddefn}
+
+    \begin{example}[TODO]
+        TODO
+    \end{example}
+
+    \begin{frameddefn}{Concatenazione di contesti}
+        Siano $\Gamma_1$ e $\Gamma_2$ due contesti di una grammatica tipata; allora, si definisce \tbf{concatenazione} di $\Gamma_1$ e $\Gamma_2$ la seguente funzione $$\funcmap{\Gamma_1, \Gamma_2}{\mathrm{Ctx} \times \mathrm{Ctx}}{\mathrm{Ctx}}{x}{\soe{ll}{\Gamma_2(x) & x \in \dom(\Gamma_2) \lor x \in \dom(\Gamma_1) \cap \dom(\Gamma_2) \\ \Gamma_1(x) & x \in \dom(\Gamma_1)}}$$ dunque, nella concatenazione $\Gamma_2$ sovrascrive le tuple che sono presenti anche in $\Gamma_1$.
+    \end{frameddefn}
+
+    \begin{example}[Concatenazione di contesti]
+        Si considerino i due contesti seguenti, definiti all'interno del lambda calcolo tipato $$\centeredsoe{\Gamma_1 := M: A, N:B \\ \Gamma_2 := M:C}$$ allora, si ha che $$\Gamma_1,\Gamma_2 = M:C,N:B$$
+    \end{example}
 
     \begin{frameddefn}{Giudizi di tipi}
         Data una grammatica tipata $G$, si definisce \tbf{semantica di tipi} della grammatica una relazione, indicata col simbolo $:$, definita come segue: $$: \ \subseteq \mathrm{Ctx} \times Terms \times Types$$ dove $Terms$ e $Types$ indicano rispettivamente le grammatiche delle espressioni e dei tipi di $G$.
-        Un elemento $(\Gamma, M, A) \in :$ è detto \tbf{giudizio di tipo}, e viene scritto attraverso il seguente simbolismo: $$\typejud{\Gamma}{M}{A}$$ per qualche espressione $M$ e tipo $A$, e si legge \curlyquotes{$M$ è un termine legale di tipo $A$ nel contesto dei tipi $\Gamma$}.
-    \end{frameddefn}
-
-    \begin{frameddefn}{Concatenazione di contesti}
-        Siano $\Gamma_1$ e $\Gamma_2$ due contesti di una grammatica tipata; allora, si definisce \tbf{concatenazione} di $\Gamma_1$ e $\Gamma_2$ la seguente funzione $$\funcmap{\Gamma_1, \Gamma_2}{\mathrm{Ctx} \times \mathrm{Ctx}}{\mathrm{Ctx}}{x}{\soe{ll}{\Gamma_2(x) & x \in \dom(\Gamma_2) \lor x \in \dom(\Gamma_1) \cap \dom(\Gamma_2) \\ \Gamma_1(x) & x \in \dom(\Gamma_1)}}$$ dunque, nella concatenazione $\Gamma_2$ sovrascrive le tuple che sono presenti anche in $\Gamma_1$
+        Un elemento $(\Gamma, M, A) \in \ :$ è detto \tbf{giudizio di tipo}, e viene scritto attraverso il seguente simbolismo: $$\typejud{\Gamma}{M}{A}$$ per qualche espressione $M$ e tipo $A$, e si legge \curlyquotes{$M$ è un termine legale di tipo $A$ nel contesto dei tipi $\Gamma$}.
     \end{frameddefn}
 
     \begin{framedprop}{Regole di inferenza di \tit{System F1}}
@@ -1447,13 +1455,13 @@
     \end{framedprop}
 
     \begin{example}[Derivazione di tipi]
-        Si consideri la seguente espressione, descritta attraverso le espressioni del lambda calcolo tipato: $$(\lambda x:\ttt{int}\to \ttt{bool}.x((\lambda y:\ttt{string}.7)\ttt{"ciao"}))(\lambda z: \ttt{int}.true)$$ dunque, per derivare il tuo tipo, è necessario sviluppare il seguente albero di derivazione: 
+        Si consideri la seguente espressione, descritta attraverso le espressioni del lambda calcolo tipato: $$(\lambda x:\ttt{int}\to \ttt{bool}.x((\lambda y:\ttt{string}.7)\ttt{"ciao"}))(\lambda z: \ttt{int}.true)$$ dunque, per derivare il suo tipo, è necessario sviluppare il seguente albero di derivazione: 
         \centeredeq{0.9}{$
             \dfrac{
                 \dfrac{
-                    \typejud{\Gamma}{x : \ttt {int}}{\ttt{int} \to \ttt{bool}}
-                    \quad
                     \dfrac{
+                        \typejud{\Gamma}{x : \ttt {int}}{\ttt{int} \to \ttt{bool}}
+                        \quad
                         \dfrac{
                             \dfrac{
                                 \typejud{\Gamma,y:\ttt{string}}{7}{\ttt{int}}
@@ -1470,17 +1478,19 @@
                     }
                 }{
                     \typejud{\varnothing}{\lambda x:\ttt{int}\to \ttt{bool}.x((\lambda y:\ttt{string}.7)\ttt{"ciao"}}{(\ttt{int}\to\ttt{bool})\to\ttt{bool}}
-                    \quad
-                    \dfrac{
-                        \typejud{z:\ttt{int}}{true}{\ttt{bool}}
-                    }{
-                        \typejud{\varnothing}{\lambda z:\ttt{int}.true}{\ttt{int} \to \ttt{bool}}
-                    }
+                }
+                \quad
+                \dfrac{
+                    \typejud{z:\ttt{int}}{true}{\ttt{bool}}
+                }{
+                    \typejud{\varnothing}{\lambda z:\ttt{int}.true}{\ttt{int} \to \ttt{bool}}
                 }
             }{
                 \typejud{\varnothing}{(\lambda x:\ttt{int}\to \ttt{bool}.x((\lambda y:\ttt{string}.7)\ttt{"ciao"}))(\lambda z: \ttt{int}.true)}{\ttt{bool}}
             }
         $}
+
+        dove $$\Gamma := x: \ttt{int} \to \ttt{bool}$$
     \end{example}
 
     \begin{framedlem}{Espressioni non tipabili}
