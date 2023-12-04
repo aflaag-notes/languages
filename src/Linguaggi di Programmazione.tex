@@ -454,7 +454,7 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Forma di Backus-Naur (BNF)}
-        La \tbf{forma di Backus-Naur} (\tit{Backus-Naur Form}) è una notazione utilizzata per descrivere la sintassi di grammatiche, ed è definita come segue: $$\ttt{<symbol>}, \ldots, \ttt{<symbol>} ::= \ttt{\_expression\_} \ | \ \ldots \ | \ \ttt{\_expression\_}$$ dove
+        La \tbf{forma di Backus-Naur} (\tit{Backus-Naur Form}) è una notazione utilizzata per descrivere la sintassi di grammatiche, ed è definita come segue: $$\ttt{<symbol>}, \ldots, \ttt{<symbol>} \ ::= \ \ttt{\_expression\_} \smid \ldots \smid \ttt{\_expression\_}$$ dove
         \begin{itemize}
             \item $\ttt{<symbol>}$ è una \tit{metavariabile non terminale}, ovvero, può essere sostituita con regole definite dalla grammatica; si noti che le regole possono essere utilizzate \und{ricorsivamente};
             \item il simbolo $::=$ indica che ciò che è posto alla sua sinistra deve essere sostituito con ciò che è alla sua destra;
@@ -467,7 +467,7 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={exp}]{Grammatica $Exp$}
-        Sia $Exp$ la seguente grammatica: $$M, N ::= \ttt 0 \ | \ \ttt 1 \ | \ \ldots \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N$$ essa definisce le regole per utilizzare i numeri in $\N$, ammettendo inoltre le operazioni \und{sintattiche} di $\ttt +$ e $\ttt *$.
+        Sia $Exp$ la seguente grammatica: $$M, N \ ::= \ \ttt 0 \smid \ttt 1 \smid \ldots \smid x \smid M \ \ttt + \ N \smid M \ \ttt * \ N$$ essa definisce le regole per utilizzare i numeri in $\N$, ammettendo inoltre le operazioni \und{sintattiche} di $\ttt +$ e $\ttt *$.
     \end{frameddefn}
 
     \begin{framedobs}{Metavariabili di $Exp$}
@@ -512,7 +512,7 @@
     \end{frameddefn}
     
     \begin{frameddefn}[label={exp2}]{Estensione di $Exp$}
-        Sia $Exp$ la seguente estensione della grammatica presente all'interno della \cref{exp}: $$M, N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N}$$
+        Sia $Exp$ la seguente estensione della grammatica presente all'interno della \cref{exp}: $$M, N \ ::= \ k \smid x \smid M \ \ttt + \ N \smid M \ \ttt * \ N \smid \letin{x}{M}{N}$$
 
         In essa, sono presenti:
 
@@ -690,7 +690,7 @@
     \end{frameddefn}
 
     \begin{frameddefn}[label={fun}]{Grammatica $Fun$}
-        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno della \cref{exp2}: $$M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ \letin{x}{M}{N} \ | \ \fn{x}{M} \ | \ MN$$
+        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno della \cref{exp2}: $$M,N \ ::= \ k \smid x \smid M \ \ttt + \ N \smid M \ \ttt * \ N \smid \letin{x}{M}{N} \smid \fn{x}{M} \smid MN$$
     \end{frameddefn}
 
     \begin{example}[Funzioni come argomenti]
@@ -925,7 +925,7 @@
     \subsection{Lambda calcolo}
 
     \begin{frameddefn}{Lambda calcolo}
-        Il \tbf{lambda calcolo} è un sistema formale atto ad analizzare le funzioni e le loro applicazioni. La grammatica del lambda calcolo è la seguente $$M,N ::= x \ | \ \lambda x . M \ | \ MN$$ dove $\lambda x.M$ indica una funzione della forma $\fn{x}{M}$, e prende il nome di \tbf{lambda astrazione}. Le espressioni del lambda calcolo sono dette \tbf{lambda espressioni}.
+        Il \tbf{lambda calcolo} è un sistema formale atto ad analizzare le funzioni e le loro applicazioni. La grammatica del lambda calcolo è la seguente $$M,N \ ::= \ x \smid \lambda x . M \smid MN$$ dove $\lambda x.M$ indica una funzione della forma $\fn{x}{M}$, e prende il nome di \tbf{lambda astrazione}. Le espressioni del lambda calcolo sono dette \tbf{lambda espressioni}.
     \end{frameddefn}
 
     \begin{example}[Lambda espressioni]
@@ -1109,7 +1109,7 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={fun rho}]{Grammatica $Fun_\rho$}
-        Si consideri la grammatica $Fun$ definita all'interno della \cref{fun}; la seguente è una sua estensione, che prenderà il nome di $Fun_\rho$, che include al suo interno una clausola con l'operatore $rec$: $$M, N ::= x \smid \fn{x}{M} \smid MN \smid 0 \smid \mathrm{succ} \ M \smid \recfun{M}{N}$$ dove si noti che 0 non sta ad indicare tutte le costanti, ma esclusivamente lo 0, in quanto non è necessario includere le altre poiché la grammatica è fornita della funzione $\mathrm{succ}$.
+        Si consideri la grammatica $Fun$ definita all'interno della \cref{fun}; la seguente è una sua estensione, che prenderà il nome di $Fun_\rho$, che include al suo interno una clausola con l'operatore $rec$: $$M, N \ ::= \ x \smid \fn{x}{M} \smid MN \smid 0 \smid \mathrm{succ} \ M \smid \recfun{M}{N}$$ dove si noti che 0 non sta ad indicare tutte le costanti, ma esclusivamente lo 0, in quanto non è necessario includere le altre poiché la grammatica è fornita della funzione $\mathrm{succ}$.
     \end{frameddefn}
 
     \begin{example}[Operatore $rec$ in $Fun_\rho$]
@@ -1165,7 +1165,7 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={imp}]{Grammatica $Imp$}
-        Si consideri la grammatica $Exp$ definita all'interno della \cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estendere essa come segue: $$M,N ::= k \ | \ true \ | \ false \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \ | \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S}}$$
+        Si consideri la grammatica $Exp$ definita all'interno della \cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estendere essa come segue: $$M,N \ ::= \ k \smid true \smid false \smid x \smid M \ \ttt + \ N \smid M \ \ttt * \ N \smid M \ < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \smid \while{M}{p} \smid \varin{x}{M}{p} \smid x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S}}$$
     \end{frameddefn}
 
     \begin{framedobs}{Semantiche di $Imp$}
@@ -1182,7 +1182,7 @@
             \item \tbf{variabili}: $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid S(E(x)) = v \implies [vars] \ \opjudstore{E}{x}{S}{v}$$
             \item \tbf{somme}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 + v_2 \implies [plus] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt + \ N}{S}{v}}$}
             \item \tbf{prodotti}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 \cdot v_2 \implies [times] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt * \ N}{S}{v}}$}
-            \item \tbf{minorazioni}: $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{true}}$$ $$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{false}}$$
+            \item \tbf{minorazioni}: \centeredeq{0.9}{$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{true}}$} \centeredeq{0.9}{$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{false}}$}
             \item \tbf{skip}: $$[skip] \ \opjudstore{E}{skip}{S}{S}$$
             \item \tbf{composizioni sequenziali}: $$\forall p, q \in Imp, S', S'' \in \mathrm{Store} \quad [seq] \ \dfrac{\opjudstore{E}{p}{ S}{S'} \quad \opjudstore{E}{q}{ S'}{S''}}{\opjudstore{E}{p;q}{S}{S''}}$$
             \item \tbf{if-then-else}: $$\forall p, q \in Imp, S' \in \mathrm{Store} \quad [ite_1] \ \dfrac{\opjudstore{E}{M}{ S}{true} \quad \opjudstore{E}{p}{S}{S'}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S'}}$$ $$\forall p, q \in Imp, S'' \in \mathrm{Store} \quad [ite_2] \ \dfrac{\opjudstore{E}{M}{S}{false} \quad \opjudstore{E}{p}{S}{S''}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S''}}$$
@@ -1221,18 +1221,14 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={all}]{Grammatica $All$}
-        Sia $All$ la grammatica, estensione di $Imp$ definita nella \cref{imp}, composta dalle seguenti grammatiche:
+        Sia $All$ la grammatica, estensione di $Imp$ definita nella \cref{imp}, composta dalle seguenti grammatiche: $$\leftsoe{k \ ::= \ \ttt 0 \smid \ttt 1 \smid \ldots \smid true \smid false \\ V \ ::= \ x \smid x[M] \\ M, N \ ::= \ k \smid V \smid M \ \ttt + \ N \smid M \ \ttt * \ N \smid M \ \ttt < \ N \\ p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \\ \quad \quad \quad \ \ \ \while{M}{p} \smid \varin{x}{M}{p} \smid \arrin{x}{[M_0, \ldots, M_n]}{p} \\ \quad \quad \quad \ \ \ V := M \smid \procin{y}{x}{p}{x} \smid \call{y}{M}}$$ Dunque, essa è composta da:
 
-        $$\leftsoe{k ::= \ttt 0 \ | \ \ttt 1 \ | \ \ldots \ | \ true \ | \ false \\ V ::= x \ | \ x[M] \\ M, N ::= k \ | \ V \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \ | \ M \ \ttt < \ N \\ p,q ::= skip \ | \ p;q \ | \ \ite{M}{p}{q} \\ \quad \quad \quad \ \while{M}{p} \ | \ \varin{x}{M}{p} \ | \ \arrin{x}{[M_0, \ldots, M_n]}{p} \\ \quad \quad \quad \ V := M \ | \ \procin{y}{x}{p}{x} \ | \ \call{y}{M}}$$
-
-        Dunque, essa è composta da:
-
-        \begin{enumerate}[label=\roman*), font=\itshape]
+        \begin{itemize}
             \item una grammatica per le \tit{costanti};
             \item una grammatica per le \tit{espressioni assegnabili}, che prende il nome di $LExp$ (\tit{left expressions}); per valutare le sue espressioni, si introduce la seguente semantica: $$\stackrel{V}{\leadsto} \ \subseteq \mathrm{Env} \times LExp \times \mathrm{Store} \times \mathrm{Loc}$$
             \item una grammatica per le \tit{espressioni valutabili}, la quale consiste in un'estensione di $Exp$ definita nella \cref{exp};
             \item una grammatica per i \tit{programmi}, la quale consiste in un'estensione di $Imp$ definita nella \cref{imp}.
-        \end{enumerate}
+        \end{itemize}
 
         Si noti che, poiché tale grammatica supporta gli array, è necessario fornire ad $All$ locazioni di memoria contigue. Inoltre, l'insieme degli ambienti di $All$ è definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc}^+ \cup (\mathrm{Var} \times All \times \mathrm{Env})\}$$
     \end{frameddefn}
@@ -1318,7 +1314,7 @@
     \end{frameddefn}
 
     \begin{frameddefn}[label={imp formula}]{Formula imperativa}
-        Si definisce \tbf{formula imperativa} un'espressione appartenente alla seguente grammatica: $$\varphi ::= A \ | \ \hoare{B}{p}{C}$$ dove $A$, $B$ e $C$ sono espressioni booleane, e $p$ è un programma.
+        Si definisce \tbf{formula imperativa} un'espressione appartenente alla seguente grammatica: $$\varphi \ ::= \ A \smid \hoare{B}{p}{C}$$ dove $A$, $B$ e $C$ sono espressioni booleane, e $p$ è un programma.
     \end{frameddefn}
 
     \begin{framedprop}{Inferenza delle formule imperative}
@@ -1337,7 +1333,7 @@
     \subsection{Logica di Hoare}
 
     \begin{frameddefn}[label={hoare logic}]{Logica di Hoare}
-        Si definisce \tbf{logica di Hoare} la seguente grammatica: $$\leftsoe{M,N ::= k \ | \ x \ | \ M \ \ttt + \ N \ | \ M \ \ttt * \ N \\ A,B ::= true \ | \ false \ | \ A \supset B \ | \ M <  N \ | \ M = N \\ p,q ::= skip \ | \ p;q \ | \ x:=M \ | \ \ite{B}{p}{q} \ | \ \while{B}{p}}$$ dove la prima grammatica comprende le espressioni, la seconda le espressioni booleane, e la terza i programmi.
+        Si definisce \tbf{logica di Hoare} la seguente grammatica: $$\leftsoe{M,N \ ::= \ k \smid x \smid M \ \ttt + \ N \smid M \ \ttt * \ N \\ A,B \ ::= \ true \smid false \smid A \supset B \smid M <  N \smid M = N \\ p,q \ ::= \ skip \smid p;q \smid x:=M \smid \ite{B}{p}{q} \smid \while{B}{p}}$$ dove la prima grammatica comprende le espressioni, la seconda le espressioni booleane, e la terza i programmi.
     \end{frameddefn}
 
     \begin{framedprop}[breakable]{Regole della logica di Hoare}
@@ -1375,7 +1371,7 @@
     \subsection{Formule funzionali}
 
     \begin{frameddefn}[label={fun formula}]{Formula funzionale}
-        Si definisce \tbf{formula funzionale} un'espressione appartenente alla seguente grammatica: $$\varphi ::= \forall x.\varphi \smid M = N$$ dunque l'unico predicato presente è l'uguaglianza, denotato con il simbolo $=$.
+        Si definisce \tbf{formula funzionale} un'espressione appartenente alla seguente grammatica: $$\varphi \ ::= \ \forall x.\varphi \smid M = N$$ dunque l'unico predicato presente è l'uguaglianza, denotato con il simbolo $=$.
     \end{frameddefn}
 
     \begin{framedprop}[breakable]{Inferenza delle formule funzionali}
@@ -1408,18 +1404,14 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}{Lambda calcolo tipato semplice}
-        La grammatica del \tbf{lambda calcolo tipato} (noto in letteratura come \tit{System F1}) è costituita dalle seguenti grammatiche:
-
-        $$\leftsoe{A,B ::= K \smid A \to B \\ M,N ::= k \smid x \smid \lambda x:A.M \smid MN}$$
-
-        Dunque, essa è composta da da:
+        La grammatica del \tbf{lambda calcolo tipato semplice} (noto in letteratura come \tit{System F1}) è costituita dalle seguenti grammatiche: $$\leftsoe{A,B \ ::= \ K \smid A \to B \\ M,N \ ::= \ k \smid x \smid \lambda x:A.M \smid MN}$$ Dunque, essa è composta da da:
 
         \begin{itemize}
             \item una grammatica per i \tit{tipi}, che verrà indicata con $Types$; si noti che il simbolismo $A \to B$ indica il tipo di una funzione che prende in ingresso un termine di tipo $A$, e ne restituisce uno di tipo $B$;
             \item una grammatica per i \tit{termini}, che verrà indicata con $Terms$; si noti che il simbolismo $\lambda x: A.M$ indica una funzione che prende in ingresso un termine di tipo $A$, ed ha l'espressione $M$ come suo corpo.
         \end{itemize}
 
-        Il $System F1$ è \tbf{monomorfo}, poiché un termine ha \tit{uno ed un solo tipo}.
+        Il \tit{System F1} è \tbf{monomorfo}, poiché un termine ha \tit{uno ed un solo tipo}.
     \end{frameddefn}
 
     \begin{frameddefn}{Contesto dei tipi di una grammatica}
@@ -1493,24 +1485,36 @@
         dove $$\Gamma := x: \ttt{int} \to \ttt{bool}$$
     \end{example}
 
-    \begin{framedlem}{Espressioni non tipabili}
-        Non tutte le espressioni del lambda calcolo tipato sono tipabili.
+    \begin{framedlem}[label={lambda type non type}]{Espressioni non tipabili}
+        Non tutte le espressioni del lambda calcolo tipato semplice sono tipabili.
     \end{framedlem}
 
     \begin{proof}
         Si consideri la seguente espressione: $$\lambda x. xx$$ espressa in termini del lambda calcolo non tipato; provando a tipare tale espressione, si ottiene il seguente albero di derivazione: $$\dfrac{\dfrac{\typejud{x:A}{x}{A \to B} \quad \typejud{x:A}{x}{B}}{\typejud{x:A}{xx}{B}}}{\typejud{\varnothing}{\lambda x: A .xx}{A \to B}}$$ per certi tipi $A$ e $B$, ma poiché in tale albero compare il giudizio $$\typejud{x:A}{x}{A \to B}$$ segue necessariamente che $A \to B$ deve coincidere con $A$, ma questo non è possibile poiché $A \to B$ avrà sempre una $\to$ in più di $A$, indipendentemente dal tipo di quest'ultimo; dunque, segue la tesi.
     \end{proof}
 
+    \begin{framedobs}{Tipi infiniti}
+        Si consideri la dimostrazione del \cref{lambda type non type}; essa verte sul numero di $\to$ presenti all'interno del tipo considerato, dunque un tipo \tit{infinito} come ad esempio $$C \to C \to C \to C \to C \to \cdots$$ potrebbe rendere falso l'argomento utilizzato all'interno della dimostrazione, poiché entrambe i tipi considerati avrebbero un numero di $\to$ infinito. In realtà, questo non costituisce un controesempio poiché i tipi infiniti non sono presenti nell'algebra induttiva dei tipi del lambda calcolo tipato semplice, definita come $$(Types, K, \to)$$ Infatti, siano per assurdo inclusi i tipi infiniti all'interno di tale algebra induttiva; allora esisterebbe un sottoinsieme dell'algebra considerata, ovvero $Types$ stesso, tale da costituire un'algebra induttiva, e dunque verrebbe violato l'assioma \tit{iii} della \cref{inductive algebra}.
+    \end{framedobs}
+
+    \begin{framedprop}{Ricorsione in \tit{System F1}}
+        Ogni termine di \tit{System F1} termina.
+    \end{framedprop}
+
+    \begin{proof}
+        Omessa.
+    \end{proof}
+
     \section{Lambda calcolo polimorfo}
     
-    \subsection{Lambda calcolo polimorfo}
+    \subsection{Polimorfismo}
 
     \begin{frameddefn}{Polimorfismo}
-        Con \tbf{polimorfismo} si definisce la possibilità, per un'espressione, di assumere molteplici tipi, in base al contesto --- inteso \tit{non} nel senso degli elementi in $\mathrm{Ctx}$ --- considerato. Le grammatiche polimorfe sono caratterizzate da \tbf{variabili di tipo}, che permettono di descrivere in maniera \tit{generica} le loro espressioni.
+        Con \tbf{polimorfismo} si definisce la possibilità, per un'espressione, di assumere molteplici tipi, in base al contesto considerato. Le grammatiche polimorfe sono caratterizzate da \tbf{variabili di tipo}, che permettono di descrivere in maniera \tit{generica} le loro espressioni.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola dei tipi polimorfi}
-        Sia $G$ una grammatica tipata polimorfa, dove $Types$ e $Terms$ costituiscono rispettivamente le grammatiche dei tipi e dei termini di $G$; allora, è possibile definire su $G$ una funzione $poly$, come segue: $$\func{poly}{Types \times Terms}{Terms}$$ e verrà utilizzata attraverso la sintassi $$\forall \ttt{:type:}_1.\ttt{:type:}_2$$ la quale asserisce che, per ogni tipo che la varibile di tipo $\ttt{:type:}_1$ può assumere, il tipo polimorfo definito è $\ttt{:type:}_2$.
+        Sia $G$ una grammatica tipata polimorfa, dove $Types$ e $Terms$ costituiscono rispettivamente le grammatiche dei tipi e dei termini di $G$; allora, è possibile definire su $G$ una funzione $poly$, come segue: $$\func{poly}{Types \times Terms}{Terms}$$ e verrà utilizzata attraverso la sintassi $$\forall \ttt{:type:}_1.\ttt{:type:}_2$$ la quale asserisce che, per ogni tipo che la varibile di tipo $\ttt{:type:}_1$ può assumere, il tipo polimorfo definito è $\ttt{:type:}_2$. Si noti che è possibile contrarre l'espressione $$\forall \ttt{:type:}_1.(\forall \ttt{:type:}_2 . \ldots .(\forall \ttt{:type:}_{n - 1}. \ttt{:type:}_n))$$ con l'espressione $$\forall \ttt{:type:}_1, \ttt{:type:}_2, \ldots, \ttt{:type:}_{n - 1}. \ttt{:type:}_n$$
     \end{frameddefn}
 
     \begin{example}[Tipi polimorfi]
@@ -1529,24 +1533,95 @@
         Si noti che, per utilizzare un'espressione polimorfa, è necessario prima istanziarne il tipo.
     \end{framedobs}
 
+    \subsection{Lambda calcolo polimorfo}
+
     \begin{frameddefn}{Lambda calcolo polimorfo}
-        La grmamatica del \tbf{lambda calcolo polimorfo} (noto in letteratura come \tit{System F}) è costituita dalle seguenti grammatiche $$\leftsoe{A,B ::= K \smid X \smid A \to B \smid \forall X.A \\ M,N ::= k \smid x \smid \lambda x:A.M \smid MN \smid \Lambda X.M \smid M A}$$ Dunque, essa è composta da
+        La grmamatica del \tbf{lambda calcolo polimorfo} (noto in letteratura come \tit{System F}) è costituita dalle seguenti grammatiche $$\leftsoe{A,B \ ::= \ K \smid X \smid A \to B \smid \forall X.A \\ M,N \ ::= \ k \smid x \smid \lambda x:A.M \smid MN \smid \Lambda X.M \smid M A}$$ Dunque, essa è composta da
         \begin{itemize}
-            \item una grammatica per i \tit{tipi}, che verrà indicata con $Types$; si noti che il simbolismo $X$ indica che la grammatica include le variabili di tipo;
+            \item una grammatica per i \tit{tipi}, che verrà indicata con $Types$; si noti che il simbolismo $X$ indica che la grammatica include le variabili di tipo, il cui insieme verrà indicato con $TypeVar$;
             \item una grammatica per i \tit{termini}, che verrà indicata con $Terms$.
         \end{itemize}
     \end{frameddefn}
 
-    \begin{framedprop}{Regole di inferenza di \tit{System F}}
+    \begin{framedprop}[label={regole system F}]{Regole di inferenza di \tit{System F}}
         Dato un contesto di tipi $\Gamma \in \mathrm{Ctx}$, le regole di inferenza del lambda calcolo polimorfo estendono quelle definite all'interno della \cref{sys f1 rules}, attraverso le seguenti:
 
         \begin{itemize}
-            \item \tbf{astrazioni di tipi}: \centeredeq{0.9}{$\forall M \in Terms, A \in Types \quad \exists X \in Types \mid X \notin \mathrm{free}(\Gamma) \implies [abstr] \ \dfrac{\typejud{\Gamma}{M}{A}}{\typejud{\Gamma}{\Lambda X.M}{\forall X.A}}$}
-            \item \tbf{istanziazioni di tipi}: $$\forall M \in Terms, A, B, X \in Types \quad [inst] \ \dfrac{\typejud{\Gamma}{M}{\forall X.A}}{\typejud{\Gamma}{MB}{A[B/X]}}$$
+            \item \tbf{regola della generalizzazione}: \centeredeq{0.9}{$\forall M \in Terms, A \in Types \quad \exists X \in TypeVar \mid X \notin \mathrm{free}(\Gamma) \implies [gen] \ \dfrac{\typejud{\Gamma}{M}{A}}{\typejud{\Gamma}{\Lambda X.M}{\forall X.A}}$}
+            \item \tbf{regola della specializzazione}: $$\forall M \in Terms, A, B \in Types, X \in TypeVar \quad [spec] \ \dfrac{\typejud{\Gamma}{M}{\forall X.A}}{\typejud{\Gamma}{MB}{A[B/X]}}$$
         \end{itemize}
     \end{framedprop}
 
-    \begin{example}[Tipo dell'dentità polimorfa]
-        Si consideri la seguente espressione, che rappresenta l'identità polimorfa: $$\Lambda X.\lambda x:X.x$$ è possibile dedurne il tipo attraverso il seguente albero di derivazione $$\dfrac{\dfrac{\typejud{x :X}{x}{X}}{\typejud{\varnothing}{\lambda x:X.x}{X \to X}}}{\typejud{\varnothing}{\Lambda X.\lambda x:X .x}{\forall X.X \to X}}$$ ed istanziando ad esempio il tipo \ttt{Int} su di essa, si ottiene il seguente albero: $$\dfrac{\dfrac{\dfrac{\typejud{x :X}{x}{X}}{\typejud{\varnothing}{\lambda x:X.x}{X \to X}}}{\typejud{\varnothing}{\Lambda X.\lambda x:X .x}{\forall X.X \to X}}}{\typejud{\varnothing}{(\Lambda X.\lambda x :X.x) \ \ttt{int}}{\ttt{int} \to \ttt{int}}}$$
+    \begin{example}[Tipo dell'identità polimorfa]
+        Si consideri la seguente espressione, che rappresenta l'identità polimorfa: $$\Lambda X.\lambda x:X.x$$ è possibile dedurne il tipo attraverso il seguente albero di derivazione $$\dfrac{\dfrac{\typejud{x :X}{x}{X}}{\typejud{\varnothing}{\lambda x:X.x}{X \to X}}}{\typejud{\varnothing}{\Lambda X.\lambda x:X .x}{\forall X.X \to X}}$$ ed istanziando ad esempio il tipo \ttt{int} su di essa, si ottiene il seguente albero: $$\dfrac{\dfrac{\dfrac{\typejud{x :X}{x}{X}}{\typejud{\varnothing}{\lambda x:X.x}{X \to X}}}{\typejud{\varnothing}{\Lambda X.\lambda x:X .x}{\forall X.X \to X}}}{\typejud{\varnothing}{(\Lambda X.\lambda x :X.x) \ \ttt{int}}{\ttt{int} \to \ttt{int}}}$$
     \end{example}
+
+    \begin{framedobs}{Cattura delle variabili di tipo}
+        Si consideri il seguente albero di derivazione: $$\dfrac{\dfrac{\dfrac{\dfrac{\typejud{x:X}{x}{X}}{\typejud{x:X}{\Lambda X.x}{\forall X.X}}}{\typejud{x:X}{(\Lambda X.x) \ \ttt{int}}{\ttt{int}}}}{\typejud{\varnothing}{\lambda x:X.(\Lambda X.x) \ \ttt{int}}{\ttt{int}}}}{\typejud{\varnothing}{\Lambda X.\lambda x:X.(\Lambda X.x) \ \ttt{int}}{\forall X.X \to \ttt{int}}}$$ e posto $$M := \Lambda X.\lambda x:X.(\Lambda X.x) \ \ttt{int}$$ si può ad esempio derivare che $$\dfrac{\dfrac{\typejud{\varnothing}{M}{\forall X.X \to \ttt{int}}}{\typejud{\varnothing}{M \ (\ttt{int} \to \ttt{int})}{(\ttt{int} \to \ttt{int}) \to \ttt{int}}} \quad \dfrac{\typejud{\varnothing}{M}{\forall X.X \to \ttt{int}}}{\typejud{\varnothing}{M \ \ttt{int}}{\ttt{int} \to \ttt{int}}}}{\typejud{\varnothing}{M \ (\ttt{int} \to \ttt{int}) \ (M \ \ttt{int})}{\ttt{int}}}$$ il che è necessariamente falso, poiché $M$ rappresenta una lambda astrazione non applicata, e dunque non può in alcun modo avere come tipo \ttt{int}. Questo assurdo è stato raggiunto poiché è stata violata la condizione della regola della generalizzazione, descritta all'interno della \cref{regole system F}: nel primo albero di derivazione, nel passaggio $$\dfrac{\typejud{x:X}{x}{X}}{\typejud{x:X}{\Lambda X.x}{\forall X.X}}$$ la variabile di tipo $X$ era in $\mathrm{free}(\Gamma)$, ed il tipo $\forall X.X$ l'ha catturata, ma la $X$ presente in $x:X$, e quella presente in $\forall X.X$ sono $X$ \tit{diverse}: infatti, è solo un caso che entrambe le variabili di tipo si chiamino $X$ TODO DA CAPIRE CHE STO A SCRIVE PERCHÉ NON MI È CHIARO NIENTE
+    \end{framedobs}
+
+    \begin{framedobs}[label={exp poly typable}]{Espressioni polimorficamente tipabili}
+        Si consideri l'espressione $$\lambda x.xx$$ discussa all'interno della dimostrazione del \cref{lambda type non type}; diversamente dal \tit{System F1}, all'interno del \tit{System F}, poiché polimorfo, è possibile tipare tale espressione, ad esempio come segue: $$\dfrac{\dfrac{\dfrac{\typejud{\Gamma}{x}{\forall X.X \to \ttt{int}}}{\typejud{\Gamma}{x \ (\ttt{int} \to \ttt{int})}{(\ttt{int} \to \ttt{int}) \to \ttt{int}}} \quad \dfrac{\typejud{\Gamma}{x}{\forall X. X \to \ttt{int}}}{\typejud{\Gamma}{x \ \ttt{int}}{\ttt{int} \to \ttt{int}}}}{\typejud{x:\forall X.X \to \ttt{int}}{x \ (\ttt{int} \to \ttt{int}) \ (x \ \ttt{int})}{\ttt{int}}}}{\typejud{\varnothing}{\lambda x:\forall X.X \to \ttt{int}.x \ (\ttt{int} \to \ttt{int}) \ (x \ \ttt{int})}{(\forall X .X \to \ttt{int}) \to \ttt{int}}}$$ dove $$\Gamma := x : \forall X.X \to \ttt{int}$$ Ciononostante, l'espressione $\omega$ della grammatica $Fun$, che è stata presentata all'interno dell'\cref{omega fun}, ovvero $$(\lambda x. xx) (\lambda x. xx)$$ resta non tipabile nel \tit{System F} (di cui se ne omette la dimostrazione).
+    \end{framedobs}
+
+    \begin{framedthm}{Sistema di tipi del \tit{System F}}
+        Il sistema di tipi del \tit{System F} è indecidibile.
+    \end{framedthm}
+
+    \begin{proof}
+        Omessa.
+    \end{proof}
+
+    \begin{framedprop}{Ricorsione in \tit{System F}}
+        Ogni termine di \tit{System F} termina.
+    \end{framedprop}
+
+    \begin{proof}
+        Omessa.
+    \end{proof}
+
+    \section{$Fun_\tau$: un linguaggio tipato polimorfo}
+
+    \subsection{Definizioni}
+
+    \begin{frameddefn}{Istanza generica}
+        Siano $\sigma$ e $\sigma'$ i seguenti tipi: $$\centeredsoe{\sigma := \forall X_1, \ldots, X_n. \tau \\ \sigma' := \forall Y_1, \ldots, Y_m. \tau'}$$ Allora, $\sigma'$ si dice essere un'\tbf{istanza generica} di $\sigma$ --- e viene denotato con il simbolismo $$\sigma > \sigma '$$ se e solo se:
+
+        \begin{itemize}
+            \item $\exists \tau_1, \ldots, \tau_n \mid \tau' = \tau[\{\tau\}_i/\{X\}_i]$ dove con $[\{\tau\}_i/\{X\}_i]$ si indica una sostituzione simultanea di ogni $\tau_i$ con ogni $X_i$
+            \item $\nexists j \in [1, m] \mid Y_j \in \mathrm{free}(\sigma)$
+        \end{itemize}
+    \end{frameddefn}
+
+    \begin{example}[Istanze generiche]
+        Dato il tipo $$\sigma := \forall X_1, X_2.X_1 \to X_2$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \forall Z. (\ttt{int} \to Z) \to \ttt{bool}$$ è un'istanza generica di $\sigma$, poiché $$\soe{l}{\tau_1 := \ttt{int} \to Z \\ \tau_2 := \ttt{bool}} \implies \exists \tau_1, \tau_2 \mid \tau' := (\ttt{int} \to Z) \to \ttt{bool} = (X_1 \to X_2)[\{\tau\}_i/\{X\}_i]$$ ed inoltre $Z \notin \mathrm{free}(\sigma)$.
+    \end{example}
+
+    \begin{frameddefn}{Grammatica $Fun_\tau$}
+        Sia $Fun_\tau$ la grammatica tipata polimorfa seguente: $$\leftsoe{\tau \ ::= \ K \smid X \smid \tau_1 \to \tau_2 \\ \sigma \ ::= \ \tau \smid \forall X.\sigma \\ M,N \ ::= \ k \smid x \smid \fn{x}{M} \smid MN \smid \letin{x}{M}{N}}$$ Dunque, essa è composta da:
+
+        \begin{itemize}
+            \item due grammatiche per i \tit{tipi}, che verranno indicate genericamente con $Types$; la prima grammatica prende il nome di \tit{tipi primitivi}, mentre la seconda prende il nome di \tit{schemi di tipi};
+            \item una grammatica per i \tit{termini}, che verrà indicata con $Terms$.
+        \end{itemize}
+
+        Si noti che questa grammatica è la stessa che viene utilizzata all'interno del linguaggio di progarmmazione \href{https://it.wikipedia.org/wiki/Standard_ML}{SML}.
+    \end{frameddefn}
+
+    \begin{framedobs}{Tipi di $Fun_\tau$}
+        La definizione dei tipi di $Fun_\tau$ è scomposta in due grammatiche differenti, al fine di vietare di costruire tipi come il seguente: $$\forall X.X \to \ttt{int}$$ infatti, non è possibile avere questo tipo in $Fun_\tau$, poiché una volta costruito il tipo $\forall X.X$, il quale è uno schema di tipo, non è legale utilizzare la regola $\tau_1 \to \tau_2$, poiché $\tau_1$ e $\tau_2$ devono essere tipi primitivi.
+
+        Di conseguenza, i tipi di $Fun_\tau$ non permettono di definire funzioni che in input si aspettano tipi polimorfi, ed infatti l'espressione $$\lambda x.xx$$ discussa nell'\cref{exp poly typable} non è tipabile in $Fun_\tau$.
+    \end{framedobs}
+
+    \begin{framedprop}{Regole di inferenza di $Fun_\tau$}
+        Dato un contesto di tipi $\Gamma \in \mathrm{Ctx}$, le regole di inferenza di $Fun_\tau$ estendono le regole $$[const], \ [vars]$$ definite all'interno della \cref{sys f1 rules} attraverso le seguenti:
+
+        \begin{itemize}
+            \item \tbf{regola della generalizzazione}: \centeredeq{0.9}{$\forall M \in Terms, \sigma \in Types \quad \exists X \in TypeVar \mid X \notin \mathrm{free}(\Gamma) \implies [gen] \ \dfrac{\typejud{\Gamma}{M}{\sigma}}{\typejud{\Gamma}{M}{\forall X.\sigma}}$}
+            \item \tbf{regola della specializzazione}: $$\forall M \in Terms, \sigma, \sigma' \in Types \quad \sigma > \sigma ' \implies \dfrac{\typejud{\Gamma}{M}{\sigma}}{\typejud{\Gamma}{M}{\sigma'}}$$
+            \item TODO
+        \end{itemize}
+    \end{framedprop}
+
 \end{document}

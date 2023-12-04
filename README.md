@@ -7,5 +7,5 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 - generali
     - finire i TODOs
     - definizione di chiusura
-    - metti spazi prima e dopo ::=
     - fai Y comb da wikpedia
+

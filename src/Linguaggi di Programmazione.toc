@@ -55,5 +55,8 @@
 \contentsline {chapter}{\numberline {5}Elementi di Teoria dei Tipi}{63}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Lambda calcolo tipato semplice}{63}{section.5.1}%
 \contentsline {subsection}{\numberline {5.1.1}Definizioni}{63}{subsection.5.1.1}%
-\contentsline {section}{\numberline {5.2}Lambda calcolo polimorfo}{66}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Lambda calcolo polimorfo}{66}{subsection.5.2.1}%
+\contentsline {section}{\numberline {5.2}Lambda calcolo polimorfo}{67}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Polimorfismo}{67}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Lambda calcolo polimorfo}{69}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}$Fun_\tau $: un linguaggio tipato polimorfo}{72}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Definizioni}{72}{subsection.5.3.1}%
