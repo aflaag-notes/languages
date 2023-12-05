@@ -1547,8 +1547,8 @@
         Dato un contesto di tipi $\Gamma \in \mathrm{Ctx}$, le regole di inferenza del lambda calcolo polimorfo estendono quelle definite all'interno della \cref{sys f1 rules}, attraverso le seguenti:
 
         \begin{itemize}
-            \item \tbf{regola della generalizzazione}: \centeredeq{0.9}{$\forall M \in Terms, A \in Types \quad \exists X \in TypeVar \mid X \notin \mathrm{free}(\Gamma) \implies [gen] \ \dfrac{\typejud{\Gamma}{M}{A}}{\typejud{\Gamma}{\Lambda X.M}{\forall X.A}}$}
-            \item \tbf{regola della specializzazione}: $$\forall M \in Terms, A, B \in Types, X \in TypeVar \quad [spec] \ \dfrac{\typejud{\Gamma}{M}{\forall X.A}}{\typejud{\Gamma}{MB}{A[B/X]}}$$
+            \item \tbf{generalizzazioni}: \centeredeq{0.9}{$\forall M \in Terms, A \in Types \quad \exists X \in TypeVar \mid X \notin \mathrm{free}(\Gamma) \implies [gen] \ \dfrac{\typejud{\Gamma}{M}{A}}{\typejud{\Gamma}{\Lambda X.M}{\forall X.A}}$}
+            \item \tbf{specializzazioni}: $$\forall M \in Terms, A, B \in Types, X \in TypeVar \quad [spec] \ \dfrac{\typejud{\Gamma}{M}{\forall X.A}}{\typejud{\Gamma}{MB}{A[B/X]}}$$
         \end{itemize}
     \end{framedprop}
 
@@ -1597,11 +1597,39 @@
         Dato il tipo $$\sigma := \forall X_1, X_2.X_1 \to X_2$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \forall Z. (\ttt{int} \to Z) \to \ttt{bool}$$ è un'istanza generica di $\sigma$, poiché $$\soe{l}{\tau_1 := \ttt{int} \to Z \\ \tau_2 := \ttt{bool}} \implies \exists \tau_1, \tau_2 \mid \tau' := (\ttt{int} \to Z) \to \ttt{bool} = (X_1 \to X_2)[\{\tau\}_i/\{X\}_i]$$ ed inoltre $Z \notin \mathrm{free}(\sigma)$.
     \end{example}
 
+    \begin{example}[Istanze generiche]
+        Dato il tipo $$\sigma := \forall X,Y.X \to Y$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := X \to Y$$ è un'istanza generica di $\sigma$, poichè $\sigma'$ è semplicemente diventato non ulteriormente specializzabile.
+    \end{example}
+
+    \begin{example}[Istanze generiche]
+        Dato il tipo $$\sigma := X$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \forall Y.X$$ è un'istanza generica di $\sigma$, poichè $X$ è stato sostituito con sé stesso, e $Y \notin \mathrm{free}(\sigma)$.
+    \end{example}
+
+    \begin{example}[Istanze generiche]
+        Dato il tipo $$\sigma := \forall X.X$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \forall Y.X$$ è un'istanza generica di $\sigma$, poichè $X$ è stato sostituito con sé stesso, e $Y \notin \mathrm{free}(\sigma)$.
+    \end{example}
+
+    \begin{example}[Istanze generiche]
+        Dato il tipo $$\sigma := \forall X.Y \to X$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \forall Y.(\ttt{int} \to Y) \to X$$ \tit{non} è un'istanza generica di $\sigma$, poiché $Y \in \mathrm{free}(\sigma)$.
+    \end{example}
+
+    \begin{nonexample}[Istanze generiche]
+        Dato il tipo $$\sigma := X \to Y$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \ttt{int} \to Y$$ \tit{non} è un'istanza generica di $\sigma$, poiché $X \in \mathrm{free}(\sigma)$.
+    \end{nonexample}
+
+    \begin{nonexample}[Istanze generiche]
+        Dato il tipo $$\sigma := X$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \forall X.X$$ \tit{non} è un'istanza generica di $\sigma$, poiché $X \in \mathrm{free}(\sigma)$.
+    \end{nonexample}
+
+    \begin{framedobs}{Istanze generiche reciproche}
+        Si considerino i due tipi seguenti: $$\centeredsoe{\sigma := \forall Z.X \\ \sigma' := \forall W.X}$$ e si noti che $$\soe{l}{\tau_1 := X \implies \exists \tau_1 \mid \tau' := X = (X)[\tau_1/Z] \\ W \notin \mathrm{free}(\sigma)} \iff \sigma > \sigma'$$ ed inoltre $$\soe{l}{\tau_1 := X \implies \exists \tau_1 \mid \tau' := X = (X)[\tau_1/W] \\ Z \notin \mathrm{free}(\sigma')} \iff \sigma' > \sigma$$ Allora esistono tipi tali per cui $$\soe{l}{\sigma > \sigma ' \\ \sigma' > \sigma}$$ nonostante $\sigma \neq \sigma'$.
+    \end{framedobs}
+
     \begin{frameddefn}{Grammatica $Fun_\tau$}
         Sia $Fun_\tau$ la grammatica tipata polimorfa seguente: $$\leftsoe{\tau \ ::= \ K \smid X \smid \tau_1 \to \tau_2 \\ \sigma \ ::= \ \tau \smid \forall X.\sigma \\ M,N \ ::= \ k \smid x \smid \fn{x}{M} \smid MN \smid \letin{x}{M}{N}}$$ Dunque, essa è composta da:
 
         \begin{itemize}
-            \item due grammatiche per i \tit{tipi}, che verranno indicate genericamente con $Types$; la prima grammatica prende il nome di \tit{tipi primitivi}, mentre la seconda prende il nome di \tit{schemi di tipi};
+            \item due grammatiche per i \tit{tipi}, che verranno indicate genericamente con $Types$; gli elementi della grammatica prendono il nome di \tit{tipi primitivi}, mentre quelli della seconda prendono il nome di \tit{schemi di tipo};
             \item una grammatica per i \tit{termini}, che verrà indicata con $Terms$.
         \end{itemize}
 
@@ -1614,14 +1642,20 @@
         Di conseguenza, i tipi di $Fun_\tau$ non permettono di definire funzioni che in input si aspettano tipi polimorfi, ed infatti l'espressione $$\lambda x.xx$$ discussa nell'\cref{exp poly typable} non è tipabile in $Fun_\tau$.
     \end{framedobs}
 
-    \begin{framedprop}{Regole di inferenza di $Fun_\tau$}
+    \begin{framedprop}[breakable]{Regole di inferenza di $Fun_\tau$}
         Dato un contesto di tipi $\Gamma \in \mathrm{Ctx}$, le regole di inferenza di $Fun_\tau$ estendono le regole $$[const], \ [vars]$$ definite all'interno della \cref{sys f1 rules} attraverso le seguenti:
 
         \begin{itemize}
-            \item \tbf{regola della generalizzazione}: \centeredeq{0.9}{$\forall M \in Terms, \sigma \in Types \quad \exists X \in TypeVar \mid X \notin \mathrm{free}(\Gamma) \implies [gen] \ \dfrac{\typejud{\Gamma}{M}{\sigma}}{\typejud{\Gamma}{M}{\forall X.\sigma}}$}
-            \item \tbf{regola della specializzazione}: $$\forall M \in Terms, \sigma, \sigma' \in Types \quad \sigma > \sigma ' \implies \dfrac{\typejud{\Gamma}{M}{\sigma}}{\typejud{\Gamma}{M}{\sigma'}}$$
-            \item TODO
+            \item \tbf{generalizzazioni}: \centeredeq{0.9}{$\forall M \in Terms, \sigma \in Types \quad \exists X \in TypeVar \mid X \notin \mathrm{free}(\Gamma) \implies [gen] \ \dfrac{\typejud{\Gamma}{M}{\sigma}}{\typejud{\Gamma}{M}{\forall X.\sigma}}$}
+            \item \tbf{specializzazioni}: $$\forall M \in Terms, \sigma, \sigma' \in Types \quad \sigma > \sigma ' \implies \dfrac{\typejud{\Gamma}{M}{\sigma}}{\typejud{\Gamma}{M}{\sigma'}}$$
+            \item \tbf{applicazioni}: $$\forall M, N \in Terms, \tau, \tau' \in Types \quad [appl] \ \dfrac{\typejud{\Gamma}{M}{\tau' \to \tau} \quad \typejud{\Gamma}{N}{\tau'}}{\typejud{\Gamma}{MN}{\tau}}$$
+            \item \tbf{funzioni}: $$\forall M \in Terms, \tau, \tau' \in Types, x \in \mathrm{Var} \quad [fn] \ \dfrac{\typejud{\Gamma,x:\tau'}{M}{\tau}}{\typejud{\Gamma}{\fn{x}{M}}{\tau' \to \tau}}$$
+            \item \tbf{assegnazioni}: $$\forall M, N \in Terms, \sigma, \sigma' \in Types, x \in \mathrm{Var} \quad \dfrac{\typejud{\Gamma}{M}{\sigma} \quad \typejud{\Gamma, x:\sigma}{N}{\sigma'}}{\typejud{\Gamma}{\letin{x}{M}{N}}{\sigma'}}$$
         \end{itemize}
     \end{framedprop}
+
+    \begin{example}[Derivazione di tipi]
+        Si consideri l'espressione $$\letin{x}{(\fn{y}{y})}{x \ (\fn{z}{z}) \ (x \ 5)}$$ è possibile derivarne il tipo attraverso il seguente albero di derivazione: \centeredeq{0.9}{$\dfrac{\dfrac{\dfrac{\typejud{y:Y}{y}{Y}}{\typejud{\varnothing}{\fn{y}{y}}{Y \to Y}}}{\typejud{\varnothing}{\fn{y}{y}}{\forall Y.Y \to Y}} \quad \dfrac{\dfrac{\typejud{\Gamma}{x}{\forall Y . Y \to Y}}{\typejud{\Gamma}{x}{\ttt{int} \to \ttt{int}}} \quad \dfrac{\dfrac{\dfrac{\dfrac{\typejud{\Gamma, z:Z}{z}{Z}}{\typejud{\Gamma}{\fn{z}{z}}{Z \to Z}}}{\typejud{\Gamma}{\fn{z}{z}}{\forall Z.Z \to Z}}}{\typejud{\Gamma}{\fn{z}{z}}{\ttt{int} \to \ttt{int}}} \quad \dfrac{\dfrac{\typejud{\Gamma}{x}{\forall Y.Y \to Y}}{\typejud{\Gamma}{x}{\ttt{int} \to \ttt{int}}} \quad \typejud{\Gamma}{5}{\ttt{int}}}{\typejud{\Gamma}{x \ 5}{\ttt{int}}}}{\typejud{\Gamma}{(\fn{z}{z}) \ (x \ 5)}{\ttt{int}}}}{\typejud{x:\forall Y. Y \to Y}{x \ (\fn{z}{z}) \ (x \ 5)}{\ttt{int}}}}{\typejud{\varnothing}{\letin{x}{(\fn{y}{y})}{x \ (\fn{z}{z}) \ (x \ 5)}}{\ttt{int}}}$}
+    \end{example}
 
 \end{document}
