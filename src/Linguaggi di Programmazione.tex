@@ -1530,7 +1530,7 @@
     \end{frameddefn}
 
     \begin{framedobs}{Istanziazione dei tipi}
-        Si noti che, per utilizzare un'espressione polimorfa, è necessario prima istanziarne il tipo.
+        Si noti che, per utilizzare un'espressione polimorfa, è necessario prima istanziarne (o \tit{specializzarne}) il tipo.
     \end{framedobs}
 
     \subsection{Lambda calcolo polimorfo}
@@ -1614,7 +1614,7 @@
     \end{example}
 
     \begin{nonexample}[Istanze generiche]
-        Dato il tipo $$\sigma := X \to Y$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \ttt{int} \to Y$$ \tit{non} è un'istanza generica di $\sigma$, poiché $X \in \mathrm{free}(\sigma)$.
+        Dato il tipo $$\sigma := X \to Y$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \ttt{int} \to Y$$ \tit{non} è un'istanza generica di $\sigma$, poiché $\sigma$ non è specializzabile.
     \end{nonexample}
 
     \begin{nonexample}[Istanze generiche]
@@ -1655,7 +1655,7 @@
     \end{framedprop}
 
     \begin{example}[Derivazione di tipi]
-        Si consideri l'espressione $$\letin{x}{(\fn{y}{y})}{x \ (\fn{z}{z}) \ (x \ 5)}$$ è possibile derivarne il tipo attraverso il seguente albero di derivazione: \centeredeq{0.9}{$\dfrac{\dfrac{\dfrac{\typejud{y:Y}{y}{Y}}{\typejud{\varnothing}{\fn{y}{y}}{Y \to Y}}}{\typejud{\varnothing}{\fn{y}{y}}{\forall Y.Y \to Y}} \quad \dfrac{\dfrac{\typejud{\Gamma}{x}{\forall Y . Y \to Y}}{\typejud{\Gamma}{x}{\ttt{int} \to \ttt{int}}} \quad \dfrac{\dfrac{\dfrac{\dfrac{\typejud{\Gamma, z:Z}{z}{Z}}{\typejud{\Gamma}{\fn{z}{z}}{Z \to Z}}}{\typejud{\Gamma}{\fn{z}{z}}{\forall Z.Z \to Z}}}{\typejud{\Gamma}{\fn{z}{z}}{\ttt{int} \to \ttt{int}}} \quad \dfrac{\dfrac{\typejud{\Gamma}{x}{\forall Y.Y \to Y}}{\typejud{\Gamma}{x}{\ttt{int} \to \ttt{int}}} \quad \typejud{\Gamma}{5}{\ttt{int}}}{\typejud{\Gamma}{x \ 5}{\ttt{int}}}}{\typejud{\Gamma}{(\fn{z}{z}) \ (x \ 5)}{\ttt{int}}}}{\typejud{x:\forall Y. Y \to Y}{x \ (\fn{z}{z}) \ (x \ 5)}{\ttt{int}}}}{\typejud{\varnothing}{\letin{x}{(\fn{y}{y})}{x \ (\fn{z}{z}) \ (x \ 5)}}{\ttt{int}}}$}
+        Si consideri l'espressione $$\letin{x}{(\fn{y}{y})}{x \ (\fn{z}{z}) \ (x \ 5)}$$ è possibile derivarne il tipo attraverso il seguente albero di derivazione: \centeredeq{0.9}{$\dfrac{\dfrac{\dfrac{\typejud{y:Y}{y}{Y}}{\typejud{\varnothing}{\fn{y}{y}}{Y \to Y}}}{\typejud{\varnothing}{\fn{y}{y}}{\forall Y.Y \to Y}} \quad \dfrac{\dfrac{\typejud{\Gamma}{x}{\forall Y . Y \to Y}}{\typejud{\Gamma}{x}{\ttt{int} \to \ttt{int}}} \quad \dfrac{\dfrac{\dfrac{\dfrac{\typejud{\Gamma, z:Z}{z}{Z}}{\typejud{\Gamma}{\fn{z}{z}}{Z \to Z}}}{\typejud{\Gamma}{\fn{z}{z}}{\forall Z.Z \to Z}}}{\typejud{\Gamma}{\fn{z}{z}}{\ttt{int} \to \ttt{int}}} \quad \dfrac{\dfrac{\typejud{\Gamma}{x}{\forall Y.Y \to Y}}{\typejud{\Gamma}{x}{\ttt{int} \to \ttt{int}}} \quad \typejud{\Gamma}{5}{\ttt{int}}}{\typejud{\Gamma}{x \ 5}{\ttt{int}}}}{\typejud{\Gamma}{(\fn{z}{z}) \ (x \ 5)}{\ttt{int}}}}{\typejud{x:\forall Y. Y \to Y}{x \ (\fn{z}{z}) \ (x \ 5)}{\ttt{int}}}}{\typejud{\varnothing}{\letin{x}{(\fn{y}{y})}{x \ (\fn{z}{z}) \ (x \ 5)}}{\ttt{int}}}$} dove $$\Gamma := x:\forall Y.Y \to Y$$
     \end{example}
 
 \end{document}
