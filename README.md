@@ -4,6 +4,11 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 
 ## TODO list
 
+- esempio 5.3.1.5 è un non esempio
+- clausole
+    - CAMBIA :type: CON TYPE E PURE TUTTI GLI ALTRI, COSI SE CAPISCE QUALCOSA
+    - RIMUOVI LE FUNZIONI
+    - rifai defn 2.3.1.2
 - generali
     - finire i TODOs
     - definizione di chiusura
