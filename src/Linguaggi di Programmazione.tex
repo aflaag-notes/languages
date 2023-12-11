@@ -1538,7 +1538,7 @@
     \begin{frameddefn}{Lambda calcolo polimorfo}
         La grmamatica del \tbf{lambda calcolo polimorfo} (noto in letteratura come \tit{System F}) è costituita dalle seguenti grammatiche $$\leftsoe{A,B \ ::= \ K \smid X \smid A \to B \smid \forall X.A \\ M,N \ ::= \ k \smid x \smid \lambda x:A.M \smid MN \smid \Lambda X.M \smid M A}$$ Dunque, essa è composta da
         \begin{itemize}
-            \item una grammatica per i \tit{tipi}, che verrà indicata con $Types$; si noti che il simbolismo $X$ indica che la grammatica include le variabili di tipo, il cui insieme verrà indicato con $TypeVar$;
+            \item una grammatica per i \tit{tipi}, che verrà indicata con $Types$; si noti che il simbolismo $X$ indica che la grammatica include le variabili di tipo, il cui insieme verrà indicato con $\mathrm{TypeVar}$;
             \item una grammatica per i \tit{termini}, che verrà indicata con $Terms$.
         \end{itemize}
     \end{frameddefn}
@@ -1547,8 +1547,8 @@
         Dato un contesto di tipi $\Gamma \in \mathrm{Ctx}$, le regole di inferenza del lambda calcolo polimorfo estendono quelle definite all'interno della \cref{sys f1 rules}, attraverso le seguenti:
 
         \begin{itemize}
-            \item \tbf{generalizzazioni}: \centeredeq{0.9}{$\forall M \in Terms, A \in Types \quad \exists X \in TypeVar \mid X \notin \mathrm{free}(\Gamma) \implies [gen] \ \dfrac{\typejud{\Gamma}{M}{A}}{\typejud{\Gamma}{\Lambda X.M}{\forall X.A}}$}
-            \item \tbf{specializzazioni}: $$\forall M \in Terms, A, B \in Types, X \in TypeVar \quad [spec] \ \dfrac{\typejud{\Gamma}{M}{\forall X.A}}{\typejud{\Gamma}{MB}{A[B/X]}}$$
+            \item \tbf{generalizzazioni}: \centeredeq{0.9}{$\forall M \in Terms, A \in Types \quad \exists X \in \mathrm{TypeVar} \mid X \notin \mathrm{free}(\Gamma) \implies [gen] \ \dfrac{\typejud{\Gamma}{M}{A}}{\typejud{\Gamma}{\Lambda X.M}{\forall X.A}}$}
+            \item \tbf{specializzazioni}: $$\forall M \in Terms, A, B \in Types, X \in \mathrm{TypeVar} \quad [spec] \ \dfrac{\typejud{\Gamma}{M}{\forall X.A}}{\typejud{\Gamma}{MB}{A[B/X]}}$$
         \end{itemize}
     \end{framedprop}
 
@@ -1588,13 +1588,13 @@
         Siano $\sigma$ e $\sigma'$ i seguenti tipi: $$\centeredsoe{\sigma := \forall X_1, \ldots, X_n. \tau \\ \sigma' := \forall Y_1, \ldots, Y_m. \tau'}$$ Allora, $\sigma'$ si dice essere un'\tbf{istanza generica} di $\sigma$ --- e viene denotato con il simbolismo $$\sigma > \sigma '$$ se e solo se:
 
         \begin{itemize}
-            \item $\exists \tau_1, \ldots, \tau_n \mid \tau' = \tau[\{\tau\}_i/\{X\}_i]$ dove con $[\{\tau\}_i/\{X\}_i]$ si indica una sostituzione simultanea di ogni $\tau_i$ con ogni $X_i$
+            \item $\exists \tau_1, \ldots, \tau_n \mid \tau' = [\tau_1, \ldots , \tau_n/X_1, \ldots, X_n]$ (dove quest'ultima indica una sostituzione simultanea)
             \item $\nexists j \in [1, m] \mid Y_j \in \mathrm{free}(\sigma)$
         \end{itemize}
     \end{frameddefn}
 
     \begin{example}[Istanze generiche]
-        Dato il tipo $$\sigma := \forall X_1, X_2.X_1 \to X_2$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \forall Z. (\ttt{int} \to Z) \to \ttt{bool}$$ è un'istanza generica di $\sigma$, poiché $$\soe{l}{\tau_1 := \ttt{int} \to Z \\ \tau_2 := \ttt{bool}} \implies \exists \tau_1, \tau_2 \mid \tau' := (\ttt{int} \to Z) \to \ttt{bool} = (X_1 \to X_2)[\{\tau\}_i/\{X\}_i]$$ ed inoltre $Z \notin \mathrm{free}(\sigma)$.
+        Dato il tipo $$\sigma := \forall X_1, X_2.X_1 \to X_2$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \forall Z. (\ttt{int} \to Z) \to \ttt{bool}$$ è un'istanza generica di $\sigma$, poiché $$\soe{l}{\tau_1 := \ttt{int} \to Z \\ \tau_2 := \ttt{bool}} \implies \exists \tau_1, \tau_2 \mid \tau' := (\ttt{int} \to Z) \to \ttt{bool} = (X_1 \to X_2)[\tau_1, \tau_2/X_1, X_2]$$ ed inoltre $Z \notin \mathrm{free}(\sigma)$.
     \end{example}
 
     \begin{example}[Istanze generiche]
@@ -1621,15 +1621,15 @@
         Dato il tipo $$\sigma := X$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \forall X.X$$ \tit{non} è un'istanza generica di $\sigma$, poiché $X \in \mathrm{free}(\sigma)$.
     \end{nonexample}
 
-    \begin{framedobs}{Istanze generiche reciproche}
-        Si considerino i due tipi seguenti: $$\centeredsoe{\sigma := \forall Z.X \\ \sigma' := \forall W.X}$$ e si noti che $$\soe{l}{\tau_1 := X \implies \exists \tau_1 \mid \tau' := X = (X)[\tau_1/Z] \\ W \notin \mathrm{free}(\sigma)} \iff \sigma > \sigma'$$ ed inoltre $$\soe{l}{\tau_1 := X \implies \exists \tau_1 \mid \tau' := X = (X)[\tau_1/W] \\ Z \notin \mathrm{free}(\sigma')} \iff \sigma' > \sigma$$ Allora esistono tipi tali per cui $$\soe{l}{\sigma > \sigma ' \\ \sigma' > \sigma}$$ nonostante $\sigma \neq \sigma'$.
+    \begin{framedobs}{Non-antisimmetria delle istanze}
+        Si considerino i due tipi seguenti: $$\centeredsoe{\sigma := \forall Z.X \\ \sigma' := \forall W.X}$$ e si noti che $$\soe{l}{\tau_1 := X \implies \exists \tau_1 \mid \tau' := X = (X)[\tau_1/Z] \\ W \notin \mathrm{free}(\sigma)} \iff \sigma > \sigma'$$ ed inoltre $$\soe{l}{\tau_1 := X \implies \exists \tau_1 \mid \tau' := X = (X)[\tau_1/W] \\ Z \notin \mathrm{free}(\sigma')} \iff \sigma' > \sigma$$ Allora esistono tipi tali per cui $$\soe{l}{\sigma > \sigma ' \\ \sigma' > \sigma}$$ nonostante $\sigma \neq \sigma'$. Allora la relazione $>$ non è antisimmetrica.
     \end{framedobs}
 
     \begin{frameddefn}{Grammatica $Fun_\tau$}
         Sia $Fun_\tau$ la grammatica tipata polimorfa seguente: $$\leftsoe{\tau \ ::= \ K \smid X \smid \tau_1 \to \tau_2 \\ \sigma \ ::= \ \tau \smid \forall X.\sigma \\ M,N \ ::= \ k \smid x \smid \fn{x}{M} \smid MN \smid \letin{x}{M}{N}}$$ Dunque, essa è composta da:
 
         \begin{itemize}
-            \item due grammatiche per i \tit{tipi}, che verranno indicate genericamente con $Types$; gli elementi della grammatica prendono il nome di \tit{tipi primitivi}, mentre quelli della seconda prendono il nome di \tit{schemi di tipo};
+            \item due grammatiche per i \tit{tipi}, che verranno indicate genericamente con $Types$; gli elementi della grammatica prendono il nome di \tit{tipi primitivi} (la cui grammatica verrà indicata con $PrimTypes$), mentre quelli della seconda prendono il nome di \tit{schemi di tipo};
             \item una grammatica per i \tit{termini}, che verrà indicata con $Terms$.
         \end{itemize}
 
@@ -1646,7 +1646,7 @@
         Dato un contesto di tipi $\Gamma \in \mathrm{Ctx}$, le regole di inferenza di $Fun_\tau$ estendono le regole $$[const], \ [vars]$$ definite all'interno della \cref{sys f1 rules} attraverso le seguenti:
 
         \begin{itemize}
-            \item \tbf{generalizzazioni}: \centeredeq{0.9}{$\forall M \in Terms, \sigma \in Types \quad \exists X \in TypeVar \mid X \notin \mathrm{free}(\Gamma) \implies [gen] \ \dfrac{\typejud{\Gamma}{M}{\sigma}}{\typejud{\Gamma}{M}{\forall X.\sigma}}$}
+            \item \tbf{generalizzazioni}: \centeredeq{0.9}{$\forall M \in Terms, \sigma \in Types \quad \exists X \in \mathrm{TypeVar} \mid X \notin \mathrm{free}(\Gamma) \implies [gen] \ \dfrac{\typejud{\Gamma}{M}{\sigma}}{\typejud{\Gamma}{M}{\forall X.\sigma}}$}
             \item \tbf{specializzazioni}: $$\forall M \in Terms, \sigma, \sigma' \in Types \quad \sigma > \sigma ' \implies \dfrac{\typejud{\Gamma}{M}{\sigma}}{\typejud{\Gamma}{M}{\sigma'}}$$
             \item \tbf{applicazioni}: $$\forall M, N \in Terms, \tau, \tau' \in Types \quad [appl] \ \dfrac{\typejud{\Gamma}{M}{\tau' \to \tau} \quad \typejud{\Gamma}{N}{\tau'}}{\typejud{\Gamma}{MN}{\tau}}$$
             \item \tbf{funzioni}: $$\forall M \in Terms, \tau, \tau' \in Types, x \in \mathrm{Var} \quad [fn] \ \dfrac{\typejud{\Gamma,x:\tau'}{M}{\tau}}{\typejud{\Gamma}{\fn{x}{M}}{\tau' \to \tau}}$$
@@ -1655,7 +1655,57 @@
     \end{framedprop}
 
     \begin{example}[Derivazione di tipi]
-        Si consideri l'espressione $$\letin{x}{(\fn{y}{y})}{x \ (\fn{z}{z}) \ (x \ 5)}$$ è possibile derivarne il tipo attraverso il seguente albero di derivazione: \centeredeq{0.9}{$\dfrac{\dfrac{\dfrac{\typejud{y:Y}{y}{Y}}{\typejud{\varnothing}{\fn{y}{y}}{Y \to Y}}}{\typejud{\varnothing}{\fn{y}{y}}{\forall Y.Y \to Y}} \quad \dfrac{\dfrac{\dfrac{\typejud{\Gamma}{x}{\forall Y . Y \to Y}}{\typejud{\Gamma}{x}{(\ttt{int} \to \ttt{int}) \to (\ttt{int} \to \ttt{int})}} \quad \dfrac{\dfrac{\dfrac{\typejud{\Gamma, z:Z}{z}{Z}}{\typejud{\Gamma}{\fn{z}{z}}{Z \to Z}}}{\typejud{\Gamma}{\fn{z}{z}}{\forall Z . Z \to Z}}}{\typejud{\Gamma}{\fn{z}{z}}{\ttt{int} \to \ttt{int}}}}{\typejud{\Gamma}{x \ (\fn{z}{z})}{\ttt{int} \to \ttt{int}}} \quad \dfrac{\dfrac{\typejud{\Gamma}{x}{\forall Y.Y \to Y}}{\typejud{\Gamma}{x}{\ttt{int} \to \ttt{int}}} \quad \typejud{\Gamma}{5}{\ttt{int}}}{\typejud{\Gamma}{x \ 5}{\ttt{int}}}}{\typejud{x: \forall Y .Y \to Y}{x \ (\fn{z}{z}) \ (x \ 5)}{\ttt{int}}}}{\typejud{\varnothing}{\letin{x}{(\fn{x}{x})}{x \ (\fn{z}{z}) \ (x \ 5)}}{\ttt{int}}}$}
+        Si consideri l'espressione $$\letin{x}{(\fn{y}{y})}{x \ (\fn{z}{z}) \ (x \ 5)}$$ è possibile derivarne il tipo attraverso il seguente albero di derivazione: $$(*) \ \dfrac{\dfrac{\typejud{\Gamma}{x}{\forall Y . Y \to Y}}{\typejud{\Gamma}{x}{(\ttt{int} \to \ttt{int}) \to (\ttt{int} \to \ttt{int})}} \quad \dfrac{\dfrac{\dfrac{\typejud{\Gamma, z:Z}{z}{Z}}{\typejud{\Gamma}{\fn{z}{z}}{Z \to Z}}}{\typejud{\Gamma}{\fn{z}{z}}{\forall Z . Z \to Z}}}{\typejud{\Gamma}{\fn{z}{z}}{\ttt{int} \to \ttt{int}}}}{\typejud{\Gamma}{x \ (\fn{z}{z})}{\ttt{int} \to \ttt{int}}}$$ $$\dfrac{\dfrac{\dfrac{\typejud{y:Y}{y}{Y}}{\typejud{\varnothing}{\fn{y}{y}}{Y \to Y}}}{\typejud{\varnothing}{\fn{y}{y}}{\forall Y.Y \to Y}} \quad \dfrac{(*) \quad \dfrac{\dfrac{\typejud{\Gamma}{x}{\forall Y.Y \to Y}}{\typejud{\Gamma}{x}{\ttt{int} \to \ttt{int}}} \quad \typejud{\Gamma}{5}{\ttt{int}}}{\typejud{\Gamma}{x \ 5}{\ttt{int}}}}{\typejud{x: \forall Y .Y \to Y}{x \ (\fn{z}{z}) \ (x \ 5)}{\ttt{int}}}}{\typejud{\varnothing}{\letin{x}{(\fn{x}{x})}{x \ (\fn{z}{z}) \ (x \ 5)}}{\ttt{int}}}$$
     \end{example}
+
+    \subsection{Algoritmo $\mathcal{W}$}
+
+    \begin{frameddefn}{Sostituzione}
+        Si definisce \tbf{sostituzione} una morfismo parziale --- in cui gli input non presenti nel dominio vengono mandati in loro stessi --- sull'operatore $\to$, che mappa variabili di tipo a tipi primitivi; in simboli $$V: \mathrm{TypeVar} \stackrel{fin}{\to} PrimTypes$$
+    \end{frameddefn}
+
+    \begin{frameddefn}{Unificatore}
+        Siano $\tau_1$ e $\tau_2$ due tipi primitivi; allora, una sostituzione $V$ è detta \tbf{unificatore di tipi primitivi} se $$V(\tau_1) = V(\tau_2)$$
+    \end{frameddefn}
+
+    \begin{example}[Unificatori]
+        Siano $\tau_1$ e $\tau_2$ i seguenti tipi primitivi: $$\centeredsoe{\tau_1 := A \to B \to C \\ \tau_2 := (C \to E) \to D}$$ e sia $V$ una sostituzione definita insiemisticamente come $$V := \{(A, C \to E), (D, B \to C)\}$$ allora, poiché $$\centeredsoe{V(\tau_1) = V(A \to B \to C) = V(A) \to B \to C = \\ = (C \to E) \to B \to C = \\ =  (C \to E) \to V(D) = V(( C \to E) \to D) =  V(\tau_2)}$$ si ha che $V$ è unificatore di $\tau_1$ e $\tau_2$.
+    \end{example}
+
+    \begin{nonexample}[Unificatori]
+        Siano $\tau_1$ e $\tau_2$ i seguenti tipi primitivi: $$\centeredsoe{\tau_1 := A \to A \\ \tau_2 :=\ttt{int} \to \ttt{bool}}$$ per assurdo, se esistesse un unificatore $V$ di $\tau_1$ e $\tau_2$, si otterrebbe che $\ttt{int} \equiv \ttt{bool}$ $\lightning$.
+    \end{nonexample}
+
+    \begin{nonexample}[Unificatori]
+        Siano $\tau_1$ e $\tau_2$ i seguenti tipi primitivi: $$\centeredsoe{\tau_1 := A \to A \to A \\ \tau_2 := B \to B}$$ per assurdo, se esistesse un unificatore $V$ di $\tau_1$ e $\tau_2$, si otterrebbe che $A \equiv A \to A$ $\lightning$.
+    \end{nonexample}
+
+    \begin{framedthm}[label={robinson}]{Teorema di unificazione di Robinson}
+        Esiste un algoritmo $\mathcal U$ \tit{fallibile} che, dati due tipi primitivi $\tau_1$ e $\tau_2$, restituisce una sostizuione $V$ tale che
+
+        \begin{itemize}
+            \item $V(X) \neq X$ implica che $X$ compare in $\tau_1$ o $\tau_2$
+            \item $V$ è unificatore di $\tau_1$ e $\tau_2$
+        \end{itemize}
+
+        e tale che, se esiste un unificatore $W$ di $\tau_1$ e $\tau_2$, allora
+
+        \begin{itemize}
+            \item $\mathcal U$ non può fallire
+            \item esiste una sostituzione $Z$ tale che $W = Z \circ \mathcal U(\tau_1, \tau_2)$, dunque il risultato dell'algoritmo è la sostituzione più generica possibile
+        \end{itemize}
+    \end{framedthm}
+
+    \begin{proof}
+        Omessa.
+    \end{proof}
+
+    \begin{example}[Genericità delle sostituzioni]
+    Siano $\tau_1$ e $\tau_2$ i seguenti tipi primitivi $$\centeredsoe{\tau_1 := X \to Y \\ \tau_2 := Z \to Y}$$ e siano $V$ e $W$ due sostituzioni definite insiemisticamente come $$\centeredsoe{V := \{(X, Z)\} \\ W := \{(X, Z), (Y, A \to B)\}}$$ si noti che entrambe le sostituzioni sono unificiatori di $\tau_1$ e $\tau_2$, poiché $$V(\tau_1) = V(X \to Y) = V(X) \to V(Y) = Z \to Y =: \tau_2 = V(\tau_2)$$ \centeredeq{0.9}{$W(\tau_1) = W(X \to Y) = W(X) \to W(Y) = Z \to (A \to B) = Z \to W(Y) = W(Z \to Y) = W(\tau_2)$} ma poiché la sostituzione $$U := \{(Y, A \to B)\}$$ è tale che $$W = U \circ V$$ allora $V$ è più generica di $W$.
+    \end{example}
+
+    \begin{frameddefn}{Generalizzazione massima}
+        Data una variabile $x \in \mathrm{Var}$, ed un contesto $\Gamma \in \mathrm{Ctx}$, si definisce \tbf{generalizzazione massima di $x$} il seguente schema di tipo: $$\overline \Gamma (x) := \forall X_1, \ldots, X_n . \tau$$ dove $\Gamma(x) = \tau$ e $\mathrm{TypeVar} - \mathrm{free}(\Gamma) = \{ X_1, \ldots, X_n \}$.
+    \end{frameddefn}
 
 \end{document}

@@ -4,7 +4,9 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 
 ## TODO list
 
+- CAMBIA SOSTITUZIONE DISCUSSA CON SIMONE
 - esempio 5.3.1.5 è un non esempio
+- rifai le grammatiche coi tabular dai su
 - clausole
     - CAMBIA :type: CON TYPE E PURE TUTTI GLI ALTRI, COSI SE CAPISCE QUALCOSA
     - RIMUOVI LE FUNZIONI
