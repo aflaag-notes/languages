@@ -118,7 +118,7 @@
     \begin{example}[$\N$ di von Neumann]
         Una rappresentazione dell'insieme dei numeri naturali $\N$ alternativa alla canonica $$\N := \{0, 1, 2, \ldots \}$$ è stata fornita da John von Neumann. Indicando tale rappresentazione con $\aleph$, si ha che, per Neumann $$\begin{array}{c} 0_\aleph := \varnothing  = \{\} \\ 1_\aleph := \{ 0_\aleph \} = \{ \{ \}\} \\ 2_\aleph := \{0_\aleph, 1_\aleph\} = \{\{\}, \{\{ \}\}\} \\ \vdots \end{array}$$ e la funzione $\mathrm{succ}_\aleph$ è definita come segue $$\funcmap{\mathrm{succ}_\aleph}{\aleph}{\aleph}{x_\aleph}{x_\aleph \cup \{x_\aleph\} = \{\mu_\aleph \in \aleph \mid |\mu_\aleph| \le |x_\aleph|\}}$$ ed in particolare $\forall x_\aleph \in \aleph \quad |x_\aleph| + 1 = |\mathrm{succ}_\aleph(x_\aleph)|$.
 
-        È possibile verificare che tale rappresentazione di $\N$ soddisfa gli assiomi di Peano, in quanto
+        È possibile verificare che tale rappresentazione di $\N$ soddisfa gli assiomi di Peano, in quanto:
 
         \begin{enumerate}[label=\roman*), font=\itshape]
             \item $0_\aleph := \varnothing \in \aleph$;
@@ -142,16 +142,16 @@
     \subsection{Algebre induttive}
 
     \begin{frameddefn}{Segnatura di una funzione}
-        Data una funzione $f$, si definisce $$\func{f}{A}{B}$$ come \tbf{segnatura della funzione} $f$, dove $A$ è detto \tbf{dominio}, denotato con $\dom{(f)}$ e $B$ \tbf{codominio} di $f$.
+        Data una funzione $f$, si definisce $$\func{f}{A}{B}$$ come \tbf{segnatura della funzione} $f$, dove $A$ è detto \tbf{dominio}, denotato con $\dom{(f)}$ e $B$ è detto \tbf{codominio} di $f$.
     \end{frameddefn}
 
     \begin{frameddefn}{Algebra}
-        Una \tbf{struttura algebrica}, o più semplicemente \tbf{algebra}, consiste di un insieme \tit{non vuoto}, talvolta chiamato \tbf{insieme sostegno} (\tit{carrier set} o \tit{domain}), fornito di una o più operazioni su tale insieme, quest'ultime caratterizzate da un numero finito di assiomi da soddisfare.
+        Una \tbf{struttura algebrica}, o più semplicemente \tbf{algebra}, consiste di un insieme \tit{non vuoto} --- talvolta chiamato \tbf{insieme sostegno} (\tit{carrier set} o \tit{domain}) --- fornito di una o più operazioni su tale insieme, quest'ultime caratterizzate da un numero finito di assiomi da soddisfare.
 
-        Se $A$ è l'insieme sostegno, e $\gamma_1, \ldots \gamma_n$ sono delle operazioni definite su $A$, allora con $$(A, \gamma_1, \ldots, \gamma_n)$$ si indica l'algebra costituita da tali componenti, e questo simbolismo prende il nome di \tbf{segnatura dell'algebra}.
+        Se $A$ è un insieme sostegno, e $\gamma_1, \ldots \gamma_n$ sono delle operazioni definite su $A$, allora con $$(A, \gamma_1, \ldots, \gamma_n)$$ si indica l'algebra costituita da tali componenti, e questo simbolismo prende il nome di \tbf{segnatura dell'algebra}.
     \end{frameddefn}
 
-    \begin{example}[Strutture algebriche con singola operazione]
+    \begin{example}[Algebre]
         Esempi di strutture algebriche con un'operazione binaria sono i seguenti:
 
         \begin{itemize}
@@ -162,7 +162,7 @@
         \end{itemize}
     \end{example}
 
-    \begin{example}[Strutture algebriche con due operazioni]
+    \begin{example}[Algebre]
         Esempi di strutture algebriche con due operazioni binarie sono i seguenti:
 
         \begin{itemize}
@@ -173,7 +173,7 @@
     \end{example}
 
     \begin{frameddefn}{Insieme unità}
-        Con \tbf{insieme unità} si intende un qualsiasi insieme tale che $\abs{\1} = 1$, e verrà indicato attraverso il simbolo $\1$.
+        Con \tbf{insieme unità} si intende un qualsiasi insieme avente cardinalità pari ad 1. L'insieme unità verrà indicato attraverso il simbolo $\1$, e dunque $\abs{\1} = 1$.
     \end{frameddefn}
 
     \begin{frameddefn}{Funzione nullaria}
@@ -197,9 +197,9 @@
     \end{frameddefn}
 
     \begin{framedobs}[label={third inductive algebra}]{Terzo assioma delle algebre induttive}
-        Si noti che nel terzo assioma della \cref{inductive algebra} anche $S = \varnothing$ è un valido sottoinsieme di $A$, ma poiché non esistono $a_1, \ldots, a_k \in \varnothing$, in esso ogni qualificazione è vera a vuoto. Di conseguenza, nel momento in cui si ammette $S = \varnothing$ nel terzo assioma, l'algebra risulta essere non induttiva necessariamente (a meno dell'algebra vuota).
+        Si noti che nel terzo assioma della \cref{inductive algebra} anche $S = \varnothing$ è un valido sottoinsieme di $A$, ma poiché non esistono $a_1, \ldots, a_k \in \varnothing$, in esso ogni qualificazione è vera a vuoto; allora ogni algebra che ammette l'insieme vuoto risulta essere non induttiva necessariamente (a meno dell'algebra vuota).
         
-        Di conseguenza, questo terzo assioma forza la necessità della presenza di un costruttore nullario all'interno di ogni algebra induttiva, in modo da non poter ammettere $S = \varnothing$, poiché l'algebra deve essere chiusa su ognuno dei suoi costruttori.
+        Di conseguenza, questo terzo assioma forza la necessità della presenza di un costruttore nullario all'interno di ogni algebra induttiva, in modo da non poter ammettere $S = \varnothing$, poiché l'algebra deve essere chiusa su ognuno dei suoi costruttori, e dunque grazie al costruttore nullario è sempre presente almeno un elemento all'interno di essa.
     \end{framedobs}
 
     \begin{example}[Numeri naturali]
@@ -212,25 +212,30 @@
         Inoltre, si noti che anche l'algebra $(B, \lnot, \mathrm{true}_f)$, dove $\mathrm{true}_f$ è la funzione nullaria definita come segue: $$\funcmap{\mathrm{true}_f}{\1}{B}{x}{\mathrm{true}}$$ non è induttiva, poiché $$\mathrm{true} \in \im(\lnot) \implies \im(\mathrm{true}_f) \cap \im(\lnot) \neq \varnothing$$
     \end{example}
 
-    \begin{example}[Algebre induttive]
-        \label{N inductive}
-        Sia $\mathrm{zero}$ la funzione definita come segue $$\funcmap{\mathrm{zero}}{\1}{\N}{x}{0}$$ e si prenda in esame l'algebra $(\N, \mathrm{succ}, \mathrm{zero})$; allora si ha che
+    \begin{framedprop}[label={N inductive}]{Algebra induttiva di $\N$}
+        Sia $\mathrm{zero}$ la funzione definita come segue $$\funcmap{\mathrm{zero}}{\1}{\N}{x}{0}$$ allora l'algebra $(\N, \mathrm{zero}, \succfn)$ è induttiva.
+    \end{framedprop}
+
+    \begin{proof}
+        Si noti che:
 
         \begin{enumerate}[label=\roman*), font=\itshape]
-            \item $\mathrm{succ}$ e $\mathrm{zero}$ sono iniettive, poiché
+            \item $\mathrm{zero}$ e $\succfn$ sono iniettive, poiché
                 \begin{itemize}
-                    \item $\mathrm{succ}$ è iniettiva per il terzo assioma di Peano (\cref{peano})
                     \item $\mathrm{zero}$ è iniettiva per l'\cref{inj null}
+                    \item $\mathrm{succ}$ è iniettiva per il terzo assioma di Peano (si veda la \cref{peano})
                 \end{itemize}
             \item $\im(\mathrm{succ}) \cap \im(\mathrm{zero}) = \left(\N - \{0\}\right) \cap \{0\} = \varnothing$
-            \item TODO
+            \item sia $S \subseteq \N$ tale che $\forall x \in S \quad \soe{l}{\mathrm{zero}(x) \in S \\ \succfn(x) \in S}$; si noti che, poiché $\forall x \in S \quad \mathrm{zero}(x) \in S$, allora $0 \in S$, e poiché $S$ è anche chiuso rispetto a $\succfn$, per la \cref{peano} si ha che $S = \N$ necessariamente.
         \end{enumerate}
-    \end{example}
+
+        Allora, segue la tesi.
+    \end{proof}
 
     \begin{frameddefn}{Omomorfismo}
-        Un \tbf{omomorfismo} è una funzione, tra due algebre con stessa segnatura, tale da preservarne le strutture.
+        Un \tbf{omomorfismo} è una funzione tra due algebre aventi stessa segnatura, tale da preservare le loro strutture.
 
-        Formalmente, siano $(A, \mu_1, \ldots, \mu_n)$ e $(B, \delta_1, \ldots, \delta_n)$ due algebre tali che ogni funzione $\mu_i$ abbia la stessa arietà e lo stesso numero di parametri esterni (denotati con $k$) di $\delta_i$, per ogni $i \in [1, n]$; allora, una funzione $\func{f}{A}{B}$ è detta \tbf{omomorfismo} tra le due algebre, se e solo se $$\centeredsoe{f(\mu_1(a_\alpha, \ldots, a_\beta, k_\alpha, \ldots, k_\gamma)) = \delta_1(f(a_\alpha), \ldots, f(a_\beta), k_\alpha, \ldots, k_\gamma) \\ \vdots \\ f(\mu_n(a_\eta, \ldots, a_\omega, k_\eta, \ldots k_\nu)) = \delta_n(f(a_\eta), \ldots, f(a_\omega), k_\eta, \ldots, k_\nu)}$$
+        Formalmente, siano $(A, \mu_1, \ldots, \mu_n)$ e $(B, \delta_1, \ldots, \delta_n)$ due algebre tali che ogni funzione $\mu_i$ abbia la stessa arietà e lo stesso numero di parametri esterni (denotati con $k$) di $\delta_i$; allora, una funzione $\func{f}{A}{B}$ è detta \tbf{omomorfismo} tra le due algebre, se e solo se $$\centeredsoe{f(\mu_1(a_\alpha, \ldots, a_\beta, k_\alpha, \ldots, k_\gamma)) = \delta_1(f(a_\alpha), \ldots, f(a_\beta), k_\alpha, \ldots, k_\gamma) \\ \vdots \\ f(\mu_n(a_\eta, \ldots, a_\omega, k_\eta, \ldots k_\nu)) = \delta_n(f(a_\eta), \ldots, f(a_\omega), k_\eta, \ldots, k_\nu)}$$
 
         Se l'omomorfismo è da un'algebra in sé stessa, prende il nome di \tbf{endomorfismo}.
     \end{frameddefn}
@@ -251,7 +256,7 @@
     \begin{frameddefn}{Isomorfismo}
         Un \tbf{isomorfismo} è un omomorfismo biettivo.
 
-        Se tra due strutture algebriche $A$ e $B$ esiste un isomorfismo, tali strutture sono dette \tbf{isomorfe}, ed è indicato col seguente simbolismo: $$A \cong B$$ Se l'isomorfismo è da un'algebra in sé stessa, prende il nome di \tbf{automorfismo}.
+        Se tra due strutture algebriche $A$ e $B$ esiste un isomorfismo, queste sono dette \tbf{isomorfe}, e tale proprietà è indicata dal simbolismo $$A \cong B$$ Se l'isomorfismo è da un'algebra in sé stessa, prende il nome di \tbf{automorfismo}.
     \end{frameddefn}
 
     \begin{example}[Isomorfismi]
@@ -293,7 +298,7 @@
     \end{framedlem}
 
     \begin{proof}
-        Per la \cref{alg same sign}, poiché $A$ è un'algebra induttiva, e $B$ ha la stessa segnatura di $A$, esiste unico un omomorfismo $\func{f}{A}{B}$; si noti però che è vero anche il viceversa, infatti poiché $B$ è un'algebra induttiva, e $A$ ha la stessa segnatura di $B$, esiste unico un omomorfismo $\func{g}{B}{A}$. Si noti che, per la \cref{comp homo}, la funzione $\funcmap{g \circ f}{A}{A}{x}{g(f(x))}$ risulta essere un omomorfismo; allora, poiché $A$ è un'algebra induttiva, per il \cref{iden inductive alg}, si ha che $$g \circ f = \id \iff f^{-1} = g \iff f \ \mathrm{biettiva}$$ (si veda la \cref{bij}) e poiché $f$ è un omomorfismo, segue che $A \cong B$.
+        Per la \cref{alg same sign}, poiché $A$ è un'algebra induttiva, e $B$ ha la stessa segnatura di $A$, esiste unico un omomorfismo $\func{f}{A}{B}$; viceversa, poiché $B$ è un'algebra induttiva, ed $A$ ha la stessa segnatura di $B$, esiste unico un omomorfismo $\func{g}{B}{A}$. Si noti che, per la \cref{comp homo}, la funzione $\funcmap{g \circ f}{A}{A}{x}{g(f(x))}$ risulta essere un omomorfismo; allora, poiché $A$ è un'algebra induttiva, per il \cref{iden inductive alg}, si ha che $$g \circ f = \id \iff f^{-1} = g \iff f \ \mathrm{biettiva}$$ (si veda la \cref{bij}) e poiché $f$ è un omomorfismo, segue che $A \cong B$.
     \end{proof}
 
     \section{Strutture dati induttive}
@@ -301,7 +306,7 @@
     \subsection{Liste}
 
     \begin{frameddefn}{Liste}
-        Una \tbf{lista} è una collezione ordinata di elementi, e l'insieme delle liste di lunghezza finita viene denotato con $\ttt{List<T>}$, dove $\ttt T$ è il tipo degli elementi che le liste contengono, ed il simobolo $\ttt T$ verrà identificato con l'insieme di tutti gli oggetti aventi tipo $\ttt T$.
+        Una \tbf{lista} è una collezione ordinata di elementi, e l'insieme delle liste di lunghezza finita viene denotato con $\ttt{List<T>}$, dove $\ttt T$ è il tipo degli elementi che le liste contengono, ed il simobolo $\ttt T$ identificherà l'insieme di tutti gli oggetti aventi tipo $\ttt T$.
 
         Dati $a_1, \ldots, a_n \in \ttt T$, una lista $l \in \ttt{List<T>}$ contenente tali elementi può essere rappresentata come segue: $$\ttt [ a_1, \ldots, a_n \ttt ]$$
     \end{frameddefn}
@@ -318,10 +323,10 @@
         Si noti che:
 
         \begin{itemize}
-            \item $\mathrm{empty}$ ha dominio in $\1$, e poiché questo contiene un solo elemento, $\mathrm{empty}$ è necessariamente iniettiva;
+            \item $\mathrm{empty}$ è iniettiva per l'\cref{inj null}
             \item $\forall l, l' \in \ttt{List<T>}, x, x' \in \ttt{T} \quad \mathrm{cons}(l, x) = \mathrm{cons}(l', x') \implies \soe{l}{l = l' \\ x = x'}$ altrimenti $l$ ed $l'$ avrebbero avuto lunghezze diverse, oppure avrebbero contenuto diversi elementi;
-            \item $\im{(\mathrm{empty})} \cap \im{(\mathrm{cons})} = \varnothing$, poiché solo $\mathrm{empty}$ può restituire $\ttt [ \ttt ]$, in quanto $\mathrm{cons}$ restituisce sempre una lista contenente almeno l'elemento fornito in input;
-            \item sia $S \subseteq \ttt{List<T>}$ tale da essere chiuso rispetto a $\mathrm{cons}$, e contenente la lista vuota; per assurdo, sia $\ttt{List<T>} - S \neq \varnothing \implies \exists l \in \ttt{List<T>} - S$, ma $\ttt{List<T>}$ è chiuso rispetto a $\mathrm{cons}$, ed in particolare $\exists x \in \ttt{T}, l' \in \ttt{List<T>} \mid \mathrm{cons}(l', x) = l$, ma poichè $l \notin S$, allora necessariamente $l' \notin S$, poiché $S$ è chiuso rispetto a $\mathrm{cons}$, e quindi $l' \in S \implies l \in S$, ma $l$ è stato scelto in $\ttt{List<T>} - S$; ripetendo tale ragionamento induttivamente, si ottiene che $S$ è vuoto, ma questo è impossibile poiché $\ttt{[]} \in \ttt{List<T>}$ in ipotesi $\lightning$.
+            \item $\im(\mathrm{empty}) \cap \im(\mathrm{cons}) = \varnothing$, poiché solo $\mathrm{empty}$ può restituire $\ttt [ \ttt ]$, in quanto $\mathrm{cons}$ restituisce sempre una lista contenente almeno l'elemento fornito in input;
+            \item sia $S \subseteq \ttt{List<T>}$ tale da essere chiuso rispetto ad $\mathrm{empty}$ e $\mathrm{cons}$ --- dunque contenente la lista vuota; per assurdo, sia $\ttt{List<T>} - S \neq \varnothing \iff \exists l \in \ttt{List<T>} - S$, ma $\ttt{List<T>}$ è chiuso rispetto a $\mathrm{cons}$, ed in particolare $\exists x \in \ttt{T}, l' \in \ttt{List<T>} \mid \mathrm{cons}(l', x) = l$, ma poichè $l \notin S$, allora necessariamente $l' \notin S$ poiché $S$ è chiuso rispetto a $\mathrm{cons}$; dunque, ripetendo tale ragionamento induttivamente, si ottiene che $S$ è vuoto, ma questo è impossibile poiché $\ttt{[]} \in S$ per chiusura su $\mathrm{empty}$ $\lightning$.
         \end{itemize}
 
         Dunque, l'algebra delle liste finite risulta essere induttiva.
@@ -332,8 +337,12 @@
     \end{framedobs}
 
     \begin{framedobs}{Concatenazione di liste finite}
-        È possibile estendere l'algebra delle liste finite per supportare l'operazione di concatenazione tra liste, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{concat}}{\ttt{List<T>} \times \ttt{List<T>}}{\ttt{List<T>}}{(l, l')}{\soe{ll}{l' & l = \ttt{[]} \\ \mathrm{cons}(x, \mathrm{concat}(t, l')) & \exists x \in \ttt T, t \in \ttt{List<T>} \mid l = \mathrm{cons}(t, x)}}$}
+        È possibile estendere l'algebra delle liste finite per supportare l'operazione di concatenazione tra liste, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{concat}}{\ttt{List<T>} \times \ttt{List<T>}}{\ttt{List<T>}}{(l, l')}{\soe{ll}{l & l' = \ttt{[]} \\ \mathrm{cons}(\mathrm{concat}(l, t), x) & \exists x \in \ttt T, t \in \ttt{List<T>} \mid l' = \mathrm{cons}(t, x)}}$}
     \end{framedobs}
+
+    \begin{example}[Concatenazioni di liste finite]
+        Per concatenare le liste $$\centeredsoe{\ttt [ 1, 2 \ttt ] \\ \ttt [ 3, 4, 5 \ttt ] }$$ è sufficiente applicare la funzione $\mathrm{concat}$, e dunque si ottiene $$\centeredsoe{\mathrm{concat}(\ttt [ 1, 2 \ttt ], \ttt[3, 4, 5 \ttt] ) = \\ = \mathrm{cons}(\mathrm{concat}(\ttt[1, 2\ttt], \ttt[3, 4\ttt]), 5) = \mathrm{cons}(\mathrm{cons}(\mathrm{concat}(\ttt[1, 2\ttt], \ttt[3\ttt]), 4), 5) = \\ = \mathrm{cons}(\mathrm{cons}(\mathrm{cons}(\mathrm{concat}(\ttt[1, 2\ttt], \ttt{[]}), 3), 4), 5) = \mathrm{cons}(\mathrm{cons}(\mathrm{cons}(\ttt[1, 2\ttt], 3), 4), 5) = \\ = \mathrm{cons}(\mathrm{cons}(\ttt[1, 2, 3\ttt], 4), 5) = \mathrm{cons}(\ttt[1, 2, 3, 4\ttt], 5) = \ttt[1, 2, 3, 4, 5\ttt]}$$
+    \end{example}
 
     \subsection{Alberi binari}
 
@@ -454,11 +463,11 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Forma di Backus-Naur (BNF)}
-        La \tbf{forma di Backus-Naur} (\tit{Backus-Naur Form}) è una notazione utilizzata per descrivere la sintassi di grammatiche, ed è definita come segue: $$\ttt{<symbol>}, \ldots, \ttt{<symbol>} \ ::= \ \ttt{\_expression\_} \smid \ldots \smid \ttt{\_expression\_}$$ dove
+        La \tbf{forma di Backus-Naur} (\tit{Backus-Naur Form}) è una notazione utilizzata per descrivere la sintassi di grammatiche, ed è definita come segue: $$\ttt{symbol}, \ldots, \ttt{symbol} \ ::= \ \ttt{expression} \smid \ldots \smid \ttt{expression}$$ dove
         \begin{itemize}
-            \item $\ttt{<symbol>}$ è una \tit{metavariabile non terminale}, ovvero, può essere sostituita con regole definite dalla grammatica; si noti che le regole possono essere utilizzate \und{ricorsivamente};
+            \item $\ttt{symbol}$ è una \tit{metavariabile non terminale}, in quanto può essere sostituita con regole definite dalla grammatica;
             \item il simbolo $::=$ indica che ciò che è posto alla sua sinistra deve essere sostituito con ciò che è alla sua destra;
-            \item $\ttt{\_expression\_}$ è un espressione che verrà usata per rimpiazzare le metavariabili non terminali, attraverso le regole definite dalla grammatica; le \tit{metavarabili} che compongono le espressioni possono essere \tbf{costanti}, \tbf{variabili}, \tbf{termini} o \tbf{espressioni} contenenti combinazioni delle precedenti, presentando eventualmente anche operazioni sintattiche specifiche.
+            \item $\ttt{expression}$ è un espressione che verrà usata per rimpiazzare le metavariabili non terminali, attraverso le regole definite dalla grammatica; le \tit{metavarabili} che compongono le espressioni possono essere \tbf{costanti}, \tbf{variabili}, \tbf{termini}, oppure \tbf{espressioni} contenenti combinazioni delle precedenti, presentando eventualmente anche operazioni sintattiche specifiche.
         \end{itemize}
     \end{frameddefn}
 
@@ -467,36 +476,32 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={exp}]{Grammatica $Exp$}
-        Sia $Exp$ la seguente grammatica: $$M, N \ ::= \ \ttt 0 \smid \ttt 1 \smid \ldots \smid x \smid M \ \ttt + \ N \smid M \ \ttt * \ N$$ essa definisce le regole per utilizzare i numeri in $\N$, ammettendo inoltre le operazioni \und{sintattiche} di $\ttt +$ e $\ttt *$.
-    \end{frameddefn}
-
-    \begin{framedobs}{Metavariabili di $Exp$}
-        Sia $Exp$ la grammatica della \cref{exp}; allora, le sue metavariabili sono le seguenti:
+        Sia $Exp$ la seguente grammatica: $$M, N \ ::= \ 0 \smid 1 \smid \ldots \smid x \smid M + N \smid M * N$$ essa definisce le regole per utilizzare i numeri in $\N$, ammettendo inoltre le operazioni \und{sintattiche} di somma e prodotto. Dunque, essa è composta da:
 
         \begin{itemize}
-            \item \tit{costanti}: $\ttt 0, \ttt 1,  \ldots$
+            \item \tit{costanti}: $0, 1, \ldots$
             \item \tit{variabili}: $x$
             \item \tit{termini}: $M$ ed $N$
-            \item \tit{espressioni}: $M \ \ttt + \ N$ e $M \ \ttt * \ N$ (si noti che tecnicamente anche le precedenti sono espressioni)
+            \item \tit{espressioni}: $M + N$ e $M * N$ (si noti che anche le precedenti sono espressioni)
         \end{itemize}
 
-        Dunque, segue che $$\centeredsoe{\mathrm{Var} = \{ x \} \\ \mathrm{Val} = \{ \ttt 0, \ttt 1, \ldots \}}$$
-    \end{framedobs}
+        Dunque, segue che $$\centeredsoe{\mathrm{Var} = \{ x \} \\ \mathrm{Val} = \{ 0, 1, \ldots \}}$$
+    \end{frameddefn}
 
     \begin{frameddefn}{Linguaggio di una grammatica}
         Sia $G$ una grammatica; allora, il suo \tbf{linguaggio} è l'insieme delle stringhe che è possibile costruire attraverso le regole di $G$.
     \end{frameddefn}
 
     \begin{example}[Linguaggio di $Exp$]
-        Sia $Exp$ la grammatica della \cref{exp}; in essa, considerando ad esempio le stringhe $\ttt{"4"}$ e $\ttt{"23"}$, si può ottenere la stringa $$\ttt{+}(\ttt{"4"}, \ttt{"23"}) = \ttt{"4 + 23"}$$ dove la \tit{polish notation} --- alla sinistra dell'uguale --- e la forma sintattica canonica --- alla sua destra --- verranno utilizzate intercambiabilmente, poiché puro \tit{syntactic sugar}.
+        Considerando ad esempio le stringhe $\ttt{"4"}$ e $\ttt{"23"}$, si può ottenere la stringa $$+(\ttt{"4"}, \ttt{"23"}) = \ttt{"4 + 23"}$$ dove la \tit{polish notation} --- alla sinistra dell'uguale --- e la forma sintattica canonica --- alla sua destra --- verranno utilizzate intercambiabilmente, poiché puro \tit{syntactic sugar}.
     \end{example}
 
     \begin{framedobs}[label={eval}]{Valutazione di $Exp$}
-        Si prenda in considerazione la grammatica $Exp$ della \cref{exp}; su di essa, è possibile definire ricorsivamente una funzione $\mathrm{eval}$, in grado di valutare le stringhe che tale grammatica può produrre, come segue: $$\centeredsoe{\mathrm{eval}(\ttt 0) = \ttt 0 \\ \mathrm{eval}(\ttt 1) = \ttt 1 \\ \vdots \\ \mathrm{eval}(M \ \ttt + \ N) = \mathrm{eval}(M) \ \ttt + \ \mathrm{eval}(N) \\ \mathrm{eval}(M \ \ttt * \ N) = \mathrm{eval}(M) \ \ttt * \ \mathrm{eval}(N)}$$
+        Si prenda in considerazione la grammatica $Exp$ della \cref{exp}; su di essa, è possibile definire ricorsivamente una funzione $\mathrm{eval}$, in grado di valutare le stringhe che tale grammatica può produrre, come segue: $$\centeredsoe{\mathrm{eval}( 0) = 0 \\ \mathrm{eval}(1) = 1 \\ \vdots \\ \mathrm{eval}(M + N) = \mathrm{eval}(M) + \mathrm{eval}(N) \\ \mathrm{eval}(M * N) = \mathrm{eval}(M) * \mathrm{eval}(N)}$$
     \end{framedobs}
 
     \begin{framedobs}[label={ambiguity}]{Ambiguità di $Exp$}
-        Si prenda in considerazione la grammatica $Exp$ della \cref{exp}; si noti che tale grammatica è ambigua, poichè ad esempio $$\ttt{+}(\ttt{"5"}, \ttt{*}(\ttt{"6"}, \ttt{"7"})) = \ttt{"5 + 6 * 7"} = \ttt{*}(\ttt{+}(\ttt{"5"}, \ttt{"6"}), \ttt{"7"})$$ e da ciò segue anche che $\im{(\ttt+)} \cap \im{(\ttt *)} \neq \varnothing$.
+        Si prenda in considerazione la grammatica $Exp$ della \cref{exp}; si noti che tale grammatica è ambigua, poichè ad esempio $$+(\ttt{"5"}, *(\ttt{"6"}, \ttt{"7"})) = \ttt{"5 + 6 * 7"} = *(+(\ttt{"5"}, \ttt{"6"}), \ttt{"7"})$$ e da ciò segue anche che $\im(+) \cap \im(*) \neq \varnothing$.
     \end{framedobs}
 
     \begin{framedobs}{Disambiguazione di $Exp$}
@@ -506,13 +511,13 @@
     \subsection{Assegnazioni}
 
     \begin{frameddefn}[label={let}]{Clausola $let$}
-        Sia $G$ una grammatica; allora, è possibile definire su $G$ una funzione \tbf{$let$}, come segue: $$\func{let}{\mathrm{Var} \times G \times G}{G}$$ e verrà utilizzata attraverso la sintassi $$\letin{\ttt{*variable*}}{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ dove alla variabile $\ttt{*variable*}$ verrà assegnata l'espressione $\ttt{\_expression\_}_1$ \tit{durante la valutazione} di $\ttt{\_expression\_}_2$; la variabile $\ttt{*variable*}$, all'interno di $\ttt{\_expression\_}_2$, prende il nome di \tbf{variabile locale}.
+        La clausola $let$ verrà utilizzata attraverso la sintassi $$\letin{\ttt{variable}}{\ttt{expression}_1}{\ttt{expression}_2}$$ dove alla variabile $\ttt{variable}$ verrà assegnata l'espressione $\ttt{expression}_1$ \tit{durante la valutazione} di $\ttt{expression}_2$; la variabile $\ttt{variable}$, all'interno di $\ttt{expression}_2$, prende il nome di \tbf{variabile locale}.
 
-        Una variabile alla quale non è stata assegnata nessuna espressione prende il nome di \tbf{variable libera} (\tit{free variable} in inglese); una variabile non libera è detta \tbf{variabile legata} (\tit{bound variable}). L'azione di legare o liberare una variabile è detta \tbf{variable binding}.
+        Una variabile alla quale non è stata assegnata nessuna espressione prende il nome di \tbf{variable libera} (\tit{free variable}); una variabile non libera è detta \tbf{variabile legata} (\tit{bound variable}). L'azione di legare o liberare una variabile è detta \tbf{variable binding}.
     \end{frameddefn}
     
     \begin{frameddefn}[label={exp2}]{Estensione di $Exp$}
-        Sia $Exp$ la seguente estensione della grammatica presente all'interno della \cref{exp}: $$M, N \ ::= \ k \smid x \smid M \ \ttt + \ N \smid M \ \ttt * \ N \smid \letin{x}{M}{N}$$
+        Sia $Exp$ la seguente estensione della grammatica presente all'interno della \cref{exp}: $$M, N \ ::= \ k \smid x \smid M + N \smid M * N \smid \letin{x}{M}{N}$$
 
         In essa, sono presenti:
 
@@ -520,12 +525,12 @@
             \item \tit{costanti}: indicate con $k$, che sta ad indicare che in $Exp$ è ammessa qualsiasi costante; di fatto, è possibile pensare a $k$ come una funzione definita come segue: $$\funcmap{k}{\N}{Exp}{x}{\ttt{"x"}}$$
             \item \tit{variabili}: $x$
             \item \tit{termini}: $M$ ed $N$
-            \item \tit{espressioni}: $M \ \ttt + \ N$, $M \ \ttt * \ N$ e $\letin{x}{M}{N}$
+            \item \tit{espressioni}: $M + N$, $M * N$ e $\letin{x}{M}{N}$
         \end{itemize}
     \end{frameddefn}
 
-    \begin{framedobs}{Convenzione per le espressioni di grammatiche}
-        Si noti che, d'ora in avanti, le espressioni delle grammatiche presentate non verranno indicate con il \ttt{"virgolettato"}, poiché verrà sottointesa la trasformazione tra i simboli, sintattici, delle grammatiche, e le vere operazioni e/o costanti che rappresentano, semanticamente.
+    \begin{framedobs}{Convenzione per le espressioni}
+        Si noti che, d'ora in avanti, le espressioni delle grammatiche presentate non verranno indicate con il \ttt{"virgolettato"}, poiché verrà sottointesa la trasformazione tra i simboli \tit{sintattici} delle grammatiche, e le vere operazioni e/o costanti che rappresentano \tit{semanticamente}.
     \end{framedobs}
 
     \begin{example}[Clausole $let$]
@@ -544,7 +549,7 @@
         Sia $Exp$ la grammatica della \cref{exp2}; su di essa, è possibile definire, ricorsivamente, una funzione in grado di restituire le variabili free di una data espressione, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{free}}{Exp}{\powerset{\left(\mathrm{Var}\right)}}{e}{\soe{ll}{
             \varnothing & \exists \eta \in \N \mid e = k(\eta) \\ 
             \{x\} & \exists x \in \mathrm{Var} \mid e = x \\ 
-            \mathrm{free}(M) \cup \mathrm{free}(N) & \exists M, N \in Exp \mid e = M \ \ttt + \ N \lor e = M \ \ttt * \ N \\
+            \mathrm{free}(M) \cup \mathrm{free}(N) & \exists M, N \in Exp \mid e = M + N \lor e = M * N \\
             \mathrm{free}(M) \cup (\mathrm{free}(N) - \{x\}) & \exists x \in \mathrm{Var}, M, N \in Exp \mid e = (\letin{x}{M}{N})
         }}$}
     \end{framedobs}
@@ -580,8 +585,8 @@
         \begin{itemize}
             \item \tbf{costanti}: $$[const] \ \opjud{E}{k}{k}$$
             \item \tbf{variabili}: $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid E(x) = v \implies [vars] \ \opjud{E}{x}{v}$$
-            \item \tbf{somme}: \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' + v'' \implies [plus] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M \ \ttt + \ N}{v}}$}
-            \item \tbf{prodotti}: \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' \cdot v'' \implies [times] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M \ \ttt * \ N}{v}}$}
+            \item \tbf{somme}: \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' + v'' \implies [plus] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M + N}{v}}$}
+            \item \tbf{prodotti}: \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' \cdot v'' \implies [times] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M * N}{v}}$}
             \item \tbf{dichiarazioni ed assegnazioni}: $$\forall v, v' \in \mathrm{Val}, x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E\{(x, v')\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$$
         \end{itemize}
     \end{framedprop}
@@ -680,7 +685,7 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={fn}]{Clausola $fn$}
-        Sia $G$ una grammatica; allora, è possibile definire su $G$ una funzione $fn$, come segue: $$\func{fn}{\mathrm{Var} \times G}{G}$$ e verrà utilizzata attraverso la sintassi $$\fn{\ttt{*variable*}}{\ttt{\_expression\_}}$$ che restituisce una funzione avente come parametro $\ttt{*variable*}$, il cui valore sarà utilizzato per valutare $\ttt{\_expression\_}$.
+        Sia $G$ una grammatica; allora, è possibile definire su $G$ una funzione $fn$, come segue: $$\func{fn}{\mathrm{Var} \times G}{G}$$ e verrà utilizzata attraverso la sintassi $$\fn{\ttt{variable}}{\ttt{expression}}$$ che restituisce una funzione avente come parametro $\ttt{variable}$, il cui valore sarà utilizzato per valutare $\ttt{expression}$.
     \end{frameddefn}
 
     \begin{frameddefn}{Applicazione}
@@ -690,7 +695,7 @@
     \end{frameddefn}
 
     \begin{frameddefn}[label={fun}]{Grammatica $Fun$}
-        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno della \cref{exp2}: $$M,N \ ::= \ k \smid x \smid M \ \ttt + \ N \smid M \ \ttt * \ N \smid \letin{x}{M}{N} \smid \fn{x}{M} \smid MN$$
+        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno della \cref{exp2}: $$M,N \ ::= \ k \smid x \smid M + N \smid M * N \smid \letin{x}{M}{N} \smid \fn{x}{M} \smid MN$$
     \end{frameddefn}
 
     \begin{example}[Funzioni come argomenti]
@@ -818,7 +823,7 @@
         Sia $Fun$ la grammatica della \cref{fun}; su di essa, è possibile definire, ricorsivamente, una funzione in grado di restituire le variabili free di una data espressione, come segue: \centeredeq{0.99}{$\funcmap{\mathrm{free}}{Fun}{\powerset{\left(\mathrm{Var}\right)}}{e}{\soe{ll}{
             \varnothing & \exists \eta \in \N \mid e = k(\eta) \\ 
             \{x\} & \exists x \in \mathrm{Var} \mid e = x \\ 
-            \mathrm{free}(M) \cup \mathrm{free}(N) & \exists M, N \in Fun \mid e = M \ \ttt + \ N \lor e = M \ \ttt * \ N \\
+            \mathrm{free}(M) \cup \mathrm{free}(N) & \exists M, N \in Fun \mid e = M + N \lor e = M * N \\
             \mathrm{free}(M) \cup (\mathrm{free}(N) - \{x\}) & \exists x \in \mathrm{Var}, M, N \in Fun \mid e = (\letin{x}{M}{N}) \\
             \mathrm{free}(M) - \{x\} & \exists x \in \mathrm{Var} , M \in Fun \mid e = (\fn{x}{M}) \\
             \mathrm{free}(M) \cup \mathrm{free}(N) & \exists M,N \in Fun \mid e = (MN)
@@ -1050,7 +1055,7 @@
     \end{proof}
 
     \begin{frameddefn}{Operatore $\rho$}
-        Si definisce \tbf{operatore $\rho$} l'operatore che, attraverso la sintassi $$\rhofun{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ restituisce l'omomorfismo descritto all'interno del \cref{weak term ric}, dove $\ttt{\_expression\_}_1$ rappresenta $a$ --- ovvero lo zero dell'algebra $(A, h, \mathrm{zero}_A)$ --- ed $\ttt{\_expression\_}_2$ costituisce il costruttore $h: A \to A$.
+        Si definisce \tbf{operatore $\rho$} l'operatore che, attraverso la sintassi $$\rhofun{\ttt{expression}_1}{\ttt{expression}_2}$$ restituisce l'omomorfismo descritto all'interno del \cref{weak term ric}, dove $\ttt{expression}_1$ rappresenta $a$ --- ovvero lo zero dell'algebra $(A, h, \mathrm{zero}_A)$ --- ed $\ttt{expression}_2$ costituisce il costruttore $h: A \to A$.
     \end{frameddefn}
 
     \begin{framedobs}[label={rho obs}]{Operatore $\rho$}
@@ -1079,7 +1084,7 @@
     \end{proof}
 
     \begin{frameddefn}{Operatore $rec$}
-        Si definisce \tbf{operatore $rec$} l'operatore che, attraverso la sintassi $$\recfun{\ttt{\_expression\_}_1}{\ttt{\_expression\_}_2}$$ restituisce l'omomorfismo descritto all'interno del \cref{weak term ric}, dove $\ttt{\_expression\_}_1$ rappresenta $a$ --- ovvero lo zero dell'algebra $(A, h, \mathrm{zero}_A)$ --- ed $\ttt{\_expression\_}_2$ costituisce il costruttore $h: A \times \N \to A$.
+        Si definisce \tbf{operatore $rec$} l'operatore che, attraverso la sintassi $$\recfun{\ttt{expression}_1}{\ttt{expression}_2}$$ restituisce l'omomorfismo descritto all'interno del \cref{weak term ric}, dove $\ttt{expression}_1$ rappresenta $a$ --- ovvero lo zero dell'algebra $(A, h, \mathrm{zero}_A)$ --- ed $\ttt{expression}_2$ costituisce il costruttore $h: A \times \N \to A$.
     \end{frameddefn}
 
     \begin{framedobs}[label={rec obs}]{Operatore $rec$}
@@ -1141,15 +1146,15 @@
     \end{frameddefn}
     
     \begin{frameddefn}{Clausola $seq$}
-        Sia $G$ una grammatica composta da programmi, e sia $G_p$ l'insieme dei suoi programmi; allora, è possibile definire su $G$ una funzione $seq$, come segue: $$\func{seq}{G_p \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\ttt{<program>}_1;\ttt{<program>}_2$$ che sta ad indicare che verrà prima eseguito $\ttt{<program>}_1$, e successivamente $\ttt{<program>}_2$.
+        Sia $G$ una grammatica composta da programmi, e sia $G_p$ l'insieme dei suoi programmi; allora, è possibile definire su $G$ una funzione $seq$, come segue: $$\func{seq}{G_p \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\ttt{program}_1;\ttt{program}_2$$ che sta ad indicare che verrà prima eseguito $\ttt{program}_1$, e successivamente $\ttt{program}_2$.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $ite$}
-        Sia $G$ una grammatica composta da programmi, e siano $G_p$ ed $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $ite$ (\tit{if-then-else}), come segue: $$\func{ite}{G_M \times G_p \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\ite{\ttt{\_expression\_}}{\ttt{<program>}_1}{\ttt{<program>}_2}$$ dove se $M$ è un espressione che può essere valutata a $true$, verrà eseguito $\ttt{<program>}_1$, altrimenti verrà eseguito $\ttt{<program>}_2$.
+        Sia $G$ una grammatica composta da programmi, e siano $G_p$ ed $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $ite$ (\tit{if-then-else}), come segue: $$\func{ite}{G_M \times G_p \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\ite{\ttt{expression}}{\ttt{program}_1}{\ttt{program}_2}$$ dove se $M$ è un espressione che può essere valutata a $true$, verrà eseguito $\ttt{program}_1$, altrimenti verrà eseguito $\ttt{program}_2$.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $while$}
-        Sia $G$ una grammatica composta da programmi, e siano $G_p$ ed $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $while$, come segue: $$\func{while}{G_M \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\while{\ttt{\_expression\_}}{\ttt{<program>}}$$ dove --- se \ttt{\_expression\_} è un espressione che può essere valutata a $true$ o $false$ --- viene eseguito $\ttt{<program>}$ fintanto che \ttt{\_expression\_} viene valutata a $true$.
+        Sia $G$ una grammatica composta da programmi, e siano $G_p$ ed $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $while$, come segue: $$\func{while}{G_M \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\while{\ttt{expression}}{\ttt{program}}$$ dove --- se \ttt{expression} è un espressione che può essere valutata a $true$ o $false$ --- viene eseguito $\ttt{program}$ fintanto che \ttt{expression} viene valutata a $true$.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $var$}
@@ -1157,7 +1162,7 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $assign$}
-        Sia $G$ una grammatica composta da programmi, e sia $G_M$ l'insieme delle sue espressioni; allora, è possibile deifnire su $G$ una funzione $assign$, come segue: $$\func{assign}{\mathrm{Var} \times G_M}{G}$$ e verrà utilizzata attraverso la sintassi $$\ttt{*variable*}  := \ttt{\_expression\_}$$ all'interno della quale, a \ttt{*variable*}, verrà assegnato il valore di \ttt{\_expression\_}.
+        Sia $G$ una grammatica composta da programmi, e sia $G_M$ l'insieme delle sue espressioni; allora, è possibile deifnire su $G$ una funzione $assign$, come segue: $$\func{assign}{\mathrm{Var} \times G_M}{G}$$ e verrà utilizzata attraverso la sintassi $$\ttt{variable}  := \ttt{expression}$$ all'interno della quale, a \ttt{variable}, verrà assegnato il valore di \ttt{expression}.
     \end{frameddefn}
 
     \section{$Imp$: un linguaggio imperativo}
@@ -1165,7 +1170,7 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={imp}]{Grammatica $Imp$}
-        Si consideri la grammatica $Exp$ definita all'interno della \cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estendere essa come segue: $$M,N \ ::= \ k \smid true \smid false \smid x \smid M \ \ttt + \ N \smid M \ \ttt * \ N \smid M \ < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \smid \while{M}{p} \smid \varin{x}{M}{p} \smid x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S}}$$
+        Si consideri la grammatica $Exp$ definita all'interno della \cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estendere essa come segue: $$M,N \ ::= \ k \smid true \smid false \smid x \smid M + N \smid M * N \smid M \ < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \smid \while{M}{p} \smid \varin{x}{M}{p} \smid x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S}}$$
     \end{frameddefn}
 
     \begin{framedobs}{Semantiche di $Imp$}
@@ -1180,8 +1185,8 @@
         \begin{itemize}
             \item \tbf{costanti}: $$[const] \ \opjudstore{E}{k}{S}{S}$$
             \item \tbf{variabili}: $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid S(E(x)) = v \implies [vars] \ \opjudstore{E}{x}{S}{v}$$
-            \item \tbf{somme}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 + v_2 \implies [plus] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt + \ N}{S}{v}}$}
-            \item \tbf{prodotti}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 \cdot v_2 \implies [times] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ \ttt * \ N}{S}{v}}$}
+            \item \tbf{somme}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 + v_2 \implies [plus] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M + N}{S}{v}}$}
+            \item \tbf{prodotti}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 \cdot v_2 \implies [times] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M * N}{S}{v}}$}
             \item \tbf{minorazioni}: \centeredeq{0.9}{$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{true}}$} \centeredeq{0.9}{$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{false}}$}
             \item \tbf{skip}: $$[skip] \ \opjudstore{E}{skip}{S}{S}$$
             \item \tbf{composizioni sequenziali}: $$\forall p, q \in Imp, S', S'' \in \mathrm{Store} \quad [seq] \ \dfrac{\opjudstore{E}{p}{ S}{S'} \quad \opjudstore{E}{q}{ S'}{S''}}{\opjudstore{E}{p;q}{S}{S''}}$$
@@ -1201,7 +1206,7 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $arr$}
-        Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $arr$, come segue: $$\func{arr}{\mathrm{Var} \times G_M^+ \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\arrin{\ttt{*variable*}}{[\ttt{\_expression\_}_1, \ldots, \ttt{\_expression\_}_n]}{\ttt{<program>}}$$ la quale pone $\ttt{*variable*}$ pari all'array $[\ttt{\_expression\_}_1, \ldots, \ttt{\_expression\_}_n]$, all'interno di $\ttt{<program>}$.
+        Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $arr$, come segue: $$\func{arr}{\mathrm{Var} \times G_M^+ \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\arrin{\ttt{variable}}{[\ttt{expression}_1, \ldots, \ttt{expression}_n]}{\ttt{program}}$$ la quale pone $\ttt{variable}$ pari all'array $[\ttt{expression}_1, \ldots, \ttt{expression}_n]$, all'interno di $\ttt{program}$.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $loc$}
@@ -1209,11 +1214,11 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $proc$}
-        Sia $G$ una grammatica composta da programmi, e sia $G_p$ l'insieme dei suoi programmi; allora, è possibile definire su $G$ una funzione $proc$, come segue: $$\func{proc}{\mathrm{Var} \times \mathrm{Var} \times G_p \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\procin{\ttt{*variable*}_1}{\ttt{*variable*}_2}{\ttt{<program>}_1}{\ttt{<program>}_2}$$ la quale definisce la \tit{procedura} $\ttt{*variable*}_1(\ttt{*variable*}_2)$, il cui corpo è costituito da $\ttt{<program>}_1$, ed è possibile utilizzarla all'interno di $\ttt{<program>}_2$.
+        Sia $G$ una grammatica composta da programmi, e sia $G_p$ l'insieme dei suoi programmi; allora, è possibile definire su $G$ una funzione $proc$, come segue: $$\func{proc}{\mathrm{Var} \times \mathrm{Var} \times G_p \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\procin{\ttt{variable}_1}{\ttt{variable}_2}{\ttt{program}_1}{\ttt{program}_2}$$ la quale definisce la \tit{procedura} $\ttt{variable}_1(\ttt{variable}_2)$, il cui corpo è costituito da $\ttt{program}_1$, ed è possibile utilizzarla all'interno di $\ttt{program}_2$.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $call$}
-        Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $call$, come segue: $$\func{call}{\mathrm{Var} \times G_M}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\call{\ttt{*variable*}}{\ttt{\_expression\_}}$$ la quale effettua una chiamata alla procedura $\ttt{*variable*}$, fornendole come parametro $\ttt{\_expression\_}$.
+        Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $call$, come segue: $$\func{call}{\mathrm{Var} \times G_M}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\call{\ttt{variable}}{\ttt{expression}}$$ la quale effettua una chiamata alla procedura $\ttt{variable}$, fornendole come parametro $\ttt{expression}$.
     \end{frameddefn}
 
     \section{$All$: un linguaggio imperativo completo}
@@ -1221,7 +1226,7 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={all}]{Grammatica $All$}
-        Sia $All$ la grammatica, estensione di $Imp$ definita nella \cref{imp}, composta dalle seguenti grammatiche: $$\leftsoe{k \ ::= \ \ttt 0 \smid \ttt 1 \smid \ldots \smid true \smid false \\ V \ ::= \ x \smid x[M] \\ M, N \ ::= \ k \smid V \smid M \ \ttt + \ N \smid M \ \ttt * \ N \smid M \ \ttt < \ N \\ p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \\ \quad \quad \quad \ \ \ \while{M}{p} \smid \varin{x}{M}{p} \smid \arrin{x}{[M_0, \ldots, M_n]}{p} \\ \quad \quad \quad \ \ \ V := M \smid \procin{y}{x}{p}{x} \smid \call{y}{M}}$$ Dunque, essa è composta da:
+        Sia $All$ la grammatica, estensione di $Imp$ definita nella \cref{imp}, composta dalle seguenti grammatiche: $$\leftsoe{k \ ::= \ \ttt 0 \smid \ttt 1 \smid \ldots \smid true \smid false \\ V \ ::= \ x \smid x[M] \\ M, N \ ::= \ k \smid V \smid M + N \smid M * N \smid M \ \ttt < \ N \\ p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \\ \quad \quad \quad \ \ \ \while{M}{p} \smid \varin{x}{M}{p} \smid \arrin{x}{[M_0, \ldots, M_n]}{p} \\ \quad \quad \quad \ \ \ V := M \smid \procin{y}{x}{p}{x} \smid \call{y}{M}}$$ Dunque, essa è composta da:
 
         \begin{itemize}
             \item una grammatica per le \tit{costanti};
@@ -1333,7 +1338,7 @@
     \subsection{Logica di Hoare}
 
     \begin{frameddefn}[label={hoare logic}]{Logica di Hoare}
-        Si definisce \tbf{logica di Hoare} la seguente grammatica: $$\leftsoe{M,N \ ::= \ k \smid x \smid M \ \ttt + \ N \smid M \ \ttt * \ N \\ A,B \ ::= \ true \smid false \smid A \supset B \smid M <  N \smid M = N \\ p,q \ ::= \ skip \smid p;q \smid x:=M \smid \ite{B}{p}{q} \smid \while{B}{p}}$$ dove la prima grammatica comprende le espressioni, la seconda le espressioni booleane, e la terza i programmi.
+        Si definisce \tbf{logica di Hoare} la seguente grammatica: $$\leftsoe{M,N \ ::= \ k \smid x \smid M + N \smid M * N \\ A,B \ ::= \ true \smid false \smid A \supset B \smid M <  N \smid M = N \\ p,q \ ::= \ skip \smid p;q \smid x:=M \smid \ite{B}{p}{q} \smid \while{B}{p}}$$ dove la prima grammatica comprende le espressioni, la seconda le espressioni booleane, e la terza i programmi.
     \end{frameddefn}
 
     \begin{framedprop}[breakable]{Regole della logica di Hoare}
@@ -1514,7 +1519,7 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola dei tipi polimorfi}
-        Sia $G$ una grammatica tipata polimorfa, dove $Types$ e $Terms$ costituiscono rispettivamente le grammatiche dei tipi e dei termini di $G$; allora, è possibile definire su $G$ una funzione $poly$, come segue: $$\func{poly}{Types \times Terms}{Terms}$$ e verrà utilizzata attraverso la sintassi $$\forall \ttt{:type:}_1.\ttt{:type:}_2$$ la quale asserisce che, per ogni tipo che la varibile di tipo $\ttt{:type:}_1$ può assumere, il tipo polimorfo definito è $\ttt{:type:}_2$. Si noti che è possibile contrarre l'espressione $$\forall \ttt{:type:}_1.(\forall \ttt{:type:}_2 . \ldots .(\forall \ttt{:type:}_{n - 1}. \ttt{:type:}_n))$$ con l'espressione $$\forall \ttt{:type:}_1, \ttt{:type:}_2, \ldots, \ttt{:type:}_{n - 1}. \ttt{:type:}_n$$
+        Sia $G$ una grammatica tipata polimorfa, dove $Types$ e $Terms$ costituiscono rispettivamente le grammatiche dei tipi e dei termini di $G$; allora, è possibile definire su $G$ una funzione $poly$, come segue: $$\func{poly}{Types \times Terms}{Terms}$$ e verrà utilizzata attraverso la sintassi $$\forall \ttt{type}_1.\ttt{type}_2$$ la quale asserisce che, per ogni tipo che la varibile di tipo $\ttt{type}_1$ può assumere, il tipo polimorfo definito è $\ttt{type}_2$. Si noti che è possibile contrarre l'espressione $$\forall \ttt{type}_1.(\forall \ttt{type}_2 . \ldots .(\forall \ttt{type}_{n - 1}. \ttt{type}_n))$$ con l'espressione $$\forall \ttt{type}_1, \ttt{type}_2, \ldots, \ttt{type}_{n - 1}. \ttt{type}_n$$
     \end{frameddefn}
 
     \begin{example}[Tipi polimorfi]
@@ -1522,11 +1527,11 @@
     \end{example}
 
     \begin{frameddefn}{Clausola di astrazione dei tipi}
-        Sia $G$ una grammatica tipata polimorfa, dove $Types$ e $Terms$ costituiscono rispettivamente le grammatiche dei tipi e dei termini di $G$; allora, è possibile definire su $G$ una funzione $abstr$, come segue: $$\func{abstr}{Types \times Terms}{Terms}$$ e verrà utilizzata attraverso la sintassi $$\Lambda \ttt{:type:}.\ttt{\_expression\_}$$ la quale dichiara la variabile di tipo \ttt{:type:} all'interno dell'espressione \ttt{\_expression\_}.
+        Sia $G$ una grammatica tipata polimorfa, dove $Types$ e $Terms$ costituiscono rispettivamente le grammatiche dei tipi e dei termini di $G$; allora, è possibile definire su $G$ una funzione $abstr$, come segue: $$\func{abstr}{Types \times Terms}{Terms}$$ e verrà utilizzata attraverso la sintassi $$\Lambda \ttt{type}.\ttt{expression}$$ la quale dichiara la variabile di tipo \ttt{type} all'interno dell'espressione \ttt{expression}.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola di istanziazione dei tipi}
-        Sia $G$ una grammatica tipata polimorfa, dove $Types$ e $Terms$ costituiscono rispettivamente le grammatiche dei tipi e dei termini di $G$; allora, è possibile definire su $G$ una funzione $inst$, come segue: $$\func{inst}{Types \times Terms}{Terms}$$ e verrà utilizzata attraverso la sintassi $$\ttt{\_expression\_} \ \ttt{:type:}$$ la quale istanzia il tipo \ttt{:type:} all'interno dell'espressione \ttt{\_expression\_}.
+        Sia $G$ una grammatica tipata polimorfa, dove $Types$ e $Terms$ costituiscono rispettivamente le grammatiche dei tipi e dei termini di $G$; allora, è possibile definire su $G$ una funzione $inst$, come segue: $$\func{inst}{Types \times Terms}{Terms}$$ e verrà utilizzata attraverso la sintassi $$\ttt{expression} \ \ttt{type}$$ la quale istanzia il tipo \ttt{type} all'interno dell'espressione \ttt{expression}.
     \end{frameddefn}
 
     \begin{framedobs}{Istanziazione dei tipi}

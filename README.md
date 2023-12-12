@@ -5,13 +5,21 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 ## TODO list
 
 - esempio 5.3.1.5 è un non esempio
-- rifai le grammatiche coi tabular dai su
-- clausole
-    - CAMBIA :type: CON TYPE E PURE TUTTI GLI ALTRI, COSI SE CAPISCE QUALCOSA
-    - RIMUOVI LE FUNZIONI
-    - rifai defn 2.3.1.2
 - generali
+    - rifare
+        - grammatiche coi tabular
+        - clausole
+            - rimuovere le funzioni
+            - rifai defn 2.3.1.2
+        - levare gli insiemi di appartenenza nelle regole di inferenza delle grammatiche
     - finire i TODOs
     - definizione di chiusura
+    - teorema 2 negli appunti di simone
     - fai Y comb da wikpedia
+- appunti 11/12
+    - controllare se tutti gli esempi che ha fatto lui li ha fatti tutti il prof
+    - estendere sostituzioni a contesti
+    - finire
+- appunti 12/12
+    - tutto
 
