@@ -1688,7 +1688,7 @@
             \item $V$ è unificatore di $\tau_1$ e $\tau_2$
         \end{itemize}
 
-        e tale che, se esiste un unificatore $W$ di $\tau_1$ e $\tau_2$, allora
+        ed inoltre l'algoritmo è tale che, se esiste un unificatore $W$ di $\tau_1$ e $\tau_2$, allora
 
         \begin{itemize}
             \item $\mathcal U$ non può fallire
@@ -1707,5 +1707,26 @@
     \begin{frameddefn}{Generalizzazione massima}
         Data una variabile $x \in \mathrm{Var}$, ed un contesto $\Gamma \in \mathrm{Ctx}$, si definisce \tbf{generalizzazione massima di $x$} il seguente schema di tipo: $$\overline \Gamma (x) := \forall X_1, \ldots, X_n . \tau$$ dove $\Gamma(x) = \tau$ e $\mathrm{TypeVar} - \mathrm{free}(\Gamma) = \{ X_1, \ldots, X_n \}$.
     \end{frameddefn}
+
+    \begin{frameddefn}{Schema principale}
+        TODO
+    \end{frameddefn}
+
+    \begin{framedthm}[breakable]{Algoritmo $\mathcal W$}
+        Esiste un algoritmo $\mathcal W$ \tit{fallibile} che, dato un contesto $\Gamma \in \mathrm{Ctx}$ ed un termine $M$, se non fallisce, restituisce una tupla $(V, \tau)$ --- dove $V$ è una sostituzione e $\tau$ è un tipo --- tale che:
+
+        \begin{itemize}
+            \item se $M \equiv x$, e $$\Gamma(x) = \forall X_1, \ldots, X_n.\tau'$$ allora $$\soe{l}{V \equiv \id \\ \exists Y_1, \ldots, Y_n \in \mathrm{free}(\Gamma(x)) \mid \tau = \tau'[Y_1, \ldots, Y_n/X_1, \ldots, X_n]}$$
+            \item se $M \equiv M_1 M_2$, e $$\soe{l}{\mathcal W(\Gamma, M_1) = (V_1, \tau_1) \\ \mathcal W (V_1(\Gamma), M_2) = (V_2, \tau_2) \\ \mathcal U(V_2(\tau_1), \tau_2 \to Y) = W}$$ dove $Y$ è una nuova variabile --- allora $$\soe{l}{V = W \circ V_2 \circ V_1 \\ \tau = W(Y)}$$ 
+            \item se $M \equiv \fn{x}{N}$, e $$\mathcal W((\Gamma, x:X), N) = (V_1, \tau_1)$$ dove $X$ è una nuova variabile, allora $$\soe{l}{V = V_1 \\ \tau = V_1(X) \to \tau_1}$$
+            \item se $M \equiv \letin{x}{N}{L}$, e $$\mathcal W((V_1(\Gamma), x: \tau'), L) = (V_2, \tau_2)$$ dove $\overline{V_1(\Gamma)}(x) = \tau'$, allora $$\soe{l}{V = V_2 \circ V_1 \\ \tau = \tau_2}$$
+        \end{itemize}
+        
+        Inoltre, se $\mathcal U$ fallisce allora $\mathcal W$ fallisce.
+    \end{framedthm}
+
+    \begin{proof}
+        Omessa.
+    \end{proof}
 
 \end{document}
