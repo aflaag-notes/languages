@@ -4,6 +4,9 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 
 ## TODO list
 
+- check
+    - ad 2.2.3 in poi
+
 - esempio 5.3.1.5 è un non esempio
 - generali
     - rifare
@@ -20,6 +23,5 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
     - controllare se tutti gli esempi che ha fatto lui li ha fatti tutti il prof
     - estendere sostituzioni a contesti
     - finire
-- appunti 12/12
-    - tutto
+- ISOMORFISMO DI CURRY HOWARD
 
