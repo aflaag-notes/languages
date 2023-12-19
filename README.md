@@ -20,8 +20,11 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
     - teorema 2 negli appunti di simone
     - fai Y comb da wikpedia
 - appunti 11/12
-    - controllare se tutti gli esempi che ha fatto lui li ha fatti tutti il prof
+    - controllare se tutti gli esempi che ha fatto simone li ha fatti pure il prof
     - estendere sostituzioni a contesti
     - finire
 - ISOMORFISMO DI CURRY HOWARD
+
+- CONTROLLA GLI APPUNTI SULL'IPAD
+
 
