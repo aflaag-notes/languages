@@ -22,42 +22,40 @@
 \contentsline {subsection}{\numberline {2.2.3}Ambienti}{18}{subsection.2.2.3}%
 \contentsline {subsection}{\numberline {2.2.4}Semantica operazionale di $Exp$}{19}{subsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.2.5}Valutazioni e scoping}{20}{subsection.2.2.5}%
-\contentsline {section}{\numberline {2.3}$Fun$: un linguaggio funzionale}{24}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Definizioni}{24}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Semantica operazionale di $Fun$}{26}{subsection.2.3.2}%
-\contentsline {section}{\numberline {2.4}Lambda calcolo}{31}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Numeri di Church}{31}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Logica booleana di Church}{34}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Lambda calcolo}{36}{subsection.2.4.3}%
-\contentsline {section}{\numberline {2.5}Ricorsione}{39}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Punto fisso}{39}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Operatori di ricorsione}{39}{subsection.2.5.2}%
-\contentsline {section}{\numberline {2.6}$Fun_\rho $: un linguaggio funzionale ricorsivo}{44}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}Definizioni}{44}{subsection.2.6.1}%
-\contentsline {chapter}{\numberline {3}Paradigma imperativo}{46}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Programmi}{46}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Memoria}{46}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Clausole imperative}{47}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}$Imp$: un linguaggio imperativo}{49}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Definizioni}{49}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Semantica operazionale di $Imp$}{49}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Memoria contigua}{51}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Definizioni}{51}{subsection.3.3.1}%
-\contentsline {section}{\numberline {3.4}$All$: un linguaggio imperativo completo}{53}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Definizioni}{53}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Semantica operazionale di $All$}{53}{subsection.3.4.2}%
-\contentsline {chapter}{\numberline {4}Correttezza dei programmi}{57}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Correttezza nel paradigma imperativo}{57}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Formule imperative}{57}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Logica di Hoare}{59}{subsection.4.1.2}%
-\contentsline {section}{\numberline {4.2}Correttezza nel paradigma funzionale}{61}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Formule funzionali}{61}{subsection.4.2.1}%
-\contentsline {chapter}{\numberline {5}Elementi di Teoria dei Tipi}{63}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Lambda calcolo tipato semplice}{63}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Definizioni}{63}{subsection.5.1.1}%
-\contentsline {section}{\numberline {5.2}Lambda calcolo polimorfo}{67}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Polimorfismo}{67}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Lambda calcolo polimorfo}{69}{subsection.5.2.2}%
-\contentsline {section}{\numberline {5.3}$Fun_\tau $: un linguaggio tipato polimorfo}{72}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Definizioni}{72}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Algoritmo $\mathcal {W}$}{76}{subsection.5.3.2}%
+\contentsline {section}{\numberline {2.3}$Fun$: un linguaggio funzionale}{23}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Definizioni}{23}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Semantica operazionale di $Fun$}{25}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Lambda calcolo}{30}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Numeri di Church}{30}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Logica booleana di Church}{32}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Lambda calcolo}{34}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Ricorsione}{37}{subsection.2.4.4}%
+\contentsline {section}{\numberline {2.5}$Fun_\rho $: un linguaggio funzionale ricorsivo}{39}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Operatori di ricorsione}{39}{subsection.2.5.1}%
+\contentsline {chapter}{\numberline {3}Paradigma imperativo}{43}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Programmi}{43}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Memoria}{43}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Clausole imperative}{44}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}$Imp$: un linguaggio imperativo}{45}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Definizioni}{45}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Semantica operazionale di $Imp$}{46}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Memoria contigua}{47}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Definizioni}{47}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.4}$All$: un linguaggio imperativo completo}{48}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Definizioni}{48}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Semantica operazionale di $All$}{49}{subsection.3.4.2}%
+\contentsline {chapter}{\numberline {4}Correttezza dei programmi}{52}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Correttezza nel paradigma imperativo}{52}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Formule imperative}{52}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Logica di Hoare}{54}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Correttezza nel paradigma funzionale}{56}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Formule funzionali}{56}{subsection.4.2.1}%
+\contentsline {chapter}{\numberline {5}Elementi di Teoria dei Tipi}{58}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Lambda calcolo tipato semplice}{58}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Definizioni}{58}{subsection.5.1.1}%
+\contentsline {section}{\numberline {5.2}Lambda calcolo polimorfo}{62}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Polimorfismo}{62}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Lambda calcolo polimorfo}{64}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}$Fun_\tau $: un linguaggio tipato polimorfo}{67}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Definizioni}{67}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Algoritmo $\mathcal {W}$}{71}{subsection.5.3.2}%

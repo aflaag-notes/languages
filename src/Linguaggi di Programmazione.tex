@@ -21,7 +21,7 @@
 \department{Dipartimento di Informatica}
 
 \title{Linguaggi di Programmazione}
-\subtitle{Appunti integrati con il libro "TODO", TODO 1, Autore 2, ...}
+% \subtitle{Appunti integrati con il libro "TODO", TODO 1, Autore 2, ...}
 
 % \author{\textit{Author}\\TODO: DECOMMENTARE QUESTA SEZIONE}
 % \author{\textit{Author}\\Simone Bianco}
@@ -584,19 +584,19 @@
         
         \begin{itemize}
             \item \tbf{costanti}: $$[const] \ \opjud{E}{k}{k}$$
-            \item \tbf{variabili}: $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid E(x) = v \implies [vars] \ \opjud{E}{x}{v}$$
-            \item \tbf{somme}: \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' + v'' \implies [plus] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M + N}{v}}$}
-            \item \tbf{prodotti}: \centeredeq{0.9}{$\forall v', v'' \in \mathrm{Val}, M, N \in Exp \quad \exists v \in \mathrm{Val} \mid v = v' \cdot v'' \implies [times] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M * N}{v}}$}
-            \item \tbf{dichiarazioni ed assegnazioni}: $$\forall v, v' \in \mathrm{Val}, x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E\{(x, v')\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$$
+            \item \tbf{variabili}: $$\exists v \in \mathrm{Val} \mid E(x) = v \implies [vars] \ \opjud{E}{x}{v}$$
+            \item \tbf{somme}: $$\exists v \in \mathrm{Val} \mid v = v' + v'' \implies [plus] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M + N}{v}}$$
+            \item \tbf{prodotti}: $$\exists v \in \mathrm{Val} \mid v = v' \cdot v'' \implies [times] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E}{N}{v''}}{\opjud{E}{M * N}{v}}$$
+            \item \tbf{dichiarazioni ed assegnazioni}: $$[let] \ \dfrac{\opjud{E}{M}{v'} \quad \opjud{E\{(x, v')\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$$
         \end{itemize}
     \end{framedprop}
 
     \begin{frameddefn}{Equivalenza operazionale}
-        Sia $G$ una grammatica, e siano $M$ ed $N$ due sue espressioni; queste sono dette \tbf{operazionalmente equivalenti}, se è vera la seguente: $$\forall E \in \mathrm{Env}, v \in \mathrm{Val} \quad \opjud{E}{M}{v} \iff \opjud{E}{N}{v}$$ e viene indicato con $M \sim N$.
+        Sia $G$ una grammatica, e siano $M$ ed $N$ due sue espressioni; queste sono dette \tbf{operazionalmente equivalenti}, se è vera la seguente: $$\forall E \in \mathrm{Env}, v \in \mathrm{Val} \quad \opjud{E}{M}{v} \iff \opjud{E}{N}{v}$$ e viene indicato con il simbolismo $$M \sim N$$
     \end{frameddefn}
 
     \begin{frameddefn}{Albero di valutazione}
-        Con \tbf{albero di valutazione} di un'espressione $e$, si definisce l'albero, composto da inferenze logiche, ottenuto dalla valutazione di $e$.
+        Con \tbf{albero di valutazione} di un'espressione $M$, si definisce l'albero, composto da inferenze logiche, ottenuto valutando $M$.
     \end{frameddefn}
 
     \begin{framedobs}{Ambiente iniziale}
@@ -618,17 +618,17 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Scoping statico}
-        Data una grammatica, la valutazione a \tbf{scoping statico} (\tit{lexical scope}) valuta le variabili TODO. In simboli, lo scoping statico verrà indicato con il pedice $\mathrm{S}$.
+        Data una grammatica, la valutazione a \tbf{scoping statico} (detto anche \tit{lexical scope}) valuta una data espressione della grammatica utilizzando l'ambiente definito in tempo di interpretazione. In simboli, lo scoping statico verrà indicato con il pedice $\mathrm{S}$.
     \end{frameddefn}
 
     \begin{frameddefn}{Scoping dinamico}
-        Data una grammatica, la valutazione a \tbf{scoping dinamico} valuta le variabili utilizzando l'ambiente definito in tempo di valutazione. TODO NON MI PIACE CAMBIA. In simboli, lo scoping dinamico verrà indicato con il pedice $\mathrm{D}$.
+        Data una grammatica, la valutazione a \tbf{scoping dinamico} valuta una data espressione della grammatica utilizzando l'ambiente definito in tempo di valutazione. In simboli, lo scoping dinamico verrà indicato con il pedice $\mathrm{D}$.
     \end{frameddefn}
 
     \begin{frameddefn}[label={equiv lang}]{Equivalenza di semantiche operazionali}
         Data una grammatica, due sue semantiche operazionali sono dette \tbf{equivalenti} se, presa una qualunque espressione di $G$, quando questa viene valutata attraverso le due semantiche, produce lo stesso risultato.
 
-        In simboli, data una grammatica $G$, e due sue semantiche operazionali $\mathrm{A}$ e $\mathbb{B}$, se queste sono equivalenti, la loro equivalenza viene denotata con il seguente simbolismo: $$G_\mathrm{A} \equiv G_\mathrm{B}$$
+        In simboli, data una grammatica $G$, e due sue semantiche operazionali $\mathrm{A}$ e $\mathrm{B}$, se queste sono equivalenti, la loro equivalenza viene denotata con il seguente simbolismo: $$G_\mathrm{A} \equiv G_\mathrm{B}$$
     \end{frameddefn}
 
     \begin{framedlem}{$Exp_\mathrm{ES}$ e $Exp_\mathrm{ED}$}
@@ -648,24 +648,20 @@
         Sia $Exp$ la grammatica definita nella \cref{exp2}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{exp2 clauses}:
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup Exp\}$$ dunque gli ambienti possono associare delle variabili anche a delle espressioni, in modo da poter ritardare la valutazione di quest'ultime fin quando non diventa strettamente necessario conoscerne il valore;
-            \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var} \quad x \in \dom(E) \land M := E(x) \implies \dfrac{\opjud{E}{M}{v}}{\opjud{E}{x}{v}}$, per rendere $M$ calcolabile, attraverso l'ambiente corrente, nel momento in cui viene assegnata ad una variabile;
-            \item $\forall x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E\{(x, M)\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$, in modo da ritardare la valutazione di $M$.
+            \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup Exp\}$$
+            \item \tbf{valutazioni}: $$x \in \mathrm{Var} \quad x \in \dom(E) \land M := E(x) \implies \dfrac{\opjud{E}{M}{v}}{\opjud{E}{x}{v}}$$
+            \item \tbf{assegnazioni}: $$[let] \ \dfrac{\opjud{E\{(x, M)\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$$
         \end{itemize}
-
-        Si noti che tale valutazione utilizza lo scoping dinamico, poiché viene utilizzato l'ambiente corrente per valutare le variabili.
     \end{framedprop}
 
-    \begin{framedprop}{$Exp_\mathrm{LS}$}
+    \begin{framedprop}[breakable]{$Exp_\mathrm{LS}$}
         Sia $Exp$ la grammatica definita all'interno della \cref{exp2}; per poter valutare le sue espressioni in maniera lazy statica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{exp2 clauses}:
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid \mathrm{Var} \xrightarrow{fin} Exp \times \mathrm{Env} \}$$ dunque gli ambienti possono associare delle variabili anche a delle tuple contenenti espressioni ed ambienti; in particolare, per una tupla $(x, (M, E))$, si ha che $x$ vale $M$ valutata nell'ambiente $E$; questa correzione nella definizione di $\mathrm{Env}$ permette di tenere traccia degli ambienti in cui sono state fatte le assegnazioni;
-            \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var} \quad x \in \dom(E) \land (M, E') := E(x) \implies \dfrac{\opjud{E'}{M}{v}}{\opjud{E}{x}{v}}$, affinché sia possibile valutare le variabili esattamente nell'ambiente in cui gli è stata assegnata l'espressione $M$, e non nell'ambiente corrente;
-            \item $\forall x \in \mathrm{Var}, M, N \in Exp \quad [let] \ \dfrac{\opjud{E\{(x, (M, E))\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$, in modo da salvare anche l'ambiente in cui alla variabile $x$ è stata assegnata l'espressione $M$.
+            \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid \mathrm{Var} \xrightarrow{fin} Exp \times \mathrm{Env} \}$$
+            \item \tbf{valutazioni}: $$x \in \dom(E) \land (M, E') := E(x) \implies \dfrac{\opjud{E'}{M}{v}}{\opjud{E}{x}{v}}$$
+            \item \tbf{assegnazioni} $$[let] \ \dfrac{\opjud{E\{(x, (M, E))\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$$
         \end{itemize}
-
-        Si noti che tale valutazione utilizza lo scoping statico, poiché vengono salvati anche gli ambienti in cui sono state fatte le assegnazioni.
     \end{framedprop}
 
     \begin{framedlem}{$Exp_\mathrm{LS}$ e $Exp_\mathrm{LD}$}
@@ -685,11 +681,11 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={fn}]{Clausola $fn$}
-        Sia $G$ una grammatica; allora, è possibile definire su $G$ una funzione $fn$, come segue: $$\func{fn}{\mathrm{Var} \times G}{G}$$ e verrà utilizzata attraverso la sintassi $$\fn{\ttt{variable}}{\ttt{expression}}$$ che restituisce una funzione avente come parametro $\ttt{variable}$, il cui valore sarà utilizzato per valutare $\ttt{expression}$.
+        La clausola $fn$ verrà utilizzata attraverso la sintassi $$\fn{\ttt{variable}}{\ttt{expression}}$$ che restituisce una funzione avente come parametro $\ttt{variable}$, il cui valore sarà utilizzato per valutare $\ttt{expression}$.
     \end{frameddefn}
 
     \begin{frameddefn}{Applicazione}
-        Sia $G$ una grammatica; allora, dati due suoi termini $M,N$, è possibile definire su $G$ l'applicazione di $M$ ad $N$, attraverso la seguente sintassi: $$MN$$ Tale sintassi è presa in prestito dal lambda calcolo.
+        La clausola di applicazione verrà utilizzata attraverso la sintassi $$\ttt{expression} \ \ttt{expression}$$
 
         Si noti che un'espressione $MNL$ applica prima $M$ ad $N$, e poi $MN$ ad $L$, dunque la precedenza è da sinistra verso destra, ovvero $(MN)L$.
     \end{frameddefn}
@@ -699,12 +695,12 @@
     \end{frameddefn}
 
     \begin{example}[Funzioni come argomenti]
-        Sia $Fun$ la grammatica definita all'interno della \cref{fun}, e sia $$(\fn{x}{x +1})7$$ una sua espressione; essa, poiché applica la funzione $\fn{x}{x+1}$ all'espressione 7, viene valutata a $$x = 7 \implies x + 1= 7 + 1 = 8$$
+        Sia la seguente $$(\fn{x}{x +1})7$$ un'espressione di $Fun$; essa, poiché applica la funzione $\fn{x}{x+1}$ all'espressione 7, viene valutata a $$x = 7 \implies x + 1= 7 + 1 = 8$$
     \end{example}
 
     \begin{example}[Espressioni su $Fun$]
         \label{expr fun}
-        Sia $Fun$ la grammatica definita all'interno della \cref{fun}, e sia $$(\fn{x}{x3})(\fn{x}{x+1})$$ una sua espressione; essa, una volta valutata, applica la funzione $\fn{x}{x+1}$ all'espressione 3, e dunque il suo valore è pari a $$x = 3 \implies x + 1 = 3 + 1 = 4$$
+        Sia la seguente $$(\fn{x}{x3})(\fn{x}{x+1})$$ un'espressione di $Fun$; essa, una volta valutata, applica la funzione $\fn{x}{x+1}$ all'espressione 3, e dunque il suo valore è pari a $$x = 3 \implies x + 1 = 3 + 1 = 4$$
     \end{example}
 
     \begin{frameddefn}{Curryficazione}
@@ -712,11 +708,11 @@
     \end{frameddefn}
 
     \begin{example}[Curryficazioni]
-        Sia $Fun$ la grammatica della \cref{fun}, e sia $$(\fn{xy}{yx})7(\fn{x}{x+1})$$ una sua espressione; una volta effettuata l'uncurryficazione, si ottiene la seguente espressione: $$(\fn{x}{\fn{y}{yx}})7(\fn{x}{x+1})$$ che, una volta valutata, diventa $$(\fn{y}{y7})(\fn{x}{x+1})$$ e dunque, analogamente all'\cref{expr fun}, il risultato è $$x= 7 \implies x+1 = 7 + 1= 8$$
+        Sia la seguente $$(\fn{xy}{yx})7(\fn{x}{x+1})$$ un'espressione di $Fun$; una volta effettuata l'uncurryficazione, si ottiene la seguente espressione: $$(\fn{x}{\fn{y}{yx}})7(\fn{x}{x+1})$$ che, una volta valutata, diventa $$(\fn{y}{y7})(\fn{x}{x+1})$$ e dunque, analogamente all'\cref{expr fun}, il risultato è $$x= 7 \implies x+1 = 7 + 1= 8$$
     \end{example}
 
     \begin{framedobs}{Significato della curryficazione}
-        Si noti che la curryficazione \tit{ha significato}, in quanto è possibile considerare la seguente funzione, la quale restituisce la somma di due costanti $$\fn{x}{\fn{y}{x + y}}$$ come se fosse una \tit{funzione a due argomenti}, poiché per utilizzarla sarà necessario fornire 2 interi, come nel seguente esempio: $$(\fn{x}{\fn{y}{x + y}})5 \ 7 \longrightarrow (\fn{y}{5 + y})7 \longrightarrow 5 + 7 \longrightarrow 12$$ Di conseguenza, la versione curryficata della funzione presentata, ovvero $$\fn{x}{\fn{y}{x + y}} \iff \fn{xy}{x + y}$$ può essere interpretata come una funzione che lavora con 2 argomenti.
+        Si noti che la curryficazione \tit{ha significato}, in quanto è possibile considerare la seguente funzione, la quale restituisce la somma di due costanti $$\fn{x}{\fn{y}{x + y}}$$ come se fosse una \tit{funzione a due argomenti}, poiché per utilizzarla sarà necessario fornire 2 interi, come nel seguente esempio: $$(\fn{x}{\fn{y}{x + y}}) \ 5 \ 7 \longrightarrow (\fn{y}{5 + y})7 \longrightarrow 5 + 7 \longrightarrow 12$$ Di conseguenza, la versione curryficata della funzione presentata, ovvero $$\fn{x}{\fn{y}{x + y}} \iff \fn{xy}{x + y}$$ può essere interpretata come una funzione che lavora con 2 argomenti.
     \end{framedobs}
 
     \subsection{Semantica operazionale di $Fun$}
@@ -726,25 +722,20 @@
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$
-            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1 , \ldots \} \cup (\mathrm{Var} \times Fun)$$ affinché i giudizi operazionali di $Fun$ possano contenere tuple;
-            \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M)}$ per la valutazione delle funzioni;
-            \item $\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L)} \quad \opjud{E}{N}{v'} \quad \opjud{E\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$ per certi $x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque, per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione, il secondo valuta $N$, ed il terzo valuta $L$ con $x$ pari al valore di $N$.
+            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1 , \ldots \} \cup (\mathrm{Var} \times Fun)$$                   \item \tbf{funzioni}: $$[fn] \ \opjud{E}{\fn{x}{M}}{(x,M)}$$
+            \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{\fn{x}{L}}{(x,L)} \quad \opjud{E}{N}{v'} \quad \opjud{E\{(x,v')\}}{L}{v}}{\opjud{E}{(\fn{x}{L})N}{v}}$$
         \end{itemize}
-
-        Si noti che tale valutazione risulta essere eager, poiché $N$ viene valutata immediatamente.
     \end{framedprop}
 
-    \begin{framedprop}{$Fun_\mathrm{ES}$}
+    \begin{framedprop}[breakable]{$Fun_\mathrm{ES}$}
         Sia $Fun$ la grammatica definita nella \cref{fun}; per poter valutare le sue espressioni in maniera eager statica, è necessario ridefinire alcune regole di inferenza:
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$
-            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$ affinché i giudizi operazionali di $Fun$ possano contenere triple;
-            \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M,E)}$ per la valutazione delle funzioni;
-            \item \resizable{0.94}{$\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L,E')} \quad \opjud{E}{N}{v'} \quad \opjud{E'\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$} per certi $E' \in \mathrm{Env}, x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque, per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione --- salvando inoltre l'ambiente in cui la funzione $M$ è stata valutata --- il secondo valuta $N$, ed il terzo valuta $L$ con $x$ pari al valore di $N$, ma all'interno dell'ambiente che era stato salvato valutando la funzione $M$.
+            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$
+            \item \tbf{funzioni}: $$[fn] \ \opjud{E}{\fn{x}{M}}{(x,M,E)}$$
+            \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{\fn{x}{L}}{(x, L, E')} \quad \opjud{E}{N}{v'} \quad \opjud{E'\{(x,v')\}}{L}{v}}{\opjud{E}{(\fn{x}{L})N}{v}}$$
         \end{itemize}
-
-        Si noti che tale valutazione risulta essere eager, poiché $N$ viene valutata immediatamente, ed è a scoping statico poiché viene riportato l'ambiente in cui le valutazioni vengono effettuate.
     \end{framedprop}
 
     \begin{framedlem}[label={fun lemma pt1}]{$Fun_\mathrm{ES}$ e $Fun_\mathrm{ED}$}
@@ -767,11 +758,9 @@
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{ f \mid f: \mathrm{Var} \xrightarrow{fin} Fun \}$$
             \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun)$$ affinché i giudizi operazionali di $Fun$ possano contenere tuple;
-            \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M)}$ per la valutazione delle funzioni;
-            \item $\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L)} \quad \opjud{E'\{(x,N)\}}{L}{v}}{\opjud{E}{MN}{v}}$ per certi $x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque, per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione, mentre il secondo valuta $L$ con $x$ pari ad $N$ --- e non al valore che questa assume.
+            \item \tbf{funzioni}: $$[fn] \ \opjud{E}{\fn{x}{M}}{(x,M)}$$
+            \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{\fn{x}{L}}{(x,L)} \quad \opjud{E'\{(x,N)\}}{L}{v}}{\opjud{E}{(\fn{x}{L})N}{v}}$$
         \end{itemize}
-
-        Si noti che tale valutazione risulta essere lazy, poiché $N$ non viene valutata immediatamente, ma ne viene ritardato il calcolo finché non strettamente necessario.
     \end{framedprop}
 
     \begin{framedprop}{$Fun_\mathrm{LS}$}
@@ -780,11 +769,9 @@
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid f :\mathrm{Var} \xrightarrow{fin} Fun \times \mathrm{Env}\}$$ dunque, la sua definizione è ricorsiva
             \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{\ttt 0, \ttt 1, \ldots\} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$
-            \item $\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M,E)}$ per la valutazione delle funzioni;
-            \item $\forall E \in \mathrm{Env}, M,N \in Fun \quad \dfrac{\opjud{E}{M}{(x,L,E')} \quad \opjud{E'\{(x,(N,E))\}}{L}{v}}{\opjud{E}{MN}{v}}$ per certi $E' \in \mathrm{Env}, x \in \mathrm{Var}, L \in Fun$ tali che $M$ sia una funzione della forma $\fn{x}{L}$; dunque, per le applicazioni, si ha che il primo giudizio operazionale forza $M$ ad essere una funzione --- salvando inoltre l'ambiente in cui la funzione $M$ è stata valutata --- mentre il secondo valuta $L$ senza valutare l'espressione $N$, ma ponendo solamente $x$ pari ad $N$ -- e non al suo valore --- all'interno dell'ambiente in cui è stata effettuata l'applicazione $MN$.
+            \item \tbf{funzioni}: $$\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M,E)}$$
+            \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{\fn{x}{L}}{(x,L,E')} \quad \opjud{E'\{(x,(N,E))\}}{L}{v}}{\opjud{E}{(\fn{x}{L})N}{v}}$$
         \end{itemize}
-
-        Si noti che tale valutazione risulta essere lazy, poiché $N$ non viene valutata immediatamente, ed è a scoping statico poiché viene riportato l'ambiente in cui le valutazioni vengono effettuate.
     \end{framedprop}
 
     \begin{framedlem}[label={fun lemma pt2}]{$Fun_\mathrm{LS}$ e $Fun_\mathrm{LD}$}
@@ -873,7 +860,7 @@
     \end{example}
 
     \begin{framedprop}{Operazione $\mathrm{sum}_\lambda$}
-        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di somma, come segue: $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z x (w x y)}})}} \iff \fn{zwxy}{zx(wxy)}$$ poiché alla variabile $y$ viene prima applicata $x$ esattamente $w \in \N_\lambda$ volte ad $y$, e successivamente ad esso viene applicata $x$ altre $z \in \N_\lambda$ volte. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue: $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{z \ \mathrm{succ}_\lambda \ w}} \iff \fn{zw}{z \ \mathrm{succ}_\lambda \ w}$$ poiché viene applicata la funzione di successore $\mathrm{succ}_\lambda$ a $w \in \N_\lambda$, esattamente $z \in \N_\lambda$ volte.
+        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di somma, come segue: $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z x (w x y)}})}} \iff \fn{zwxy}{zx(wxy)}$$ poiché alla variabile $y$ viene prima applicata $x$ esattamente $w \in \N_\lambda$ volte ad $y$, e successivamente ad esso viene applicata $x$ altre $z \in \N_\lambda$ volte. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue: $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{z \ \mathrm{succ}_\lambda \ w}} \iff \fn{zw}{z \ \mathrm{succ}_\lambda \ w}$$
     \end{framedprop}
 
     \begin{example}[Somme in $\N_\lambda$]
@@ -881,11 +868,11 @@
     \end{example}
 
     \begin{framedprop}{Operazione $\mathrm{prod}_\lambda$}
-        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di prodotto, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z(wx)y}})}} \iff \fn{zwxy}{z(wx)y}$$ poiché alla variabile $y$ viene applicata la funzione $z(wx)$, che equivale alla funzione $wx$ composta su sé stessa $z$ volte --- e dunque $z, w \in \N_\lambda$. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{z (\mathrm{sum}_\lambda \ w)0_\lambda}} \iff \fn{zw}{z(\mathrm{sum}_\lambda \ w)0_\lambda}$$ poiché allo $0_\lambda$ viene applicata la funzione $z(\mathrm{sum}_\lambda \ w)$, che equivale alla funzione $(\mathrm{sum}_\lambda \ w)$ --- la quale restituisce una funzione che si aspetta il secondo argomento a cui applicare la somma, che sarà $0_\lambda$ --- composta su sé stessa $z \in \N_\lambda$ volte.
+        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di prodotto, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z(wx)y}})}} \iff \fn{zwxy}{z(wx)y}$$ poiché alla variabile $y$ viene applicata la funzione $z(wx)$, che equivale alla funzione $wx$ composta su sé stessa $z$ volte --- e dunque $z, w \in \N_\lambda$. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{z (\mathrm{sum}_\lambda \ w)0_\lambda}} \iff \fn{zw}{z(\mathrm{sum}_\lambda \ w)0_\lambda}$$
     \end{framedprop}
 
     \begin{framedprop}{Operazione $\mathrm{power}_\lambda$}
-        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di elevamento a potenza, come segue: $$\mathrm{power}_\lambda := \fn{z}{\fn{w}{wz}}$$ TODO.
+        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di elevamento a potenza, come segue: $$\mathrm{power}_\lambda := \fn{z}{\fn{w}{wz}}$$
     \end{framedprop}
 
     \subsection{Logica booleana di Church}
@@ -908,23 +895,23 @@
     \end{example}
 
     \begin{framedprop}[label={ite}]{Operazione $\mathrm{ite}_\lambda$}
-        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica \tit{if-then-else}, come segue: $$\mathrm{ite}_\lambda := \fn{z}{\fn{u}{\fn{v}{zuv}}} \iff \fn{zuv}{zuv}$$ poiché dato un $z \in \mathbb{B}_\lambda$, la funzione restituirà $u$ se $z$ è $\mathrm{true}_\lambda$, altrimenti $v$.
+        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica \tit{if-then-else}, come segue: $$\mathrm{ite}_\lambda := \fn{z}{\fn{u}{\fn{v}{zuv}}} \iff \fn{zuv}{zuv}$$
     \end{framedprop}
 
     \begin{framedprop}{Operazione $\mathrm{if}_\lambda$}
-        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica \tit{if}, come segue: $$\mathrm{if}_\lambda := \fn{z}{\fn{u}{z \ u \ \mathrm{true}_\lambda}} \iff \fn{zu}{z \ u \ \mathrm{true}_\lambda}$$ poiché l'operazione è equivalente ad $\mathrm{ite}_\lambda$ definita all'interno dell'\cref{ite}, ma il branch dell'\tit{else} restituisce sempre $\mathrm{true}_\lambda$.
+        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica \tit{if}, come segue: $$\mathrm{if}_\lambda := \fn{z}{\fn{u}{z \ u \ \mathrm{true}_\lambda}} \iff \fn{zu}{z \ u \ \mathrm{true}_\lambda}$$
     \end{framedprop}
 
     \begin{framedprop}{Operazione $\mathrm{not}_\lambda$}
-        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di negazione come segue: $$\mathrm{not}_\lambda := \fn{z}{(\fn{x}\fn{y}{zyx})} \iff \fn{zxy}{zyx}$$ poiché tale funzione passa ad un certo $z \in \mathbb{B}_\lambda$ le variabili $x$ ed $y$ scambiate di posto. Si noti che l'operazione è simile all'operazione $\mathrm{ite}_\lambda$ definita nella \cref{ite}, poiché è possibile interpretarla come l'inverso dell'operazione \tit{if-then-else}.
+        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di negazione come segue: $$\mathrm{not}_\lambda := \fn{z}{(\fn{x}\fn{y}{zyx})} \iff \fn{zxy}{zyx}$$ Si noti che l'operazione è simile all'operazione $\mathrm{ite}_\lambda$ definita nella \cref{ite}, poiché è possibile interpretarla come l'inverso dell'operazione \tit{if-then-else}.
     \end{framedprop}
 
     \begin{framedprop}{Operazione $\mathrm{or}_\lambda$}
-        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di $or$, come segue: $$\mathrm{or}_\lambda := \fn{z}{\fn{w}{\mathrm{if}_\lambda(\mathrm{not}_\lambda \ z)w}} \iff \fn{zw}{\mathrm{if}_\lambda(\mathrm{not}_\lambda \ z)w}$$ poiché TODO
+        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di $or$, come segue: $$\mathrm{or}_\lambda := \fn{z}{\fn{w}{\mathrm{if}_\lambda(\mathrm{not}_\lambda \ z)w}} \iff \fn{zw}{\mathrm{if}_\lambda(\mathrm{not}_\lambda \ z)w}$$
     \end{framedprop}
 
     \begin{framedprop}{Operazione $\mathrm{and}_\lambda$}
-        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di $and$, come segue: $$\mathrm{and}_\lambda := \fn{z}{\fn{w}{\mathrm{not}_\lambda(\mathrm{if}_\lambda \ z (\mathrm{not}_\lambda \ w))}}$$ poiché TODO
+        Si consideri l'algebra dei booleani di Church; su di essa, è possibile definire l'operazione logica di $and$, come segue: $$\mathrm{and}_\lambda := \fn{z}{\fn{w}{\mathrm{not}_\lambda(\mathrm{if}_\lambda \ z (\mathrm{not}_\lambda \ w))}}$$
     \end{framedprop}
 
     \subsection{Lambda calcolo}
@@ -957,7 +944,7 @@
     \end{example}
 
     \begin{framedobs}{Cattura di variabili}
-        L'operazione di sostituzione, definita nella \cref{sub}, potrebbe cambiare il binding delle variabili definite; tale fenomeno prende il nome di \tbf{cattura di variabili}.
+        Si noti che l'operazione di sostituzione, definita nella \cref{sub}, potrebbe cambiare il binding delle variabili definite; tale fenomeno prende il nome di \tbf{cattura di variabili}.
     \end{framedobs}
 
     \begin{example}[Catture di variabili]
@@ -1008,9 +995,7 @@
         Si noti che, all'interno della \cref{eta conv}, la condizione per cui $x$ non sia libera garantisce che la conversione produca espressioni equivalenti; infatti, se $x$ fosse libera in $M$, poiché non lo sarebbe comunque in $(\lambda x.Mx)$, l'eta conversione non avrebbe mantenuto l'equivalenza.
     \end{framedobs}
 
-    \section{Ricorsione}
-
-    \subsection{Punto fisso}
+    \subsection{Ricorsione}
 
     \begin{frameddefn}{Punto fisso}
         Data una funzione $f: X \to X$, un elemento $x \in X$ è detto \tbf{punto fisso di $f$} se e solo se $f(x) = x$.
@@ -1021,12 +1006,11 @@
     \end{example}
 
     \begin{example}[Funzioni come punti fissi]
+        \label{fn fixed points}
         Si consideri la funzione $$F(g) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot g(x - 1) & x > 0}$$ che prende in input una funzione; per vedere come opera, calcolando ad esempio $F(\mathrm{succ})$, si ottiene la funzione $$F(\mathrm{succ}) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{succ}(x - 1) = x \cdot x = x^2 & x > 0}$$ che restituisce 1 se $x$ è 0, altrimenti restituisce $x^2$.
 
         Allora, il punto fisso di $F$ è la funzione seguente $$\mathrm{fact}(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{fact}(x - 1) & x > 0}$$ che computa il fattoriale di un numero; infatti, si ha che $$F(\mathrm{fact}) := h(x) = \soe{ll}{1 & x = 0 \\ x \cdot \mathrm{fact}(x - 1) & x > 0} \equiv : \mathrm{fact}$$
     \end{example}
-
-    \subsection{Operatori di ricorsione}
 
     \begin{frameddefn}{Combinatore di Kleene}
         Si definisce \tbf{combinatore di Kleene}, o \tbf{operatore di punto fisso}, la seguente espressione esprimibile attraverso la grammatica $Fun$ della \cref{fun}: $$\mathrm Y := \fn{f}{((\fn{x}{f(xx)})(\fn{x}{f(xx)}))}$$
@@ -1040,11 +1024,28 @@
         Se il combinatore di Kleene è in grado di restituire il punto fisso di una funzione, allora data una funzione $h$, si ha che $\mathrm Yh$ è il suo punto fisso, e dunque per definizione $$h(\mathrm Yh) \equiv \mathrm Yh$$ Allora, svolgendo i calcoli, si ottiene che \centeredeq{0.9}{$\mathrm Yh \betaconv (\fn{x}{h(xx)})(\fn{x}{h(xx)}) \longrightarrow  h((\fn{x}{h(xx)})(\fn{x}{h(xx)})) \betaconv h (\mathrm Y h)$}
     \end{proof}
 
-    \begin{framedobs}{Ricorsione attraverso $\mathrm Y$}
-        Si noti che, poiché per una funzione $h$ è vero che $h(\mathrm Yh) = \mathrm Y h$, si ha che $$\centeredsoe{h(\mathrm Y h) = \mathrm Y h \\ h (h(\mathrm Y h)) = \mathrm Y h \\ \vdots \\ h( \ldots (h(\mathrm Yh))) = \mathrm Y h}$$
-
-        TODO DA FINIRE
+    \begin{framedobs}[breakable]{Ricorsione attraverso $\mathrm Y$}
+        Si noti che, poiché per una funzione $h$ è vero che $h(\mathrm Yh) = \mathrm Y h$, si ha che $$\centeredsoe{h(\mathrm Y h) = \mathrm Y h \\ h (h(\mathrm Y h)) = \mathrm Y h \\ \vdots \\ h( \ldots (h(\mathrm Yh))) = \mathrm Y h}$$ Questo permette di implementare la ricorsione all'interno del paradigma funzionale, come segue: si consideri la funzione $F(g)$ definita all'interno del \cref{fn fixed points}; è possibile definire dunque una funzione simile ad essa, ovvero $$h := \fn{rn}{\soe{ll}{1 & n = 0 \\ n \cdot (r \ (n - 1)) & n > 0}}$$ il cui punto fisso è ancora la funzione che computa il fattoriale di $n$. Inoltre, si noti che: $$
+            \centeredsoe{
+                (\mathrm Y h) \ k = \\
+                = h \ (\mathrm Y h) \ k = \\
+                = \rbk{\fn{rn}{\soe{ll}{1 & n = 0 \\ n \cdot (r \ (n - 1)) & n > 0}}} \ (\mathrm Y h) \ k = \\
+                = \rbk{\fn{n}{\soe{ll}{1 & n = 0 \\ n \cdot ((\mathrm Y h) \ (n - 1)) & n > 0}}} \ k = \\
+                = \soe{ll}{1 & k = 0 \\ k \cdot ((\mathrm Y h) \ (k - 1)) & k > 0}
+            }
+        $$ dunque, segue che $$
+            \centeredsoe{
+                (\mathrm Y h) \ 3 = \\
+                = 3 \cdot ((\mathrm Y h) \ 2) = \\
+                = 3 \cdot 2 \cdot ((\mathrm Y h) \ 1) = \\
+                = 3 \cdot 2 \cdot 1 \cdot (1) = \mathrm{fact}(3) \\
+            }
+        $$
     \end{framedobs}
+
+    \section{$Fun_\rho$: un linguaggio funzionale ricorsivo}
+
+    \subsection{Operatori di ricorsione}
 
     \begin{framedlem}[label={weak term ric}]{Ricorsione tramite numeri naturali}
         Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A}{A}$, si ha che $$\exists ! f: \N \to A \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n))= h(f(n))}$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$, per qualche funzione nullaria $\funcmap{\mathrm{zero}_A}{\1}{A}{x}{a}$.
@@ -1079,10 +1080,6 @@
         Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A \times \N}{A}$, si ha che $$\exists ! \func{f}{\N}{A} \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n)) = h(f(n), n)}$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$, per qualche funzione nullaria $\funcmap{\mathrm{zero}_A}{\1}{A}{x}{a}$.
     \end{framedlem}
 
-    \begin{proof}
-        TODO
-    \end{proof}
-
     \begin{frameddefn}{Operatore $rec$}
         Si definisce \tbf{operatore $rec$} l'operatore che, attraverso la sintassi $$\recfun{\ttt{expression}_1}{\ttt{expression}_2}$$ restituisce l'omomorfismo descritto all'interno del \cref{weak term ric}, dove $\ttt{expression}_1$ rappresenta $a$ --- ovvero lo zero dell'algebra $(A, h, \mathrm{zero}_A)$ --- ed $\ttt{expression}_2$ costituisce il costruttore $h: A \times \N \to A$.
     \end{frameddefn}
@@ -1109,10 +1106,6 @@
         È possibile esprimere la funzione $\mathrm{isEven}$ definita nell'\cref{rho ex}, attraverso l'operatore $rec$, come segue: $$\mathrm{isEven} \equiv (\rhofun{\mathrm{true}_\lambda}{\mathrm{not}_\lambda}) \equiv (\recfun{\mathrm{true}_\lambda}{(\fn{xn}{\mathrm{not}_\lambda \ x})})$$
     \end{example}
 
-    \section{$Fun_\rho$: un linguaggio funzionale ricorsivo}
-
-    \subsection{Definizioni}
-
     \begin{frameddefn}[label={fun rho}]{Grammatica $Fun_\rho$}
         Si consideri la grammatica $Fun$ definita all'interno della \cref{fun}; la seguente è una sua estensione, che prenderà il nome di $Fun_\rho$, che include al suo interno una clausola con l'operatore $rec$: $$M, N \ ::= \ x \smid \fn{x}{M} \smid MN \smid 0 \smid \mathrm{succ} \ M \smid \recfun{M}{N}$$ dove si noti che 0 non sta ad indicare tutte le costanti, ma esclusivamente lo 0, in quanto non è necessario includere le altre poiché la grammatica è fornita della funzione $\mathrm{succ}$.
     \end{frameddefn}
@@ -1131,30 +1124,30 @@
     
     \subsection{Memoria}
 
-    \begin{frameddefn}{Programma}
-        Nel paradigma imperativo, un \tbf{programma} è un componente semantico che non restituisce valori --- dunque non ha \tit{side effect} --- ma cambiano il valore della memoria.
+    \begin{frameddefn}[label={store}]{Memoria}
+        Sia $G$ una grammatica composta da programmi; per simulare la \tbf{memoria}, all'interno del paradigma imperativo verranno utilizzati ambienti definiti come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc} \}$$ dove $\mathrm{Loc}$ è un insieme di locazioni di memoria; inoltre, si definisce il seguente insieme $$\mathrm{Store} := \{f \mid f : \mathrm{Loc} \xrightarrow{fin} \mathrm{Val} \}$$ dunque, le funzioni $E \in \mathrm{Env}$ associano le variabili ad una locazione in memoria, mentre le funzioni $S \in \mathrm{Store}$ associano le locazioni ai valori, simulando di fatto i \tit{puntatori}, i quali caratterizzano i linguaggi imperativi.
     \end{frameddefn}
 
-    \begin{frameddefn}[label={store}]{Memoria}
-        Sia $G$ una grammatica composta da programmi; per simulare la \tbf{memoria}, all'interno del paradigma imperativo verranno utilizzati ambienti definiti come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc} \}$$ dove $\mathrm{Loc}$ è un insieme di locazioni di memoria; inoltre, si definisce il seguente insieme $$\mathrm{Store} := \{f \mid f : \mathrm{Loc} \xrightarrow{fin} \mathrm{Val} \}$$ dunque, le funzioni $E \in \mathrm{Env}$ associano le variabili ad una locazione in memoria, mentre le funzioni $S \in \mathrm{Store}$ associano le locazioni ai valori, simulando quindi la struttura dei \tit{puntatori}, i quali caratterizzano i linguaggi imperativi.
+    \begin{frameddefn}{Programma}
+        Nel paradigma imperativo, un \tbf{programma} è un componente semantico che non restituisce valori --- dunque non ha \tit{side effect} --- ma cambia lo stato memoria.
     \end{frameddefn}
 
     \subsection{Clausole imperative}
 
     \begin{frameddefn}{Clausola $skip$}
-        Sia $G$ una grammatica; allora, è possibile definire su $G$ la clausola $skip$, che equivale a non effettuare alcuna operazione.
+        La clausola $skip$ verrà utilizata attraverso la sintassi $$skip$$ ed equivale a non effettuare alcuna operazione.
     \end{frameddefn}
     
     \begin{frameddefn}{Clausola $seq$}
-        Sia $G$ una grammatica composta da programmi, e sia $G_p$ l'insieme dei suoi programmi; allora, è possibile definire su $G$ una funzione $seq$, come segue: $$\func{seq}{G_p \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\ttt{program}_1;\ttt{program}_2$$ che sta ad indicare che verrà prima eseguito $\ttt{program}_1$, e successivamente $\ttt{program}_2$.
+        La clausola $seq$ verrà utilizzata attraverso la sintassi $$\ttt{program}_1;\ttt{program}_2$$ che sta ad indicare che verrà prima eseguito $\ttt{program}_1$, e successivamente $\ttt{program}_2$.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $ite$}
-        Sia $G$ una grammatica composta da programmi, e siano $G_p$ ed $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $ite$ (\tit{if-then-else}), come segue: $$\func{ite}{G_M \times G_p \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\ite{\ttt{expression}}{\ttt{program}_1}{\ttt{program}_2}$$ dove se $M$ è un espressione che può essere valutata a $true$, verrà eseguito $\ttt{program}_1$, altrimenti verrà eseguito $\ttt{program}_2$.
+        La clausola $ite$ verrà utilizzata attraverso la sintassi $$\ite{\ttt{expression}}{\ttt{program}_1}{\ttt{program}_2}$$ dove se $M$ è un espressione che può essere valutata a $true$, verrà eseguito $\ttt{program}_1$, altrimenti verrà eseguito $\ttt{program}_2$.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $while$}
-        Sia $G$ una grammatica composta da programmi, e siano $G_p$ ed $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $while$, come segue: $$\func{while}{G_M \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\while{\ttt{expression}}{\ttt{program}}$$ dove --- se \ttt{expression} è un espressione che può essere valutata a $true$ o $false$ --- viene eseguito $\ttt{program}$ fintanto che \ttt{expression} viene valutata a $true$.
+        La clasuola $while$ verrà utilizzata attraverso la sintassi $$\while{\ttt{expression}}{\ttt{program}}$$ dove --- se \ttt{expression} è un espressione che può essere valutata a $true$ o $false$ --- viene eseguito $\ttt{program}$ fintanto che \ttt{expression} viene valutata a $true$.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $var$}
@@ -1162,7 +1155,7 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $assign$}
-        Sia $G$ una grammatica composta da programmi, e sia $G_M$ l'insieme delle sue espressioni; allora, è possibile deifnire su $G$ una funzione $assign$, come segue: $$\func{assign}{\mathrm{Var} \times G_M}{G}$$ e verrà utilizzata attraverso la sintassi $$\ttt{variable}  := \ttt{expression}$$ all'interno della quale, a \ttt{variable}, verrà assegnato il valore di \ttt{expression}.
+        La clausola $assign$ verrà utilizzata attraverso la sintassi $$\ttt{variable}  := \ttt{expression}$$ all'interno della quale, a \ttt{variable}, verrà assegnato il valore di \ttt{expression}.
     \end{frameddefn}
 
     \section{$Imp$: un linguaggio imperativo}
@@ -1170,7 +1163,7 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={imp}]{Grammatica $Imp$}
-        Si consideri la grammatica $Exp$ definita all'interno della \cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estendere essa come segue: $$M,N \ ::= \ k \smid true \smid false \smid x \smid M + N \smid M * N \smid M \ < \ N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \smid \while{M}{p} \smid \varin{x}{M}{p} \smid x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S}}$$
+        Si consideri la grammatica $Exp$ definita all'interno della \cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estendere essa come segue: $$M,N \ ::= \ k \smid true \smid false \smid x \smid M + N \smid M * N \smid M < N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \smid \while{M}{p} \smid \varin{x}{M}{p} \smid x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S}}$$
     \end{frameddefn}
 
     \begin{framedobs}{Semantiche di $Imp$}
@@ -1184,16 +1177,16 @@
 
         \begin{itemize}
             \item \tbf{costanti}: $$[const] \ \opjudstore{E}{k}{S}{S}$$
-            \item \tbf{variabili}: $$\forall x \in \mathrm{Var} \quad \exists v \in \mathrm{Val} \mid S(E(x)) = v \implies [vars] \ \opjudstore{E}{x}{S}{v}$$
-            \item \tbf{somme}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 + v_2 \implies [plus] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M + N}{S}{v}}$}
-            \item \tbf{prodotti}: \centeredeq{0.9}{$\forall M,N \in Exp, v \in \mathrm{Val} \quad \exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 \cdot v_2 \implies [times] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M * N}{S}{v}}$}
-            \item \tbf{minorazioni}: \centeredeq{0.9}{$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{true}}$} \centeredeq{0.9}{$\forall M, N \in Exp, v_1, v_2 \in \mathrm{Store} \quad v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{false}}$}
+            \item \tbf{variabili}: $$\exists v \in \mathrm{Val} \mid S(E(x)) = v \implies [vars] \ \opjudstore{E}{x}{S}{v}$$
+            \item \tbf{somme}: $$\exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 + v_2 \implies [plus] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M + N}{S}{v}}$$
+            \item \tbf{prodotti}: $$\exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 \cdot v_2 \implies [times] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M * N}{S}{v}}$$
+            \item \tbf{minorazioni}: $$v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{true}}$$ $$v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{false}}$$
             \item \tbf{skip}: $$[skip] \ \opjudstore{E}{skip}{S}{S}$$
-            \item \tbf{composizioni sequenziali}: $$\forall p, q \in Imp, S', S'' \in \mathrm{Store} \quad [seq] \ \dfrac{\opjudstore{E}{p}{ S}{S'} \quad \opjudstore{E}{q}{ S'}{S''}}{\opjudstore{E}{p;q}{S}{S''}}$$
-            \item \tbf{if-then-else}: $$\forall p, q \in Imp, S' \in \mathrm{Store} \quad [ite_1] \ \dfrac{\opjudstore{E}{M}{ S}{true} \quad \opjudstore{E}{p}{S}{S'}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S'}}$$ $$\forall p, q \in Imp, S'' \in \mathrm{Store} \quad [ite_2] \ \dfrac{\opjudstore{E}{M}{S}{false} \quad \opjudstore{E}{p}{S}{S''}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S''}}$$
-            \item \tbf{while}: \centeredeq{0.9}{$\forall M \in Exp, S', S'' \in \mathrm{Store} \quad [while_1] \ \dfrac{\opjudstore{E}{M}{S}{true} \quad \opjudstore{E}{p}{S}{S'} \quad \opjudstore{E}{\while{M}{p}}{ S'}{S''}}{\opjudstore{E}{\while{M}{p}}{ S}{S''}}$} $$\forall M \in Exp \quad [while_2] \ \dfrac{\opjudstore{E}{M}{S}{false}}{\opjudstore{E}{\while{M}{p}}{S}{S}}$$
-            \item \tbf{dichiarazioni ed assegnazioni}: $$\forall x \in \mathrm{Var}, M \in Exp, p \in Imp, S' \in \mathrm{Store}, v \in \mathrm{Val} \quad \exists l \in \mathrm{Loc} \mid l \notin \dom(S) \implies$$ $$\implies [var] \ \dfrac{\opjudstore{E}{M}{S}{v} \quad \opjudstore{E\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore{E}{\varin{x}{M}{p}}{S}{S'}}$$
-            \item \tbf{assegnazioni}: \centeredeq{0.9}{$\forall x \in \mathrm{Var}, M \in Exp \quad \exists l \in \mathrm{Loc} \mid E(x) = l \implies [assign] \ \dfrac{\opjudstore{E}{M}{S}{v}}{\opjudstore{E}{x := M}{ S}{S\{(l, v)\}}}$}
+            \item \tbf{composizioni sequenziali}: $$[seq] \ \dfrac{\opjudstore{E}{p}{ S}{S'} \quad \opjudstore{E}{q}{ S'}{S''}}{\opjudstore{E}{p;q}{S}{S''}}$$
+            \item \tbf{if-then-else}: $$[ite_1] \ \dfrac{\opjudstore{E}{M}{ S}{true} \quad \opjudstore{E}{p}{S}{S'}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S'}}$$ $$[ite_2] \ \dfrac{\opjudstore{E}{M}{S}{false} \quad \opjudstore{E}{p}{S}{S''}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S''}}$$
+            \item \tbf{while}: $$[while_1] \ \dfrac{\opjudstore{E}{M}{S}{true} \quad \opjudstore{E}{p}{S}{S'} \quad \opjudstore{E}{\while{M}{p}}{ S'}{S''}}{\opjudstore{E}{\while{M}{p}}{ S}{S''}}$$ $$[while_2] \ \dfrac{\opjudstore{E}{M}{S}{false}}{\opjudstore{E}{\while{M}{p}}{S}{S}}$$
+            \item \tbf{dichiarazioni}: $$\exists l \in \mathrm{Loc} \mid l \notin \dom(S) \implies$$ $$\implies [var] \ \dfrac{\opjudstore{E}{M}{S}{v} \quad \opjudstore{E\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore{E}{\varin{x}{M}{p}}{S}{S'}}$$
+            \item \tbf{assegnazioni}: $$\exists l \in \mathrm{Loc} \mid E(x) = l \implies [assign] \ \dfrac{\opjudstore{E}{M}{S}{v}}{\opjudstore{E}{x := M}{ S}{S\{(l, v)\}}}$$
         \end{itemize}
     \end{framedprop}
 
@@ -1202,11 +1195,11 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}{Memoria contigua}
-        Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; al fine di implementare gli \tit{array} all'interno del paradigma imperativo, è necessario definire la \tbf{memoria contigua}, dunque si definisce il seguente insieme di locazioni $$\displaystyle \mathrm{Loc}^+ := \bigcup_{n \in \N}{\mathrm{Loc}^n}$$ poiché è in grado di supportare infinite sequenze di elementi, e si assume che queste siano contigue in memoria.
+        Al fine di implementare gli \tit{array} all'interno del paradigma imperativo, è necessario definire la \tbf{memoria contigua}, dunque si definisce il seguente insieme di locazioni $$\displaystyle \mathrm{Loc}^+ := \bigcup_{n \in \N}{\mathrm{Loc}^n}$$ poiché è in grado di supportare infinite sequenze di elementi, e si assume che queste siano contigue in memoria.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $arr$}
-        Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $arr$, come segue: $$\func{arr}{\mathrm{Var} \times G_M^+ \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\arrin{\ttt{variable}}{[\ttt{expression}_1, \ldots, \ttt{expression}_n]}{\ttt{program}}$$ la quale pone $\ttt{variable}$ pari all'array $[\ttt{expression}_1, \ldots, \ttt{expression}_n]$, all'interno di $\ttt{program}$.
+        La clausola $arr$ verrà utilizzata attraverso la sintassi $$\arrin{\ttt{variable}}{[\ttt{expression}_1, \ldots, \ttt{expression}_n]}{\ttt{program}}$$ la quale pone $\ttt{variable}$ pari all'array $[\ttt{expression}_1, \ldots, \ttt{expression}_n]$, all'interno di $\ttt{program}$.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $loc$}
@@ -1214,18 +1207,18 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $proc$}
-        Sia $G$ una grammatica composta da programmi, e sia $G_p$ l'insieme dei suoi programmi; allora, è possibile definire su $G$ una funzione $proc$, come segue: $$\func{proc}{\mathrm{Var} \times \mathrm{Var} \times G_p \times G_p}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\procin{\ttt{variable}_1}{\ttt{variable}_2}{\ttt{program}_1}{\ttt{program}_2}$$ la quale definisce la \tit{procedura} $\ttt{variable}_1(\ttt{variable}_2)$, il cui corpo è costituito da $\ttt{program}_1$, ed è possibile utilizzarla all'interno di $\ttt{program}_2$.
+        la clausola $proc$ verrà utilizzata attraverso la sintassi $$\procin{\ttt{variable}_1}{\ttt{variable}_2}{\ttt{program}_1}{\ttt{program}_2}$$ la quale definisce la \tit{procedura} $\ttt{variable}_1(\ttt{variable}_2)$, il cui corpo è costituito da $\ttt{program}_1$, ed è possibile utilizzarla all'interno di $\ttt{program}_2$.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $call$}
-        Sia $G$ una grammatica composta da programmi, e siano $G_p$ e $G_M$ rispettivamente l'insieme dei suoi programmi e delle sue espressioni; allora, è possibile definire su $G$ una funzione $call$, come segue: $$\func{call}{\mathrm{Var} \times G_M}{G_p}$$ e verrà utilizzata attraverso la sintassi $$\call{\ttt{variable}}{\ttt{expression}}$$ la quale effettua una chiamata alla procedura $\ttt{variable}$, fornendole come parametro $\ttt{expression}$.
+        La clausola $call$ verrà utilizzata attraverso la sintassi $$\call{\ttt{variable}}{\ttt{expression}}$$ la quale effettua una chiamata alla procedura $\ttt{variable}$, fornendole come parametro $\ttt{expression}$.
     \end{frameddefn}
 
     \section{$All$: un linguaggio imperativo completo}
 
     \subsection{Definizioni}
 
-    \begin{frameddefn}[label={all}]{Grammatica $All$}
+    \begin{frameddefn}[label={all}, breakable]{Grammatica $All$}
         Sia $All$ la grammatica, estensione di $Imp$ definita nella \cref{imp}, composta dalle seguenti grammatiche: $$\leftsoe{k \ ::= \ \ttt 0 \smid \ttt 1 \smid \ldots \smid true \smid false \\ V \ ::= \ x \smid x[M] \\ M, N \ ::= \ k \smid V \smid M + N \smid M * N \smid M \ \ttt < \ N \\ p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \\ \quad \quad \quad \ \ \ \while{M}{p} \smid \varin{x}{M}{p} \smid \arrin{x}{[M_0, \ldots, M_n]}{p} \\ \quad \quad \quad \ \ \ V := M \smid \procin{y}{x}{p}{x} \smid \call{y}{M}}$$ Dunque, essa è composta da:
 
         \begin{itemize}
@@ -1244,12 +1237,12 @@
         Sia $All$ la grammatica definita all'interno della \cref{all}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, in aggiunta alle regole $$[const], \ [plus], \ [times], \ [lt_1], \ [lt_2], \ [skip], \ [seq], \ [ite_1], \ [ite_2], \ [while_1], \ [while_2]$$ descritte nell'\cref{imp sem}, si definiscono le seguenti:
 
         \begin{itemize}
-            \item \tbf{locazioni}: $$\forall x \in \mathrm{Var} \quad \exists l \in \mathrm{Loc}^+ \mid E(x) = l \implies [loc_1] \ \opjudstore[V]{E}{x}{S}{l}$$
-            \item \tbf{locazioni in array}: $$\forall n \in \N, x \in \mathrm{Var} \quad \exists (l_0, \ldots, l_n) \in \mathrm{Loc}^+ \mid E(x) = \abk{l_0, \ldots, l_n} \implies$$ $$\implies \forall m \in [0, n] \quad [loc_2] \ \dfrac{\opjudstore[M]{E}{M}{S}{m}}{\opjudstore[V]{E}{x[M]}{S}{l_m}}$$
-            \item \tbf{reference}: $$\forall V \in LExp, l \in \mathrm{Loc} \quad \exists v \in \mathrm{Val} \mid S(l) = v \implies [ref] \ \dfrac{\opjudstore[V]{E}{V}{S}{l}}{\opjudstore[M]{E}{V}{S}{v}}$$
-            \item \tbf{assegnazioni}: \centeredeq{0.9}{$\forall V \in LExp, M \in Exp, l \in \mathrm{Loc}, v \in \mathrm{Val} \quad [assign] \ \dfrac{\opjudstore[M]{E}{M}{S}{v} \quad \opjudstore[V]{E}{V}{S}{l}}{\opjudstore[p]{E}{V := M}{S}{S\{(l,v)\}}}$}
-            \item \tbf{array}: $$\forall n \in \N, S' \in \mathrm{Store}, x \in \mathrm{Var}, M_0, \ldots, M_n \in Exp, p \in Imp, v_0, \ldots, v_n \in \mathrm{Val}$$ $$\exists (l_0, \ldots, l_n) \in \mathrm{Loc}^+ \mid l_0, \ldots, l_n \notin \dom(S) \implies$$ \centeredeq{0.9}{$\implies [arr] \ \dfrac{\opjudstore[M]{E}{M_0}{S}{v_0} \quad \ldots \quad \opjudstore[M]{E}{M_n}{S}{v_n} \quad \opjudstore[p]{E\{(x, (l_0, \ldots, l_n))\}}{p}{S\{(l_0, v_0), \ldots, (l_n, v_n)\}}{S'}}{\opjudstore[p]{E}{\arrin{x}{[M_0, \ldots, M_n]}{p}}{S}{S'}}$}
-            \item \tbf{procedure}: $$\forall y,x \in \mathrm{Var}, p, q \in Imp, S' \in \mathrm{Store} \quad [proc] \ \dfrac{\opjudstore[p]{E\{(y,(x,p, E))\}}{q}{S}{S'}}{\opjudstore[p]{E}{\procin{y}{x}{p}{q}}{S}{S'}}$$
+            \item \tbf{locazioni}: $$\exists l \in \mathrm{Loc}^+ \mid E(x) = l \implies [loc_1] \ \opjudstore[V]{E}{x}{S}{l}$$
+            \item \tbf{locazioni in array}: $$\exists (l_0, \ldots, l_n) \in \mathrm{Loc}^+ \mid E(x) = \abk{l_0, \ldots, l_n} \implies$$ $$\implies \forall m \in [0, n] \quad [loc_2] \ \dfrac{\opjudstore[M]{E}{M}{S}{m}}{\opjudstore[V]{E}{x[M]}{S}{l_m}}$$
+            \item \tbf{reference}: $$\exists v \in \mathrm{Val} \mid S(l) = v \implies [ref] \ \dfrac{\opjudstore[V]{E}{V}{S}{l}}{\opjudstore[M]{E}{V}{S}{v}}$$
+            \item \tbf{assegnazioni}: $$[assign] \ \dfrac{\opjudstore[M]{E}{M}{S}{v} \quad \opjudstore[V]{E}{V}{S}{l}}{\opjudstore[p]{E}{V := M}{S}{S\{(l,v)\}}}$$
+            \item \tbf{array}: $$\exists (l_0, \ldots, l_n) \in \mathrm{Loc}^+ \mid l_0, \ldots, l_n \notin \dom(S) \implies$$ \centeredeq{0.9}{$\implies [arr] \ \dfrac{\opjudstore[M]{E}{M_0}{S}{v_0} \quad \ldots \quad \opjudstore[M]{E}{M_n}{S}{v_n} \quad \opjudstore[p]{E\{(x, (l_0, \ldots, l_n))\}}{p}{S\{(l_0, v_0), \ldots, (l_n, v_n)\}}{S'}}{\opjudstore[p]{E}{\arrin{x}{[M_0, \ldots, M_n]}{p}}{S}{S'}}$}
+            \item \tbf{procedure}: $$[proc] \ \dfrac{\opjudstore[p]{E\{(y,(x,p, E))\}}{q}{S}{S'}}{\opjudstore[p]{E}{\procin{y}{x}{p}{q}}{S}{S'}}$$
         \end{itemize}
 
         Per quanto concerne le regole della clausola $call$, si consultino la \cref{all v}, la \cref{all r} e la \cref{all n}.
@@ -1273,31 +1266,25 @@
         Sia $All$ la grammatica definita nella \cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-value}, è necessario definire la seguente regola di inferenza:
 
         \begin{itemize}
-            \item \tbf{call-by-value}: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies [call]_{value} \ \dfrac{\opjudstore[M]{E}{M}{S}{v} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore[p]{E}{\call{y}{M}}{S}{S'}}$$
+            \item \tbf{call-by-value}: $$\exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$$ $$\implies [call]_{value} \ \dfrac{\opjudstore[M]{E}{M}{S}{v} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore[p]{E}{\call{y}{M}}{S}{S'}}$$
         \end{itemize}
-
-        per certi $E, E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$.
     \end{framedprop}
 
     \begin{framedprop}[label={all r}]{$All_\mathrm{R}$}
         Sia $All$ la grammatica definita nella \cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-reference}, è necessario definire la seguente regola di inferenza: 
 
         \begin{itemize}
-            \item \tbf{call-by-reference}: \centeredeq{0.9}{$\forall y \in \mathrm{Var}, M \in Exp, v \in \mathrm{Val}, p \in Imp \quad \exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$} $$\implies [call]_{ref} \ \dfrac{\opjudstore[V]{E}{V}{S}{l} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$
+            \item \tbf{call-by-reference}: $$\exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$$ $$\implies [call]_{ref} \ \dfrac{\opjudstore[V]{E}{V}{S}{l} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$
         \end{itemize}
-
-        per certi $E,E' \in \mathrm{Env}, S,S' \in \mathrm{Store}$.
     \end{framedprop}
 
     \begin{framedprop}[label={all n}]{$All_\mathrm{N}$}
         Sia $All$ la grammatica definita nella \cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-name}, è necessario ridefinire l'insieme degli ambienti, come segue $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc}^+ \cup (\mathrm{Var} \times All \times \mathrm{Env}) \cup (LExp \times \mathrm{Env})\}$$ ed inoltre vengono aggiunte le due regole di inferenza che seguono:
 
         \begin{itemize}
-            \item \tbf{locazioni}: $$\forall x \in \mathrm{Var}, l \in \mathrm{Loc}, V \in LExp \quad E(x) = (V, E') \implies [loc_3] \ \dfrac{\opjudstore[V]{E'}{V}{S}{l}}{\opjudstore[V]{E}{x}{S}{l}}$$
-            \item \tbf{call-by-name}: $$\forall x,y \in \mathrm{Var}, V \in LExp, p \in Imp$$ $$E(y) = (x, p, E') \implies [call]_{name} \ \dfrac{\opjudstore[p]{E'\{(x,(V,E))\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$
+            \item \tbf{locazioni}: $$E(x) = (V, E') \implies [loc_3] \ \dfrac{\opjudstore[V]{E'}{V}{S}{l}}{\opjudstore[V]{E}{x}{S}{l}}$$
+            \item \tbf{call-by-name}: $$E(y) = (x, p, E') \implies [call]_{name} \ \dfrac{\opjudstore[p]{E'\{(x,(V,E))\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$
         \end{itemize}
-
-        per certi $E, E' \in \mathrm{Env}, S, S' \in \mathrm{Store}$.
     \end{framedprop}
 
     \begin{framedlem}{Semantiche di $All$}
@@ -1614,9 +1601,9 @@
         Dato il tipo $$\sigma := \forall X.X$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \forall Y.X$$ è un'istanza generica di $\sigma$, poichè $X$ è stato sostituito con sé stesso, e $Y \notin \mathrm{free}(\sigma)$.
     \end{example}
 
-    \begin{example}[Istanze generiche]
+    \begin{nonexample}[Istanze generiche]
         Dato il tipo $$\sigma := \forall X.Y \to X$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \forall Y.(\ttt{int} \to Y) \to X$$ \tit{non} è un'istanza generica di $\sigma$, poiché $Y \in \mathrm{free}(\sigma)$.
-    \end{example}
+    \end{nonexample}
 
     \begin{nonexample}[Istanze generiche]
         Dato il tipo $$\sigma := X \to Y$$ si verifica che il tipo $\sigma'$, definito come $$\sigma' := \ttt{int} \to Y$$ \tit{non} è un'istanza generica di $\sigma$, poiché $\sigma$ non è specializzabile.
