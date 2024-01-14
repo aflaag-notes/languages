@@ -7,6 +7,8 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 - check
     - ad 2.2.3 in poi
 
+- metti espressioni per controllare scoping e/o valutazioni
+
 - generali
     - controlla se dappertutto ho messo i cosi []
     - finire i TODOs
