@@ -4,24 +4,15 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 
 ## TODO list
 
-- check
-    - ad 2.2.3 in poi
-
 - metti espressioni per controllare scoping e/o valutazioni
+
+- teorema 2 negli appunti di simone e sposta la parte prima di exp nel primo chap forse
 
 - generali
     - controlla se dappertutto ho messo i cosi []
     - finire i TODOs
-    - rimuovere funzioni in clausole
     - rifare grammatiche coi tabular
-        - rifai defn 2.3.1.2 (?)
-    - levare gli insiemi di appartenenza nelle regole di inferenza
-    - definizione di chiusura
-    - teorema 2 negli appunti di simone
-
-- appunti 11/12
-    - controllare se tutti gli esempi che ha fatto simone li ha fatti pure il prof
-    - estendere sostituzioni a contesti
+    - controllare che ogni cosa che manca abbia il TODO
 
 - ISOMORFISMO DI CURRY HOWARD
 
