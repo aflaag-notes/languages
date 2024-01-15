@@ -4,6 +4,8 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 
 ## TODO list
 
+- leva ttt da 0 e 1
+
 - metti espressioni per controllare scoping e/o valutazioni
 
 - teorema 2 negli appunti di simone e sposta la parte prima di exp nel primo chap forse

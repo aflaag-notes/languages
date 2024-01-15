@@ -644,7 +644,7 @@
         Sia $Exp$ la grammatica definita nella \cref{exp2}, e si consideri la seguente espressione: $$\letin{x}{3}{(\letin{y}{x}{(\letin{x}{7}{y + x})})}$$ essa, valutata attraverso valutazione eager, produce il seguente albero di derivazione: \centeredeq{0.99}{$\dfrac{\opjud{\varnothing}{3}{3} \quad \dfrac{\opjud{\{(x, 3)\}}{x}{3} \quad \dfrac{\opjud{\{(x,3),(y,3)\}}{7}{7} \quad \dfrac{\opjud{\{(x,3),(y,3)\}\{(x,7)\}}{y}{3} \quad \opjud{\{(x,3),(y,3)\}\{(x,7)\}}{x}{7}}{\opjud{\{(x,3),(y,3)\}\{(x,7)\}}{y+x}{10}}}{\opjud{\{(x, 3),(y, 3)\}}{\letin{x}{7}{y + x}}{10}}}{\opjud{\{(x, 3)\}}{\letin{y}{x}{(\letin{x}{7}{y + x})}}{10}}}{\opjud{\varnothing}{\letin{x}{3}{(\letin{y}{x}{(\letin{x}{7}{y + x})})}}{10}}$}
     \end{example}
 
-    \begin{framedprop}{$Exp_\mathrm{LD}$}
+    \begin{framedprop}[label={exp ld}]{$Exp_\mathrm{LD}$}
         Sia $Exp$ la grammatica definita nella \cref{exp2}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{exp2 clauses}:
 
         \begin{itemize}
@@ -654,11 +654,11 @@
         \end{itemize}
     \end{framedprop}
 
-    \begin{framedprop}[breakable]{$Exp_\mathrm{LS}$}
+    \begin{framedprop}[label={exp ls}, breakable]{$Exp_\mathrm{LS}$}
         Sia $Exp$ la grammatica definita all'interno della \cref{exp2}; per poter valutare le sue espressioni in maniera lazy statica, è necessario ridefinire alcune regole di inferenza definite all'interno dell'\cref{exp2 clauses}:
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid f: \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup Exp \times \mathrm{Env} \}$$
+            \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid f: \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup (Exp \times \mathrm{Env}) \}$$
             \item \tbf{valutazioni}: $$x \in \dom(E) \land (M, E') := E(x) \implies [vars] \ \dfrac{\opjud{E'}{M}{v}}{\opjud{E}{x}{v}}$$
             \item \tbf{assegnazioni} $$[let] \ \dfrac{\opjud{E\{(x, (M, E))\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$$
         \end{itemize}
@@ -716,7 +716,7 @@
     \subsection{Semantica operazionale di $Fun$}
 
     \begin{framedprop}{$Fun_\mathrm{ED}$}
-        Sia $Fun$ la grammatica definita nella \cref{fun}; per poter valutare le sue espressioni in maniera eager dinamica, è necessario ridefinire alcune regole di inferenza:
+        Sia $Fun$ la grammatica definita nella \cref{fun}; per poter valutare le sue espressioni in maniera eager dinamica, è necessario estenderne le regole di inferenza (assumento che erediti le regole di $Exp_\mathrm{ED}$ definite nella \cref{exp2 clauses}):
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$
@@ -726,7 +726,7 @@
     \end{framedprop}
 
     \begin{framedprop}[breakable]{$Fun_\mathrm{ES}$}
-        Sia $Fun$ la grammatica definita nella \cref{fun}; per poter valutare le sue espressioni in maniera eager statica, è necessario ridefinire alcune regole di inferenza:
+        Sia $Fun$ la grammatica definita nella \cref{fun}; per poter valutare le sue espressioni in maniera eager statica, è necessario estenderne le regole di inferenza (assumendo che erediti le regole di $Exp_\mathrm{ES}$ definite nella \cref{exp2 clauses}):
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$
@@ -751,23 +751,23 @@
     \end{proof}
 
     \begin{framedprop}[breakable]{$Fun_\mathrm{LD}$}
-        Sia $Fun$ la grammatica definita nella \cref{fun}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario ridefinire alcune regole di inferenza:
+        Sia $Fun$ la grammatica definita nella \cref{fun}; per poter valutare le sue espressioni in maniera lazy dinamica, è necessario estenderne regole di inferenza (assumendo che erediti le regole di $Exp_\mathrm{LD}$ definite nella \cref{exp ld}):
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{ f \mid f: \mathrm{Var} \xrightarrow{fin} Fun \}$$
-            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun)$$ affinché i giudizi operazionali di $Fun$ possano contenere tuple;
+            \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{ f \mid f: \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup Fun \}$$
+            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun)$$
             \item \tbf{funzioni}: $$[fn] \ \opjud{E}{\fn{x}{M}}{(x,M)}$$
             \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{\fn{x}{L}}{(x,L)} \quad \opjud{E'\{(x,N)\}}{L}{v}}{\opjud{E}{(\fn{x}{L})N}{v}}$$
         \end{itemize}
     \end{framedprop}
 
     \begin{framedprop}{$Fun_\mathrm{LS}$}
-        Sia $Fun$ la grammatica definita nella \cref{fun}; per poter valutare le sue espressioni in maniera lazy statica, è necessario ridefinire alcune regole di inferenza:
+        Sia $Fun$ la grammatica definita nella \cref{fun}; per poter valutare le sue espressioni in maniera lazy statica, è necessario estenderne le regole di inferenza (assumendo che erediti le regole di $Exp_\mathrm{LS}$ definite nella \cref{exp ls}):
 
         \begin{itemize}
-            \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid f :\mathrm{Var} \xrightarrow{fin} Fun \times \mathrm{Env}\}$$ dunque, la sua definizione è ricorsiva
+            \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid f :\mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup (Fun \times \mathrm{Env})\}$$
             \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{\ttt 0, \ttt 1, \ldots\} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$
-            \item \tbf{funzioni}: $$\forall E \in \mathrm{Env}, x \in \mathrm{Var}, M \in Fun \quad \opjud{E}{\fn{x}{M}}{(x,M,E)}$$
+            \item \tbf{funzioni}: $$[fn] \ \opjud{E}{\fn{x}{M}}{(x,M,E)}$$
             \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{\fn{x}{L}}{(x,L,E')} \quad \opjud{E'\{(x,(N,E))\}}{L}{v}}{\opjud{E}{(\fn{x}{L})N}{v}}$$
         \end{itemize}
     \end{framedprop}
@@ -858,7 +858,7 @@
     \end{example}
 
     \begin{framedprop}{Operazione $\mathrm{sum}_\lambda$}
-        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di somma, come segue: $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z x (w x y)}})}} \iff \fn{zwxy}{zx(wxy)}$$ poiché alla variabile $y$ viene prima applicata $x$ esattamente $w \in \N_\lambda$ volte ad $y$, e successivamente ad esso viene applicata $x$ altre $z \in \N_\lambda$ volte. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue: $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{z \ \mathrm{succ}_\lambda \ w}} \iff \fn{zw}{z \ \mathrm{succ}_\lambda \ w}$$
+        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di somma, come segue: $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z x (w x y)}})}} \iff \fn{zwxy}{zx(wxy)}$$ poiché alla variabile $y$ viene prima applicata $x$ esattamente $w \in \N_\lambda$ volte, e a ciò viene applicato $x$ altre $z \in \N_\lambda$ volte. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue: $$\mathrm{sum}_\lambda := \fn{z}{\fn{w}{z \ \mathrm{succ}_\lambda \ w}} \iff \fn{zw}{z \ \mathrm{succ}_\lambda \ w}$$
     \end{framedprop}
 
     \begin{example}[Somme in $\N_\lambda$]
@@ -866,7 +866,7 @@
     \end{example}
 
     \begin{framedprop}{Operazione $\mathrm{prod}_\lambda$}
-        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di prodotto, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z(wx)y}})}} \iff \fn{zwxy}{z(wx)y}$$ poiché alla variabile $y$ viene applicata la funzione $z(wx)$, che equivale alla funzione $wx$ composta su sé stessa $z$ volte --- e dunque $z, w \in \N_\lambda$. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{z (\mathrm{sum}_\lambda \ w)0_\lambda}} \iff \fn{zw}{z(\mathrm{sum}_\lambda \ w)0_\lambda}$$
+        Si consideri l'algebra dei numeri di Church; su di essa, è possibile definire l'operazione di prodotto, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{(\fn{x}{\fn{y}{z(wx)y}})}} \iff \fn{zwxy}{z(wx)y}$$ poiché alla variabile $y$ viene applicata la funzione $z(wx)$, che equivale alla funzione $wx$ composta su sé stessa $z$ volte --- con $z, w \in \N_\lambda$. Inoltre, è possibile fornire una definizione altenrativa della funzione, come segue: $$\mathrm{prod}_\lambda := \fn{z}{\fn{w}{z (\mathrm{sum}_\lambda \ w)0_\lambda}} \iff \fn{zw}{z(\mathrm{sum}_\lambda \ w)0_\lambda}$$
     \end{framedprop}
 
     \begin{framedprop}{Operazione $\mathrm{power}_\lambda$}
@@ -958,12 +958,16 @@
     \end{example}
 
     \begin{frameddefn}[label={alpha equiv}]{Alfa equivalenza}
-        Due lambda astrazioni $\lambda x.M$ e $\lambda y.N$ sono dette \tbf{alfa equivalenti}, indicato con il simbolo $\equiv_\alpha$ se è vera la seguente: $$\lambda x.M \equiv_\alpha \lambda .N \iff \soe{l}{\lambda x.M \alphaconv \lambda y.(N[y/x]) \\ \lambda y.N \alphaconv \lambda x.(M[x/y])}$$
+        Due lambda astrazioni $\lambda x.M$ e $\lambda y.N$ sono dette \tbf{alfa equivalenti}, indicato con il simbolo $\equiv_\alpha$ se è vera la seguente: $$\lambda x.M \equiv_\alpha \lambda .N \iff \soe{l}{\lambda x.M \alphaconv \lambda y.N \\ \lambda y.N \alphaconv \lambda x.M}$$
     \end{frameddefn}
 
     \begin{example}[Alfa equivalenze]
-        Si considerino le due seguenti lambda astrazioni $$\centeredsoe{\lambda x.xy \\ \lambda z.zy}$$ e si noti che $$\soe{l}{\lambda x.xy \alphaconv \lambda z.zy \\ \lambda z.zy \alphaconv \lambda x.xy} \iff \lambda x.xy \equiv_\alpha \lambda z.zy$$ dunque le due lambda astrazioni sono alfa equivalenti. Si considerino invece le due seguenti lambda astrazioni $$\centeredsoe{\lambda x.x (\lambda z.z w) \\ \lambda z.z(\lambda z.zw)}$$ e si noti, differentemente, che $$\soe{l}{\lambda x.x (\lambda z.zw) \alphaconv \lambda z.z(\lambda z.z w) \\ \lambda z.z(\lambda z.zw) \ \not\mathrel{\mkern-5mu\longrightarrow_{\alpha}} \lambda x.x(\lambda z.zw) } \implies \lambda x.x(\lambda z.zw) \not\equiv_\alpha \lambda z.z(\lambda z.zw)$$
+        Si considerino le due seguenti lambda astrazioni $$\centeredsoe{\lambda x.xy \\ \lambda z.zy}$$ e si noti che $$\soe{l}{\lambda x.xy \alphaconv \lambda z.zy \\ \lambda z.zy \alphaconv \lambda x.xy} \iff \lambda x.xy \equiv_\alpha \lambda z.zy$$ dunque le due lambda astrazioni sono alfa equivalenti.
     \end{example}
+
+    \begin{nonexample}[Alfa equivalenze]
+        Si considerino le due seguenti lambda astrazioni $$\centeredsoe{\lambda x.x (\lambda z.z w) \\ \lambda z.z(\lambda z.zw)}$$ e si noti che $$\soe{l}{\lambda x.x (\lambda z.zw) \alphaconv \lambda z.z(\lambda z.z w) \\ \lambda z.z(\lambda z.zw) \ \not\mathrel{\mkern-5mu\longrightarrow_{\alpha}} \lambda x.x(\lambda z.zw) } \implies \lambda x.x(\lambda z.zw) \not\equiv_\alpha \lambda z.z(\lambda z.zw)$$ dunque le due lambda astrazioni \tit{non} sono alfa equivalenti
+    \end{nonexample}
 
     \begin{frameddefn}[label={beta conv}]{Beta conversione}
         Data una lambda espressione $(\lambda x.M)$, si definisce \tbf{beta conversione} la regola secondo la quale ogni occorrenza di $x$ all'interno di $M$ viene rimpiazzata dal termine $N$. In simboli $$(\lambda x.M)N \betaconv M[N/x]$$
@@ -990,7 +994,7 @@
     \end{example}
 
     \begin{framedobs}{Cattura nelle eta conversioni}
-        Si noti che, all'interno della \cref{eta conv}, la condizione per cui $x$ non sia libera garantisce che la conversione produca espressioni equivalenti; infatti, se $x$ fosse libera in $M$, poiché non lo sarebbe comunque in $(\lambda x.Mx)$, l'eta conversione non avrebbe mantenuto l'equivalenza.
+        Si noti che, all'interno della \cref{eta conv}, la condizione per cui $x$ non sia libera garantisce che la conversione produca espressioni equivalenti; infatti, se $x$ fosse libera in $M$, poiché in $(\lambda x.Mx)$ non lo è, l'eta conversione non avrebbe mantenuto l'equivalenza delle espressioni considerate.
     \end{framedobs}
 
     \subsection{Ricorsione}
@@ -1019,7 +1023,7 @@
     \end{framedprop}
 
     \begin{proof}
-        Se il combinatore di Kleene è in grado di restituire il punto fisso di una funzione, allora data una funzione $h$, si ha che $\mathrm Yh$ è il suo punto fisso, e dunque per definizione $$h(\mathrm Yh) \equiv \mathrm Yh$$ Allora, svolgendo i calcoli, si ottiene che \centeredeq{0.9}{$\mathrm Yh \betaconv (\fn{x}{h(xx)})(\fn{x}{h(xx)}) \longrightarrow  h((\fn{x}{h(xx)})(\fn{x}{h(xx)})) \betaconv h (\mathrm Y h)$}
+        Se il combinatore di Kleene è in grado di restituire il punto fisso di una funzione, allora data una funzione $h$, si ha che $\mathrm Yh$ è il suo punto fisso, e dunque per definizione $$h(\mathrm Yh) \equiv \mathrm Yh$$ Allora, svolgendo i calcoli, si ottiene che \centeredeq{0.9}{$\mathrm Yh \betaconv (\fn{x}{h(xx)})(\fn{x}{h(xx)}) \betaconv  h((\fn{x}{h(xx)})(\fn{x}{h(xx)})) \longrightarrow h (\mathrm Y h)$}
     \end{proof}
 
     \begin{framedobs}[breakable]{Ricorsione attraverso $\mathrm Y$}
