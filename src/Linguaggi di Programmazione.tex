@@ -1050,11 +1050,11 @@
     \subsection{Operatori di ricorsione}
 
     \begin{framedlem}[label={weak term ric}]{Ricorsione tramite numeri naturali}
-        Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A}{A}$, si ha che $$\exists ! f: \N \to A \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n))= h(f(n))}$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$, per qualche funzione nullaria $\funcmap{\mathrm{zero}_A}{\1}{A}{x}{a}$.
+        Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A}{A}$, si ha che $$\exists ! f: \N \to A \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n))= h(f(n))}$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{zero}, \mathrm{succ})$ e $(A, \mathrm{zero}_A, h)$, per qualche funzione nullaria $\funcmap{\mathrm{zero}_A}{\1}{A}{x}{a}$.
     \end{framedlem}
 
     \begin{proof}
-        Poiché le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$ hanno la stessa segnatura, e l'algebra dei numeri naturali è induttiva --- come mostrato nell'\cref{N inductive} --- per la \cref{alg same sign} esiste unico un omomorfismo $\func{f}{\N}{A}$, dunque per definizione stessa di omomorfismo, si verifica che $$f:\N \to A :\soe{l}{f(0) = f(\mathrm{zero}(x)) = \mathrm{zero}_A(f(x)) = a \\ f(\mathrm{succ}(n)) = h(f(n))}$$ poichè $\forall x \in \1 \quad \mathrm{zero}(x) = 0$ ed inoltre $\forall x \in \1 \quad \mathrm{zero}_A(x) = a$.
+        Poiché le algebre $(\N, \mathrm{zero}, \mathrm{succ})$ e $(A, \mathrm{zero}_A, h)$ hanno la stessa segnatura, e l'algebra dei numeri naturali è induttiva --- come mostrato nell'\cref{N inductive} --- per la \cref{alg same sign} esiste unico un omomorfismo $\func{f}{\N}{A}$, dunque per definizione stessa di omomorfismo, si verifica che $$f:\N \to A :\soe{l}{f(0) = f(\mathrm{zero}(x)) = \mathrm{zero}_A(f(x)) = a \\ f(\mathrm{succ}(n)) = h(f(n))}$$ poichè $\forall x \in \1 \quad \mathrm{zero}(x) = 0$ ed inoltre $\forall x \in \1 \quad \mathrm{zero}_A(x) = a$.
     \end{proof}
 
     \begin{frameddefn}{Operatore $\rho$}
@@ -1067,23 +1067,27 @@
 
     \begin{example}[Operatore $\rho$]
         \label{rho ex}
-        Si considerino le algebre dei numeri naturali $(\N, \mathrm{succ}, \mathrm{zero})$, e dei booleani di Church $(\mathbb{B}_\lambda, \mathrm{not}_\lambda, \mathrm{True}_\lambda)$, dove $$\funcmap{\mathrm{True}_\lambda}{\1}{\mathbb{B}_\lambda}{x}{\mathrm{true}_\lambda}$$ Allora, si ha che $(\rhofun{\mathrm{true}_\lambda}{\mathrm{not}_\lambda})$ è una funzione tale che $$\soe{l}{(\rhofun{\mathrm{true}_\lambda}{\mathrm{not}_\lambda}) 0 = \mathrm{true}_\lambda \\ (\rhofun{\mathrm{true}_\lambda}{\mathrm{not}_\lambda})(\mathrm{succ} \ n) = \mathrm{not}_\lambda((\rhofun{\mathrm{true}_\lambda}{\mathrm{not}_\lambda})n)}$$ e, considerando la seguente funzione, scritta in forma ricorsiva $$\func{\mathrm{isEven}}{\N}{\mathbb{B}_\lambda}: \soe{l}{\mathrm{isEven}(0) = \mathrm{true}_\lambda \\ \mathrm{isEven}(\mathrm{succ}(n)) = \mathrm{not}_\lambda(\mathrm{isEven}(n))}$$ che è in grado di restituire la parità di un numero naturale, è facilmente verificabile che $$\centeredsoe{(\rhofun{\mathrm{true}_\lambda}{\mathrm{not}_\lambda}) \equiv \mathrm{isEven} \\ (\rhofun{\mathrm{false}_\lambda}{\mathrm{not}_\lambda}) \equiv \mathrm{isFalse}}$$
+        Si considerino le algebre dei numeri naturali $(\N, \mathrm{zero}, \mathrm{succ})$, e dei booleani di Church $(\mathbb{B}_\lambda, \mathrm{True}_\lambda, \mathrm{not}_\lambda)$, dove $$\funcmap{\mathrm{True}_\lambda}{\1}{\mathbb{B}_\lambda}{x}{\mathrm{true}_\lambda}$$ Allora, si ha che $(\rhofun{\mathrm{true}_\lambda}{\mathrm{not}_\lambda})$ è una funzione tale che $$\soe{l}{(\rhofun{\mathrm{true}_\lambda}{\mathrm{not}_\lambda}) 0 = \mathrm{true}_\lambda \\ (\rhofun{\mathrm{true}_\lambda}{\mathrm{not}_\lambda})(\mathrm{succ} \ n) = \mathrm{not}_\lambda((\rhofun{\mathrm{true}_\lambda}{\mathrm{not}_\lambda})n)}$$ e, considerando la seguente funzione, scritta in forma ricorsiva $$\func{\mathrm{isEven}}{\N}{\mathbb{B}_\lambda}: \soe{l}{\mathrm{isEven}(0) = \mathrm{true}_\lambda \\ \mathrm{isEven}(\mathrm{succ}(n)) = \mathrm{not}_\lambda(\mathrm{isEven}(n))}$$ che è in grado di restituire la parità di un numero naturale, è facilmente verificabile che $$\centeredsoe{(\rhofun{\mathrm{true}_\lambda}{\mathrm{not}_\lambda}) \equiv \mathrm{isEven} \\ (\rhofun{\mathrm{false}_\lambda}{\mathrm{not}_\lambda}) \equiv \mathrm{isFalse}}$$
     \end{example}
 
     \begin{framedobs}[label={rhofun church}]{Operatore $\rho$ e $\N_\lambda$}
-        Si consideri un'algebra $(A, h, \mathrm{zero}_A)$ tale che $a$ sia il suo zero; per l'\cref{rho obs}, dunque, si verifica che $$\centeredsoe{\rhofun{a}{h} \ (\underbrace{\succfn \ ( \ \ldots \ (\succfn}_{n \ \mathrm{volte}} \ 0))) = \\ = h \ (\rhofun{a}{h} \ (\underbrace{\succfn \ ( \ \ldots \ (\succfn}_{n - 1 \ \mathrm{volte}} \ 0)))) = \ldots = \\ \ldots = \underbrace{h \ (\ \ldots \ (h}_{n - 1 \ \mathrm{volte}} \ (\rhofun{a}{h} \ (\succfn \ 0)))) = \\ = \underbrace{h \ (\ \ldots \ (h }_{n \ \mathrm{volte}} \ (\rhofun{a}{h} \ 0)))  = \underbrace{h \ (\ \ldots \ (h}_{n \ \mathrm{volte}} \ 0)) = n_\lambda \ 0 }$$ dunque vi è una stretta corrispondenza tra l'operatore $\rho$ ed i numeri di Church.
+        Si consideri un'algebra $(A, \mathrm{zero}_A, h)$ tale che $a$ sia il suo zero; per l'\cref{rho obs}, dunque, si verifica che $$\centeredsoe{\rhofun{a}{h} \ (\underbrace{\succfn \ ( \ \ldots \ (\succfn}_{n \ \mathrm{volte}} \ 0))) = \\ = h \ (\rhofun{a}{h} \ (\underbrace{\succfn \ ( \ \ldots \ (\succfn}_{n - 1 \ \mathrm{volte}} \ 0)))) = \ldots \\ \ldots = \underbrace{h \ (\ \ldots \ (h}_{n - 1 \ \mathrm{volte}} \ (\rhofun{a}{h} \ (\succfn \ 0)))) = \\ = \underbrace{h \ (\ \ldots \ (h }_{n \ \mathrm{volte}} \ (\rhofun{a}{h} \ 0)))  = \underbrace{h \ (\ \ldots \ (h}_{n \ \mathrm{volte}} \ a) = n_\lambda \ a }$$ dunque vi è una stretta corrispondenza tra l'operatore $\rho$ ed i numeri di Church.
     \end{framedobs}
 
     \begin{example}[$\N_\lambda$ con $\rho$]
-        Per l'\cref{rhofun church}, ad esempio, si ha che $$\centeredsoe{\rhofun{a}{h} \ (\succfn \ (\succfn \ (\succfn \ 0))) = h \ (\rhofun{a}{h} \ (\succfn \ (\succfn \ 0))) = \\ = h \ (h \ (\rhofun{a}{h} \ (\succfn \ 0))) = h \ (h \ (h \ \rhofun{a}{h} \ 0)) = h \ (h \ (h \ 0)) \equiv 3_\lambda \ 0}$$ 
+        Per l'\cref{rhofun church}, ad esempio, si ha che $$\centeredsoe{\rhofun{a}{h} \ (\succfn \ (\succfn \ (\succfn \ 0))) = h \ (\rhofun{a}{h} \ (\succfn \ (\succfn \ 0))) = \\ = h \ (h \ (\rhofun{a}{h} \ (\succfn \ 0))) = h \ (h \ (h \ \rhofun{a}{h} \ 0)) = h \ (h \ (h \ a)) \equiv 3_\lambda \ a}$$ 
     \end{example}
 
     \begin{framedlem}[label={func ric prim}]{Funzione ricorsiva primitiva}
-        Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A \times \N}{A}$, si ha che $$\exists ! \func{f}{\N}{A} \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n)) = h(f(n), n)}$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{succ}, \mathrm{zero})$ e $(A, h, \mathrm{zero}_A)$, per qualche funzione nullaria $\funcmap{\mathrm{zero}_A}{\1}{A}{x}{a}$.
+        Dato un insieme $A$, un suo elemento $a \in A$, ed una funzione $\func{h}{A \times \N}{A}$, si ha che $$\exists ! \func{f}{\N}{A} \mid \soe{l}{f(0) = a \\ f(\mathrm{succ}(n)) = h(f(n), n)}$$ Dunque $f$ risulta essere l'unico omomorfismo tra le algebre $(\N, \mathrm{zero}, \mathrm{succ})$ e $(A, \mathrm{zero}_A,h )$, per qualche funzione nullaria $\funcmap{\mathrm{zero}_A}{\1}{A}{x}{a}$.
     \end{framedlem}
 
+    \begin{proof}
+        Omessa.
+    \end{proof}
+
     \begin{frameddefn}{Operatore $rec$}
-        Si definisce \tbf{operatore $rec$} l'operatore che, attraverso la sintassi $$\recfun{\ttt{expression}_1}{\ttt{expression}_2}$$ restituisce l'omomorfismo descritto all'interno del \cref{weak term ric}, dove $\ttt{expression}_1$ rappresenta $a$ --- ovvero lo zero dell'algebra $(A, h, \mathrm{zero}_A)$ --- ed $\ttt{expression}_2$ costituisce il costruttore $h: A \times \N \to A$.
+        Si definisce \tbf{operatore $rec$} l'operatore che, attraverso la sintassi $$\recfun{\ttt{expression}_1}{\ttt{expression}_2}$$ restituisce l'omomorfismo descritto all'interno del \cref{weak term ric}, dove $\ttt{expression}_1$ rappresenta $a$ --- ovvero lo zero dell'algebra $(A,\mathrm{zero}_A, h)$ --- ed $\ttt{expression}_2$ costituisce il costruttore $h: A \times \N \to A$.
     \end{frameddefn}
 
     \begin{framedobs}[label={rec obs}]{Operatore $rec$}
@@ -1113,7 +1117,8 @@
     \end{frameddefn}
 
     \begin{example}[Operatore $rec$ in $Fun_\rho$]
-        Sia $\funcmap{\mathrm{plus}}{\N \times \N}{\N}{(x,y)}{x + y}$ la funzione che somma $x$ ad $y$, definita ricorsivamente --- attraverso le espressioni della grammatica $Fun_\rho$ definita nella \cref{fun rho} --- come segue: $$\mathrm{plus} : \soe{l}{\mathrm{plus} \ 0 \ y = y \\ \mathrm{plus} \ (\succfn \ n) \ y = \succfn \ (\mathrm{plus} \ n \ y)}$$ si noti dunque che è possibile esprimerla attraverso l'operatore $rec$ come segue: $$\mathrm{plus} \equiv (\fn{xy}{\recfun{y}{(\fn{wz}{\succfn \ w})} \ x})$$ poiché $$\mathrm{plus} \ 0 \ y = \recfun{y}{(\fn{wz}{\succfn \ w)}} \ 0 = y$$ (si noti l'\cref{rec obs}), ed inoltre $$\centeredsoe{\mathrm{plus} \ (\succfn \ n) \ y = \recfun{y}{(\fn{wz}{\succfn \ w}) \ (\succfn \ n)} = \\ = (\fn{wz}{\succfn \ w}) \ (\recfun{y}{(\fn{wz}{\succfn \ w})} \ n ) \ n = \\ = (\fn{wz}{\succfn \ n}) \ (\mathrm{plus} \ n \ y ) \ n  \longrightarrow \succfn \ (\mathrm{plus} \ n \ y)}$$
+        \label{plus def}
+        Sia $\funcmap{\mathrm{plus}}{\N \times \N}{\N}{(x,y)}{x + y}$ la funzione che somma $x$ ad $y$, definita ricorsivamente --- attraverso le espressioni della grammatica $Fun_\rho$ definita nella \cref{fun rho} --- come segue: $$\mathrm{plus} : \soe{l}{\mathrm{plus} \ 0 \ y = y \\ \mathrm{plus} \ (\succfn \ n) \ y = \succfn \ (\mathrm{plus} \ n \ y)}$$ si noti dunque che è possibile esprimerla attraverso l'operatore $rec$ come segue: $$\mathrm{plus} \equiv (\fn{xy}{\recfun{y}{(\fn{wz}{\succfn \ w})} \ x})$$ poiché $$\mathrm{plus} \ 0 \ y = \recfun{y}{(\fn{wz}{\succfn \ w)}} \ 0 = y$$ (si noti l'\cref{rec obs}), ed inoltre $$\centeredsoe{\mathrm{plus} \ (\succfn \ n) \ y = \recfun{y}{(\fn{wz}{\succfn \ w}) \ (\succfn \ n)} = \\ = (\fn{wz}{\succfn \ w}) \ (\recfun{y}{(\fn{wz}{\succfn \ w})} \ n ) \ n = \\ = (\fn{wz}{\succfn \ w}) \ (\mathrm{plus} \ n \ y ) \ n  \longrightarrow \succfn \ (\mathrm{plus} \ n \ y)}$$
     \end{example}
 
     \begin{example}[Operatore $rec$ in $Fun_\rho$]
@@ -1127,7 +1132,7 @@
     \subsection{Memoria}
 
     \begin{frameddefn}[label={store}]{Memoria}
-        Sia $G$ una grammatica composta da programmi; per simulare la \tbf{memoria}, all'interno del paradigma imperativo verranno utilizzati ambienti definiti come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc} \}$$ dove $\mathrm{Loc}$ è un insieme di locazioni di memoria; inoltre, si definisce il seguente insieme $$\mathrm{Store} := \{f \mid f : \mathrm{Loc} \xrightarrow{fin} \mathrm{Val} \}$$ dunque, le funzioni $E \in \mathrm{Env}$ associano le variabili ad una locazione in memoria, mentre le funzioni $S \in \mathrm{Store}$ associano le locazioni ai valori, simulando di fatto i \tit{puntatori}, i quali caratterizzano i linguaggi imperativi.
+        Sia $G$ una grammatica; per simulare la \tbf{memoria}, all'interno del paradigma imperativo verranno utilizzati ambienti definiti come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Loc} \}$$ dove $\mathrm{Loc}$ è un insieme di locazioni di memoria; inoltre, si definisce il seguente insieme $$\mathrm{Store} := \{f \mid f : \mathrm{Loc} \xrightarrow{fin} \mathrm{Val} \}$$ dunque, le funzioni $E \in \mathrm{Env}$ associano le variabili ad una locazione in memoria, mentre le funzioni $S \in \mathrm{Store}$ associano le locazioni ai valori, simulando di fatto i \tit{puntatori}, i quali caratterizzano i linguaggi imperativi.
     \end{frameddefn}
 
     \begin{frameddefn}{Programma}
@@ -1157,7 +1162,7 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $assign$}
-        La clausola $assign$ verrà utilizzata attraverso la sintassi $$\ttt{variable}  := \ttt{expression}$$ all'interno della quale, a \ttt{variable}, verrà assegnato il valore di \ttt{expression}.
+        La clausola $assign$ verrà utilizzata attraverso la sintassi $$\ttt{variable}  := \ttt{expression}$$ attraverso la quale a \ttt{variable} verrà assegnato il valore di \ttt{expression}.
     \end{frameddefn}
 
     \section{$Imp$: un linguaggio imperativo}
@@ -1165,7 +1170,7 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={imp}]{Grammatica $Imp$}
-        Si consideri la grammatica $Exp$ definita all'interno della \cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estendere essa come segue: $$M,N \ ::= \ k \smid true \smid false \smid x \smid M + N \smid M * N \smid M < N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \smid \while{M}{p} \smid \varin{x}{M}{p} \smid x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S}}$$
+        Si consideri la grammatica $Exp$ definita all'interno della \cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estenderla come segue: $$M,N \ ::= \ k \smid true \smid false \smid x \smid M + N \smid M * N \smid M < N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \smid \while{M}{p} \smid \varin{x}{M}{p} \smid x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S'}}$$
     \end{frameddefn}
 
     \begin{framedobs}{Semantiche di $Imp$}
@@ -1178,11 +1183,11 @@
         Sia $Imp$ la grammatica definita all'interno della \cref{imp}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, si definiscono le seguenti regole operazionali (si noti che, per brevità, verrà utilizzato il simbolo $\leadsto$ all'interno dei giudizi di entrambe le semantiche di $Imp$):
 
         \begin{itemize}
-            \item \tbf{costanti}: $$[const] \ \opjudstore{E}{k}{S}{S}$$
+            \item \tbf{costanti}: $$[const] \ \opjudstore{E}{k}{S}{k}$$
             \item \tbf{variabili}: $$\exists v \in \mathrm{Val} \mid S(E(x)) = v \implies [vars] \ \opjudstore{E}{x}{S}{v}$$
             \item \tbf{somme}: $$\exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 + v_2 \implies [plus] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M + N}{S}{v}}$$
             \item \tbf{prodotti}: $$\exists v_1, v_2 \in \mathrm{Val} \mid v = v_1 \cdot v_2 \implies [times] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M * N}{S}{v}}$$
-            \item \tbf{minorazioni}: $$v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{true}}$$ $$v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M \ < \ N}{S}{false}}$$
+            \item \tbf{minorazioni}: $$v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M  < N}{S}{true}}$$ $$v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M  <  N}{S}{false}}$$
             \item \tbf{skip}: $$[skip] \ \opjudstore{E}{skip}{S}{S}$$
             \item \tbf{composizioni sequenziali}: $$[seq] \ \dfrac{\opjudstore{E}{p}{ S}{S'} \quad \opjudstore{E}{q}{ S'}{S''}}{\opjudstore{E}{p;q}{S}{S''}}$$
             \item \tbf{if-then-else}: $$[ite_1] \ \dfrac{\opjudstore{E}{M}{ S}{true} \quad \opjudstore{E}{p}{S}{S'}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S'}}$$ $$[ite_2] \ \dfrac{\opjudstore{E}{M}{S}{false} \quad \opjudstore{E}{p}{S}{S''}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S''}}$$
@@ -1221,7 +1226,7 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={all}, breakable]{Grammatica $All$}
-        Sia $All$ la grammatica, estensione di $Imp$ definita nella \cref{imp}, composta dalle seguenti grammatiche: $$\leftsoe{k \ ::= \ \ttt 0 \smid \ttt 1 \smid \ldots \smid true \smid false \\ V \ ::= \ x \smid x[M] \\ M, N \ ::= \ k \smid V \smid M + N \smid M * N \smid M \ \ttt < \ N \\ p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \\ \quad \quad \quad \ \ \ \while{M}{p} \smid \varin{x}{M}{p} \smid \arrin{x}{[M_0, \ldots, M_n]}{p} \\ \quad \quad \quad \ \ \ V := M \smid \procin{y}{x}{p}{x} \smid \call{y}{M}}$$ Dunque, essa è composta da:
+        Sia $All$ la grammatica, estensione di $Imp$ definita nella \cref{imp}, composta dalle seguenti grammatiche: $$\leftsoe{k \ ::= \ \ttt 0 \smid \ttt 1 \smid \ldots \smid true \smid false \\ V \ ::= \ x \smid x[M] \\ M, N \ ::= \ k \smid V \smid M + N \smid M * N \smid M   <  N \\ p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \\ \quad \quad \quad \ \ \ \while{M}{p} \smid \varin{x}{M}{p} \smid \arrin{x}{[M_0, \ldots, M_n]}{p} \\ \quad \quad \quad \ \ \ V := M \smid \procin{y}{x}{p}{q} \smid \call{y}{M}}$$ Dunque, essa è composta da:
 
         \begin{itemize}
             \item una grammatica per le \tit{costanti};
@@ -1251,7 +1256,7 @@
     \end{framedprop}
 
     \begin{framedobs}{Variabili in $All$}
-        Si considerino le regole della grammatica $All$, definite all'interno dell'\cref{all sem}, e si noti che in essa non è presente la regola di inferenza $[vars]$; infatti, all'interno di $All$, l'unico modo per accedere al valore di una variabile è tramite \tit{reference}, dunque utilizzando $[loc_1]$ assieme a $[ref]$. Questo è necessario poiché $All$ supporta gli array, e dunque TODO.
+        Si considerino le regole della grammatica $All$, definite nella'\cref{all sem}, e si noti che in essa non è presente la regola di inferenza $[vars]$; infatti, all'interno di $All$, l'unico modo per accedere al valore di una variabile è tramite \tit{reference}, dunque utilizzando $[loc_1]$ assieme a $[ref]$. Questo è necessario poiché $All$ supporta gli array, e dunque TODO.
     \end{framedobs}
 
     \begin{frameddefn}{Semantiche di $call$}
@@ -1315,10 +1320,10 @@
         Si considerino le formule imperative descritte all'interno della \cref{imp formula}; allora, si definiscono le seguenti regole di inferenza:
 
         \begin{itemize}
-            \item \tbf{true}: $$\hoare{A}{p}{true}$$ poiché, per qualsiasi programma $p$, indipendentemente dalla precondizione $A$, ogni espressione booleana di postcondizione soddisferà $true$;
+            \item \tbf{true}: $$\hoare{A}{p}{true}$$ poiché, per qualsiasi programma $p$, indipendentemente dalla precondizione $A$, la tripla di Hoare verrà soddisfatta;
             \item \tbf{false}: $$\hoare{false}{p}{B}$$ poiché la tripla di Hoare è vera a vuoto, in quando la precondizione non può essere soddisfatta poiché è $false$;
-            \item \tbf{strengthening}: $$\dfrac{A \supset B \quad \hoare{B}{p}{C}}{\hoare{A}{p}{C}}$$ poiché se da $A$ implica $B$, e si raggiunge uno stato che soddisfa $C$ quando $p$ termina partendo da uno stato che soddisfa $B$, allora sicuramente partendo da uno stato che soddisfa $A$, quando $p$ termina, $C$ sarà soddisfatta dallo stato terminale;
-            \item \tbf{weakening}: $$\dfrac{B \supset A \quad \hoare{C}{p}{B}}{\hoare{C}{p}{A}}$$ poiché se da $B$ implica $A$, e si raggiunge uno stato che soddisfa $B$ quando $p$ termina partendo da uno stato che soddifa $C$, allora sicuramente partendo da uno stato che soddisfa $C$, quando $p$ termina, $A$ sarà soddisfatta dallo stato terminale; si noti che le regole di \tit{strengthening} e di \tit{weakening} sono l'una il duale dell'altra;
+            \item \tbf{strengthening}: $$\dfrac{A \supset B \quad \hoare{B}{p}{C}}{\hoare{A}{p}{C}}$$ poiché se $A$ implica $B$, e si raggiunge uno stato che soddisfa $C$ quando $p$ termina partendo da uno stato che soddisfa $B$, allora sicuramente partendo da uno stato che soddisfa $A$, quando $p$ termina, $C$ sarà soddisfatta dallo stato terminale;
+            \item \tbf{weakening}: $$\dfrac{B \supset A \quad \hoare{C}{p}{B}}{\hoare{C}{p}{A}}$$ poiché se $B$ implica $A$, e si raggiunge uno stato che soddisfa $B$ quando $p$ termina partendo da uno stato che soddifa $C$, allora sicuramente partendo da uno stato che soddisfa $C$, quando $p$ termina, $A$ sarà soddisfatta dallo stato terminale; si noti che le regole di \tit{strengthening} e di \tit{weakening} sono l'una il duale dell'altra;
             \item \tbf{and}: $$\dfrac{\hoare{A}{p}{B_0} \quad \hoare{A}{p}{B_1} \quad \ldots \quad \hoare{A}{p}{B_n}}{\hoare{A}{p}{B_0 \land B_1 \land \ldots \land B_n}}$$ poiché, se partendo da uno stato che soddisfa $A$, una volta terminata l'esecuzione, $p$ raggiunge uno stato che soddisfa $B_0$ e $B_1, \ldots, B_n$, allora soddisferà sicuramente anche $B_0 \land B_1 \land \ldots \land B_n$;
             \item \tbf{or}: $$\dfrac{\hoare{B_0}{p}{A} \quad \hoare{B_1}{p}{A} \quad \ldots \quad \hoare{B_n}{p}{A}}{\hoare{B_0 \lor B_1 \lor \ldots \lor B_n}{p}{A}}$$ poiché, se partendo da un qualsiasi stato tra $B_0$ e $B_1, \ldots, B_n$, una volta terminata l'esecuzione, $p$ raggiunge uno stato che soddisfa $A$, allora lo stato iniziale soddisferà anche $B_0 \lor B_1 \lor \ldots \lor B_n$; si noti che le regole \tit{and} ed \tit{or} sono l'una il duale dell'altra;
         \end{itemize}
@@ -1334,11 +1339,11 @@
         I seguenti sono i \tit{significati assiomatici} (o \tit{regole di inferenza speciali}), della logica di Hoare:
 
         \begin{itemize}
-            \item \tbf{skip}: $$\hoare{A}{skip}{A}$$ poichè la clausola $skip$ non effettua nulla;
-            \item \tbf{composizioni sequenziali}: $$\dfrac{\hoare{A}{p}{B} \quad \hoare{B}{q}{C}}{\hoare{A}{p;q}{C}}$$ poiché al fine di effettuare $p$ e $q$ in sequenza è necessaria una condizione intermedia (nell'esempio $B$);
-            \item \tbf{if-then-else}: $$\dfrac{\hoare{A \land C}{p}{B} \quad \hoare{A \land \lnot C}{q}{B}}{\hoare{A}{\ite{C}{p}{q}}{B}}$$ poiché entrambe le triple di Hoare devono avere $B$ come postcondizione, ma deve essere eseguito $p$ se si verifica $C$, altrimenti $q$, e dunque seguono le precondizioni descritte; si noti che anche la seguente regola di inferenza è una valida alternativa $$\dfrac{\hoare{A}{p}{B} \quad \hoare{A}{q}{B}}{\hoare{A}{\ite{C}{p}{q}}{B}}$$ ma questa risulta essere una regola \tit{più debole} della precedente, poiché le triple $\hoare{A}{p}{B}$ e $\hoare{A}{q}{B}$ sono \tit{più forti}, in quanto hanno meno precondizioni da verificare, ma questo le rende anche più difficili da dimostrare;
-            \item \tbf{while}: $$\dfrac{\hoare{A \land C}{p}{A}}{\hoare{A}{\while{C}{p}}{A \land \lnot C}}$$ TODO
-            \item \tbf{assegnazioni}: $$\hoare{B[M/x]}{x := M}{B}$$ TODO
+            \item \tbf{skip}: $$\hoare{A}{skip}{A}$$
+            \item \tbf{composizioni sequenziali}: $$\dfrac{\hoare{A}{p}{B} \quad \hoare{B}{q}{C}}{\hoare{A}{p;q}{C}}$$
+            \item \tbf{if-then-else}: $$\dfrac{\hoare{A \land C}{p}{B} \quad \hoare{A \land \lnot C}{q}{B}}{\hoare{A}{\ite{C}{p}{q}}{B}}$$
+            \item \tbf{while}: $$\dfrac{\hoare{A \land C}{p}{A}}{\hoare{A}{\while{C}{p}}{A \land \lnot C}}$$
+            \item \tbf{assegnazioni}: $$\hoare{B[M/x]}{x := M}{B}$$
         \end{itemize}
     \end{framedprop}
 
@@ -1349,13 +1354,13 @@
     \begin{example}[Correttezza di programmi]
         Si consideri il seguente programma --- espresso in termini della logica di Hoare, definita nella \cref{hoare logic} --- in grado di calcolare quoziente e resto dati dal rapporto di due numeri in input (nel programma, $x$ ed $y$): $$b :=x; \ a := 0; \ \while{b \ge y}{(b := b - y ; \ a := a + 1)}$$ È possibile dimostrarne la correttezza attraverso il seguente albero di valutazione:
 
-        \centeredeq{0.9}{$(*) \ \dfrac{x \ge 0 \supset (x = 0 \cdot y + x \land x \ge 0 ) \quad \dfrac{\hoare{x = 0 \cdot y + x \land x \ge 0}{b := x}{A_1}}{\hoare{A_1[x/b]}{b := x}{A_1}}}{\hoare{x \ge 0}{b := x}{x = 0 \cdot y + b \land b \ge 0}}$}
+        $$(*) \ \dfrac{x \ge 0 \supset (x = 0 \cdot y + x \land x \ge 0 ) \quad \dfrac{\hoare{x = 0 \cdot y + x \land x \ge 0}{b := x}{A_1}}{\hoare{A_1[x/b]}{b := x}{A_1}}}{\hoare{x \ge 0}{b := x}{x = 0 \cdot y + b \land b \ge 0}}$$
         \centeredeq{0.9}{$(**) \ \dfrac{A \land b \ge y \supset (x = (a + 1) \cdot y + (b - y) \land b-y \ge 0) \quad \dfrac{\hoare{x = (a + 1) \cdot y + (b - y) \land b - y \ge 0}{b:= b - y}{A_2}}{\hoare{A_2[(b - y)/b]}{b: = b - y}{A_2}}}{\hoare{A \land b \ge y}{b := b - y}{x = (a + 1) \cdot y + b \land b \ge 0}}$}
         \centeredeq{0.9}{$\dfrac{\dfrac{(*) \quad \dfrac{\hoare{x = 0 \cdot y + b \land b \ge 0}{a := 0}{A}}{\hoare{A[0/a]}{a := 0}{A}}}{\hoare{x \ge 0}{b := x; \ a := 0}{A}} \quad \dfrac{\dfrac{(**) \quad \dfrac{\hoare{x = (a + 1) \cdot y + b \land b \ge 0}{a:=a+1}{A}}{\hoare{A[(a+1)/a]}{a:= a +1}{A}}}{\hoare{A \land b \ge y}{b := b - y; \ a := a + 1}{A}}}{\hoare{A}{\while{b \ge y}{(b := b - y; \ a := a + 1)}}{A \land b < y}}}{\hoare{x \ge 0}{b :=x; \ a := 0; \ \while{b \ge y}{(b := b - y ; \ a := a + 1)}}{x = a \cdot y + b \land 0 \le b < y}}$}
 
         dove $$\centeredsoe{A := x = a \cdot y + b \land b \ge 0 \\ A_1 := A[0/a] \longrightarrow x = 0 \cdot y + b \land b \ge 0 \\ A_2 := A[(a + 1)/a] \longrightarrow x = (a + 1) \cdot y + b \land b \ge 0}$$
 
-        Si noti che la postcondizione scelta per dimostrare la correttezza del programma, ovvero $$x = a \cdot y + b \land 0 \le b < y$$ è valida poiché ad ogni ciclo, fintanto che $b \ge y$, il programma sottrae $y$ da $b$, ed aggiunge 1 ad $a$, dunque $a$ risulta essere il numero di volte che è stato possibile sottrarre $y$ da $b$ --- che rappresenta la parte intera del quoziente $\frac{x}{y}$ --- mentre $b$ è il resto della divisione --- poiché è la parte che non è stato possibile sottrarre da $b$.
+        Si noti che la postcondizione scelta per dimostrare la correttezza del programma, ovvero $$x = a \cdot y + b \land 0 \le b < y$$ è valida poiché ad ogni ciclo, fintanto che $b \ge y$, il programma sottrae $y$ da $b$, ed aggiunge 1 ad $a$, dunque $a$ risulta essere il numero di volte che è stato possibile sottrarre $y$ da $b$ --- che rappresenta la parte intera del quoziente $\dfrac{x}{y}$ --- mentre $b$ è il resto della divisione --- poiché è la parte che non è stato possibile sottrarre da $b$.
 
         Inoltre, la tripla di Hoare è sempre soddisfatta, poiché nel caso limite in cui $y \ge 0$, il programma non termina e dunque la tripla è soddisfatta a vuoto.
     \end{example}
@@ -1368,7 +1373,7 @@
         Si definisce \tbf{formula funzionale} un'espressione appartenente alla seguente grammatica: $$\varphi \ ::= \ \forall x.\varphi \smid M = N$$ dunque l'unico predicato presente è l'uguaglianza, denotato con il simbolo $=$.
     \end{frameddefn}
 
-    \begin{framedprop}[breakable]{Inferenza delle formule funzionali}
+    \begin{framedprop}[label={= rules}, breakable]{Inferenza delle formule funzionali}
         Si considerino le formule funzionali descritte all'interno della \cref{fun formula}; allora, si definiscono le seguenti regole di inferenza, espresse attraverso la sintassi della grammatica $Fun_\rho$ definita nella \cref{fun rho}:
 
         \begin{itemize}
@@ -1383,13 +1388,35 @@
         \end{itemize}
     \end{framedprop}
 
-    \begin{framedprop}{Proprietà del predicato di uguaglianza}
-        TODO
+    \begin{framedprop}[label={reflex}]{Riflessività del predicato di uguaglianza}
+        Si consideri il predicato di uguaglianza $=$; allora, si verifica che $$M = M$$ per ogni espressione $M$.
     \end{framedprop}
 
     \begin{proof}
-        TODO
+        Attraverso le regole definite nella \cref{= rules}, data un espressione $M$ si ha che $$\dfrac{\dfrac{M}{(\recfun{M}{N}) \ 0 = M \quad (\recfun{M}{N}) \ 0 }}{M = M}$$
     \end{proof}
+
+    \begin{framedprop}[label={= symm}]{Simmetria del predicato di uguaglianza}
+        Si consideri il predicato di uguaglianza $=$; allora, si verifica che $$\dfrac{M = N}{N = m}$$ per ogni coppia di espressioni $M$ ed $N$.
+    \end{framedprop}
+
+    \begin{proof}
+        Attraverso le regole definite nella \cref{= rules}, ed utilizzando la riflessività (dimostrata nella \cref{reflex}), data una coppia di espressioni $M$ ed $N$ si ha che $$\dfrac{\dfrac{\dfrac{M = N}{M = N \quad M}}{M = N \quad M = M}}{N = M}$$
+    \end{proof}
+
+    \begin{framedprop}[label={= trans}]{Transitività del predicato di uguaglianza}
+        Si consideri il predicato di uguaglianza $=$; allora, si verifica che $$\dfrac{M = N \quad N = L}{M = L}$$ per ogni terna di espressioni $M$, $N$ ed $L$.
+    \end{framedprop}
+
+    \begin{proof}
+        Attraverso le regole definite nella \cref{= rules}, e utilizzando la simmetria (dimostrata nella \cref{symm}), data una terna di espressioni $M$, $N$ ed $L$ si ha che $$\dfrac{\dfrac{M = N \quad L = N}{N = M \quad N = L}}{M = L}$$
+    \end{proof}
+
+    \begin{example}[Correttezza di programmi]
+        Si consideri l'operazione $\mathrm{plus}$, definita all'interno del \cref{plus def}; si vuole dimostrare che $$\mathrm{plus} \ M \ N = \mathrm{plus} \ N \ M$$ per ogni coppia di espressioni $M$ ed $N$, dunque si vuole mostrare che l'operazione $\mathrm{plus}$ è commutativa.
+
+        TODO
+    \end{example}
 
     \chapter{Elementi di Teoria dei Tipi}
 
@@ -1412,19 +1439,15 @@
         Data una grammatica tipata $G$, le cui grammatiche delle espressioni e dei tipi sono indicate rispettivamente con $Terms$ e $Types$, un \tbf{contesto dei tipi} della grammatica  è una funzione della forma $$\Gamma : \mathrm{Var} \stackrel{fin}{\to} Types$$ che associa dunque una variabile ad un possibile tipo. L'insieme di tutti i contesti della grammatica è denotato con $$\mathrm{Ctx} := \{f \mid \mathrm{Var} \stackrel{fin}{\to} Types\}$$ In simboli, i contesti verranno scritti come liste di coppie $M:A$ con $M \in Terms, A \in Types$, che descriveranno la mappa definita dal contesto stesso. Si noti che, per un certo contesto $\Gamma \in \mathrm{Ctx}$, $\Gamma(x)$ è indefinito per ogni $A \in Types - \dom(\Gamma)$.
     \end{frameddefn}
 
-    \begin{example}[TODO]
-        TODO
-    \end{example}
-
     \begin{frameddefn}{Concatenazione di contesti}
         Siano $\Gamma_1$ e $\Gamma_2$ due contesti di una grammatica tipata; allora, si definisce \tbf{concatenazione} di $\Gamma_1$ e $\Gamma_2$ la seguente funzione $$\funcmap{\Gamma_1, \Gamma_2}{\mathrm{Ctx} \times \mathrm{Ctx}}{\mathrm{Ctx}}{x}{\soe{ll}{\Gamma_2(x) & x \in \dom(\Gamma_2) \lor x \in \dom(\Gamma_1) \cap \dom(\Gamma_2) \\ \Gamma_1(x) & x \in \dom(\Gamma_1)}}$$ dunque, nella concatenazione $\Gamma_2$ sovrascrive le tuple che sono presenti anche in $\Gamma_1$.
     \end{frameddefn}
 
     \begin{example}[Concatenazione di contesti]
-        Si considerino i due contesti seguenti, definiti all'interno del lambda calcolo tipato $$\centeredsoe{\Gamma_1 := M: A, N:B \\ \Gamma_2 := M:C}$$ allora, si ha che $$\Gamma_1,\Gamma_2 = M:C,N:B$$
+        Si considerino i due contesti seguenti, definiti all'interno del lambda calcolo tipato semplice $$\centeredsoe{\Gamma_1 := M: A, N:B \\ \Gamma_2 := M:C}$$ allora, si ha che $$\Gamma_1,\Gamma_2 = M:C,N:B$$
     \end{example}
 
-    \begin{frameddefn}{Giudizi di tipi}
+    \begin{frameddefn}[breakable]{Giudizi di tipi}
         Data una grammatica tipata $G$, si definisce \tbf{semantica di tipi} della grammatica una relazione, indicata col simbolo $:$, definita come segue: $$: \ \subseteq \mathrm{Ctx} \times Terms \times Types$$ dove $Terms$ e $Types$ indicano rispettivamente le grammatiche delle espressioni e dei tipi di $G$.
         Un elemento $(\Gamma, M, A) \in \ :$ è detto \tbf{giudizio di tipo}, e viene scritto attraverso il seguente simbolismo: $$\typejud{\Gamma}{M}{A}$$ per qualche espressione $M$ e tipo $A$, e si legge \curlyquotes{$M$ è un termine legale di tipo $A$ nel contesto dei tipi $\Gamma$}.
     \end{frameddefn}
@@ -1434,7 +1457,7 @@
 
         \begin{itemize}
             \item \tbf{costanti}: $$[const] \ \typejud{\Gamma}{k}{K}$$ dove $K := \{\ttt{int}, \ttt{string}, \ttt{bool}\}$
-            \item \tbf{variabili}: $$\exists v \in Types \mid \Gamma(x) = A \implies [vars] \ \typejud{\Gamma}{x}{A}$$
+            \item \tbf{variabili}: $$\exists A \in Types \mid \Gamma(x) = A \implies [vars] \ \typejud{\Gamma}{x}{A}$$
             \item \tbf{applicazioni}: $$[appl] \ \dfrac{\typejud{\Gamma}{M}{A \to B} \quad \typejud{\Gamma}{N}{A}}{\typejud{\Gamma}{MN}{B}}$$
             \item \tbf{funzioni}: $$[fn] \ \dfrac{\typejud{\Gamma,x:A}{M}{B}}{\typejud{\Gamma}{\lambda x: A.M}{A \to B}}$$
         \end{itemize}
@@ -1484,7 +1507,7 @@
     \end{framedlem}
 
     \begin{proof}
-        Si consideri la seguente espressione: $$\lambda x. xx$$ espressa in termini del lambda calcolo non tipato; provando a tipare tale espressione, si ottiene il seguente albero di derivazione: $$\dfrac{\dfrac{\typejud{x:A}{x}{A \to B} \quad \typejud{x:A}{x}{B}}{\typejud{x:A}{xx}{B}}}{\typejud{\varnothing}{\lambda x: A .xx}{A \to B}}$$ per certi tipi $A$ e $B$, ma poiché in tale albero compare il giudizio $$\typejud{x:A}{x}{A \to B}$$ segue necessariamente che $A \to B$ deve coincidere con $A$, ma questo non è possibile poiché $A \to B$ avrà sempre una $\to$ in più di $A$, indipendentemente dal tipo di quest'ultimo; dunque, segue la tesi.
+        Si consideri la seguente espressione: $$\lambda x. xx$$ espressa in termini del lambda calcolo non tipato; provando a tipare tale espressione, si ottiene il seguente albero di derivazione: $$\dfrac{\dfrac{\typejud{x:A}{x}{A \to B} \quad \typejud{x:A}{x}{A}}{\typejud{x:A}{xx}{B}}}{\typejud{\varnothing}{\lambda x: A .xx}{A \to B}}$$ per certi tipi $A$ e $B$, ma poiché in tale albero compare il giudizio $$\typejud{x:A}{x}{A \to B}$$ segue necessariamente che $A \to B$ deve coincidere con $A$, ma questo non è possibile poiché $A \to B$ avrà sempre una $\to$ in più di $A$, indipendentemente dal tipo di quest'ultimo; dunque, segue la tesi.
     \end{proof}
 
     \begin{framedobs}{Tipi infiniti}
