@@ -7,16 +7,16 @@ Questi sono i miei [appunti](<https://raw.githubusercontent.com/ph-notes/languag
 - leva ttt da 0 e 1
 
 - metti espressioni per controllare scoping e/o valutazioni
+    - in teoria ci sono tutte, però ricontrolla
 
-- teorema 2 negli appunti di simone e sposta la parte prima di exp nel primo chap forse
+- teorema 2 negli appunti di simone
+    - forse sposta la parte prima di exp nel primo capitolo
 
 - generali
     - controlla se dappertutto ho messo i cosi []
     - finire i TODOs
     - rifare grammatiche coi tabular
-    - controllare che ogni cosa che manca abbia il TODO
-
-- ISOMORFISMO DI CURRY HOWARD
 
 - CONTROLLA GLI APPUNTI SULL'IPAD
+    - controllare che ogni cosa che manca abbia il TODO
 

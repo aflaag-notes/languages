@@ -1210,7 +1210,7 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $loc$}
-        TODO
+        La clausola $loc$ verrà utilizzata attraverso la sintassi $$\ttt{variable}[\ttt{expression}]$$ attraverso la quale --- assumendo che \ttt{variable} sia un array --- verrà effettuato l'accesso all'\ttt{expression}-esima posizione di \ttt{variable}.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $proc$}
@@ -1256,7 +1256,7 @@
     \end{framedprop}
 
     \begin{framedobs}{Variabili in $All$}
-        Si considerino le regole della grammatica $All$, definite nella'\cref{all sem}, e si noti che in essa non è presente la regola di inferenza $[vars]$; infatti, all'interno di $All$, l'unico modo per accedere al valore di una variabile è tramite \tit{reference}, dunque utilizzando $[loc_1]$ assieme a $[ref]$. Questo è necessario poiché $All$ supporta gli array, e dunque TODO.
+        Si considerino le regole della grammatica $All$, definite nella'\cref{all sem}, e si noti che in essa non è presente la regola di inferenza $[vars]$; infatti, all'interno di $All$, l'unico modo per accedere al valore di una variabile è tramite \tit{reference}, dunque utilizzando $[loc_1]$ assieme a $[ref]$, ed il che è necessario poiché $All$ deve implementare gli array.
     \end{framedobs}
 
     \begin{frameddefn}{Semantiche di $call$}
@@ -1393,11 +1393,11 @@
     \end{framedprop}
 
     \begin{proof}
-        Attraverso le regole definite nella \cref{= rules}, data un espressione $M$ si ha che $$\dfrac{\dfrac{M}{(\recfun{M}{N}) \ 0 = M \quad (\recfun{M}{N}) \ 0 }}{M = M}$$
+        Attraverso le regole definite nella \cref{= rules}, data un espressione $M$ si ha che $$\dfrac{\dfrac{M}{(\recfun{M}{N}) \ 0 = M \quad (\recfun{M}{N}) \ 0 = M }}{M = M}$$
     \end{proof}
 
     \begin{framedprop}[label={= symm}]{Simmetria del predicato di uguaglianza}
-        Si consideri il predicato di uguaglianza $=$; allora, si verifica che $$\dfrac{M = N}{N = m}$$ per ogni coppia di espressioni $M$ ed $N$.
+        Si consideri il predicato di uguaglianza $=$; allora, si verifica che $$\dfrac{M = N}{N = M}$$ per ogni coppia di espressioni $M$ ed $N$.
     \end{framedprop}
 
     \begin{proof}
@@ -1412,7 +1412,7 @@
         Attraverso le regole definite nella \cref{= rules}, e utilizzando la simmetria (dimostrata nella \cref{symm}), data una terna di espressioni $M$, $N$ ed $L$ si ha che $$\dfrac{\dfrac{M = N \quad L = N}{N = M \quad N = L}}{M = L}$$
     \end{proof}
 
-    \begin{example}[Correttezza di programmi]
+    \begin{example}[Correttezza di espressioni]
         Si consideri l'operazione $\mathrm{plus}$, definita all'interno del \cref{plus def}; si vuole dimostrare che $$\mathrm{plus} \ M \ N = \mathrm{plus} \ N \ M$$ per ogni coppia di espressioni $M$ ed $N$, dunque si vuole mostrare che l'operazione $\mathrm{plus}$ è commutativa.
 
         TODO
@@ -1646,11 +1646,11 @@
         Sia $Fun_\tau$ la grammatica tipata polimorfa seguente: $$\leftsoe{\tau \ ::= \ K \smid X \smid \tau_1 \to \tau_2 \\ \sigma \ ::= \ \tau \smid \forall X.\sigma \\ M,N \ ::= \ k \smid x \smid \fn{x}{M} \smid MN \smid \letin{x}{M}{N}}$$ Dunque, essa è composta da:
 
         \begin{itemize}
-            \item due grammatiche per i \tit{tipi}, che verranno indicate genericamente con $Types$; gli elementi della grammatica prendono il nome di \tit{tipi primitivi} (la cui grammatica verrà indicata con $PrimTypes$), mentre quelli della seconda prendono il nome di \tit{schemi di tipo};
+            \item due grammatiche per i \tit{tipi}, che verranno indicate genericamente con $Types$; gli elementi della prima grammatica prendono il nome di \tit{tipi primitivi} (la cui grammatica verrà indicata con $PrimTypes$), mentre quelli della seconda prendono il nome di \tit{schemi di tipo};
             \item una grammatica per i \tit{termini}, che verrà indicata con $Terms$.
         \end{itemize}
 
-        Si noti che questa grammatica è la stessa che viene utilizzata all'interno del linguaggio di progarmmazione \href{https://it.wikipedia.org/wiki/Standard_ML}{SML}.
+        Si noti che questa grammatica è la stessa che viene utilizzata all'interno del linguaggio di progarmmazione \href{https://it.wikipedia.org/wiki/Standard_ML}{Standard ML}.
     \end{frameddefn}
 
     \begin{framedobs}{Tipi di $Fun_\tau$}
@@ -1725,10 +1725,6 @@
         Data una variabile $x \in \mathrm{Var}$, ed un contesto $\Gamma \in \mathrm{Ctx}$, si definisce \tbf{generalizzazione massima di $x$} il seguente schema di tipo: $$\overline \Gamma (x) := \forall X_1, \ldots, X_n . \tau$$ dove $\Gamma(x) = \tau$ e $\mathrm{TypeVar} - \mathrm{free}(\Gamma) = \{ X_1, \ldots, X_n \}$.
     \end{frameddefn}
 
-    \begin{frameddefn}{Schema principale}
-        TODO
-    \end{frameddefn}
-
     \begin{framedthm}[breakable]{Algoritmo $\mathcal W$}
         Esiste un algoritmo $\mathcal W$ \tit{fallibile} che, dato un contesto $\Gamma \in \mathrm{Ctx}$ ed un termine $M$, se non fallisce, restituisce una tupla $(V, \tau)$ --- dove $V$ è una sostituzione e $\tau$ è un tipo --- tale che:
 
@@ -1740,6 +1736,28 @@
         \end{itemize}
         
         Inoltre, se $\mathcal U$ fallisce allora $\mathcal W$ fallisce.
+    \end{framedthm}
+
+    \begin{proof}
+        Omessa.
+    \end{proof}
+
+    \begin{frameddefn}{Schema principale}
+        Dato un contesto $\Gamma \in \mathrm{Ctx}$ ed un termine $M$, uno schema di tipi $\sigma$ è detto \tbf{principale per $\Gamma$ ed $M$} se:
+
+        \begin{itemize}
+            \item $\typejud{\Gamma}{M}{\sigma}$
+            \item $\forall \sigma' \quad \typejud{\Gamma}{M}{\sigma'} \implies \sigma > \sigma'$
+        \end{itemize}
+    \end{frameddefn}
+
+    \begin{framedthm}{Correttezza e completezza dell'algoritmo $\mathcal W$}
+        Se $\mathcal W (\Gamma, M) = (V, \tau)$, allora:
+        
+        \begin{itemize}
+            \item $\typejud{V(\Gamma)}{M}{\tau}$
+            \item $\overline{V(\Gamma)}(\tau)$ è principale per $V(\Gamma)$ ed $M$
+        \end{itemize}
     \end{framedthm}
 
     \begin{proof}

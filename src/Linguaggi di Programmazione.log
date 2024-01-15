@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2024.1.8)  15 JAN 2024 20:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2024.1.8)  15 JAN 2024 21:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -3922,22 +3922,11 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1209.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1212.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1212.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1216.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1216.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
-Package cleveref Info: loaded `italian' language definitions on input line 1219.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1213.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1213.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1213.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1213.
+Package cleveref Info: loaded `italian' language definitions on input line 1215.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3946,8 +3935,23 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 1219.
+Package cleveref Info: loaded `italian' language definitions on input line 1215.
 [48]
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1216.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1216.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1217.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1220.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1220.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1221.
@@ -4045,16 +4049,8 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1251.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1252.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1255.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1258.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1258.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
-Package cleveref Info: loaded `italian' language definitions on input line 1261.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1261.
+Package cleveref Info: loaded `italian' language definitions on input line 1256.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1256.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -4062,8 +4058,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 1261.
+Package cleveref Info: loaded `italian' language definitions on input line 1256.
 [50]
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1258.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1258.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1259.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1262.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1262.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1272.
@@ -4076,6 +4080,18 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1281.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1284.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1284.
+Package cleveref Info: loaded `italian' language definitions on input line 1287.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1287.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+Package cleveref Info: loaded `italian' language definitions on input line 1287.
+[51]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1288.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1288.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1289.
@@ -4094,18 +4110,6 @@ LaTeX Font Info:    No math alphabet change to frozen version normal on input li
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1289.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1292.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1293.
-Package cleveref Info: loaded `italian' language definitions on input line 1296.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1296.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-Package cleveref Info: loaded `italian' language definitions on input line 1296.
-[51]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1297.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1297.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1298.
@@ -5038,42 +5042,41 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 Package cleveref Info: loaded `italian' language definitions on input line 1727.
 [73]
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1728.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1728.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1729.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1729.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1729.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1729.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1729.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1729.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1732.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1732.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1732.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1732.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1732.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1733.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1733.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1733.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1733.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1733.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1733.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1736.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1736.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1736.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1736.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1736.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1737.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1737.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1737.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1737.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1737.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1737.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1737.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1737.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1737.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1733.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1733.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1733.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1734.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1734.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1734.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1734.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1734.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1734.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1735.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1735.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1735.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1735.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1735.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1735.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1738.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1738.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1738.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1738.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1738.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1738.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1739.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1739.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1739.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1739.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1739.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1739.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1742.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1742.
 Package cleveref Info: loaded `italian' language definitions on input line 1743.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1743.
 
@@ -5086,8 +5089,23 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 Package cleveref Info: loaded `italian' language definitions on input line 1743.
 [74]
-Package cleveref Info: loaded `italian' language definitions on input line 1749.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1745.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1746.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1746.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1746.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1746.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1746.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1749.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1750.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1754.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1754.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1755.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1758.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1759.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1759.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1759.
+Package cleveref Info: loaded `italian' language definitions on input line 1767.
+LaTeX Font Info:    No math alphabet change to frozen version normal on input line 1767.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -5096,7 +5114,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-Package cleveref Info: loaded `italian' language definitions on input line 1749.
+Package cleveref Info: loaded `italian' language definitions on input line 1767.
 [75] (./Linguaggi di Programmazione.aux
 Package cleveref Info: loaded `italian' language definitions on input line 20.
 Package cleveref Info: loaded `italian' language definitions on input line 21.
@@ -5114,18 +5132,18 @@ Package logreq Info: Writing requests to '"Linguaggi di Programmazione".run.xml'
 
  ) 
 Here is how much of TeX's memory you used:
- 63906 strings out of 477974
- 1467809 string characters out of 5839631
+ 63909 strings out of 477974
+ 1467868 string characters out of 5839631
  2541996 words of memory out of 5000000
- 82867 multiletter control sequences out of 15000+600000
+ 82869 multiletter control sequences out of 15000+600000
  554457 words of font info for 157 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  119i,23n,125p,1677b,2112s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/aless/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/latxfont/lasy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbi1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb>
-Output written on "Linguaggi di Programmazione.pdf" (78 pages, 762645 bytes).
+Output written on "Linguaggi di Programmazione.pdf" (78 pages, 764500 bytes).
 PDF statistics:
- 1315 PDF objects out of 1440 (max. 8388607)
- 1162 compressed objects within 12 object streams
- 395 named destinations out of 1000 (max. 500000)
+ 1316 PDF objects out of 1440 (max. 8388607)
+ 1163 compressed objects within 12 object streams
+ 396 named destinations out of 1000 (max. 500000)
  464 words of extra memory for PDF output out of 10000 (max. 10000000)
 
