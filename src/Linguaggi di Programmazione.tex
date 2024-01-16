@@ -1670,7 +1670,7 @@
     \end{frameddefn}
 
     \begin{framedobs}{Tipi di $Fun_\tau$}
-        La definizione dei tipi di $Fun_\tau$ è scomposta in due grammatiche differenti, al fine di vietare di costruire tipi come il seguente: $$\forall X.X \to \ttt{int}$$ infatti, non è possibile avere questo tipo in $Fun_\tau$, poiché una volta costruito il tipo $\forall X.X$, il quale è uno schema di tipo, non è legale utilizzare la regola $\tau_1 \to \tau_2$, poiché $\tau_1$ e $\tau_2$ devono essere tipi primitivi.
+        La definizione dei tipi di $Fun_\tau$ è scomposta in due grammatiche differenti, al fine di vietare di costruire tipi come il seguente: $$(\forall X.X )\to \ttt{int}$$ infatti, non è possibile avere questo tipo in $Fun_\tau$, poiché una volta costruito il tipo $\forall X.X$, il quale è uno schema di tipo, non è legale utilizzare la regola $\tau_1 \to \tau_2$, poiché $\tau_1$ e $\tau_2$ devono essere tipi primitivi.
 
         Di conseguenza, i tipi di $Fun_\tau$ non permettono di definire funzioni che in input si aspettano tipi polimorfi, ed infatti l'espressione $$\lambda x.xx$$ discussa nell'\cref{exp poly typable} non è tipabile in $Fun_\tau$.
     \end{framedobs}
@@ -1680,7 +1680,7 @@
 
         \begin{itemize}
             \item \tbf{generalizzazioni}: $$\exists X \in \mathrm{TypeVar} \mid X \notin \mathrm{free}(\Gamma) \implies [gen] \ \dfrac{\typejud{\Gamma}{M}{\sigma}}{\typejud{\Gamma}{M}{\forall X.\sigma}}$$
-            \item \tbf{specializzazioni}: $$\sigma > \sigma ' \implies \dfrac{\typejud{\Gamma}{M}{\sigma}}{\typejud{\Gamma}{M}{\sigma'}}$$
+            \item \tbf{specializzazioni}: $$\sigma > \sigma ' \implies [spec] \ \dfrac{\typejud{\Gamma}{M}{\sigma}}{\typejud{\Gamma}{M}{\sigma'}}$$
             \item \tbf{applicazioni}: $$[appl] \ \dfrac{\typejud{\Gamma}{M}{\tau' \to \tau} \quad \typejud{\Gamma}{N}{\tau'}}{\typejud{\Gamma}{MN}{\tau}}$$
             \item \tbf{funzioni}: $$[fn] \ \dfrac{\typejud{\Gamma,x:\tau'}{M}{\tau}}{\typejud{\Gamma}{\fn{x}{M}}{\tau' \to \tau}}$$
             \item \tbf{assegnazioni}: $$[let] \ \dfrac{\typejud{\Gamma}{M}{\sigma} \quad \typejud{\Gamma, x:\sigma}{N}{\sigma'}}{\typejud{\Gamma}{\letin{x}{M}{N}}{\sigma'}}$$
