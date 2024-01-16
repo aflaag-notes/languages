@@ -649,7 +649,7 @@
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid f :\mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup Exp\}$$
-            \item \tbf{valutazioni}: $$x \in \dom(E) \land M := E(x) \implies [vars] \ \dfrac{\opjud{E}{M}{v}}{\opjud{E}{x}{v}}$$
+            \item \tbf{variabili}: $$x \in \dom(E) \land M := E(x) \implies [vars] \ \dfrac{\opjud{E}{M}{v}}{\opjud{E}{x}{v}}$$
             \item \tbf{assegnazioni}: $$[let] \ \dfrac{\opjud{E\{(x, M)\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$$
         \end{itemize}
     \end{framedprop}
@@ -659,7 +659,7 @@
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Exp$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid f: \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup (Exp \times \mathrm{Env}) \}$$
-            \item \tbf{valutazioni}: $$x \in \dom(E) \land (M, E') := E(x) \implies [vars] \ \dfrac{\opjud{E'}{M}{v}}{\opjud{E}{x}{v}}$$
+            \item \tbf{variabili}: $$x \in \dom(E) \land (M, E') := E(x) \implies [vars] \ \dfrac{\opjud{E'}{M}{v}}{\opjud{E}{x}{v}}$$
             \item \tbf{assegnazioni} $$[let] \ \dfrac{\opjud{E\{(x, (M, E))\}}{N}{v}}{\opjud{E}{\letin{x}{M}{N}}{v}}$$
         \end{itemize}
     \end{framedprop}
@@ -721,7 +721,7 @@
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$
             \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1 , \ldots \} \cup (\mathrm{Var} \times Fun)$$                   \item \tbf{funzioni}: $$[fn] \ \opjud{E}{\fn{x}{M}}{(x,M)}$$
-            \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{\fn{x}{L}}{(x,L)} \quad \opjud{E}{N}{v'} \quad \opjud{E\{(x,v')\}}{L}{v}}{\opjud{E}{(\fn{x}{L})N}{v}}$$
+            \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{M}{(x,L)} \quad \opjud{E}{N}{v'} \quad \opjud{E\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$$
         \end{itemize}
     \end{framedprop}
 
@@ -732,7 +732,7 @@
             \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$
             \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$
             \item \tbf{funzioni}: $$[fn] \ \opjud{E}{\fn{x}{M}}{(x,M,E)}$$
-            \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{\fn{x}{L}}{(x, L, E')} \quad \opjud{E}{N}{v'} \quad \opjud{E'\{(x,v')\}}{L}{v}}{\opjud{E}{(\fn{x}{L})N}{v}}$$
+            \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{M}{(x, L, E')} \quad \opjud{E}{N}{v'} \quad \opjud{E'\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$$
         \end{itemize}
     \end{framedprop}
 
@@ -757,7 +757,7 @@
             \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{ f \mid f: \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup Fun \}$$
             \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun)$$
             \item \tbf{funzioni}: $$[fn] \ \opjud{E}{\fn{x}{M}}{(x,M)}$$
-            \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{\fn{x}{L}}{(x,L)} \quad \opjud{E'\{(x,N)\}}{L}{v}}{\opjud{E}{(\fn{x}{L})N}{v}}$$
+            \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{M}{(x,L)} \quad \opjud{E\{(x,N)\}}{L}{v}}{\opjud{E}{MN}{v}}$$
         \end{itemize}
     \end{framedprop}
 
@@ -1281,7 +1281,7 @@
         Sia $All$ la grammatica definita nella \cref{all}; per poter valutare le sue espressioni attraverso la semantica \tit{call-by-reference}, è necessario definire la seguente regola di inferenza: 
 
         \begin{itemize}
-            \item \tbf{call-by-reference}: $$\exists l \in \mathrm{Loc} - \dom(S) \land E(y) = (x, p, E') \implies$$ $$\implies [call]_{ref} \ \dfrac{\opjudstore[V]{E}{V}{S}{l} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$
+            \item \tbf{call-by-reference}: $$\exists l \in \mathrm{Loc} \mid l \in \dom(S) \land E(y) = (x, p, E') \implies$$ $$\implies [call]_{ref} \ \dfrac{\opjudstore[V]{E}{V}{S}{l} \quad \opjudstore[p]{E'\{(x,l)\}}{p}{S}{S'}}{\opjudstore[p]{E}{\call{y}{V}}{S}{S'}}$$
         \end{itemize}
     \end{framedprop}
 
@@ -1299,7 +1299,23 @@
     \end{framedlem}
     
     \begin{proof}
-        TODO.
+        Si consideri il seguente programma $$\procin{y}{x}{p}{q}$$ e si noti che:
+        
+        \begin{itemize}
+            \item quando viene effettuata la chiamata $\call{y}{M}$ attraverso la semantica call-by-value viene creata una nuova locazione per $x$;
+            \item diversamente, quando viene effettuata la chiamata $\call{y}{V}$, attraverso semantiche call-by-reference e call-by-name, non verranno create nuove locazioni per $x$, ma verrà utilizzata direttamente la locazione associata a $V$.
+        \end{itemize}
+
+        Di conseguenza, il programma restituisce stati diversi della memoria in base alla semantica utilizzata; questo dimostra che $All_\mathrm{V} \not\equiv All_\mathrm{R}, All_\mathrm{N}$.
+
+        Si consideri ora il seguente programma $$\varin{x}{0}{\arrin{z}{[3, 7]}{\procin{y}{w}{x := 1; \ w := 15}{\call{y}{z[x]}}}}$$ e si noti che:
+
+        \begin{itemize}
+            \item valutando tale programma attraverso semantica call-by-reference, durante la chiamata $y(z[x])$ l'espressione $x$ viene valutata immediatamente, e varrà dunque $0$,  di conseguenza $w$ punterà alla locazione $z[x] = z[0]$;
+            \item diversamente, valutando tale programma attraverso semantica call-by-name, durante la chiamata $y(z[x])$ l'espressione $z[x]$ non verrà valutata e il calcolo verrà rimandato fino all'espressione $w := 15$, in cui diventa strettamente necessario calcolare $z[x]$; di conseguenza, poiché prima di tale operazione vi è $x := 1$, $w$ punterà alla locazione $z[x] = z[1]$.
+        \end{itemize}
+
+        Di conseguenza, il programma restituisce stati diversi della memoria in base alla semantica utilizzata; questo dimostra che $All_\mathrm{R} \not\equiv All_\mathrm{N}$, e dunque segue la tesi.
     \end{proof}
 
     \chapter{Correttezza dei programmi}
@@ -1409,7 +1425,7 @@
     \end{framedprop}
 
     \begin{proof}
-        Attraverso le regole definite nella \cref{= rules}, e utilizzando la simmetria (dimostrata nella \cref{symm}), data una terna di espressioni $M$, $N$ ed $L$ si ha che $$\dfrac{\dfrac{M = N \quad L = N}{N = M \quad N = L}}{M = L}$$
+        Attraverso le regole definite nella \cref{= rules}, e utilizzando la simmetria (dimostrata nella \cref{= symm}), data una terna di espressioni $M$, $N$ ed $L$ si ha che $$\dfrac{\dfrac{M = N \quad N = L}{N = M \quad N = L}}{M = L}$$
     \end{proof}
 
     \begin{example}[Correttezza di espressioni]
