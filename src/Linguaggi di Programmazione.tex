@@ -463,7 +463,14 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Forma di Backus-Naur (BNF)}
-        La \tbf{forma di Backus-Naur} (\tit{Backus-Naur Form}) è una notazione utilizzata per descrivere la sintassi di grammatiche, ed è definita come segue: $$\ttt{symbol}, \ldots, \ttt{symbol} \ ::= \ \ttt{expression} \smid \ldots \smid \ttt{expression}$$ dove
+        La \tbf{forma di Backus-Naur} (\tit{Backus-Naur Form}) è una notazione utilizzata per descrivere la sintassi di grammatiche, ed è definita come segue: 
+
+        \begin{center}
+            \begin{tabular}{rcl}
+                $\ttt{symbol}, \ldots, \ttt{symbol}$ & $::=$ & $\ttt{expression} \smid \ldots \smid \ttt{expression}$ \\
+            \end{tabular}
+        \end{center}
+
         \begin{itemize}
             \item $\ttt{symbol}$ è una \tit{metavariabile non terminale}, in quanto può essere sostituita con regole definite dalla grammatica;
             \item il simbolo $::=$ indica che ciò che è posto alla sua sinistra deve essere sostituito con ciò che è alla sua destra;
@@ -476,7 +483,15 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={exp}]{Grammatica $Exp$}
-        Sia $Exp$ la seguente grammatica: $$M, N \ ::= \ 0 \smid 1 \smid \ldots \smid x \smid M + N \smid M * N$$ essa definisce le regole per utilizzare i numeri in $\N$, ammettendo inoltre le operazioni \und{sintattiche} di somma e prodotto. Dunque, essa è composta da:
+        Sia $Exp$ la seguente grammatica:
+        
+        \begin{center}
+            \begin{tabular}{rcl}
+                $M, N$ & $::=$ & $0 \smid 1 \smid \ldots \smid x \smid M + N \smid M * N$ \\
+            \end{tabular}
+        \end{center}
+
+        essa definisce le regole per utilizzare i numeri in $\N$, ammettendo inoltre le operazioni \und{sintattiche} di somma e prodotto. Dunque, essa è composta da:
 
         \begin{itemize}
             \item \tit{costanti}: $0, 1, \ldots$
@@ -517,7 +532,13 @@
     \end{frameddefn}
     
     \begin{frameddefn}[label={exp2}]{Estensione di $Exp$}
-        Sia $Exp$ la seguente estensione della grammatica presente all'interno della \cref{exp}: $$M, N \ ::= \ k \smid x \smid M + N \smid M * N \smid \letin{x}{M}{N}$$
+        Sia $Exp$ la seguente estensione della grammatica presente all'interno della \cref{exp}:
+
+        \begin{center}
+            \begin{tabular}{rcl}
+                $M, N$ & $::=$ & $k \smid x \smid M + N \smid M * N \smid \letin{x}{M}{N}$ \\
+            \end{tabular}
+        \end{center}
 
         In essa, sono presenti:
 
@@ -664,7 +685,7 @@
         \end{itemize}
     \end{framedprop}
 
-    \begin{framedlem}{$Exp_\mathrm{LS}$ e $Exp_\mathrm{LD}$}
+    \begin{framedlem}[label={exp ls != exp ld}]{$Exp_\mathrm{LS}$ e $Exp_\mathrm{LD}$}
         Sia $Exp$ la grammatica definita nella \cref{exp2}; allora, si ha che $$Exp_\mathrm{LS} \not\equiv Exp_\mathrm{LD}$$
     \end{framedlem}
 
@@ -689,7 +710,13 @@
     \end{frameddefn}
 
     \begin{frameddefn}[label={fun}]{Grammatica $Fun$}
-        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno della \cref{exp2}: $$M,N \ ::= \ k \smid x \smid M + N \smid M * N \smid \letin{x}{M}{N} \smid \fn{x}{M} \smid MN$$
+        Sia $Fun$ la seguente estensione della grammatica $Exp$, definita all'interno della \cref{exp2}:
+
+        \begin{center}
+            \begin{tabular}{rcl}
+                $M, N$ & $::=$ & $k \smid x \smid M + N \smid M * N \smid \letin{x}{M}{N} \smid \fn{x}{M} \smid MN$ \\
+            \end{tabular}
+        \end{center}
     \end{frameddefn}
 
     \begin{example}[Funzioni come argomenti]
@@ -720,7 +747,7 @@
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$
-            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1 , \ldots \} \cup (\mathrm{Var} \times Fun)$$                   \item \tbf{funzioni}: $$[fn] \ \opjud{E}{\fn{x}{M}}{(x,M)}$$
+            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{  0,  1 , \ldots \} \cup (\mathrm{Var} \times Fun)$$                   \item \tbf{funzioni}: $$[fn] \ \opjud{E}{\fn{x}{M}}{(x,M)}$$
             \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{M}{(x,L)} \quad \opjud{E}{N}{v'} \quad \opjud{E\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$$
         \end{itemize}
     \end{framedprop}
@@ -730,7 +757,7 @@
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene definito come segue: $$\mathrm{Env} := \{f \mid f : \mathrm{Var} \xrightarrow{fin} \mathrm{Val}\}$$
-            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$
+            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{  0, 1, \ldots \} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$
             \item \tbf{funzioni}: $$[fn] \ \opjud{E}{\fn{x}{M}}{(x,M,E)}$$
             \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{M}{(x, L, E')} \quad \opjud{E}{N}{v'} \quad \opjud{E'\{(x,v')\}}{L}{v}}{\opjud{E}{MN}{v}}$$
         \end{itemize}
@@ -755,7 +782,7 @@
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{ f \mid f: \mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup Fun \}$$
-            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ \ttt 0, \ttt 1, \ldots \} \cup (\mathrm{Var} \times Fun)$$
+            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{  0, 1, \ldots \} \cup (\mathrm{Var} \times Fun)$$
             \item \tbf{funzioni}: $$[fn] \ \opjud{E}{\fn{x}{M}}{(x,M)}$$
             \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{M}{(x,L)} \quad \opjud{E\{(x,N)\}}{L}{v}}{\opjud{E}{MN}{v}}$$
         \end{itemize}
@@ -766,9 +793,9 @@
 
         \begin{itemize}
             \item l'insieme degli ambienti di $Fun$ viene ridefinito come segue: $$\mathrm{Env} := \{f \mid f :\mathrm{Var} \xrightarrow{fin} \mathrm{Val} \cup (Fun \times \mathrm{Env})\}$$
-            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{\ttt 0, \ttt 1, \ldots\} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$
+            \item l'insieme dei valori di $Fun$ viene ridefinito come segue: $$\mathrm{Val} := \{ 0, 1, \ldots\} \cup (\mathrm{Var} \times Fun \times \mathrm{Env})$$
             \item \tbf{funzioni}: $$[fn] \ \opjud{E}{\fn{x}{M}}{(x,M,E)}$$
-            \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{\fn{x}{L}}{(x,L,E')} \quad \opjud{E'\{(x,(N,E))\}}{L}{v}}{\opjud{E}{(\fn{x}{L})N}{v}}$$
+            \item \tbf{applicazioni}: $$[appl] \ \dfrac{\opjud{E}{M}{(x,L,E')} \quad \opjud{E'\{(x,(N,E))\}}{L}{v}}{\opjud{E}{MN}{v}}$$
         \end{itemize}
     \end{framedprop}
 
@@ -777,7 +804,7 @@
     \end{framedlem}
 
     \begin{proof}
-        Omessa.
+        Poiché $Fun_\mathrm{LS}$ e $Fun_\mathrm{LD}$ ereditano le regole di $Exp_\mathrm{LS}$ ed $Exp_\mathrm{LD}$ rispettivamente, la tesi segue per dimostrazione analoga alla dimostrazione del \cref{exp ls != exp ld}.
     \end{proof}
 
     \begin{frameddefn}[label={omega}]{Espressione $\omega$}
@@ -915,7 +942,14 @@
     \subsection{Lambda calcolo}
 
     \begin{frameddefn}{Lambda calcolo}
-        Il \tbf{lambda calcolo} è un sistema formale atto ad analizzare le funzioni e le loro applicazioni. La grammatica del lambda calcolo è la seguente $$M,N \ ::= \ x \smid \lambda x . M \smid MN$$ dove $\lambda x.M$ indica una funzione della forma $\fn{x}{M}$, e prende il nome di \tbf{lambda astrazione}. Le espressioni del lambda calcolo sono dette \tbf{lambda espressioni}.
+        Il \tbf{lambda calcolo} è un sistema formale atto ad analizzare le funzioni e le loro applicazioni. La grammatica del lambda calcolo è la seguente
+        \begin{center}
+            \begin{tabular}{rcl}
+                $M, N$ & $::=$ & $x \smid \lambda x . M \smid MN$ \\
+            \end{tabular}
+        \end{center}
+
+        dove $\lambda x.M$ indica una funzione della forma $\fn{x}{M}$, e prende il nome di \tbf{lambda astrazione}. Le espressioni del lambda calcolo sono dette \tbf{lambda espressioni}.
     \end{frameddefn}
 
     \begin{example}[Lambda espressioni]
@@ -1113,7 +1147,15 @@
     \end{example}
 
     \begin{frameddefn}[label={fun rho}]{Grammatica $Fun_\rho$}
-        Si consideri la grammatica $Fun$ definita all'interno della \cref{fun}; la seguente è una sua estensione, che prenderà il nome di $Fun_\rho$, che include al suo interno una clausola con l'operatore $rec$: $$M, N \ ::= \ x \smid \fn{x}{M} \smid MN \smid 0 \smid \mathrm{succ} \ M \smid \recfun{M}{N}$$ dove si noti che 0 non sta ad indicare tutte le costanti, ma esclusivamente lo 0, in quanto non è necessario includere le altre poiché la grammatica è fornita della funzione $\mathrm{succ}$.
+        Si consideri la grammatica $Fun$ definita all'interno della \cref{fun}; la seguente è una sua estensione, che prenderà il nome di $Fun_\rho$, che include al suo interno una clausola con l'operatore $rec$:
+
+        \begin{center}
+            \begin{tabular}{rcl}
+                $M, N$ & $::=$ & $x \smid \fn{x}{M} \smid MN \smid 0 \smid \mathrm{succ} \ M \smid \recfun{M}{N}$ \\
+            \end{tabular}
+        \end{center}
+
+        dove si noti che 0 non sta ad indicare tutte le costanti, ma esclusivamente lo 0, in quanto non è necessario includere le altre poiché la grammatica è fornita della funzione $\mathrm{succ}$.
     \end{frameddefn}
 
     \begin{example}[Operatore $rec$ in $Fun_\rho$]
@@ -1170,7 +1212,28 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}[label={imp}]{Grammatica $Imp$}
-        Si consideri la grammatica $Exp$ definita all'interno della \cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estenderla come segue: $$M,N \ ::= \ k \smid true \smid false \smid x \smid M + N \smid M * N \smid M < N$$ dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente: $$p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \smid \while{M}{p} \smid \varin{x}{M}{p} \smid x:=M $$ L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S'}}$$
+        Si consideri la grammatica $Exp$ definita all'interno della \cref{exp} (si noti che non si tratta di $Exp$ estesa); è possibile estenderla come segue:
+
+        \begin{center}
+            \begin{tabular}{rcl}
+                $M, N$ & $::=$ & $k \smid true \smid false \smid x \smid M + N \smid M * N \smid M < N$ \\
+            \end{tabular}
+        \end{center}
+
+        dove $true$ e $false$ sono valori booleani di verità. Allora, sia $Imp$ la grammatica composta da tale estensione di $Exp$, e dalla seguente:
+
+        \begin{center}
+            \begin{tabular}{rcl}
+                $p, q$ & $::=$ & $skip \smid p;q \smid \ite{M}{p}{q} \smid \while{M}{p}$ \\
+                       & & $\varin{x}{M}{p} \smid x:=M$ \\
+            \end{tabular}
+        \end{center}
+
+        L'insieme degli ambienti di $Imp$ è strutturato come nella \cref{store}. Inoltre, per effettuare le valutazioni, vengono definite le seguenti semantiche operazionali: $$\centeredsoe{\stackrel{M}{\leadsto}\ \subseteq \mathrm{Env} \times Exp \times \mathrm{Store} \times \mathrm{Val} \\ \stackrel{p}{\leadsto} \ \subseteq \mathrm{Env} \times Imp \times \mathrm{Store} \times \mathrm{Store}}$$ ed i loro giudizi operazionali verranno indicati come segue: $$\centeredsoe{\opjudstore[M]{E}{M}{S}{v} \\ \opjudstore[p]{E}{p}{S}{S'}}$$
+    \end{frameddefn}
+
+    \begin{frameddefn}{Concatenazione di store}
+        Siano $S_1$ ed $S_2$ due store di una grammatica imperativa; allora, si definisce \tbf{concatenazione} di $S_1$ ed $S_2$ la seguente funzione $$\funcmap{S_1, S_2}{\mathrm{Store} \times \mathrm{Store}}{\mathrm{Store}}{x}{\soe{ll}{S_2(x) & x \in \dom(S_2) \lor x \in \dom(S_1) \cap \dom(S_2) \\ S_1(x) & x \in \dom(S_1)}}$$ dunque, nella concatenazione $S_2$ sovrascrive le tuple che sono presenti anche in $S_1$.
     \end{frameddefn}
 
     \begin{framedobs}{Semantiche di $Imp$}
@@ -1190,7 +1253,7 @@
             \item \tbf{minorazioni}: $$v_1 < v_2 \implies [lt_1] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M  < N}{S}{true}}$$ $$v_1 \ge v_2 \implies [lt_2] \ \dfrac{\opjudstore{E}{M}{S}{v_1} \quad \opjudstore{E}{N}{S}{v_2}}{\opjudstore{E}{M  <  N}{S}{false}}$$
             \item \tbf{skip}: $$[skip] \ \opjudstore{E}{skip}{S}{S}$$
             \item \tbf{composizioni sequenziali}: $$[seq] \ \dfrac{\opjudstore{E}{p}{ S}{S'} \quad \opjudstore{E}{q}{ S'}{S''}}{\opjudstore{E}{p;q}{S}{S''}}$$
-            \item \tbf{if-then-else}: $$[ite_1] \ \dfrac{\opjudstore{E}{M}{ S}{true} \quad \opjudstore{E}{p}{S}{S'}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S'}}$$ $$[ite_2] \ \dfrac{\opjudstore{E}{M}{S}{false} \quad \opjudstore{E}{p}{S}{S''}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S''}}$$
+            \item \tbf{if-then-else}: $$[ite_1] \ \dfrac{\opjudstore{E}{M}{ S}{true} \quad \opjudstore{E}{p}{S}{S'}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S'}}$$ $$[ite_2] \ \dfrac{\opjudstore{E}{M}{S}{false} \quad \opjudstore{E}{q}{S}{S''}}{\opjudstore{E}{\ite{M}{p}{q}}{S}{S''}}$$
             \item \tbf{while}: $$[while_1] \ \dfrac{\opjudstore{E}{M}{S}{true} \quad \opjudstore{E}{p}{S}{S'} \quad \opjudstore{E}{\while{M}{p}}{ S'}{S''}}{\opjudstore{E}{\while{M}{p}}{ S}{S''}}$$ $$[while_2] \ \dfrac{\opjudstore{E}{M}{S}{false}}{\opjudstore{E}{\while{M}{p}}{S}{S}}$$
             \item \tbf{dichiarazioni}: $$\exists l \in \mathrm{Loc} \mid l \notin \dom(S) \implies$$ $$\implies [var] \ \dfrac{\opjudstore{E}{M}{S}{v} \quad \opjudstore{E\{(x,l)\}}{p}{S\{(l,v)\}}{S'}}{\opjudstore{E}{\varin{x}{M}{p}}{S}{S'}}$$
             \item \tbf{assegnazioni}: $$\exists l \in \mathrm{Loc} \mid E(x) = l \implies [assign] \ \dfrac{\opjudstore{E}{M}{S}{v}}{\opjudstore{E}{x := M}{ S}{S\{(l, v)\}}}$$
@@ -1214,7 +1277,7 @@
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $proc$}
-        la clausola $proc$ verrà utilizzata attraverso la sintassi $$\procin{\ttt{variable}_1}{\ttt{variable}_2}{\ttt{program}_1}{\ttt{program}_2}$$ la quale definisce la \tit{procedura} $\ttt{variable}_1(\ttt{variable}_2)$, il cui corpo è costituito da $\ttt{program}_1$, ed è possibile utilizzarla all'interno di $\ttt{program}_2$.
+        La clausola $proc$ verrà utilizzata attraverso la sintassi $$\procin{\ttt{variable}_1}{\ttt{variable}_2}{\ttt{program}_1}{\ttt{program}_2}$$ la quale definisce la \tit{procedura} $\ttt{variable}_1(\ttt{variable}_2)$, il cui corpo è costituito da $\ttt{program}_1$, ed è possibile utilizzarla all'interno di $\ttt{program}_2$.
     \end{frameddefn}
 
     \begin{frameddefn}{Clausola $call$}
@@ -1225,8 +1288,21 @@
 
     \subsection{Definizioni}
 
-    \begin{frameddefn}[label={all}, breakable]{Grammatica $All$}
-        Sia $All$ la grammatica, estensione di $Imp$ definita nella \cref{imp}, composta dalle seguenti grammatiche: $$\leftsoe{k \ ::= \ \ttt 0 \smid \ttt 1 \smid \ldots \smid true \smid false \\ V \ ::= \ x \smid x[M] \\ M, N \ ::= \ k \smid V \smid M + N \smid M * N \smid M   <  N \\ p,q \ ::= \ skip \smid p;q \smid \ite{M}{p}{q} \\ \quad \quad \quad \ \ \ \while{M}{p} \smid \varin{x}{M}{p} \smid \arrin{x}{[M_0, \ldots, M_n]}{p} \\ \quad \quad \quad \ \ \ V := M \smid \procin{y}{x}{p}{q} \smid \call{y}{M}}$$ Dunque, essa è composta da:
+    \begin{frameddefn}[label={all}]{Grammatica $All$}
+        Sia $All$ la grammatica, estensione di $Imp$ definita nella \cref{imp}, composta dalle seguenti grammatiche:
+
+        \begin{center}
+            \begin{tabular}{rcl}
+                $k$ & $::=$ & $0 \smid 1 \smid \ldots \smid true \smid false$ \\
+                $V$ & $::=$ & $x \smid x[M]$ \\
+                $M, N$ & $::=$ & $k \smid V \smid M + N \smid M * N \smid M   <  N$ \\
+                $p,q$ & $::=$ & $skip \smid p;q \smid \ite{M}{p}{q}$ \\
+                      & & $\while{M}{p} \smid \varin{x}{M}{p} \smid \arrin{x}{[M_0, \ldots, M_n]}{p}$ \\
+                      & & $V := M \smid \procin{y}{x}{p}{q} \smid \call{y}{M}$ \\
+            \end{tabular}
+        \end{center}
+
+        Dunque, essa è composta da:
 
         \begin{itemize}
             \item una grammatica per le \tit{costanti};
@@ -1241,7 +1317,7 @@
     \subsection{Semantica operazionale di $All$}
 
     \begin{framedprop}[label={all sem}, breakable]{Semantica operazionale di $All$}
-        Sia $All$ la grammatica definita all'interno della \cref{all}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, in aggiunta alle regole $$[const], \ [plus], \ [times], \ [lt_1], \ [lt_2], \ [skip], \ [seq], \ [ite_1], \ [ite_2], \ [while_1], \ [while_2]$$ descritte nell'\cref{imp sem}, si definiscono le seguenti:
+        Sia $All$ la grammatica definita all'interno della \cref{all}, e siano $E \in \mathrm{Env}$ e $S \in \mathrm{Store}$; allora, in aggiunta alle regole $$[const], \ [plus], \ [times], \ [lt_1], \ [lt_2], \ [skip], \ [seq], \ [ite_1], \ [ite_2], \ [while_1], \ [while_2], \ [var]$$ descritte nell'\cref{imp sem}, si definiscono le seguenti:
 
         \begin{itemize}
             \item \tbf{locazioni}: $$\exists l \in \mathrm{Loc}^+ \mid E(x) = l \implies [loc_1] \ \opjudstore[V]{E}{x}{S}{l}$$
@@ -1339,7 +1415,7 @@
             \item \tbf{true}: $$\hoare{A}{p}{true}$$ poiché, per qualsiasi programma $p$, indipendentemente dalla precondizione $A$, la tripla di Hoare verrà soddisfatta;
             \item \tbf{false}: $$\hoare{false}{p}{B}$$ poiché la tripla di Hoare è vera a vuoto, in quando la precondizione non può essere soddisfatta poiché è $false$;
             \item \tbf{strengthening}: $$\dfrac{A \supset B \quad \hoare{B}{p}{C}}{\hoare{A}{p}{C}}$$ poiché se $A$ implica $B$, e si raggiunge uno stato che soddisfa $C$ quando $p$ termina partendo da uno stato che soddisfa $B$, allora sicuramente partendo da uno stato che soddisfa $A$, quando $p$ termina, $C$ sarà soddisfatta dallo stato terminale;
-            \item \tbf{weakening}: $$\dfrac{B \supset A \quad \hoare{C}{p}{B}}{\hoare{C}{p}{A}}$$ poiché se $B$ implica $A$, e si raggiunge uno stato che soddisfa $B$ quando $p$ termina partendo da uno stato che soddifa $C$, allora sicuramente partendo da uno stato che soddisfa $C$, quando $p$ termina, $A$ sarà soddisfatta dallo stato terminale; si noti che le regole di \tit{strengthening} e di \tit{weakening} sono l'una il duale dell'altra;
+            \item \tbf{weakening}: $$\dfrac{\hoare{C}{p}{B} \quad B \supset A}{\hoare{C}{p}{A}}$$ poiché se $B$ implica $A$, e si raggiunge uno stato che soddisfa $B$ quando $p$ termina partendo da uno stato che soddifa $C$, allora sicuramente partendo da uno stato che soddisfa $C$, quando $p$ termina, $A$ sarà soddisfatta dallo stato terminale; si noti che le regole di \tit{strengthening} e di \tit{weakening} sono l'una il duale dell'altra;
             \item \tbf{and}: $$\dfrac{\hoare{A}{p}{B_0} \quad \hoare{A}{p}{B_1} \quad \ldots \quad \hoare{A}{p}{B_n}}{\hoare{A}{p}{B_0 \land B_1 \land \ldots \land B_n}}$$ poiché, se partendo da uno stato che soddisfa $A$, una volta terminata l'esecuzione, $p$ raggiunge uno stato che soddisfa $B_0$ e $B_1, \ldots, B_n$, allora soddisferà sicuramente anche $B_0 \land B_1 \land \ldots \land B_n$;
             \item \tbf{or}: $$\dfrac{\hoare{B_0}{p}{A} \quad \hoare{B_1}{p}{A} \quad \ldots \quad \hoare{B_n}{p}{A}}{\hoare{B_0 \lor B_1 \lor \ldots \lor B_n}{p}{A}}$$ poiché, se partendo da un qualsiasi stato tra $B_0$ e $B_1, \ldots, B_n$, una volta terminata l'esecuzione, $p$ raggiunge uno stato che soddisfa $A$, allora lo stato iniziale soddisferà anche $B_0 \lor B_1 \lor \ldots \lor B_n$; si noti che le regole \tit{and} ed \tit{or} sono l'una il duale dell'altra;
         \end{itemize}
@@ -1348,7 +1424,17 @@
     \subsection{Logica di Hoare}
 
     \begin{frameddefn}[label={hoare logic}]{Logica di Hoare}
-        Si definisce \tbf{logica di Hoare} la seguente grammatica: $$\leftsoe{M,N \ ::= \ k \smid x \smid M + N \smid M * N \\ A,B \ ::= \ true \smid false \smid A \supset B \smid M <  N \smid M = N \\ p,q \ ::= \ skip \smid p;q \smid x:=M \smid \ite{B}{p}{q} \smid \while{B}{p}}$$ dove la prima grammatica comprende le espressioni, la seconda le espressioni booleane, e la terza i programmi.
+        Si definisce \tbf{logica di Hoare} la seguente grammatica:
+
+        \begin{center}
+            \begin{tabular}{rcl}
+                $M, N$ & $::=$ & $k \smid x \smid M + N \smid M * N$ \\
+                $A, B$ & $::=$ & $true \smid false \smid A \supset B \smid M <  N \smid M = N$ \\
+                $p, q$ & $::=$ & $skip \smid p;q \smid x:=M \smid \ite{B}{p}{q} \smid \while{B}{p}$ \\
+            \end{tabular}
+        \end{center}
+
+        dove la prima grammatica comprende le espressioni, la seconda le espressioni booleane, e la terza i programmi.
     \end{frameddefn}
 
     \begin{framedprop}[breakable]{Regole della logica di Hoare}
@@ -1441,7 +1527,16 @@
     \subsection{Definizioni}
 
     \begin{frameddefn}{Lambda calcolo tipato semplice}
-        La grammatica del \tbf{lambda calcolo tipato semplice} (noto in letteratura come \tit{System F1}) è costituita dalle seguenti grammatiche: $$\leftsoe{A,B \ ::= \ K \smid A \to B \\ M,N \ ::= \ k \smid x \smid \lambda x:A.M \smid MN}$$ Dunque, essa è composta da da:
+        La grammatica del \tbf{lambda calcolo tipato semplice} (noto in letteratura come \tit{System F1}) è costituita dalle seguenti grammatiche:
+
+        \begin{center}
+            \begin{tabular}{rcl}
+                $A, B$ & $::=$ & $K \smid A \to B$ \\
+                $M, N$ & $::=$ & $k \smid x \smid \lambda x:A.M \smid MN$ \\
+            \end{tabular}
+        \end{center}
+
+        Dunque, essa è composta da da:
 
         \begin{itemize}
             \item una grammatica per i \tit{tipi}, che verrà indicata con $Types$; si noti che il simbolismo $A \to B$ indica il tipo di una funzione che prende in ingresso un termine di tipo $A$, e ne restituisce uno di tipo $B$;
@@ -1569,7 +1664,16 @@
     \subsection{Lambda calcolo polimorfo}
 
     \begin{frameddefn}{Lambda calcolo polimorfo}
-        La grmamatica del \tbf{lambda calcolo polimorfo} (noto in letteratura come \tit{System F}) è costituita dalle seguenti grammatiche $$\leftsoe{A,B \ ::= \ K \smid X \smid A \to B \smid \forall X.A \\ M,N \ ::= \ k \smid x \smid \lambda x:A.M \smid MN \smid \Lambda X.M \smid M A}$$ Dunque, essa è composta da
+        La grmamatica del \tbf{lambda calcolo polimorfo} (noto in letteratura come \tit{System F}) è costituita dalle seguenti grammatiche
+
+        \begin{center}
+            \begin{tabular}{rcl}
+                $A, B$ & $::=$ & $K \smid X \smid A \to B \smid \forall X.A$ \\
+                $M, N$ & $::=$ & $k \smid x \smid \lambda x:A.M \smid MN \smid \Lambda X.M \smid M A$ \\
+            \end{tabular}
+        \end{center}
+
+        Dunque, essa è composta da
         \begin{itemize}
             \item una grammatica per i \tit{tipi}, che verrà indicata con $Types$; si noti che il simbolismo $X$ indica che la grammatica include le variabili di tipo, il cui insieme verrà indicato con $\mathrm{TypeVar}$;
             \item una grammatica per i \tit{termini}, che verrà indicata con $Terms$.
@@ -1621,7 +1725,7 @@
         Siano $\sigma$ e $\sigma'$ i seguenti tipi: $$\centeredsoe{\sigma := \forall X_1, \ldots, X_n. \tau \\ \sigma' := \forall Y_1, \ldots, Y_m. \tau'}$$ Allora, $\sigma'$ si dice essere un'\tbf{istanza generica} di $\sigma$ --- e viene denotato con il simbolismo $$\sigma > \sigma '$$ se e solo se:
 
         \begin{itemize}
-            \item $\exists \tau_1, \ldots, \tau_n \mid \tau' = [\tau_1, \ldots , \tau_n/X_1, \ldots, X_n]$ (dove quest'ultima indica una sostituzione simultanea)
+            \item $\exists \tau_1, \ldots, \tau_n \mid \tau' = [\tau_1, \ldots , \tau_n/X_1, \ldots, X_n]$ --- dove quest'ultima indica una sostituzione simultanea (si noti che $\nexists j \in [1, n] \mid X_j \in \mathrm{free}(\sigma)$)
             \item $\nexists j \in [1, m] \mid Y_j \in \mathrm{free}(\sigma)$
         \end{itemize}
     \end{frameddefn}
@@ -1659,7 +1763,17 @@
     \end{framedobs}
 
     \begin{frameddefn}{Grammatica $Fun_\tau$}
-        Sia $Fun_\tau$ la grammatica tipata polimorfa seguente: $$\leftsoe{\tau \ ::= \ K \smid X \smid \tau_1 \to \tau_2 \\ \sigma \ ::= \ \tau \smid \forall X.\sigma \\ M,N \ ::= \ k \smid x \smid \fn{x}{M} \smid MN \smid \letin{x}{M}{N}}$$ Dunque, essa è composta da:
+        Sia $Fun_\tau$ la grammatica tipata polimorfa seguente:
+
+        \begin{center}
+            \begin{tabular}{rcl}
+                $\tau$ & $::=$ & $K \smid X \smid \tau_1 \to \tau_2$ \\
+                $\sigma$ & $::=$ & $\tau \smid \forall X.\sigma$ \\
+                $M, N$ & $::=$ & $k \smid x \smid \fn{x}{M} \smid MN \smid \letin{x}{M}{N}$ \\
+            \end{tabular}
+        \end{center}
+
+        Dunque, essa è composta da:
 
         \begin{itemize}
             \item due grammatiche per i \tit{tipi}, che verranno indicate genericamente con $Types$; gli elementi della prima grammatica prendono il nome di \tit{tipi primitivi} (la cui grammatica verrà indicata con $PrimTypes$), mentre quelli della seconda prendono il nome di \tit{schemi di tipo};
