@@ -1,35 +1,69 @@
 \documentclass[a4paper, 12pt]{report}
 
+\usepackage[dvipsnames]{xcolor}
+
+%%%%%%%%%%%%%%%%
+% Set Variables %
+%%%%%%%%%%%%%%%%
+
+\def\useItalian{1}  % 1 = Italian, 0 = English
+
+\def\courseName{Linguaggi di Programmazione}
+
+\def\coursePrerequisites{
+    \begin{itemize}
+        \item Metodi Matematici per l'Informatica
+    \end{itemize}
+}
+
+\def\book{}
+
+% \def\authorName{Simone Bianco}
+% \def\email{bianco.simone@outlook.it}
+% \def\github{https://github.com/Exyss/university-notes}
+% \def\linkedin{https://www.linkedin.com/in/simone-bianco}
+
+\def\authorName{Alessio Bandiera}
+\def\email{alessio.bandiera02@gmail.com}
+\def\github{https://github.com/aflaag-notes}
+\def\linkedin{https://www.linkedin.com/in/alessio-bandiera-a53767223}
+
 %%%%%%%%%%%%
 % Packages %
 %%%%%%%%%%%%
 
-\usepackage{../Nyx/nyx-packages}
-\usepackage{../Nyx/nyx-styles}
-\usepackage{../Nyx/nyx-frames}
-\usepackage{../Nyx/nyx-title}
-\usepackage{../Nyx/nyx-macros}
+\usepackage{../../packages/Nyx/nyx-packages}
+\usepackage{../../packages/Nyx/nyx-styles}
+\usepackage{../../packages/Nyx/nyx-frames}
+\usepackage{../../packages/Nyx/nyx-macros}
+\usepackage{../../packages/Nyx/nyx-title}
+\usepackage{../../packages/Nyx/nyx-intro}
 
 %%%%%%%%%%%%%%
 % Title-page %
 %%%%%%%%%%%%%%
 
-\logo{../Nyx/logo.png}
+\logo{../../packages/Nyx/logo.png}
 
-\institute{\curlyquotes{\hspace{0.25mm}Sapienza} Università di Roma}
-\faculty{Ingegneria dell'Informazione,\\Informatica e Statistica}
-\department{Dipartimento di Informatica}
+\if\useItalian1
+    \institute{\curlyquotes{\hspace{0.25mm}Sapienza} Università di Roma}
+    \faculty{Ingegneria dell'Informazione,\\Informatica e Statistica}
+    \department{Dipartimento di Informatica}
+    % \subtitle{Appunti integrati con il libro \book}
+    \author{\textit{Autore}\\\authorName}
+\else
+    \institute{\curlyquotes{\hspace{0.25mm}Sapienza} University of Rome}
+    \faculty{Faculty of Information Engineering,\\Informatics and Statistics}
+    \department{Department of Computer Science}
+    \subtitle{Lecture notes integrated with the book \book}
+    \author{\textit{Author}\\\authorName}
+\fi
 
-\title{Linguaggi di Programmazione}
-% \subtitle{Appunti integrati con il libro "TODO", TODO 1, Autore 2, ...}
+\title{\courseName}
+\date{\today}
 
-% \author{\textit{Author}\\TODO: DECOMMENTARE QUESTA SEZIONE}
-% \author{\textit{Author}\\Simone Bianco}
-\author{\textit{Author}\\Alessio Bandiera}
 % \supervisor{Linus \textsc{Torvalds}}
 % \context{Well, I was bored\ldots}
-
-\date{\today}
 
 %%%%%%%%%%%%
 % Document %
@@ -51,49 +85,7 @@
         \romantableofcontents
     }
 
-    \chapter*{Informazioni e Contatti}      % \chapter* makes this a "fake" chapter
-    \markboth{Informazioni e Contatti}{}    % Manually sets \leftmark (current chapter name)
-    \addcontentsline{toc}{chapter}{Informazioni e Contatti}     % Manually adds chapter to ToC
-    
-    \subsubsection{Prerequisiti consigliati:}
-    \begin{itemize}
-        \item Algebra
-        \item TODO
-    \end{itemize}
-
-    \quad
-
-    \subsubsection{Segnalazione errori ed eventuali migliorie:}
-    
-    Per segnalare eventuali errori e/o migliorie possibili, si prega di utilizzare il \textbf{sistema di Issues fornito da GitHub} all'interno della pagina della repository stessa contenente questi ed altri appunti (link fornito al di sotto), utilizzando uno dei template già forniti compilando direttamente i campi richiesti.
-
-    Gli appunti sono in continuo aggiornamento, pertanto, previa segnalazione, si prega di controllare se l'errore sia ancora presente nella versione più recente.
-
-    \quad
-
-    \subsubsection{Licenza di distribuzione:}
-    
-    These documents are distributed under the \textbf{\href{https://www.gnu.org/licenses/fdl-1.3.txt}{GNU Free Documentation License}}, a form of copyleft intended to be used on manuals, textbooks or other types of document in order to assure everyone the effective freedom to copy and redistribute it, with or without modifications, either commercially or non-commercially.
-    
-    \quad
-
-    \subsubsection{Contatti dell'autore e ulteriori link:}
-    \begin{itemize}
-        % \item TODO: DECOMMENTARE QUESTA SEZIONE
-
-        % Simone
-        % 
-        % \item Altri appunti: \textbf{\href{https://github.com/Exyss/university-notes}{https://github.com/Exyss/university-notes}}
-        % \item Github: \textbf{\href{https://github.com/Exyss}{https://github.com/Exyss}}
-        % \item Email: \textbf{\href{mailto:bianco.simone@outlook.it}{bianco.simone@outlook.it}}
-        % \item LinkedIn: \textbf{\href{https://www.linkedin.com/in/simone-bianco}{Simone Bianco}}
-
-        % Alessio
-        % 
-        \item Github: \textbf{\href{https://github.com/ph04}{https://github.com/ph04}}
-        \item Email: \textbf{\href{mailto:alessio.bandiera02@gmail.com}{alessio.bandiera02@gmail.com}}
-        \item LinkedIn: \textbf{\href{https://www.linkedin.com/in/alessio-bandiera-a53767223/}{Alessio Bandiera}}
-    \end{itemize}
+    \introduction
 
     %%%%%%%%%%%%%%%%%%%%%
 
@@ -1105,11 +1097,11 @@
     \end{example}
 
     \begin{framedobs}[label={rhofun church}]{Operatore $\rho$ e $\N_\lambda$}
-        Si consideri un'algebra $(A, \mathrm{zero}_A, h)$ tale che $a$ sia il suo zero; per l'\cref{rho obs}, dunque, si verifica che $$\centeredsoe{\rhofun{a}{h} \ (\underbrace{\succfn \ ( \ \ldots \ (\succfn}_{n \ \mathrm{volte}} \ 0))) = \\ = h \ (\rhofun{a}{h} \ (\underbrace{\succfn \ ( \ \ldots \ (\succfn}_{n - 1 \ \mathrm{volte}} \ 0)))) = \ldots \\ \ldots = \underbrace{h \ (\ \ldots \ (h}_{n - 1 \ \mathrm{volte}} \ (\rhofun{a}{h} \ (\succfn \ 0)))) = \\ = \underbrace{h \ (\ \ldots \ (h }_{n \ \mathrm{volte}} \ (\rhofun{a}{h} \ 0)))  = \underbrace{h \ (\ \ldots \ (h}_{n \ \mathrm{volte}} \ a) = n_\lambda \ a }$$ dunque vi è una stretta corrispondenza tra l'operatore $\rho$ ed i numeri di Church.
+        Si consideri un'algebra $(A, \mathrm{zero}_A, h)$ tale che $a$ sia il suo zero; per l'\cref{rho obs}, dunque, si verifica che $$\centeredsoe{\rhofun{a}{h} \ (\underbrace{\succfn \ ( \ \ldots \ (\succfn}_{n \ \mathrm{volte}} \ 0))) = \\ = h \ (\rhofun{a}{h} \ (\underbrace{\succfn \ ( \ \ldots \ (\succfn}_{n - 1 \ \mathrm{volte}} \ 0)))) = \ldots \\ \ldots = \underbrace{h \ (\ \ldots \ (h}_{n - 1 \ \mathrm{volte}} \ (\rhofun{a}{h} \ (\succfn \ 0)))) = \\ = \underbrace{h \ (\ \ldots \ (h }_{n \ \mathrm{volte}} \ (\rhofun{a}{h} \ 0)))  = \underbrace{h \ (\ \ldots \ (h}_{n \ \mathrm{volte}} \ a) = n_\lambda \ h \ a }$$ dunque vi è una stretta corrispondenza tra l'operatore $\rho$ ed i numeri di Church.
     \end{framedobs}
 
     \begin{example}[$\N_\lambda$ con $\rho$]
-        Per l'\cref{rhofun church}, ad esempio, si ha che $$\centeredsoe{\rhofun{a}{h} \ (\succfn \ (\succfn \ (\succfn \ 0))) = h \ (\rhofun{a}{h} \ (\succfn \ (\succfn \ 0))) = \\ = h \ (h \ (\rhofun{a}{h} \ (\succfn \ 0))) = h \ (h \ (h \ \rhofun{a}{h} \ 0)) = h \ (h \ (h \ a)) \equiv 3_\lambda \ a}$$ 
+        Per l'\cref{rhofun church}, ad esempio, si ha che $$\centeredsoe{\rhofun{a}{h} \ (\succfn \ (\succfn \ (\succfn \ 0))) = h \ (\rhofun{a}{h} \ (\succfn \ (\succfn \ 0))) = \\ = h \ (h \ (\rhofun{a}{h} \ (\succfn \ 0))) = h \ (h \ (h \ \rhofun{a}{h} \ 0)) = h \ (h \ (h \ a)) \equiv 3_\lambda \ h \ a}$$ 
     \end{example}
 
     \begin{framedlem}[label={func ric prim}]{Funzione ricorsiva primitiva}

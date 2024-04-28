@@ -1,10 +1,8 @@
 \babel@toc {italian}{}\relax 
 \babel@toc {italian}{}\relax 
 \contentsline {chapter}{Informazioni e Contatti}{1}{chapter*.2}%
-\contentsline {subsubsection}{Prerequisiti consigliati:}{1}{subsubsection*.3}%
-\contentsline {subsubsection}{Segnalazione errori ed eventuali migliorie:}{1}{subsubsection*.4}%
-\contentsline {subsubsection}{Licenza di distribuzione:}{1}{subsubsection*.5}%
-\contentsline {subsubsection}{Contatti dell'autore e ulteriori link:}{1}{subsubsection*.6}%
+\contentsline {subsubsection}{Prerequisiti consigliati per lo studio:}{1}{subsubsection*.3}%
+\contentsline {subsubsection}{Licence:}{1}{subsubsection*.4}%
 \contentsline {chapter}{\numberline {1}Induzione}{2}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Algebre induttive}{2}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Assiomi di Peano}{2}{subsection.1.1.1}%
